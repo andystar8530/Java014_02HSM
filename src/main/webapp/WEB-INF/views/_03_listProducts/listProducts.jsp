@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,35 +35,53 @@
 	</c:choose>
 
 	<%-- --%>
-	<div id='content' class='table table-sm '>
-		<div class='mx-auto'>
-			<!--                 分隔線         -->
+	<br>
+	<div  style="text-align: center">
+	<a class="btn btn-outline-primary" href="<c:url value='/queryByCategory' />" >分類查詢</a>
+	</div>
+	<hr>
+	<c:if test="${categoryList != null}">
+		<div style="text-align: center">
+			<h1>請依照類別來挑選產品：</h1>
+			<c:forEach var='category' items='${categoryList}'>
+				<a class="btn btn-outline-primary" href='products/${category}'>${category}</a>
+				<br>
+			</c:forEach>
+		</div>
+	<hr>
+	</c:if>
+	<!-- ---------------------------分隔線---------------------------------------			 -->
 
-			<section class="container">
-				<div class="row">
-					<c:forEach var='product' items='${products}'>
-						<div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-							<div class="thumbnail" style="width: 320px; height: 340px">
-								<div class="caption">
-									<p>
-										<b style='font-size: 16px;'>${product.p_Name}</b>
-									</p>
-									<p>${product.p_Category}</p>
-									<p>目前在庫數量: ${product.p_Stock}個</p>
-									<p>${product.p_Price}</p>
-									<p>
-										<a href="<spring:url value='/product?id=${product.p_Id}' />"
-											class="btn btn-primary"> <span
-											class="glyphicon-info-sigh glyphicon"></span>詳細資料
-										</a>
-									</p>
-								</div>
-							</div>
+	<!-- cards -------------------------------------------------- -->
+	<div class="container p-lg-5 p3 mb-4">
+		<div class="row">
+			<c:forEach varStatus="stVar" var="product" items="${products}">
+				<div class="col-lg-3 col-sm-6 col-12 mb-4 ">
+					<div class="card border-info mb-3 shadow-lg" style="max-width: 18rem;">
+						<img
+							src="${pageContext.servletContext.contextPath}/_00_init/getProductImage?id=${product.p_Id}"
+							class="card-img-top" alt="..." />
+						<div class="card-body text-center text-info">
+							<h5 class="card-title" style="white-space: nowrap">${product.p_Name}</h5>
+							<p class="card-text">
+								NT$
+								<fmt:formatNumber value="${product.p_Price}" pattern="####" />
+								元
+							</p>
+							<a href="<spring:url value='/product?id=${product.p_Id}' />"
+    							class="btn btn-primary">
+    							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
+ 							</a>
 						</div>
-					</c:forEach>
+					</div>
 				</div>
-			</section>
+			</c:forEach>
 		</div>
 	</div>
+
+	<!-- ---------------------------分隔線---------------------------------------			 -->
+
+
+
 </body>
 </html>
