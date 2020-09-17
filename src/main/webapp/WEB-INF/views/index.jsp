@@ -509,5 +509,10 @@ pageEncoding="UTF-8"%>
       </div>
       <!-- /.container -->
     </footer>
+    <!-- 導覽列動畫 js -->
+    	<script src="${pageContext.request.contextPath}/data/js/wow.min.js"></script>
+	<script>
+		new WOW().init();
+	</script>
   </body>
 </html>

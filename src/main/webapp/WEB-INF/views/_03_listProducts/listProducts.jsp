@@ -37,7 +37,8 @@
 	<%-- --%>
 	<br>
 	<div  style="text-align: center">
-	<a class="btn btn-outline-primary" href="<c:url value='/queryByCategory' />" >分類查詢</a>
+	<a class="btn btn-primary" href="<c:url value='/queryByCategory' />" >分類查詢</a>
+	
 	</div>
 	<hr>
 	<c:if test="${categoryList != null}">
@@ -53,7 +54,7 @@
 	<!-- ---------------------------分隔線---------------------------------------			 -->
 
 	<!-- cards -------------------------------------------------- -->
-	<div class="container p-lg-5 p3 mb-4">
+	<div class="container p-lg-6 p3 mb-4">
 		<div class="row">
 			<c:forEach varStatus="stVar" var="product" items="${products}">
 				<div class="col-lg-3 col-sm-6 col-12 mb-4 ">

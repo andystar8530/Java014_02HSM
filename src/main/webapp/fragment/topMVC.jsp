@@ -51,7 +51,7 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="#">婚禮佈置</a></li>
+						href="<c:url value='/portfolios' />">婚禮佈置</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">婚禮攝影</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
@@ -84,13 +84,11 @@
 						</div></li>
 					<c:if test="${empty LoginOK}">
 						<li class="nav-item wow fadeInLeft">
-							<!--                 如果沒登入才會顯示會員登入按鈕 --> 
-<%-- 							<a class="nav-link" href="<c:url value='/ch02_login/login.jsp' />">會員登入</a> --%>
+							<!--                 如果沒登入才會顯示會員登入按鈕 --> <%-- 							<a class="nav-link" href="<c:url value='/ch02_login/login.jsp' />">會員登入</a> --%>
 							<a class="nav-link" href="<c:url value='#' />">會員登入</a>
 						</li>
 						<li class="nav-item wow fadeInLeft">
-							<!--        如果沒登入才會顯示註冊按鈕 --> 
-<%-- 							<a class="nav-link" href="<c:url value='/ch01_register/quickReg.jsp' />">註冊</a> --%>
+							<!--        如果沒登入才會顯示註冊按鈕 --> <%-- 							<a class="nav-link" href="<c:url value='/ch01_register/quickReg.jsp' />">註冊</a> --%>
 							<a class="nav-link" href="<c:url value='#' />">註冊</a>
 						</li>
 					</c:if>
@@ -131,9 +129,5 @@
 	<script src="${pageContext.request.contextPath}/data/js/partner.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
-	<script src="${pageContext.request.contextPath}/data/js/wow.min.js"></script>
-	<script>
-		new WOW().init();
-	</script>
 </body>
 </html>
