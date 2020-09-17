@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import partner_h._01_profolios.dao.PortfoliosDao;
 import partner_h._01_profolios.model.PortfoliosBean;
 import partner_h._01_profolios.service.PortfoliosService;
+import partner_h.partnerInfoEdit_h.model.PartnerBean;
 @Service
 @Transactional
 public class PortfoliosServiceImpl implements PortfoliosService {
@@ -26,24 +27,30 @@ public class PortfoliosServiceImpl implements PortfoliosService {
 	}
 
 	@Override
-	public List<String> getAllPFCategory() {
-		return pfDao.getAllPFCategory();
+	public List<String> getAllPServices() {
+		return pfDao.getAllPServices();
 	}
 
 	@Override
-	public List<PortfoliosBean> getProductsByCategory(String category) {
-		return pfDao.getProductsByCategory(category);
+	public List<PortfoliosBean> getPortfoliosByService(String pfService) {
+		return pfDao.getPortfoliosByService(pfService);
 	}
 
 	@Override
-	public PortfoliosBean getProductById(int pfmId) {
-		return pfDao.getProductById(pfmId);
+	public PortfoliosBean getPortfolioById(int pfmId) {
+		return pfDao.getPortfolioById(pfmId);
 	}
 
 	@Override
-	public void addProduct(PortfoliosBean product) {
-		// TODO Auto-generated method stub
+	public void addPortfolio(PortfoliosBean pfBean) {
+		 pfDao.addPortfolio(pfBean);
 		
 	}
+
+	@Override
+	public PartnerBean getPartnerById(int p_id) {
+		return pfDao.getPartnerById(p_id);
+	}
+	
 
 }

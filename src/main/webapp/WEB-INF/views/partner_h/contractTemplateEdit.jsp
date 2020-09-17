@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<jsp:include page="../fragment/topMVC.jsp" />
+<jsp:include page="/fragment/topMVC.jsp" />
 <jsp:include page="./fragment/partnerSidebar.jsp" />
 
 <form method="POST" action="<c:url value='/partner/ContractTemplateUpdate.do' />" 

@@ -31,6 +31,7 @@ public class PortfoliosBean {
 	private String pfmName; //作品名稱
 	private String pfmInfo; //作品資訊
 	private String pfmStatus;//作品狀態(審核)
+	private String pfService; //作品集分類
 	
 	@OneToMany(mappedBy = "portfoliosBean" )
 	List<PortfoliosDetailsBean> detailList ;
@@ -41,19 +42,35 @@ public class PortfoliosBean {
 		super();
 	}
 	
-	public PortfoliosBean(Integer pfmId, Integer p_Id, String pfmName, String pfmInfo, String pfmStatus) {
+
+	public PortfoliosBean(Integer pfmId, PartnerBean partnerBean, Integer p_Id, String pfmName, String pfmInfo,
+			String pfmStatus, String pfService) {
 		super();
 		this.pfmId = pfmId;
+		this.partnerBean = partnerBean;
 		this.p_Id = p_Id;
 		this.pfmName = pfmName;
 		this.pfmInfo = pfmInfo;
 		this.pfmStatus = pfmStatus;
+		this.pfService = pfService;
+		
+	}
+	
+	
+	
+	public PortfoliosBean(Integer pfmId, PartnerBean partnerBean, Integer p_Id, String pfmName, String pfmInfo,
+			String pfmStatus, String pfService, List<PortfoliosDetailsBean> detailList) {
+		super();
+		this.pfmId = pfmId;
+		this.partnerBean = partnerBean;
+		this.p_Id = p_Id;
+		this.pfmName = pfmName;
+		this.pfmInfo = pfmInfo;
+		this.pfmStatus = pfmStatus;
+		this.pfService = pfService;
+		this.detailList = detailList;
 	}
 
-	
-	
-	
-	
 	public PartnerBean getPartnerBean() {
 		return partnerBean;
 	}
@@ -123,6 +140,18 @@ public class PortfoliosBean {
 	 */
 	public void setDetailList(List<PortfoliosDetailsBean> detailList) {
 		this.detailList = detailList;
+	}
+
+
+	
+	public String getPfService() {
+		return pfService;
+	}
+
+
+	
+	public void setPfService(String pfService) {
+		this.pfService = pfService;
 	}
 
 

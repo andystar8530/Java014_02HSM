@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import partner_h._01_profolios.dao.PortfoliosDao;
 import partner_h._01_profolios.model.PortfoliosBean;
+import partner_h.partnerInfoEdit_h.model.PartnerBean;
 @Repository
 public class PortfoliosDaoImpl implements PortfoliosDao {
 	
@@ -39,11 +40,11 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 		session.update(pfBean);
 		
 	}
-	//***************未完成
+	//**取得所有服務分類
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getAllPFCategory() {
-		String hql = "SELECT DISTINCT pfCategory FROM PortfoliosBean";
+	public List<String> getAllPServices() {
+		String hql = "SELECT DISTINCT p_service FROM PartnerBean";
 		Session session = factory.getCurrentSession();
 		List<String> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
@@ -52,24 +53,37 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 	//***************未完成
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PortfoliosBean> getProductsByCategory(String category) {
-		String hql= "FROM PortfoliosBean WHERE pfCategory = :pfCategory";
+	public List<PortfoliosBean> getPortfoliosByService(String pfService) {
+		String hql= "FROM PortfoliosBean WHERE pfService = :pfService";
 		Session session = factory.getCurrentSession();
 		List<PortfoliosBean> list = new ArrayList<>();
-		list = session.createQuery(hql).setParameter("pfCategory", category).getResultList();
+		list = session.createQuery(hql).setParameter("pfService", pfService).getResultList();
 		return list;
 	}
 
 	@Override
-	public PortfoliosBean getProductById(int pfmId) {
+	public PortfoliosBean getPortfolioById(int pfmId) {
 		Session session = factory.getCurrentSession();
 		PortfoliosBean pfBean = session.get(PortfoliosBean.class,pfmId);
 		return pfBean ; 
 	}
+	
+	
 
 	@Override
-	public void addProduct(PortfoliosBean product) {
-		// TODO Auto-generated method stub
+	public PartnerBean getPartnerById(int p_id) {
+		Session session = factory.getCurrentSession();
+		PartnerBean pb = null;
+		pb = session.get(PartnerBean.class, p_id);
+		return pb;
+		
+	}
+	@Override
+	public void addPortfolio(PortfoliosBean pfBean) {
+		Session session = factory.getCurrentSession();
+		PartnerBean pb = getPartnerById(pfBean.getP_Id());
+		pfBean.setPartnerBean(pb);
+		session.save(pfBean);
 		
 	}
 

@@ -8,7 +8,7 @@
 <title>合約範本</title>
 </head>
 <body>
-<jsp:include page="../fragment/topMVC.jsp" />
+<jsp:include page="/fragment/topMVC.jsp" />
 <jsp:include page="./fragment/partnerSidebar.jsp" />
 <%-- <jsp:useBean id='partner' class='partnerInfoEdit.dao.Impl.PartnerDaoImpl_Jdbc' scope='session'/> --%>
 <%-- <jsp:getProperty name='partner' property='partnerBean'/> --%>
