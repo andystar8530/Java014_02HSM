@@ -11,8 +11,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ch01_h_register.dao.MemberDao;
-import ch01_h_register.model.MemberBean;
+import _01_register.dao.MemberDao;
+import _01_register.model.MemberBean;
 import partner_h.partnerInfoEdit_h.dao.PartnerDao;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.util.HibernateUtils;

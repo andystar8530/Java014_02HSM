@@ -64,7 +64,7 @@ public class RootAppConfig {
 		LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 		// 第一次建立本檔案時就要列入所有含永續類別的套件
 		factory.setPackagesToScan(new String[] {
-				"_00_init", "ch01_h_register.model", "_03_listProducts.model", "_04_ShoppingCart","partner_h"
+				"_00_init", "_01_register.model", "_03_listProducts.model", "_04_ShoppingCart","partner_h"
 		});
 		factory.setDataSource(dataSource());
 		factory.setHibernateProperties(additionalPropertiesMySQL());	

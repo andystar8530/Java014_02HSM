@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import ch01_h_register.model.MemberBean;
+import _01_register.model.MemberBean;
 import partner_h._01_profolios.model.PortfoliosBean;
 
 @Entity
