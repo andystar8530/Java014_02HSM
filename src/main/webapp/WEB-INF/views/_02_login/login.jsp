@@ -17,6 +17,8 @@
 	crossorigin="anonymous"></script>
 	<style>
 	.bgcolor{background:#FFE4E1}
+	.error{color:#808080; font-size:15px }
+	
 	</style>
 </head>
 <body class="bgcolor"
@@ -50,7 +52,7 @@
 										</div>
 										<div class="form-group">
 											<div class="custom-control custom-checkbox">
-											             <form:checkbox  path="rememberMe" class="custom-control-input" label='Rememberpassword' />
+											       <form:checkbox  path="rememberMe" class="custom-control-labe" label='Rememberpassword' />
 <!-- 												<input class="custom-control-input" -->
 <!-- 													id="rememberPasswordCheck" type="checkbox" name="rememberMe"/> <label -->
 <!-- 													class="custom-control-label" for="rememberPasswordCheck">Remember -->
