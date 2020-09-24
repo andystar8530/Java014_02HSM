@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import ch01_h_register.model.MemberBean;
+import _01_register.model.MemberBean;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
 import partner_h.partnerInfoEdit_h.service.Impl.PartnerServiceImpl;

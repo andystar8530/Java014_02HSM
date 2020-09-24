@@ -26,8 +26,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import _00_init.util.GlobalService;
-import ch01_h_register.model.MemberBean;
-import ch01_h_register.service.MemberService;
+import _01_register.model.MemberBean;
+import _01_register.service.MemberService;
+import _01_register.service.impl.MemberServiceImpl;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
 
@@ -260,7 +261,7 @@ public class EditPartnerInfo extends HttpServlet {
 				}
 //				MemberInfoService service2 = new MemberInfoServiceImpl();
 //				MemberInfoBean mb = service2.queryMember(p_mId);
-				MemberService service2 = new MemberService();
+				MemberService service2 = new MemberServiceImpl();
 				MemberBean mb = service2.get(Integer.valueOf(member.getM_No()));
 				PartnerBean pb = service.getPartner(member.getM_No());
 				Timestamp t = mb.getM_CreateTime();	
