@@ -66,7 +66,7 @@
 						aria-haspopup="true" aria-expanded="false"> 社群分享 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="#">分享討論區</a> <a
+							<a class="dropdown-item" href="<c:url value='/_04_forum/posts'/>">分享討論區</a> <a
 								class="dropdown-item" href="#">商家評價</a>
 						</div></li>
 

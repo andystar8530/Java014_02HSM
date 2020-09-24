@@ -25,7 +25,7 @@ import _00_init.interceptor.DisableCacheInterceptor;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement  // 本註釋必須與@Configuration出現在同一個類別
-@ComponentScan({"_00_init", "_03_listProducts","ch01_h_register","partner_h"})
+@ComponentScan({"_00_init", "_03_listProducts","_04_forum","ch01_h_register","partner_h"})
 public class WebAppConfig implements WebMvcConfigurer {
 	@Autowired
 	private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
