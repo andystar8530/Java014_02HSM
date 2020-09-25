@@ -14,5 +14,7 @@ public interface ForumService {
 	CategoriesBean getCategoryById(int categoryId);
 	
 	List<CategoriesBean> getCategoryList();
+	
+	public ForumBean getPostById(int postId);
 
 }

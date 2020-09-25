@@ -15,4 +15,6 @@ public interface ForumDao {
 	
 	List<CategoriesBean> getCategoryList();
 	
+	public ForumBean getPostById(int postId);
+	
 }

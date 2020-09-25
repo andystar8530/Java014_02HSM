@@ -1,7 +1,9 @@
 package _04_forum.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -40,6 +43,8 @@ public class ForumBean implements Serializable{
 		@ManyToOne(cascade = CascadeType.ALL)
 		@JoinColumn(name = "PK_CategoriesBean_Id")
 		private CategoriesBean categoriesBean;
+		@OneToMany(mappedBy = "forumBean")
+		private List<CommentBean> comments = new ArrayList<>();
 		
 		public ForumBean() {
 			super();
@@ -114,6 +119,14 @@ public class ForumBean implements Serializable{
 
 		public void setCategoriesBean(CategoriesBean categoriesBean) {
 			this.categoriesBean = categoriesBean;
+		}
+
+		public List<CommentBean> getComments() {
+			return comments;
+		}
+
+		public void setComments(List<CommentBean> comments) {
+			this.comments = comments;
 		}
 
 		@Override

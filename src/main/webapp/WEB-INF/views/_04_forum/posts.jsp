@@ -64,7 +64,7 @@
 				</div>
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<a class="subtitle" href="#"> ${post.fTitle}</a>
+					<a class="subtitle" href="<c:url value='/_04_forum/post?id='/>${post.fId}"> ${post.fTitle}</a>
 				</p>
 			</div>
 		</c:forEach>

@@ -53,4 +53,11 @@ public class ForumDaoImpl implements ForumDao {
 		return list;
 	}
 
+	@Override
+	public ForumBean getPostById(int postId) {
+		Session session = factory.getCurrentSession();
+		ForumBean fb = session.get(ForumBean.class, postId);
+		return fb;
+	}
+
 }

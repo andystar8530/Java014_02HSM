@@ -39,5 +39,10 @@ public class ForumServiceImpl implements ForumService {
 		return dao.getCategoryList();
 	}
 
+	@Override
+	public ForumBean getPostById(int postId) {
+		return dao.getPostById(postId);
+	}
+
 
 }

@@ -55,25 +55,25 @@
 							<form:option value="-1" label="請挑選" />
 							<form:options items="${categoryList}" />
 						</form:select>
-						<form:errors path="fCategory" />
 					</div>
+						<form:errors path="fCategory" style="color:red" />
 
 					<p style="font-size: 55px";>文章標題</p>
 					<div>
 						<form:input path="fTitle" type='text' class="form-control"
 							placeholder="您的文章標題" />
-						<form:errors path="fTitle" />
+						<form:errors path="fTitle" style="color:red" />
 					</div>
 
 					<p style="font-size: 55px";>文章內文</p>
 					<div style="width: 1100px">
-						<form:input path="fText" type='text' class="form-control"
+						<form:textarea path="fText" type='text' class="form-control"
 							style="height:220px" />
-						<form:errors path="fText" />
+						<form:errors path="fText" style="color:red" />
 					</div>
 
 					<div class="col-6">
-						-->
+						
 						<div class=" ">
 							<input class="btn btn-info cen" type="Submit" value="送出">
 						</div>
