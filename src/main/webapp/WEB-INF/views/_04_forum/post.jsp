@@ -1,6 +1,7 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> -->
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,8 +64,8 @@
       
            <div class="my-3 p-3 bg-white rounded box-shadow">
             <h6 class="border-bottom border-gray pb-2 mb-0">留言板</h6>
+            <c:forEach var="comment" items="${getComments}">
             <div class="media text-muted pt-3">
-           
               <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17467e1f963%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17467e1f963%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.828125%22%20y%3D%2216.965625%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">
               <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
@@ -75,43 +76,22 @@
                     </form>
                
                   </div>
-                <span class="d-block">好猛阿 66666666666</span>
+                <span class="d-block">${comment.comText}</span>
               </div>
             </div>
-            <div class="media text-muted pt-3">
-              <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17467e1f965%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17467e1f965%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.828125%22%20y%3D%2216.965625%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">
-              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                  <strong class="text-gray-dark">王六但</strong>
-                  <form  id="form1"  name="form1"  method="post"  action="" > 
-                    <input  type="image"  name="submit_Btn"  id="submit_Btn"  img  src="https://www.crazy-tutorial.com/wp-content/uploads/2018/08/6052.png" style="width: 32px; height: 32px"; onClick="document.form1.submit()" >
-                   </form>
-                </div>
-                <span class="d-block">好猛阿 66666666666</span>
-              </div>
-            </div>
-            <div class="media text-muted pt-3">
-              <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17467e1f966%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17467e1f966%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.828125%22%20y%3D%2216.965625%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true" style="width: 32px; height: 32px;">
-              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                  <strong class="text-gray-dark">王武但</strong>
-                  <form  id="form1"  name="form1"  method="post"  action="" > 
-                    <input  type="image"  name="submit_Btn"  id="submit_Btn"  img  src="https://www.crazy-tutorial.com/wp-content/uploads/2018/08/6052.png" style="width: 32px; height: 32px"; onClick="document.form1.submit()" >
-                   </form>
-                </div>
-                <span class="d-block">好猛阿 66666666666</span>
-              </div>
-            </div>
-            <form action="/Java014_02/CommentServlet" method="Post">
+           </c:forEach>
+           
+            <form:form method="Post" modelAttribute="formCb">
+            <form:input style="display:none" path="postId" value="${post.fId}"/>
             <small class="d-block text-right mt-3">
               <div class="input-group mb-5 mt-5 col-10">
-                <input type="text" class="form-control" placeholder="說說你的看法"  aria-describedby="button-addon2">
+                <form:textarea path="comText" class="form-control" placeholder="說說你的看法"  aria-describedby="button-addon2"/>
                 <div class="input-group-append">
-                  <button class="btn btn-outline-danger" type="button" id="button-addon2">留言</button>
+                  <button class="btn btn-outline-danger" type="submit" id="button-addon2">留言</button>
                 </div>
               </div>
             </small>
-            </form>
+            </form:form>
           </div>
         </main>
     

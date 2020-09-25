@@ -3,6 +3,7 @@ package _04_forum.service;
 import java.util.List;
 
 import _04_forum.model.CategoriesBean;
+import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
 
 public interface ForumService {
@@ -16,5 +17,9 @@ public interface ForumService {
 	List<CategoriesBean> getCategoryList();
 	
 	public ForumBean getPostById(int postId);
+	
+	List<CommentBean> getCommentById(int postId);
+	
+	public void addComment(CommentBean cb);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import _04_forum.dao.ForumDao;
 import _04_forum.model.CategoriesBean;
+import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
 import _04_forum.service.ForumService;
 
@@ -42,6 +43,16 @@ public class ForumServiceImpl implements ForumService {
 	@Override
 	public ForumBean getPostById(int postId) {
 		return dao.getPostById(postId);
+	}
+
+	@Override
+	public List<CommentBean> getCommentById(int postId) {
+		return dao.getCommentById(postId);
+	}
+
+	@Override
+	public void addComment(CommentBean cb) {
+		dao.addComment(cb);
 	}
 
 

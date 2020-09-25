@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import _04_forum.dao.ForumDao;
 import _04_forum.model.CategoriesBean;
+import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
 
 @Repository
@@ -58,6 +59,24 @@ public class ForumDaoImpl implements ForumDao {
 		Session session = factory.getCurrentSession();
 		ForumBean fb = session.get(ForumBean.class, postId);
 		return fb;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<CommentBean> getCommentById(int postId) {
+		Session session = factory.getCurrentSession();
+		List<CommentBean> list = null;
+		String hql = "FROM CommentBean c where c.forumBean.fId = :p";
+		list = session.createQuery(hql).setParameter("p", postId).getResultList();
+		return list;
+	}
+
+	@Override
+	public void addComment(CommentBean cb) {
+		Session session = factory.getCurrentSession();
+		ForumBean fb = getPostById(cb.getPostId());
+		cb.setForumBean(fb);
+		session.save(cb);
 	}
 
 }

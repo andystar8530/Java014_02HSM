@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import _04_forum.model.CategoriesBean;
+import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
 import _04_forum.service.ForumService;
 import _04_forum.validator.ForumBeanValidator;
@@ -71,12 +72,26 @@ public class ForumController {
 		return categoryMap;
 	}
 	
-	@RequestMapping("post")
+	@GetMapping("post")
 	public String getPostById(
 			@RequestParam("id") Integer id,
 			Model model
 			) {
+		CommentBean cb = new CommentBean();
+		model.addAttribute("formCb", cb);
 		model.addAttribute("post", service.getPostById(id));
+		model.addAttribute("getComments", service.getCommentById(id));
+		return "_04_forum/post";
+	}
+	
+	@PostMapping("post")
+	public String insertComment(
+			Model model,
+			@ModelAttribute("formCb") CommentBean cb
+			) {
+		service.addComment(cb);
+		model.addAttribute("post", service.getPostById(cb.getPostId()));
+		model.addAttribute("getComments", service.getCommentById(cb.getPostId()));
 		return "_04_forum/post";
 	}
 	
