@@ -1,12 +1,11 @@
-package partner_h._01_profolios.dao;
+package partner_h._01_profolios.service;
 
 import java.util.List;
 
-import partner_h._01_profolios.model.PortfoliosBean;
 import partner_h._01_profolios.model.PortfoliosDetailsBean;
 
-public interface PortfoliosDetailDao {
-	
+public interface PortfoliosDetailsService {
+
 	//查詢(由作品集Id查詢詳細資料)
 	public  List<PortfoliosDetailsBean> getPfDetailsBypfmId(int pfmId);
 	
@@ -20,5 +19,4 @@ public interface PortfoliosDetailDao {
 	int deletePortfolio(PortfoliosDetailsBean pfdBean);
 	
 	public PortfoliosDetailsBean getPortfolioDetailsBypfdId(int pfdId);
-
 }

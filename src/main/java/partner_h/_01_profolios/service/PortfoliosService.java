@@ -15,6 +15,9 @@ public interface PortfoliosService {
 		//取得作品集分類
 		List<String> getAllPServices();
 		
+		//依照商家Id取得該作品集
+		public List<PortfoliosBean> getPortfoliosByPartnerId(int p_id);
+		
 		//藉由分類取得該分類作品集
 		List<PortfoliosBean> getPortfoliosByService(String pfService);
 		

@@ -4,13 +4,18 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
+  <link rel="icon"
+	href='<c:url value="/images/removebg.ico"/>'
+	type="image/x-icon" />
     <meta charset="UTF-8" />
     <title>姻緣聚繪</title>
-  </head>
+
+
+
   <body>
     <jsp:include page="/fragment/topMVC.jsp" />
     <!-- Navigation -->
-
+ 
     <header>
       <div
         id="carouselExampleIndicators"
@@ -32,7 +37,7 @@ pageEncoding="UTF-8"%>
           <div
             class="carousel-item active"
             style="
-              background-image: url('${pageContext.request.contextPath}/data/Image/carousel4.jpg');
+              background-image: url('${pageContext.request.contextPath}/images/carousel4.jpg');
             "
           >
             <div class="carousel-caption d-none d-md-block">
@@ -44,7 +49,7 @@ pageEncoding="UTF-8"%>
           <div
             class="carousel-item"
             style="
-              background-image: url('${pageContext.request.contextPath}/data/Image/carousel.jpg');
+              background-image: url('${pageContext.request.contextPath}/images/carousel.jpg');
             "
           >
             <div class="carousel-caption d-none d-md-block">
@@ -57,7 +62,7 @@ pageEncoding="UTF-8"%>
           <div
             class="carousel-item"
             style="
-              background-image: url('${pageContext.request.contextPath}/data/Image/carsousel2.jpg');
+              background-image: url('${pageContext.request.contextPath}/images/carsousel2.jpg');
             "
           >
             <div class="carousel-caption d-none d-md-block">
@@ -69,7 +74,7 @@ pageEncoding="UTF-8"%>
           <div
             class="carousel-item"
             style="
-              background-image: url('${pageContext.request.contextPath}/data/Image/carousel3.webp');
+              background-image: url('${pageContext.request.contextPath}/images/carousel3.webp');
             "
           >
             <div class="carousel-caption d-none d-md-block">
@@ -115,7 +120,7 @@ pageEncoding="UTF-8"%>
             <h4 class="card-header">方案名</h4>
             <div class="card-body">
               <img
-                src="${pageContext.request.contextPath}/data/Image/155819198781535900_auto_450x337.jpg"
+                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
                 width="300"
               />
               <p class="card-text">
@@ -133,7 +138,7 @@ pageEncoding="UTF-8"%>
             <h4 class="card-header">方案名</h4>
             <div class="card-body">
               <img
-                src="${pageContext.request.contextPath}/data/Image/155819198781535900_auto_450x337.jpg"
+                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
                 width="300"
               />
               <p class="card-text">
@@ -151,7 +156,7 @@ pageEncoding="UTF-8"%>
             <h4 class="card-header">方案名</h4>
             <div class="card-body">
               <img
-                src="${pageContext.request.contextPath}/data/Image/155819198781535900_auto_450x337.jpg"
+                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
                 width="300"
               />
               <p class="card-text">
@@ -510,7 +515,7 @@ pageEncoding="UTF-8"%>
       <!-- /.container -->
     </footer>
     <!-- 導覽列動畫 js -->
-    	<script src="${pageContext.request.contextPath}/data/js/wow.min.js"></script>
+    	<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
 	<script>
 		new WOW().init();
 	</script>

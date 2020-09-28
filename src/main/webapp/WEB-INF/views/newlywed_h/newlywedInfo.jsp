@@ -15,14 +15,14 @@
 <title>合作商管理頁面</title>
 
 <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/modern-business.css" rel="stylesheet">
-<link rel="stylesheet" href="css/marryMa.css">
+<link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marryMa.css">
 <script
 	src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
-<script src="js/partner.js"></script>
+<script src="${pageContext.request.contextPath}/js/partner.js"></script>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
 					<div class="list-group-item href="#" >
-						<img src="./Image/duck.jpg" width="80" style="border-radius: 50%;"
+						<img src="${pageContext.request.contextPath}/images/duck.jpg" width="80" style="border-radius: 50%;"
 							id="partner-icon">
 						<div>會員-可達鴨</div>
 

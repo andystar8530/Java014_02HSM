@@ -51,6 +51,11 @@ public class PortfoliosServiceImpl implements PortfoliosService {
 	public PartnerBean getPartnerById(int p_id) {
 		return pfDao.getPartnerById(p_id);
 	}
-	
 
+	@Override
+	public List<PortfoliosBean> getPortfoliosByPartnerId(int p_id) {
+		return pfDao.getPortfoliosByPartnerId(p_id);
+	}
+	
+	
 }

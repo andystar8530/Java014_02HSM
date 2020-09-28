@@ -31,12 +31,10 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 		return pfList;
 		
 	}
-//***************未完成
+
 	@Override
 	public void updatePortfolio(PortfoliosBean pfBean) {
-		Session session = null;
-		session = factory.getCurrentSession();
-		pfBean = session.get(PortfoliosBean.class, pfBean.getP_Id());
+		Session session = factory.getCurrentSession();
 		session.update(pfBean);
 		
 	}
@@ -81,11 +79,24 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 	@Override
 	public void addPortfolio(PortfoliosBean pfBean) {
 		Session session = factory.getCurrentSession();
-		PartnerBean pb = getPartnerById(pfBean.getP_Id());
+		PartnerBean pb = getPartnerById(pfBean.getP_id());
 		pfBean.setPartnerBean(pb);
+		pfBean.setPfCreateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+		pfBean.setPfUpdateTime(new java.sql.Timestamp(System.currentTimeMillis()));
 		session.save(pfBean);
 		
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PortfoliosBean> getPortfoliosByPartnerId(int p_id) {
+		String hql= "FROM PortfoliosBean WHERE p_id = :p_id";
+		Session session = factory.getCurrentSession();
+		List<PortfoliosBean> list = new ArrayList<>();
+		list = session.createQuery(hql).setParameter("p_id", p_id).getResultList();
+		return list;
+	}
+	
 
+	
 		
 }

@@ -2,9 +2,9 @@ package partner_h.partnerInfoEdit_h.service.Impl;
 
 
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,13 +27,13 @@ public class PartnerServiceImpl implements PartnerService {
 	
 	@Transactional
 	@Override
-	public PartnerBean getPartner(int p_mId) {	
+	public PartnerBean getPartner(int p_id) {	
 //		Session session = factory.getCurrentSession();
 //		Transaction tx = null;
 		PartnerBean pb = null;
 //		try {
 //			tx = session.beginTransaction();
-			pb = dao.getPartner(p_mId);
+			pb = dao.getPartner(p_id);
 //			tx.commit();
 //		}catch(Exception ex) {
 //			if(tx!= null) {
@@ -115,32 +115,36 @@ public class PartnerServiceImpl implements PartnerService {
 		
 		return exist ;
 	}
+
 	@Transactional
 	@Override
-	public PartnerBean queryPartner(String p_mId) {
-//		Session session = factory.getCurrentSession();
-//		Transaction tx = null;
-		PartnerBean pb = null;
-//		try {
-//			tx = session.beginTransaction();
-			pb = dao.queryPartner(p_mId);
-//			tx.commit();
-//		}catch(Exception ex) {
-//			if(tx!= null) {
-//				tx.rollback();
-//			}				
-//			ex.printStackTrace();
-//			throw new RuntimeException(ex);
-//		}
-		
-		return pb;
+	public PartnerBean queryPartner(int p_mId)  {
+
+		return dao.queryPartner(p_mId);
+	
+	}
+
+	@Transactional
+	@Override
+	public List<String> getServiceList() {
+		return dao.getServiceList();
+	}	
+	
+	@Transactional
+	@Override
+	public List<PartnerBean> getPartnerByService(String p_service) {
+		return dao.getPartnerByService(p_service);
+	}
+
+	@Transactional
+	@Override
+	public List<PartnerBean> getPartnerByArea(int p_area) {
+		return dao.getPartnerByArea(p_area);
 	}
 
 
 	
-	
-	
-	
-	
+
+
 	
 }

@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <!-- Bootstrap core CSS -->
-  <link href="${pageContext.request.contextPath}/data/css/bootstrap.min.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="${pageContext.request.contextPath}/data/css/modern-business.css" rel="stylesheet">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/data/css/marryMa.css">
-<%--   <link rel="stylesheet" href="${pageContext.request.contextPath}/data/css/animate.css"> --%>
+  <link href="${pageContext.request.contextPath}/css/modern-business.css" rel="stylesheet">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marryMa.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
  
 </head>
 <body>
@@ -41,7 +42,8 @@
           </div>
           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
 
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >作品集</a>
+          <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
+          	<img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >作品集</a>
 
           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >方案管理</a>
             
@@ -52,7 +54,7 @@
             <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >已簽約</a>
             <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >未簽約</a>
           </a>
-          <a  class="list-group-item list-group-2  "><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >訂單管理
+          <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >訂單管理
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">我的訂單</a>
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a>
           </a>
@@ -62,13 +64,13 @@
          
         </div>
       </div>
-   <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+<!--    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script> -->
 <%--   <script src="${pageContext.request.contextPath}/data/js/partner.js"></script> --%>
-   <script src="${pageContext.request.contextPath}/data/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/data/js/bootstrap.bundle.min.js"></script>
-<%--    <script src="${pageContext.request.contextPath}/data/js/wow.min.js"></script> --%>
-<!--     <script> -->
-<!--      new WOW().init(); -->
-<!--     </script> -->
+   <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+   <script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
+    <script>
+      new WOW().init(); 
+    </script> 
 </body>
 </html>

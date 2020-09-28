@@ -1,6 +1,8 @@
 package partner_h._01_profolios.model;
 
+import java.io.Serializable;
 import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,21 +13,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 @Entity
-@Table(name="ProtfoliosDetails")
-public class PortfoliosDetailsBean {
+@Table(name="PortfoliosDetails")
+public class PortfoliosDetailsBean implements Serializable{
+	
+	private static final long serialVersionUID = 74458L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pidId; //照片序號(主鍵)
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pfmId")
+	
 	private PortfoliosBean portfoliosBean;
 	@Transient
 	private Integer pfmId;//作品集主檔編號 (外鍵)
 	private String 	pfdName; //照片名稱
 	private Blob pfdPic; //照片
 	
+	@Transient
+	private List<MultipartFile> portfoliosImages ;
 	
 	public PortfoliosDetailsBean() {
 		super();
@@ -41,9 +51,7 @@ public class PortfoliosDetailsBean {
 	}
 
 
-	
-	
-	
+
 	public PortfoliosBean getPortfolioBean() {
 		return portfoliosBean;
 	}
@@ -101,20 +109,23 @@ public class PortfoliosDetailsBean {
 	}
 
 
-	/**
-	 * @return the portfoliosBean
-	 */
 	public PortfoliosBean getPortfoliosBean() {
 		return portfoliosBean;
 	}
 
-
-	/**
-	 * @param portfoliosBean the portfoliosBean to set
-	 */
 	public void setPortfoliosBean(PortfoliosBean portfoliosBean) {
 		this.portfoliosBean = portfoliosBean;
 	}
+
+
+	public List<MultipartFile> getPortfoliosImages() {
+		return portfoliosImages;
+	}
+
+	public void setPortfoliosImages(List<MultipartFile> portfoliosImages) {
+		this.portfoliosImages = portfoliosImages;
+	}
+	
 	
 	
 }

@@ -21,6 +21,9 @@ public interface PortfoliosDao {
 	//藉由商家服務項目取得該分類作品集
 	List<PortfoliosBean> getPortfoliosByService(String pfService);
 	
+	//依照商家Id取得該作品集
+	public List<PortfoliosBean> getPortfoliosByPartnerId(int p_id);
+	
 	//經由作品集pk取得該作品集
 	public PortfoliosBean getPortfolioById(int pfmId);
 	
@@ -29,5 +32,4 @@ public interface PortfoliosDao {
 	
 	PartnerBean getPartnerById(int p_id);
 	
-//	List<CompanyBean> getCompanyList();
 }
