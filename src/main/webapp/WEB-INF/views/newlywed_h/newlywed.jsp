@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="memberService"
-	class="ch01_h_register.service.MemberService" />
+<%-- <jsp:useBean id="memberService" --%>
+<%-- 	class="ch01_h_register.service.MemberService" /> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <c:if test="${empty LoginOK}">
