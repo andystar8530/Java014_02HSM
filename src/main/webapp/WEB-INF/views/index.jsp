@@ -1,523 +1,302 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
-  <head>
-  <link rel="icon"
-	href='<c:url value="/images/removebg.ico"/>'
-	type="image/x-icon" />
-    <meta charset="UTF-8" />
-    <title>姻緣聚繪</title>
+<head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="<c:url value='/images/removebg1.ico' />" type="image/x-icon" />
+<c:set var="AppName" value="${SYSTEM.systemName}" scope="application"/>
+<%-- <title>${AppName}</title> --%>
+</head>
+<body style="background: #EBFFEB;">
+<!-- 設定變數funcName的值為"IND", top.jsp會使用此變數-->
+<c:set var="funcName" value="IND" scope="session"/>
+<!-- 引入共同的頁首 -->
+<jsp:include page="/fragment/topMVC.jsp" />
 
+<%
+// 觀察登出後HttpSession物件內容
+// java.util.Enumeration<String> e = session.getAttributeNames();
+// while (e.hasMoreElements()){
+// 	String name = e.nextElement();
+// 	out.println("In login.jsp, " + name + "=>" + session.getAttribute(name));
+// 	out.println("<hr>");
+// }
 
+%>
 
-  <body>
-    <jsp:include page="/fragment/topMVC.jsp" />
-    <!-- Navigation -->
- 
-    <header>
-      <div
-        id="carouselExampleIndicators"
-        class="carousel slide"
-        data-ride="carousel"
+ <!-- slider -------------------------------------------------- -->
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide "
+      data-ride="carousel"
+    >
+      <ol class="carousel-indicators ">
+        <li
+          data-target="#carouselExampleCaptions"
+          data-slide-to="0"
+          class="active"
+        ></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner ">
+        <div class="carousel-item active ">
+          <img
+            src="<c:url value='/images/slider/carousel.jpg' />"
+            class="d-block w-100 "
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>First slide label</h5>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="<c:url value='/images/slider/carousel2.jpg' />"
+            class="d-block w-100 "
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Second slide label</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="<c:url value='/images/slider/carousel4.jpg' />"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="prev"
       >
-        <ol class="carousel-indicators">
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to="0"
-            class="active"
-          ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div
-            class="carousel-item active"
-            style="
-              background-image: url('${pageContext.request.contextPath}/images/carousel4.jpg');
-            "
-          >
-            <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
-            </div>
-          </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div
-            class="carousel-item"
-            style="
-              background-image: url('${pageContext.request.contextPath}/images/carousel.jpg');
-            "
-          >
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
-            </div>
-          </div>
-
-          <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div
-            class="carousel-item"
-            style="
-              background-image: url('${pageContext.request.contextPath}/images/carsousel2.jpg');
-            "
-          >
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
-            </div>
-          </div>
-          <!-- Slide 4- Set the background image for this slide in the line below -->
-          <div
-            class="carousel-item"
-            style="
-              background-image: url('${pageContext.request.contextPath}/images/carousel3.webp');
-            "
-          >
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Fourth Slide</h3>
-              <p>This is a description for the fourth slide.</p>
-            </div>
-          </div>
-        </div>
-        <a
-          class="carousel-control-prev"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#carouselExampleIndicators"
-          role="button"
-          data-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </header>
-
-    <!-- Page Content -->
-    <div class="container">
-      <h1 class="my-4">
-        <img
-          src="${pageContext.request.contextPath}/data/icon/wedding-rings.png"
-          width="45"
-        />優惠店家
-      </h1>
-
-      <!-- Marketing Icons Section -->
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">方案名</h4>
-            <div class="card-body">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    
+    <div align='center'>
+ <h1>
+ <c:choose>
+ 	<c:when test="${not empty initDataResult}">
+       ${initDataResult}
+ 	</c:when>
+ 	<c:when test="${not empty FlashMSG_farewell}">
+ 	   ${FlashMSG_farewell}
+ 	</c:when>
+ 	<c:otherwise>
+ 	</c:otherwise>
+ </c:choose>
+ </h1>
+ </div>
+    <!-- jobs -------------------------------------------------- -->
+    <div class="jobs">
+      <!-- cards -------------------------------------------------- -->
+      <div class="container p-lg-5 p3">
+        <div class="row">
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
               <img
-                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
-                width="300"
+                src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
+                class="card-img-top"
+                alt="..."
               />
-              <p class="card-text">
-                方案簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Sapiente esse necessitatibus neque.
-              </p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">方案名</h4>
-            <div class="card-body">
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
               <img
-                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
-                width="300"
+                src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
+                class="card-img-top"
+                alt="..."
               />
-              <p class="card-text">
-                方案簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Sapiente esse necessitatibus neque.
-              </p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">方案名</h4>
-            <div class="card-body">
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
               <img
-                src="${pageContext.request.contextPath}/images/155819198781535900_auto_450x337.jpg"
-                width="300"
+                src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
+                class="card-img-top"
+                alt="..."
               />
-              <p class="card-text">
-                方案簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Sapiente esse necessitatibus neque.
-              </p>
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Learn More</a>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <img
+                src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <img
+                src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <img
+                src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <img
+                src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <img
+                src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- /.row -->
-
-      <!-- Portfolio Section -->
-      <img
-        src="${pageContext.request.contextPath}/data/icon/wedding-rings.png"
-        width="45"
-      />
-      <h2>婚禮佈置</h2>
-
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家A</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Amet numquam aspernatur eum quasi sapiente nesciunt?
-                Voluptatibus sit, repellat sequi itaque deserunt, dolores in,
-                nesciunt, illum tempora ex quae? Nihil, dolorem!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家B</a>
-              </h4>
-              <p class="card-text">
-                店家簡介:Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Nam viverra euismod odio, gravida pellentesque urna varius
-                vitae.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家C</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Quos quisquam, error quod sed cumque, odio distinctio
-                velit nostrum temporibus necessitatibus et facere atque iure
-                perspiciatis mollitia recusandae vero vel quam!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Portfolio Section -->
-      <img
-        src="${pageContext.request.contextPath}/data/icon/wedding-rings.png"
-        width="45"
-      />
-      <h2>婚禮攝影</h2>
-
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家A</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Amet numquam aspernatur eum quasi sapiente nesciunt?
-                Voluptatibus sit, repellat sequi itaque deserunt, dolores in,
-                nesciunt, illum tempora ex quae? Nihil, dolorem!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家B</a>
-              </h4>
-              <p class="card-text">
-                店家簡介:Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Nam viverra euismod odio, gravida pellentesque urna varius
-                vitae.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家C</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Quos quisquam, error quod sed cumque, odio distinctio
-                velit nostrum temporibus necessitatibus et facere atque iure
-                perspiciatis mollitia recusandae vero vel quam!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Portfolio Section -->
-      <img
-        src="${pageContext.request.contextPath}/data/icon/wedding-rings.png"
-        width="45"
-      />
-      <h2>新娘秘書</h2>
-
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家A</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Amet numquam aspernatur eum quasi sapiente nesciunt?
-                Voluptatibus sit, repellat sequi itaque deserunt, dolores in,
-                nesciunt, illum tempora ex quae? Nihil, dolorem!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家B</a>
-              </h4>
-              <p class="card-text">
-                店家簡介:Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit. Nam viverra euismod odio, gravida pellentesque urna varius
-                vitae.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家C</a>
-              </h4>
-              <p class="card-text">
-                店家簡介: Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit. Quos quisquam, error quod sed cumque, odio distinctio
-                velit nostrum temporibus necessitatibus et facere atque iure
-                perspiciatis mollitia recusandae vero vel quam!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <img
-        src="${pageContext.request.contextPath}/data/icon/wedding-rings.png"
-        width="45"
-      />
-      <h2>婚禮主持</h2>
-
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家A</a>
-              </h4>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-                numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus
-                sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum
-                tempora ex quae? Nihil, dolorem!
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家B</a>
-              </h4>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                viverra euismod odio, gravida pellentesque urna varius vitae.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"
-              ><img
-                class="card-img-top"
-                src="http://placehold.it/700x400"
-                alt=""
-            /></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">店家C</a>
-              </h4>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                quisquam, error quod sed cumque, odio distinctio velit nostrum
-                temporibus necessitatibus et facere atque iure perspiciatis
-                mollitia recusandae vero vel quam!
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <!-- Related Projects Row -->
-      <h3 class="my-4">
-        <img
-          src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/014-present.png"
-          width="45"
-        />小物商城
-      </h3>
-
-      <div class="row">
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
-          </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
-          </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
-          </a>
-        </div>
-
-        <div class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
-            <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
-          </a>
-        </div>
-      </div>
-
-      <hr />
-
-      <!-- Call to Action Section -->
-      <div class="row mb-4">
+    </div>
+ 
+    <!-- Call to Action Section -->
+      <div class="row mb-4 bg-pink border border-primary">
         <div class="col-md-8">
           <p>姻緣聚繪: 搜尋方式最多元、快速回覆零時差、優質店家把關</p>
         </div>
         <div class="col-md-4">
-          <a class="btn btn-lg btn-secondary btn-block" href="#">我要註冊</a>
+          <a class="btn btn-lg btn-secondary btn-block" href="<c:url value='/_01_register/register' />">我要註冊</a>
         </div>
       </div>
-    </div>
     <!-- /.container -->
+ 
+<%--  <br><font color='RED'>${AppName}</font><br> --%>
+<!--   天天有優惠，天天有好康<br> -->
+<!--  今天舉辦<font color='BLUE'>滿仟送佰</font>的促銷活動<br> -->
+<!--   </h1>  -->
+<!--  <br> -->
+<!--   <h2> -->
+<!--  本店絕不販賣盜版書、山寨書與過期書 -->
+<!--  </h2> -->
+<!--    <hr> -->
+   
+<!--    <p style='font-family: "Verdana"; color: red'> -->
+<!--   本範例需要建立初始資料的步驟：<br> -->
+<!--   1. 進入SQLYog，清除JSPDB內的所有表格(Empty DataBase)<br> -->
+<!--   2. 重新啟動伺服器<br> -->
+<%--   3. 按<a href="<c:url value='/initData/' />">這裡</a>來建立初始資料<br>  --%>
+<!--  </p> -->
+<%--   ${logoutMessage}${MsgOK.InsertOK}<br> --%>
+<!--  <br>   -->
+<%--  <% // 顯示MsgOK.InsertOK後，就要立刻移除，以免每次回到首 頁都會顯示新增成功的訊息 --%>
+<!--      session.removeAttribute("MsgOK");   -->
+<%--  %> --%>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-pink">
-      <div class="container">
-        <p class="m-0 text-center text-dark">
-          Copyright &copy; Your Website 2020
-        </p>
-      </div>
-      <!-- /.container -->
-    </footer>
-    <!-- 導覽列動畫 js -->
-    	<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
-	<script>
-		new WOW().init();
-	</script>
-  </body>
+  <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
+    <script>
+      new WOW().init(); 
+    </script> 
+</body>
 </html>

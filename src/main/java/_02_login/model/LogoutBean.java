@@ -1,9 +1,10 @@
 package _02_login.model;
 
 import javax.servlet.http.HttpSession;
-
+// 登出時需要做的事寫在這裡，如session.invalidate()
 public class LogoutBean {
-HttpSession session;
+   
+	HttpSession session;
 	
 	public HttpSession getSession() {
 		return session;

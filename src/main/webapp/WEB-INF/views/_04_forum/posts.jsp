@@ -18,7 +18,7 @@
 }
 
 .bgcolor {
-	background-color: #FFE4E1;
+	background-color: #EBFFEB;
 }
 </style>
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
@@ -30,7 +30,8 @@
 </head>
 
 <body class=" bgcolor">
-	<jsp:include page="/fragment/topMVC.jsp" />
+<!-- 引入共同的頁首 -->
+<jsp:include page="/fragment/topMVC.jsp" />
 
 	<div class="nav-scroller  box-shadow bgcolor">
 
@@ -91,11 +92,6 @@
 		<style type="text/css"></style></defs>
 		<text x="0" y="2"
 			style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text></svg>
-</body>
-</html>
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -109,5 +105,8 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 	integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 	crossorigin="anonymous"></script>
+	
+	  <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

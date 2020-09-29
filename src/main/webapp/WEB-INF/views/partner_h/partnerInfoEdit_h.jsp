@@ -128,8 +128,6 @@
 			
 		</fieldset>
 	</form:form>	
-</div>
-</div>
           <script>
       $("#show_image").click(function (e) {
         document.getElementById("covImage").click();
@@ -166,5 +164,7 @@
       });
       </script>
 
+  <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

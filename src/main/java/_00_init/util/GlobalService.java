@@ -28,47 +28,19 @@ import javax.servlet.http.Part;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialClob;
 import javax.xml.bind.DatatypeConverter;
- 
+
 public class GlobalService {
 
 	public static final int RECORDS_PER_PAGE = 2;
-	public static final String SYSTEM_NAME = "雅君網路購物商城";
+	public static final String SYSTEM_NAME = "姻緣聚繪";
 	public static final int IMAGE_FILENAME_LENGTH = 20;
-	public static final String JNDI_DB_NAME = "java:comp/env/jdbc/BookDataSQLver";
-	public static final String KEY = "KittySnoopyMicky"; // 16, 24, 32
+	
+	public static final String KEY = "KittySnoopyGarfieldMicky"; // 16, 24, 32
 	public static final int ORDER_AMOUNT_LIMIT = 10000;
 	public String getSystemName() { // systemName  ${SYSTEM.systemName}
 		return SYSTEM_NAME;
 	}
 
-	/**
-	 * 依MD5演算法將參數字串message轉換為128位元(16個位元組)的資料。
-	 * 
-	 * @param message
-	 *            : 要加密的字串
-	 * @return : 128位元資料的16進位表示法所構成的字串
-	 */
-
-//	public static String getMD5Endocing(String message) {
-//		final StringBuffer buffer = new StringBuffer();
-//		try {
-//			MessageDigest md = MessageDigest.getInstance("MD5");
-//			md.update(message.getBytes());
-//			byte[] digest = md.digest();
-//
-//			for (int i = 0; i < digest.length; ++i) {
-//				final byte b = digest[i];
-//				final int value = (b & 0x7F) + (b < 0 ? 128 : 0);
-//				buffer.append(value < 16 ? "0" : "");
-//				buffer.append(Integer.toHexString(value));
-//			}
-//		} catch (NoSuchAlgorithmException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//		return buffer.toString();
-//	}
-	
 	public static String getMD5Endocing(String message) {
 		final StringBuffer buffer = new StringBuffer();
 		try {
@@ -129,7 +101,6 @@ public class GlobalService {
 		final StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i < digest.length; ++i) {
 			byte b = digest[i];
-//			int value = (b & 0x7F) + (b < 0 ? 128 : 0);
 			final int value = Byte.toUnsignedInt(b);
 			buffer.append(value < 16 ? "0" : "");
 			buffer.append(Integer.toHexString(value));
@@ -251,7 +222,7 @@ public class GlobalService {
 		// 24個位元組或32個位元組(即128個位元、192個位元或256個位元)。
 		// ECB : Electronic CookBook, 一種資料的加密方式，這種加密方式採取
 		// 每個區塊(如8個或16個位元組)獨立加密，即加密任ㄧ區塊時與其它區塊
-		// 無關。獨立壓縮有優點也有缺點。
+		// 無關。獨立加密有優點也有缺點。
 		// 優點為可以由多個處理器來平行處理ㄧ個很大的資料。缺點為如果資料
 		// 的內容有重複出現的部分，而且重複資料的長度剛好與加密區塊等長，
 		// 則這些重複出現的部分經過加密後會出現相同的結果。
@@ -304,8 +275,6 @@ public class GlobalService {
 		}
 		return decryptedString;
 	}
-	
-
 	public static Blob fileToBlob(String imageFileName) throws IOException, SQLException {
 		File imageFile = new File(imageFileName);
 		long size = imageFile.length();
@@ -357,4 +326,5 @@ public class GlobalService {
 	public static String extractFileName(String pathName) throws IOException, SQLException {
 		return pathName.substring(pathName.lastIndexOf("/") + 1);
 	}
+	
 }

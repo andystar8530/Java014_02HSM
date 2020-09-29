@@ -6,10 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import _01_register.dao.MemberDao;
-import _01_register.dao.impl.MemberDaoImpl;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
-
+import _04_ShoppingCart.model.OrderBean;
 @Transactional
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -20,9 +19,7 @@ public class MemberServiceImpl implements MemberService {
 	SessionFactory factory;
 	
 	public MemberServiceImpl() {
-		dao=new MemberDaoImpl();
 	}
-
 	
 	@Override
 	public int saveMember(MemberBean mb) {
@@ -53,8 +50,6 @@ public class MemberServiceImpl implements MemberService {
 		mb = dao.checkIdPassword(userId, password);
 		return mb;
 	}
-
-
 	
 	public MemberBean get(Integer pk) {
 		MemberBean mb=null;

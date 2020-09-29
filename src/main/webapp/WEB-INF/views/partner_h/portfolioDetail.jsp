@@ -46,8 +46,7 @@
 					    <span class='glyphicon-shopping-cart glyphicon'></span>加入購物車
 					</a>
 				</p>
-			</div>
-		</div>
+
 	</section>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class LogoutController {
 		System.out.println("Logout");
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 		if (memberBean != null) {
-//			name = memberBean.getName();
+			name = memberBean.getM_Name();
 		} else {
 			name = "訪客";
 		}
