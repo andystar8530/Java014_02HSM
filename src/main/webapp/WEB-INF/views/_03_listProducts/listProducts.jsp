@@ -218,8 +218,8 @@ top:2px;
  -->
 </div>
 <!-- page -------------------------------------------------- -->
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-center mb-0">
+    <nav aria-label="Page navigation example ">
+      <ul class="pagination justify-content-center mb-5">
         <li class="page-item disabled">
           <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
             >第${pageNo}頁</a

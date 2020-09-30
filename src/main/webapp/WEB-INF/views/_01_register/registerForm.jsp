@@ -22,7 +22,7 @@
 	}
 </script>
 </head>
-<body onLoad="setFocusToUserId()" style="background: #EBFFEB;">
+<body onLoad="setFocusToUserId()">
 	<c:set var="funcName" value="REG" scope="session" />
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topMVC.jsp" />
@@ -35,7 +35,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-lg-5">
-							<div class="card shadow border-0 rounded-lg mt-5">
+							<div class="card shadow border-0 rounded-lg mt-5 mb-5">
 								<div class="card-header">
 									<h3 class="text-center font-weight-light my-4">會員註冊</h3>
 								</div>

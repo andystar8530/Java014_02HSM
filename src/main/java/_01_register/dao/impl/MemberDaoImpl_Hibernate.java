@@ -11,12 +11,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import _00_init.ude.MemberNotFoundException;
-import _00_init.util.GlobalService;
 import _01_register.dao.MemberDao;
 import _01_register.model.MemberBean;
-import _04_ShoppingCart.model.OrderBean;
-import _04_ShoppingCart.ude.UnpaidOrderAmountExceedingException;
 // 本類別使用為標準的Hibernate+Spring技術來存取資料庫。
 @Repository
 public class MemberDaoImpl_Hibernate implements MemberDao {
@@ -147,5 +143,12 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	@Override
 	public void setConnection(Connection conn) {
 		throw new RuntimeException("本類別為提供此功能");
+	}
+	@Override
+	public void update(MemberBean memberBean) {
+		if (memberBean != null && memberBean.getM_Id() != null) 	{
+			Session session = factory.getCurrentSession();
+			session.update(memberBean);
+		}
 	}
 }

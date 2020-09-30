@@ -13,7 +13,7 @@
 
 </style>
 </head>
-<body style="background: #EBFFEB;">
+<body>
 <c:set var="funcName" value="ORD" scope="session"/>
 
 	<!-- 引入共同的頁首 -->

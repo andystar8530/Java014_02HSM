@@ -24,7 +24,6 @@ import _01_register.model.MemberBean;
 // 方法讀入，放入List型別的實例變數 url 內。
 public class CheckLoginInterceptor extends HandlerInterceptorAdapter  {
 	List<String> url = Arrays.asList(
-							"/_03_listBooks/*", 
 							"/_03_listProducts/*",
 							"/_04_ShoppingCart/*", 
 							"/_04_forum/*", 

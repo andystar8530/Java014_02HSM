@@ -77,7 +77,7 @@ function Abort() {
 <meta charset="UTF-8">
 <title>購物清單</title>
 </head>
-<body style="background:#EBFFEB;">
+<body>
 <jsp:include page="/fragment/topMVC.jsp" />
 <c:set var="funcName" value="CHE" scope="session"/>
 

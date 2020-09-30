@@ -14,11 +14,11 @@
     .bgcolor{background-color:#EBFFEB;}
   </style>
   </head>
- <body class="bgcolor">
+ <body class="">
     <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
         
-        <div class="nav-scroller  box-shadow ">
+        <div class="nav-scroller ">
                 
             <div class="container mt-5">
             <nav class="nav nav-underline">
@@ -38,7 +38,7 @@
     
         
 
-        <main role="main" class="container">
+        <main role="main" class="container shadow">
      
     
           <div class=" p-3 bg-white rounded box-shadow mt-2 opa">

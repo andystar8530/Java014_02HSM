@@ -1,5 +1,6 @@
 package _01_register.service.impl;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import _04_ShoppingCart.model.OrderBean;
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
-	MemberDao  dao;
+	MemberDao  memberDao;
 	
 	@Autowired
 	SessionFactory factory;
@@ -24,20 +25,20 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int saveMember(MemberBean mb) {
 		int n = 0;
-		dao.saveMember(mb);
+		memberDao.saveMember(mb);
 		n++;
 		return n;
 	}
 	@Override
 	public boolean idExists(String id) {
 		boolean exist = false;
-		exist = dao.idExists(id);
+		exist = memberDao.idExists(id);
 		return exist;
 	}
 	@Override
 	public MemberBean queryMember(String id) {
 		MemberBean mb = null;
-		mb = dao.queryMember(id);
+		mb = memberDao.queryMember(id);
 		return mb;
 	}
 //	@Override
@@ -47,13 +48,19 @@ public class MemberServiceImpl implements MemberService {
 	
 	public MemberBean checkIdPassword(String userId, String password) {
 		MemberBean mb = null;
-		mb = dao.checkIdPassword(userId, password);
+		mb = memberDao.checkIdPassword(userId, password);
 		return mb;
 	}
 	
 	public MemberBean get(Integer pk) {
 		MemberBean mb=null;
-		mb=dao.get(pk);
+		mb=memberDao.get(pk);
 		return mb;
 	}
+
+	@Override
+	public void update(MemberBean memberBean) {
+		memberDao.update(memberBean);
+	}
+
 }
