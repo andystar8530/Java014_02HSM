@@ -97,7 +97,7 @@
 					真實姓名 : <span>${LoginOK.m_Name}</span>
 				</div>
 				<div class="newlyWed">
-					聯絡時間 : <span>${LoginOK.m_Availabletime}</span>
+<%-- 					聯絡時間 : <span>${LoginOK.m_Availabletime}</span> --%>
 				</div>
 
 			</div>

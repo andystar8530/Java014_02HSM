@@ -25,7 +25,7 @@ import _02_login.interceptor.CheckLoginInterceptor;
 @EnableWebMvc
 @EnableTransactionManagement  // 本註釋必須與@Configuration出現在同一個類別
 @ComponentScan({"_00_init", "_01_register", "_02_login","_03_listProducts","partner_h","_04_forum",
-				"_04_ShoppingCart" , "_05_orderProcess", "_20_productMaintain"})
+				"_04_ShoppingCart" , "_05_orderProcess", "_20_productMaintain","newlywed"})
 public class WebAppConfig implements WebMvcConfigurer {
 	
 	@Autowired

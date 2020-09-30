@@ -4,9 +4,9 @@ import newlywed.model.NewlywedBean;
 
 public interface NewlywedService {
 	
-    public boolean idExists(String id);
+     boolean idExists(String id);
 	
-	public int saveNewlyed(NewlywedBean nb); 
+	 int saveNewlyed(NewlywedBean nb); 
 	
-	public NewlywedBean queryNewlywed(String id);
+	 NewlywedBean queryNewlywed(String id);
 }
