@@ -10,7 +10,6 @@
 </c:if>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="utf-8">
@@ -81,20 +80,20 @@
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>基本資料&nbsp</h2>
-				<a href="newlywedInfo.jsp"><img src="icon/document.png"
+				<h2>基本資料&nbsp;</h2>
+				<a href="<c:url value='/newlywed_h/newlywedInfo'/>" ><img src="icon/document.png"
 					width="30" class="editInfo"></a>
 				<div class="newlyWed">
-					會員號碼 : <span>${LoginOK.m_No}</span>
+					會員暱稱 : <span>${NewlywedBean.n_nickname}</span>
 				</div>
 				<div class="newlyWed">
 					Email(信箱) : <span>${LoginOK.m_Id}</span>
 				</div>
 				<div class="newlyWed">
-					手機號碼 : <span>${LoginOK.m_Phone}</span>
+					手機號碼 : <span>${NewlywedBean.n_phonenumber}</span>
 				</div>
 				<div class="newlyWed">
-					真實姓名 : <span>${LoginOK.m_Name}</span>
+					聯絡時間 : <span>${NewlywedBean.n_connectiontime}</span>
 				</div>
 				<div class="newlyWed">
 <%-- 					聯絡時間 : <span>${LoginOK.m_Availabletime}</span> --%>

@@ -144,6 +144,9 @@ public class RegisterController {
 		model.addAttribute("genderMap", genderMap);
 	}
 	
+
+
+	
 //	@ModelAttribute
 //	public MemberBean prepareMemberBean(HttpServletRequest req) {
 //		MemberBean memberBean = new MemberBean();

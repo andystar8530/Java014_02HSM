@@ -8,5 +8,5 @@ public interface NewlywedService {
 	
 	 int saveNewlyed(NewlywedBean nb); 
 	
-	 NewlywedBean queryNewlywed(String id);
+	 NewlywedBean queryNewlywed(Integer id);
 }

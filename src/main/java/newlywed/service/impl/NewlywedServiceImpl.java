@@ -40,7 +40,7 @@ public class NewlywedServiceImpl implements NewlywedService {
 	}
 
 	@Override
-	public NewlywedBean queryNewlywed(String id) {
+	public NewlywedBean queryNewlywed(Integer id) {
 		NewlywedBean nb = null;
 		nb=dao.queryNewlywed(id);
 		return nb;
