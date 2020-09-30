@@ -1,8 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,70 +77,59 @@
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>基本資料&nbsp;</h2>
-				<form:form modelAttribute="NewlywedBean" method="POST" enctype='multipart/form-data'>
+				<h2>基本資料&nbsp</h2>
+				<form name="updateMemberFormA" action="update.do" method="POST">
 					<div class="form-group">
-						<label for="formGroupExampleInput">平台暱稱</label> 
-						<form:input
-							path="N_nickname" class="form-control" id="formGroupExampleInput"
-							type="text" placeholder="您的暱稱"  />
+						<label for="formGroupExampleInput">平台暱稱</label> <input
+							type="text" class="form-control" id="formGroupExampleInput"
+							placeholder="Your email" name="updateEmail">
 					</div>
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput">結婚日期</label> <input type="text" -->
-<!-- 							class="form-control" id="formGroupExampleInput" -->
-<!-- 							placeholder="Your password" name="updatePswd"> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput">婚禮預算</label> <input type="text" -->
-<!-- 							class="form-control" id="formGroupExampleInput" -->
-<!-- 							placeholder="Your IDnumber" name="updateId"> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput2">婚禮地區</label> <input -->
-<!-- 							type="text" class="form-control" id="formGroupExampleInput2" -->
-<!-- 							placeholder="Telephone" name="updatePhone" -->
-<%-- 							value="${param.updatePhone}"> --%>
-<!-- 					</div> -->
 					<div class="form-group">
-						<label for="formGroupExampleInput2">電話號碼</label> <form:input 
-						path="N_phonenumber"
+						<label for="formGroupExampleInput">結婚日期</label> <input type="text"
+							class="form-control" id="formGroupExampleInput"
+							placeholder="Your password" name="updatePswd">
+					</div>
+					<div class="form-group">
+						<label for="formGroupExampleInput">婚禮預算</label> <input type="text"
+							class="form-control" id="formGroupExampleInput"
+							placeholder="Your IDnumber" name="updateId">
+					</div>
+					<div class="form-group">
+						<label for="formGroupExampleInput2">婚禮地區</label> <input
 							type="text" class="form-control" id="formGroupExampleInput2"
-							placeholder="09xx-xxx-xxx"/>
+							placeholder="Telephone" name="updatePhone"
+							value="${param.updatePhone}">
+					</div>
+					<div class="form-group">
+						<label for="formGroupExampleInput2">真實姓名</label> <input
+							type="text" class="form-control" id="formGroupExampleInput2"
+							placeholder="Name" name="updateName" value="${param.updateName}">
 					</div>
 					<div class="form-group">
 						<label for="formGroupExampleInput">您的性別</label>
 					</div>
 					<div class="form-check form-check-inline">
-                            <form:radiobutton path="N_gender" value="0" label="男生"
-												class="form-check-input" />&nbsp;
-											<br>
-											<form:radiobutton path="N_gender" value="1" label="女生"
-												class="form-check-input" />
-<%-- 											<form:errors path="m_Code" cssClass="error" /> --%>
-
-
-<!-- 						<input class="form-check-input" type="checkbox" -->
-<!-- 							id="inlineCheckbox1" value="option1" /> <label -->
-<!-- 							class="form-check-label" for="inlineCheckbox1">男</label> -->
-<!--  					</div> --> 
-<!--  					<div class="form-check form-check-inline"> --> 
-<!-- 						<input class="form-check-input" type="checkbox" -->
-<!-- 							id="inlineCheckbox1" value="option2" > <label -->
-<!-- 							class="form-check-label" for="inlineCheckbox2">女</label> -->
+						<input class="form-check-input" type="checkbox"
+							id="inlineCheckbox1" value="option1"> <label
+							class="form-check-label" for="inlineCheckbox1">男</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="checkbox"
+							id="inlineCheckbox2" value="option2"> <label
+							class="form-check-label" for="inlineCheckbox2">女</label>
 					</div>
 					<div class="form-group">
-						<label for="formGroupExampleInput2">聯絡時間</label> 
-						<form:select path="N_connectiontime" class="form-control" name="avTime">
-                                <form:options  items="${FreeTime}" />
-<!-- 							<option value="早上9點到中午12點">早上9點到中午12點</option> -->
-<!-- 							<option>下午1點到晚上6點</option> -->
-<!-- 							<option>晚上六點到晚上10點</option> -->
-						</form:select>
+						<label for="formGroupExampleInput2">聯絡時間</label> <select
+							class="form-control" name="avTime">
+							<option value="早上9點到中午12點">早上9點到中午12點</option>
+							<option>下午1點到晚上6點</option>
+							<option>晚上六點到晚上10點</option>
+						</select>
 					</div>
 					<div>
 						<input class="btn btn-primary" type="submit" value="送出" />
 					</div>
-				</form:form>
+				</form>
 
 			</div>
 		</div>
