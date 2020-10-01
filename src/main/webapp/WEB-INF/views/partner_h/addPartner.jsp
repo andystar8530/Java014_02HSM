@@ -71,7 +71,11 @@ body{
 				<div class='col-12'>
 					<form:select path="p_service">
 						<form:option value="-1" label="請挑選" />
-						<form:options items="${serviceList}" />
+						<form:option value="婚禮攝影"  label="婚禮攝影" />
+						<form:option value="婚禮佈置"  label="婚禮佈置" />
+						<form:option value="新娘秘書"  label="新娘秘書" />
+						<form:option value="婚禮主持"  label="婚禮主持" />
+						
 					</form:select>	
 					<form:errors  path="p_service" class='errors'/>			
 				</div>

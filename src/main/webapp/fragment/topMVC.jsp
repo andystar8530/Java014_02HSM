@@ -120,8 +120,8 @@
 						<li class="nav-item"><a class="nav-link wow fadeInLeft"
 							href="<c:url value='/_02_login/logout' />"> 登出 </a></li>
 
-						<li class="nav-item"><img height='40px' width='40px'
-							src="<c:url value='/_00_init/getProductImage?id=${LoginOK.m_No}' /> ">
+<!-- 						<li class="nav-item"><img height='40px' width='40px' -->
+<%-- 							src="<c:url value='/_00_init/getProductImage?id=${LoginOK.m_No}' /> "> --%>
 
 <!-- 下面這個圖也可以用 -->
 <!-- 							<img height='40px' width='40px' -->

@@ -29,11 +29,11 @@ public class NewlywedController {
       return "/newlywed_h/newlywedInfo";
 	}
 
-	@PostMapping("/newlyedwedInfo")
-	public String processFormData(@ModelAttribute("NewlywedBean") NewlywedBean bean,
-			                       BindingResult result ,Model model,HttpServletRequest request) {
-		
-	}
+//	@PostMapping("/newlyedwedInfo")
+//	public String processFormData(@ModelAttribute("NewlywedBean") NewlywedBean bean,
+//			                       BindingResult result ,Model model,HttpServletRequest request) {
+//		
+//	}
 			
 	
 }

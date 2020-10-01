@@ -47,44 +47,6 @@ fieldset {
 					</div>
 				</div>
 
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="category"> -->
-<!-- 						類型 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="category"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${categoryList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="price"> -->
-<!-- 						價格 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:input id="price" path="price" type='text' --%>
-<%-- 							class='form:input-large' /> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="bookNo"> -->
-<!-- 						書號 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:input id="bookNo" path="bookNo" type='text' --%>
-<%-- 							class='form:input-large' /> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-<!-- 				<div class="form-group"> -->
-<!-- 					<label class='control-label col-lg-2 col-lg-2' for="companyId"> -->
-<!-- 						書商 </label> -->
-<!-- 					<div class='col-lg-10'> -->
-<%-- 						<form:select path="companyId"> --%>
-<%-- 							<form:option value="-1" label="請挑選" /> --%>
-<%-- 							<form:options items="${companyList}" /> --%>
-<%-- 						</form:select> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
 				<div class="form-group">
 					<div class='col-lg-offset-2 col-lg-10'>
 						<input id="btnAdd" type='submit' class='btn btn-primary'

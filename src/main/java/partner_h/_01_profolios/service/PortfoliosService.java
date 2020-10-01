@@ -24,10 +24,16 @@ public interface PortfoliosService {
 		//經由作品集pk取得該作品集
 		public PortfoliosBean getPortfolioById(int pfmId);
 		
+		
 		//新增產品資料的3個方法
-		void addPortfolio(PortfoliosBean product);
+		void addPortfolio(PortfoliosBean pfBean);
 		
 		PartnerBean getPartnerById(int p_id);
 		
 //		List<CompanyBean> getCompanyList();
+		
+		public void evictPortfolio(PortfoliosBean pfBean);
+		
+		//依鍵值刪除作品集
+		public void deletePortfolioById(int pfmId);
 }

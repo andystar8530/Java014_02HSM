@@ -118,6 +118,7 @@ public class PortfoliosController {
 		}
 		
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+		portfoliosAll.getPortfoliosBean().setPfService(partnerBean.getP_service());
 		portfoliosAll.getPortfoliosBean().setP_id(partnerBean.getP_id());
 		//新增作品集主檔
 		pfService.addPortfolio(portfoliosAll.getPortfoliosBean());
@@ -161,6 +162,7 @@ public class PortfoliosController {
 				}
 				
 				pfdBean.setPfmId(portfoliosAll.getPortfoliosBean().getPfmId());
+
 				pfdService.addPortfolioDetails(pfdBean);
 				System.out.println(pfdBean.getPfdName());
 				System.out.println(pfdBean.getPfmId());

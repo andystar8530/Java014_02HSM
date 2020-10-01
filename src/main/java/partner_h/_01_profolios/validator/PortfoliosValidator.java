@@ -26,10 +26,10 @@ public class PortfoliosValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "portfoliosBean.pfmName", "","名稱不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "portfoliosBean.pfmInfo", "","簡介不能空白");
 	
-		if( portfoliosAll.getPortfoliosBean().getPfService().equals("-1")) {
-			errors.rejectValue("portfoliosBean.pfService", "", "必須挑選服務類型");
-		}
-		
+//		if( portfoliosAll.getPortfoliosBean().getPfService().equals("-1")) {
+//			errors.rejectValue("portfoliosBean.pfService", "", "必須挑選服務類型");
+//		}
+//		
 		
 	}
 

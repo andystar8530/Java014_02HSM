@@ -32,4 +32,6 @@ public interface PortfoliosDao {
 	
 	PartnerBean getPartnerById(int p_id);
 	
+	//依鍵值刪除作品集
+	public void deletePortfolioById(int pfmId);
 }

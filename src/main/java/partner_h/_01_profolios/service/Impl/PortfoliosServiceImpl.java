@@ -2,6 +2,8 @@ package partner_h._01_profolios.service.Impl;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,8 @@ import partner_h.partnerInfoEdit_h.model.PartnerBean;
 public class PortfoliosServiceImpl implements PortfoliosService {
 	@Autowired
 	PortfoliosDao pfDao;
+	@Autowired
+	SessionFactory factory;
 	@Override
 	public List<PortfoliosBean> getAllPortfolios() {
 		return pfDao.getAllPortfolios();
@@ -55,6 +59,19 @@ public class PortfoliosServiceImpl implements PortfoliosService {
 	@Override
 	public List<PortfoliosBean> getPortfoliosByPartnerId(int p_id) {
 		return pfDao.getPortfoliosByPartnerId(p_id);
+	}
+
+	@Override
+	public void evictPortfolio(PortfoliosBean pfBean) {
+		Session session = factory.getCurrentSession();
+		session.evict(pfBean);
+		
+	}
+
+	@Override
+	public void deletePortfolioById(int pfmId) {
+		 pfDao.deletePortfolioById(pfmId);
+		
 	}
 	
 	

@@ -14,11 +14,13 @@ public interface PortfoliosDetailDao {
 	void addPortfolioDetails(PortfoliosDetailsBean pfdBean);
 	
 	//修改
-	int updatePortfolio(PortfoliosDetailsBean pfdBean);
+	int updatePortfolioDetail(PortfoliosDetailsBean pfdBean);
 	
 	//刪除
-	int deletePortfolio(PortfoliosDetailsBean pfdBean);
+	int deletePortfolioDetail(PortfoliosDetailsBean pfdBean);
 	
 	public PortfoliosDetailsBean getPortfolioDetailsBypfdId(int pfdId);
+	
+	//
 
 }

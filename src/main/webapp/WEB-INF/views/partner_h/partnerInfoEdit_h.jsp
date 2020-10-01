@@ -48,17 +48,17 @@
 			        <form:errors  path="p_info" class='errors' />
 				</div>
 			</div>
-			<div class="form-group ">
-				<label class='col' for="service">
-					主要服務項目 </label>
-				<div class='col'>
-					<form:select path="p_service">
-						<form:option value="-1" label="請挑選" />
-						<form:options items="${serviceList}" />
-					</form:select>	
-					<form:errors  path="p_service" class='errors'/>			
-				</div>
-			</div>
+<!-- 			<div class="form-group "> -->
+<!-- 				<label class='col' for="service"> -->
+<!-- 					主要服務項目 </label> -->
+<!-- 				<div class='col'> -->
+<%-- 					<form:select path="p_service"> --%>
+<%-- 						<form:option value="-1" label="請挑選" /> --%>
+<%-- 						<form:options items="${serviceList}" /> --%>
+<%-- 					</form:select>	 --%>
+<%-- 					<form:errors  path="p_service" class='errors'/>			 --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div class="form-group">
 				<label class='col' for="area">
 					服務區域 </label>
