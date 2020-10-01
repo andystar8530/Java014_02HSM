@@ -88,7 +88,7 @@
             <label for="staImage">上傳公司大小章</label><br>  
 			<label for="image">
      		<form:input type="file" id="staImage" path='staImage' style="display: none " />
-     		<img src="<c:url value='/getPartnerCoverImage/${partnerBean.p_id}'/>" id="show_image_sta"
+     		<img src="<c:url value='/getPartnerStampImage/${partnerBean.p_id}'/>" id="show_image_sta"
      		 style="max-width:300px" name="image_2"/>
      		<form:errors  path="staImage" class='errors'/>	
     		</label>
@@ -128,8 +128,6 @@
 			
 		</fieldset>
 	</form:form>	
-</div>
-</div>
           <script>
       $("#show_image").click(function (e) {
         document.getElementById("covImage").click();
@@ -166,5 +164,7 @@
       });
       </script>
 
+   <!-- 引入共同的頁尾 --> 
+<%-- 	<jsp:include page="/fragment/footerMVC.jsp" /> --%>
 </body>
 </html>

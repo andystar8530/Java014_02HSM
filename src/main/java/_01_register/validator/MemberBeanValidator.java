@@ -16,21 +16,29 @@ public class MemberBeanValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		MemberBean mb = (MemberBean) target;
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "M_Id", 	"", "帳號欄不能空白");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", 		"", "姓名欄不能空白");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "M_Password", 	"", "密碼欄不能空白");
-     	ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password1", 	"", "確認密碼欄不能空白");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "address", 	"", "地址欄不能空白");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", 		"", "電子郵件欄不能空白");
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "tel", 		"", "電話欄不能空白");
-//		ValidationUtils.rejectIfEmpty(errors, "memberMultipartFile", "", "必須挑選圖片");
-//		if (mb.getM_Id().length()<5) {
-//			errors.rejectValue("memberId","", "帳號欄不能小於五個字元");
-//		}
 		
-//		if (! mb.getM_Password().equals(mb.getPassword1())) {
-//			errors.rejectValue("password1","", "密碼欄與確認密碼不一致");
-//		}
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Id", 	"", "帳號欄不能空白");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Name", 		"", "姓名欄不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Password", 	"", "密碼欄不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Password1", 	"", "確認密碼欄不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Code", 	"", "請選擇新人或合作商");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Add", 	"", "地址欄不能空白");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Email", 		"", "電子郵件欄不能空白");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "m_Phone", 		"", "電話欄不能空白");
+//		ValidationUtils.rejectIfEmpty(errors, "memberMultipartFile", "", "必須挑選圖片");
+		if (mb.getM_Id().length()<5) {
+			errors.rejectValue("m_Id","", "帳號欄不能小於五個字元");
+		}
+		
+		if (! mb.getM_Password().equals(mb.getM_Password1())) {
+			errors.rejectValue("m_Password","", "密碼欄與確認密碼不一致");
+		}
+		
+		String format = "\\p{Alpha}\\w{2,15}[@][a-z0-9]{3,}[.]\\p{Lower}{2,}";
+		if (! mb.getM_Id().matches(format))
+		{ 
+			errors.rejectValue("m_Id","", "Email名稱不合法");
+		} 
 //		System.out.println("mb.getMemberMultipartFile().getSize()=" + mb.getMemberMultipartFile().getSize());
 //		if (mb.getMemberMultipartFile().getSize() == 0) {
 //			errors.rejectValue("memberMultipartFile", "", "必須挑選圖片");

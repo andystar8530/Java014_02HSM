@@ -41,7 +41,9 @@
 </style>
 </head>
 <body>
-	<div class="bg-secondary container">
+<!-- 引入共同的頁首 -->
+<jsp:include page="/fragment/topMVC.jsp" />
+	<div class="bg-secondary container rounded-lg">
 		<div class="row">
 			<p class="title col-12">發表文章</p>
 			<form:form method='POST' modelAttribute="forumBean"
@@ -100,5 +102,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
 		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
 		crossorigin="anonymous"></script>
+  <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

@@ -9,39 +9,54 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name="Product")
 public class ProductBean implements Serializable{
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int p_Id;
-	private String p_Category;
-	private String p_Name;
-	private Blob p_Cover;
-	private String p_FileName;
-	private int p_Pdqty;
-	private int p_Pdsum;
-	private int p_Stock;
-	private int p_Sdqty;
-	private Double p_Price;
-	private Blob p_Pic1;
-	private String p_FileName1;
-	private Blob p_Pic2;
-	private String p_FileName2;
-	private Blob p_Pic3;
-	private String p_FileName3;
-	private String p_Note;
-	private Timestamp p_CreateTime;
-	private Timestamp p_UpdataTime;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer p_Id;				//商品id
+	private String p_Category;			//商品類別
+	private String p_Name;				//商品名稱
+	private Blob p_Cover;				//商品封面
+	private String p_FileName;			//商品封面檔名
+	private int p_Pdqty;				//最近進貨數量
+	private int p_Pdsum;				//最近進貨金額
+	private int p_Stock;				//現有庫存量
+	private int p_Sdqty;				//銷貨數量
+	@Min(value=0, message="數值必須大於0")
+	private Double p_Price;				//單價
+	private Blob p_Pic1;				//商品展示圖1
+	private String p_FileName1;			//商品展示圖1檔名
+	private Blob p_Pic2;				//商品展示圖2
+	private String p_FileName2;			//商品展示圖2檔名
+	private Blob p_Pic3;				//商品展示圖3
+	private String p_FileName3;			//商品展示圖3檔
+	private String p_Note;				//產品敘述
+	private Timestamp p_CreateTime;		//建檔時間
+	private Timestamp p_UpdataTime;		//修改時間
+
+	@Transient
+	private MultipartFile productImage1;//取圖檔用
+	@Transient
+	private MultipartFile productImage2;//取圖檔用
+	@Transient
+	private MultipartFile productImage3;//取圖檔用
+	@Transient
+	private MultipartFile p_Cover1;//取圖檔用
 	
 	
-	public ProductBean(int p_Id, String p_Category, String p_Name, Blob p_Cover, String p_FileName, int p_Pdqty,
+	public ProductBean(Integer p_Id, String p_Category, String p_Name, Blob p_Cover, String p_FileName, int p_Pdqty,
 			int p_Pdsum, int p_Stock, int p_Sdqty, Double p_Price, Blob p_Pic1, String p_FileName1, Blob p_Pic2,
 			String p_FileName2, Blob p_Pic3, String p_FileName3, String p_Note, Timestamp p_CreateTime,
-			Timestamp p_UpdataTime) {
+			Timestamp p_UpdataTime, MultipartFile productImage1, MultipartFile productImage2,
+			MultipartFile productImage3, MultipartFile p_Cover1) {
 		super();
 		this.p_Id = p_Id;
 		this.p_Category = p_Category;
@@ -62,17 +77,20 @@ public class ProductBean implements Serializable{
 		this.p_Note = p_Note;
 		this.p_CreateTime = p_CreateTime;
 		this.p_UpdataTime = p_UpdataTime;
+		this.productImage1 = productImage1;
+		this.productImage2 = productImage2;
+		this.productImage3 = productImage3;
+		this.p_Cover1 = p_Cover1;
 	}
-	public ProductBean(){
+	
+	public ProductBean() {
 		
 	}
-	public int getPid() {
+	
+	public Integer getP_Id() {
 		return p_Id;
 	}
-	public int getP_Id() {
-		return p_Id;
-	}
-	public void setP_Id(int p_Id) {
+	public void setP_Id(Integer p_Id) {
 		this.p_Id = p_Id;
 	}
 	public String getP_Category() {
@@ -171,7 +189,6 @@ public class ProductBean implements Serializable{
 	public void setP_Note(String p_Note) {
 		this.p_Note = p_Note;
 	}
-	
 	public Timestamp getP_CreateTime() {
 		return p_CreateTime;
 	}
@@ -184,8 +201,29 @@ public class ProductBean implements Serializable{
 	public void setP_UpdataTime(Timestamp p_UpdataTime) {
 		this.p_UpdataTime = p_UpdataTime;
 	}
-	public String getDescription() {
-		return getP_Name()+ " "
-				+ getP_Note().substring(0, Math.min(3, getP_Note().length()));
+	public MultipartFile getProductImage1() {
+		return productImage1;
 	}
+	public void setProductImage1(MultipartFile productImage1) {
+		this.productImage1 = productImage1;
+	}
+	public MultipartFile getProductImage2() {
+		return productImage2;
+	}
+	public void setProductImage2(MultipartFile productImage2) {
+		this.productImage2 = productImage2;
+	}
+	public MultipartFile getProductImage3() {
+		return productImage3;
+	}
+	public void setProductImage3(MultipartFile productImage3) {
+		this.productImage3 = productImage3;
+	}
+	public MultipartFile getP_Cover1() {
+		return p_Cover1;
+	}
+	public void setP_Cover1(MultipartFile p_Cover1) {
+		this.p_Cover1 = p_Cover1;
+	}
+	
 }

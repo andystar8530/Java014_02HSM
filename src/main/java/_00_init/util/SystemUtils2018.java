@@ -13,10 +13,16 @@ import java.io.Reader;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialClob;
- 
+import javax.sql.rowset.serial.SerialException;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.multipart.MultipartFile;
+
 public class SystemUtils2018 {
 
 	public static Blob fileToBlob(String imageFileName) throws IOException, SQLException {
@@ -69,5 +75,20 @@ public class SystemUtils2018 {
 
 	public static String extractFileName(String pathName) throws IOException, SQLException {
 		return pathName.substring(pathName.lastIndexOf("/") + 1);
+	}
+	
+	public static void showErrors(Errors errors)  {
+		System.out.println("======================");
+		List<ObjectError> list = errors.getAllErrors();
+		for(ObjectError error : list) {
+			System.out.println("有錯誤：" + error);
+		}
+		System.out.println("======================");
+	}
+
+	public static Blob convertMultipartFileToBlob(MultipartFile productImage) throws Exception {
+		
+		byte[] b = productImage.getBytes();
+		return new SerialBlob(b);
 	}
 }

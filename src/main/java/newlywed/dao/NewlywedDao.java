@@ -9,5 +9,5 @@ import newlywed.model.NewlywedBean;
 	
 	public int saveNewlyed(NewlywedBean nb); 
 	
-	public NewlywedBean queryNewlywed(String id);
+	public NewlywedBean queryNewlywed(Integer id);
 }

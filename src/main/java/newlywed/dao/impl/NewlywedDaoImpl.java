@@ -47,10 +47,10 @@ public class NewlywedDaoImpl implements NewlywedDao {
 	}
 
 	@Override
-	public NewlywedBean queryNewlywed(String id) {
+	public NewlywedBean queryNewlywed(Integer id) {
 		NewlywedBean nb = null;
 		Session session = factory.getCurrentSession();
-		String hql = "FROM MemberBean m WHERE m.M_Id = :mid";
+		String hql = "FROM NewlywedBean m WHERE m.memberBean.m_No = :mid";
 		@SuppressWarnings("unchecked")
 		List<NewlywedBean> beans = (List<NewlywedBean>) session.createQuery(hql)
 										.setParameter("mid", id)

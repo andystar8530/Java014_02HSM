@@ -11,13 +11,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <style>
     .opa{opacity: 0.8;}
-    .bgcolor{background-color:#FFEBCD;}
+    .bgcolor{background-color:#EBFFEB;}
   </style>
   </head>
- <body class="bgcolor">
-    
+ <body class="">
+    <!-- 引入共同的頁首 -->
+<jsp:include page="/fragment/topMVC.jsp" />
         
-        <div class="nav-scroller bgcolor box-shadow ">
+        <div class="nav-scroller ">
                 
             <div class="container mt-5">
             <nav class="nav nav-underline">
@@ -37,7 +38,7 @@
     
         
 
-        <main role="main" class="container">
+        <main role="main" class="container shadow">
      
     
           <div class=" p-3 bg-white rounded box-shadow mt-2 opa">
@@ -107,3 +108,8 @@
       
     
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs>
+</svg>
+  <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
+</body>
+</html>

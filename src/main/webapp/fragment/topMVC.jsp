@@ -58,15 +58,24 @@
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="<c:url value='/portfolios' />">婚禮佈置</a></li>
+						href="#">婚禮佈置</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">婚禮攝影</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">新娘秘書</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">婚禮主持</a></li>
-					<li class="nav-item "><a class="nav-link wow fadeInLeft"
-						href="<c:url value='/DisplayPageProducts' />"> 小物商城 </a></li>
+					<li class="nav-item dropdown">
+    			    		<a class="nav-link dropdown-toggle wow fadeInLeft" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  			        			小物商城
+  				      		</a>
+ 					       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+ 				 		      <a class="dropdown-item" href="<c:url value='/_03_listProducts/DisplayPageProducts' />">購物</a>
+   				 		      <a class="dropdown-item" href="<c:url value='/_04_ShoppingCart/ShowCartContent' />">購物車</a>
+   				  		    <div class="dropdown-divider"></div>
+   				 		      <a class="dropdown-item" href="<c:url value='/_05_orderProcess/orderList' />">訂單</a>
+   				     		</div>
+    			  	</li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle wow fadeInLeft" href="#"
 						id="navbarDropdownBlog" data-toggle="dropdown"
@@ -104,8 +113,8 @@
 					<c:if test="${!empty LoginOK}">
 						<c:if test="${LoginOK.m_Code == 0}">
 							<li class="nav-item "><a class="nav-link wow fadeInLeft"
-								href="${pageContext.request.contextPath}/_newlyWed/newlywed.jsp">新人頁面</a>
-							</li>
+								href="<c:url value='/newlywed_h/newlywed' />">新人頁面</a>
+							</li>     
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 1}">
 							<li class="nav-item"><a class="nav-link wow fadeInLeft"
@@ -120,20 +129,19 @@
 						<li class="nav-item"><a class="nav-link wow fadeInLeft"
 							href="<c:url value='/_02_login/logout' />"> 登出 </a></li>
 
-<!-- 						<li class="nav-item"><img height='40px' width='40px' -->
-<%-- 							src="<c:url value='/_00_init/getProductImage?id=${LoginOK.m_No}' /> "> --%>
+						<li class="nav-item"><img height='40px' width='40px'
+							src="<c:url value='/_00_init/getMemberImage?id=${LoginOK.m_Id}' /> ">
 
 <!-- 下面這個圖也可以用 -->
 <!-- 							<img height='40px' width='40px' -->
 <%-- 							src=' --%>
-<%-- 							${pageContext.servletContext.contextPath}/_00_init/getProductImage?id=${LoginOK.m_No}'> --%>
+<%-- 							${pageContext.servletContext.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}'> --%>
 						</li>
 					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
-
 
 
 	<!-- Bootstrap core JavaScript -->

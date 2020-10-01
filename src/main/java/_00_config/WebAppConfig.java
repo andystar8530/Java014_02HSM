@@ -15,18 +15,22 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import _00_init.interceptor.DisableCacheInterceptor;
-//import _02_login.interceptor.CheckLoginInterceptor;
+import _02_login.interceptor.CheckLoginInterceptor;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement  // 本註釋必須與@Configuration出現在同一個類別
-@ComponentScan({"_00_init", "_02_login","_03_listProducts","_01_register","partner_h","_04_forum"})
+@ComponentScan({"_00_init", "_01_register", "_02_login","_03_listProducts","partner_h","_04_forum",
+				"_04_ShoppingCart" , "_05_orderProcess", "_20_productMaintain","newlywed"})
 public class WebAppConfig implements WebMvcConfigurer {
+	
+	@Autowired
+	SessionFactory factory;
+	
 	@Autowired
 	private RequestMappingHandlerAdapter requestMappingHandlerAdapter;
 	
@@ -66,18 +70,18 @@ public class WebAppConfig implements WebMvcConfigurer {
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
-//	@Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(new CheckLoginInterceptor());
-//		DisableCacheInterceptor  disableCacheInterceptor = new DisableCacheInterceptor();
-//        registry.addInterceptor(disableCacheInterceptor);
-//        
-//        OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
-//	    openSessionInViewInterceptor.setSessionFactory(factory);
-//	    registry.addWebRequestInterceptor(openSessionInViewInterceptor).addPathPatterns("/_05_orderProcess/orderDetail");
-//	    
-//        
-//    }
+	@Override
+    public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new CheckLoginInterceptor());
+		DisableCacheInterceptor  disableCacheInterceptor = new DisableCacheInterceptor();
+        registry.addInterceptor(disableCacheInterceptor);
+        
+        OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
+	    openSessionInViewInterceptor.setSessionFactory(factory);
+	    registry.addWebRequestInterceptor(openSessionInViewInterceptor).addPathPatterns("/_05_orderProcess/orderDetail");
+	    
+        
+    }
 	
 	@Bean
 	public MessageSource messageSource() {

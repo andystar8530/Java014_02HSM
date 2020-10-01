@@ -19,12 +19,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import _01_register.model.MemberBean;
+import _01_register.service.MemberService;
 import _03_listProducts.model.ProductBean;
 import _03_listProducts.service.ProductService;
 
 @Controller
 public class BaseController {
 	
+	@Autowired
+	MemberService memberService;
+
 	@Autowired
 	ProductService productService;
 	
@@ -43,64 +48,65 @@ public class BaseController {
 	}
 	
 	
-//	@GetMapping("/_00_init/getMemberImage")
-//	public ResponseEntity<byte[]>  getMemberImage(@RequestParam("id") String id) {
-//		InputStream is = null;
-//		OutputStream os = null;
-//		String fileName = null;
-//		String mimeType = null;
-//		byte[] media = null;
-//		ResponseEntity<byte[]> responseEntity = null;
-//		HttpHeaders headers = new HttpHeaders();
-//		MediaType mediaType = null;
-//		Blob blob = null;
-//		try {
-//			MemberBean bean = memberService.queryMember(id);
-//			if (bean != null) {
-//				blob = bean.getMemberImage();
-//				if (blob != null) {
-//					is = blob.getBinaryStream();
-//				}
-//				fileName = bean.getFileName();
-//			}
-//			// 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)	
-//			if (is == null) {
-//				fileName = "NoImage.png" ; 
-//				is = servletContext.getResourceAsStream(
-//						"/images/" + fileName);
-//			}
-//			// 由圖片檔的檔名來得到檔案的MIME型態
-//			mimeType = servletContext.getMimeType(fileName);
-//			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//			// 由InputStream讀取位元組，然後由OutputStream寫出
-//			int len = 0;
-//			byte[] bytes = new byte[8192];
-//			
-//			while ((len = is.read(bytes)) != -1) {
-//				baos.write(bytes, 0, len);
-//			}
-//			media = baos.toByteArray();
-//			mediaType = MediaType.valueOf(mimeType);
-//			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-//			headers.setContentType(mediaType);
-//			responseEntity =  new ResponseEntity<>(media, headers, HttpStatus.OK);
-//		} catch(Exception ex) {
-//			ex.printStackTrace();
-//			throw new RuntimeException("_00_init.util.RetrieveBookImageServlet#doGet()發生Exception: " + ex.getMessage());
-//		} finally{
-//			try {
-//				if (is != null) is.close();
-//			} catch(IOException e) {
-//				;
-//			}
-//			try {
-//				if (os != null) os.close();
-//			} catch(IOException e) {
-//				;
-//			}
-//		}
-//		return responseEntity;
-//	}
+	@GetMapping("/_00_init/getMemberImage")
+	public ResponseEntity<byte[]>  getMemberImage(@RequestParam("id") String id) {
+		InputStream is = null;
+		OutputStream os = null;
+		String fileName = null;
+		String mimeType = null;
+		byte[] media = null;
+		ResponseEntity<byte[]> responseEntity = null;
+		HttpHeaders headers = new HttpHeaders();
+		MediaType mediaType = null;
+		Blob blob = null;
+		try {
+			MemberBean bean = memberService.queryMember(id);
+			if (bean != null) {
+				blob = bean.getM_Propic();
+				if (blob != null) {
+					is = blob.getBinaryStream();
+				}
+				fileName = bean.getM_FileName();
+			}
+			// 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)	
+			if (is == null) {
+				fileName = "NoImage.png" ; 
+				is = servletContext.getResourceAsStream(
+						"/images/" + fileName);
+			}
+			// 由圖片檔的檔名來得到檔案的MIME型態
+			mimeType = servletContext.getMimeType(fileName);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			// 由InputStream讀取位元組，然後由OutputStream寫出
+			int len = 0;
+			byte[] bytes = new byte[8192];
+			
+			while ((len = is.read(bytes)) != -1) {
+				baos.write(bytes, 0, len);
+			}
+			media = baos.toByteArray();
+			mediaType = MediaType.valueOf(mimeType);
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			headers.setContentType(mediaType);
+			responseEntity =  new ResponseEntity<>(media, headers, HttpStatus.OK);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			throw new RuntimeException("_00_init.util.RetrieveBookImageServlet#doGet()發生Exception: " + ex.getMessage());
+		} finally{
+			try {
+				if (is != null) is.close();
+			} catch(IOException e) {
+				;
+			}
+			try {
+				if (os != null) os.close();
+			} catch(IOException e) {
+				;
+			}
+		}
+		return responseEntity;
+	}
+	
 	// 本方法與前一個方法極為類似，由於兩方法之參數 id 的型態不同，所以無法合而為一
 	@GetMapping("/_00_init/getProductImage")
 	public ResponseEntity<byte[]> getProductImage(
@@ -116,7 +122,7 @@ public class BaseController {
 		MediaType mediaType = null;
 		Blob blob = null;
 		try {
-			ProductBean bean = productService.getProduct(id);
+			ProductBean bean = productService.getProductById(id);
 					;
 			if (bean != null) {
 				blob = bean.getP_Cover();

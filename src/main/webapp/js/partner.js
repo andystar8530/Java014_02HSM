@@ -30,8 +30,8 @@ function cov_fileChange() {
     image.src = this.result; //src HTML標籤屬性 直接點就可以
     
     // image.width = 500 ;
-    image.style.maxWidth = '200px' ;//css屬性
-    image.style.maxHeight = '200px' ;
+    image.style.maxWidth = '300px' ;//css屬性
+    image.style.maxHeight = '300px' ;
   });
 }
 function sta_fileChange() {

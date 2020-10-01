@@ -27,7 +27,7 @@ import _02_login.validate.LoginBeanValidator;
 @SessionAttributes({"LoginOK"}) 
 public class LoginController {
 	
-	String loginForm = "_02_login\\login";
+	String loginForm = "_02_login\\loginForm";
 	String loginOut = "_02_login\\logout";
 	
 	@Autowired
