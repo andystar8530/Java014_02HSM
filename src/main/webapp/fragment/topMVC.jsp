@@ -124,7 +124,7 @@
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 2}">
 							<li class="nav-item"><a class="nav-link wow fadeInLeft"
-								href="<c:url value='/support/bgMain.jsp' />">管理頁面</a></li>
+								href="<c:url value='/support/bgMain' />">管理頁面</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link wow fadeInLeft"
 							href="<c:url value='/_02_login/logout' />"> 登出 </a></li>
