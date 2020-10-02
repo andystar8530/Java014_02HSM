@@ -25,6 +25,7 @@
 .bgMainGalleryDivIn {
 /* 	display: flex; */
 	Height: 100px;
+	width: 100%;
 /* 	background-color: #804000; */
 	/* 	padding: 20px 20px 20px 20px; */
 }
@@ -80,18 +81,24 @@
 .bgMainGalleryDivIn2 {
 	background-color: #6A6AFF;
 	Height: 100%;
-	width: 15%;
+	width: 10%;
 }
 
 .bgMainGalleryDivIn3 {
 	background-color: #F75000;
 	Height: 100%;
-	width: 55%;
+	width: 50%;
 }
 
 .bgMainGalleryDivIn4 {
 	background-color: #484891;
 	height: 100%;
 	width: 15%;
+}
+
+.bgMainGalleryDivIn5 {
+	background-color: #F75000;
+	height: 100%;
+	width: 10%;
 }
 

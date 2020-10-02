@@ -29,4 +29,6 @@ public interface ProductInfoService {
 	void setRecordsPerPage(int recordsPerPage);
 	//	設置選定
 	void setSelected(String category);
+	//	刪除紀錄
+	void delete(Integer id);
 }

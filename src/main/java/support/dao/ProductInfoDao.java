@@ -20,7 +20,8 @@ public interface ProductInfoDao {
 	
 	// 查詢商品
 	List<ProductBean> getProduct();
-
+	//	刪除產品
+	void delete(Integer id);
 	
 	public void setConnection(Connection con);
 

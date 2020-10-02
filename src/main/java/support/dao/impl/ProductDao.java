@@ -130,6 +130,15 @@ public class ProductDao implements ProductInfoDao {
 		Session session = factory.getCurrentSession();
 		session.update(bean);
 	}
+	//	刪除單筆資料
+	@Override
+	public void delete(Integer id) {
+		Session session = factory.getCurrentSession();
+		ProductBean productBean = getSupPageProductsById(id);
+		if (productBean != null) {
+			session.delete(productBean);
+		}
+	}
 
 ////	修改後存入(有增加照片)
 //	@Override
