@@ -117,10 +117,18 @@
 							</li>     
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 1}">
-							<li class="nav-item"><a class="nav-link wow fadeInLeft"
-							href="<c:url value='/displayPartner'/>">
-								商家頁面</a>
-							</li>
+							<c:if test="${!empty partnerBean}">
+								<li class="nav-item"><a class="nav-link wow fadeInLeft"
+								href="<c:url value='/displayPartner'/>">
+									商家頁面</a>
+								</li>
+							</c:if>
+							<c:if test="${empty partnerBean}">
+								<li class="nav-item"><a class="nav-link wow fadeInLeft"
+								href="<c:url value='/addPartner'/>">
+									填寫商家資料</a>
+								</li>
+							</c:if>
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 2}">
 							<li class="nav-item"><a class="nav-link wow fadeInLeft"
