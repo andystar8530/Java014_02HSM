@@ -3,7 +3,6 @@ package _01_register.dao;
 import java.sql.Connection;
 
 import _01_register.model.MemberBean;
-import _04_ShoppingCart.model.OrderBean;
 
 public interface MemberDao {
 	
@@ -20,4 +19,6 @@ public interface MemberDao {
 	public void setConnection(Connection con);
 	
     public MemberBean get(Integer pk);
+    
+    void update(MemberBean memberBean);
 }

@@ -5,6 +5,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -29,6 +30,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	
 	@Override
 	protected Filter[] getServletFilters() {
+		HiddenHttpMethodFilter hhmf = new HiddenHttpMethodFilter();
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
 		characterEncodingFilter.setForceEncoding(true);
@@ -38,7 +40,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		// application.properties:
 		// spring.mvc.hiddenmethod.filter.enabled=true
 		// , multipartFilter, hiddenFilter
-		return new Filter[] {characterEncodingFilter};
+		return new Filter[] {characterEncodingFilter,hhmf};
 	}
 
 	@Override

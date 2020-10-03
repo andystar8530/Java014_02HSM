@@ -58,17 +58,20 @@
    						<form:errors  path="portfoliosBean.pfmInfo" class='errors' /> 
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for=pfService>
+				<!-- <div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2 "  for='pfService'>
 						作品集分類: </label>
 					<div class="col-lg-10">
 					<form:select path="portfoliosBean.pfService">
 						<form:option value="-1" label="請挑選" />
-						<form:options items="${serviceList}" />
+						<form:option value="婚禮佈置" label="婚禮佈置" />
+						<form:option value="婚禮攝影" label="婚禮攝影" />
+						<form:option value="新娘秘書" label="新娘秘書" />
+						<form:option value="婚禮主持" label="婚禮主持" />
 					</form:select>
 					<form:errors  path="portfoliosBean.pfService" class='errors' /> 
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 "  for='portfolioImage'>
 						上傳多張圖片 </label>

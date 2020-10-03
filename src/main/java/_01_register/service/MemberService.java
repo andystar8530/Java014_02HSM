@@ -9,4 +9,5 @@ public interface MemberService {
 	MemberBean queryMember(String id);
 	MemberBean checkIdPassword(String userId, String password) ;
 	MemberBean get(Integer pk);
+	void update(MemberBean memberBean);
 }

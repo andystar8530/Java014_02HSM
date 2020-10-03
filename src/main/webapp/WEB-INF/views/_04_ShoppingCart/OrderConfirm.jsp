@@ -42,7 +42,7 @@ function reconfirmOrder() {
 <jsp:useBean   id="today"  class="java.util.Date" scope="session"/> 
 <title>訂單明細資訊確認</title>
 </head>
-<body style="background:#EBFFEB;">
+<body>
 <jsp:include page="/fragment/topMVC.jsp" />
 <c:set var="funcName" value="CHE" scope="session"/>
 <jsp:include page="/fragment/topMVC.jsp" />

@@ -29,11 +29,11 @@
 <link href="offcanvas.css" rel="stylesheet">
 </head>
 
-<body class=" bgcolor">
+<body class="">
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
 
-	<div class="nav-scroller  box-shadow bgcolor">
+	<div class="nav-scroller">
 
 		<div class="container mt-5">
 			<nav class="nav nav-underline">
@@ -50,7 +50,7 @@
 			</nav>
 		</div>
 	</div>
-	<main role="main" class="container">
+	<main role="main" class="container shadow">
 
 
 		<c:forEach var="post" items="${posts}">

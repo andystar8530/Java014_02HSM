@@ -30,7 +30,7 @@
 	}
 </script>
 </head>
-<body onLoad="setFocusToUserId()" style="background: #EBFFEB;">
+<body onLoad="setFocusToUserId()">
 	<!-- 下列敘述設定變數funcName的值為LOG，top.jsp 會用到此變數 -->
 	<c:set var="funcName" value="LOG" scope="session" />
 	<c:set var="msg" value="登入" />
@@ -48,7 +48,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-lg-5">
-							<div class="card shadow border-0 rounded-lg mt-5">
+							<div class="card shadow border-0 rounded-lg mt-5 mb-5">
 								<div class="card-header">
 									<h3 class="text-center font-weight-light my-4">${msg}</h3>
 								</div>

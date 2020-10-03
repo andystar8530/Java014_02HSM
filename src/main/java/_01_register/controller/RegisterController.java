@@ -38,9 +38,9 @@ public class RegisterController {
 	@GetMapping("/register")   
 	public String sendingEmptyForm(Model model) {
 		MemberBean memberBean = new MemberBean();
-		memberBean.setM_Password("Do!ng123");
-		memberBean.setM_Password1("Do!ng123");
-		memberBean.setM_Id("rockstar@rock.star");
+//		memberBean.setM_Password("Do!ng123");
+//		memberBean.setM_Password1("Do!ng123");
+//		memberBean.setM_Id("rockstar@rock.star");
 		model.addAttribute("memberBean", memberBean);
 		return inputDataForm;
 	}
@@ -143,6 +143,9 @@ public class RegisterController {
 		genderMap.put("1", "合作商");
 		model.addAttribute("genderMap", genderMap);
 	}
+	
+
+
 	
 //	@ModelAttribute
 //	public MemberBean prepareMemberBean(HttpServletRequest req) {

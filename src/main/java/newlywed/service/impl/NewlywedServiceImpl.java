@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import _01_register.dao.impl.MemberDaoImpl;
 import newlywed.dao.NewlywedDao;
 import newlywed.dao.impl.NewlywedDaoImpl;
 import newlywed.model.NewlywedBean;
@@ -41,7 +40,7 @@ public class NewlywedServiceImpl implements NewlywedService {
 	}
 
 	@Override
-	public NewlywedBean queryNewlywed(String id) {
+	public NewlywedBean queryNewlywed(Integer id) {
 		NewlywedBean nb = null;
 		nb=dao.queryNewlywed(id);
 		return nb;

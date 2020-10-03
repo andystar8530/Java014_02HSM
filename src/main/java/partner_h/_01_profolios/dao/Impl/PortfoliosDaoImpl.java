@@ -35,7 +35,7 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 	@Override
 	public void updatePortfolio(PortfoliosBean pfBean) {
 		Session session = factory.getCurrentSession();
-		session.update(pfBean);
+		session.saveOrUpdate(pfBean);
 		
 	}
 	//**取得所有服務分類
@@ -94,6 +94,14 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 		List<PortfoliosBean> list = new ArrayList<>();
 		list = session.createQuery(hql).setParameter("p_id", p_id).getResultList();
 		return list;
+	}
+
+	@Override
+	public void deletePortfolioById(int pfmId) {
+		Session session = factory.getCurrentSession();
+		PortfoliosBean pfBean = session.get(PortfoliosBean.class, pfmId);
+		session.delete(pfBean);
+		
 	}
 	
 

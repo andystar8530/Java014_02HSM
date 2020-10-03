@@ -150,11 +150,15 @@ public class PartnerInfoController {
 //	}
 //	
 	
-	@ModelAttribute("serviceList")
-	public List<String> getServiceList(Model model) {
-		List<String> list = partnerService.getServiceList();
-		return list ; 
-	}
+//	@ModelAttribute("serviceList")
+//	public List<String> getServiceList(Model model) {
+//		List<String> list = partnerService.getServiceList();
+//		System.out.println(list.get(0));
+//		System.out.println(list.get(1));
+//		System.out.println(list.get(2));
+//		System.out.println(list.get(3));
+//		return list ;
+//	}
 	
 	@GetMapping("/editPartner")
 	public String addNewEditPartner(Model model,@RequestParam Integer p_id) {

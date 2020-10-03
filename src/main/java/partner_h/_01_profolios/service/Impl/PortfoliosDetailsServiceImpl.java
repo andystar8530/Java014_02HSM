@@ -29,13 +29,13 @@ public class PortfoliosDetailsServiceImpl implements PortfoliosDetailsService {
 	}
 
 	@Override
-	public int updatePortfolio(PortfoliosDetailsBean pfdBean) {
-		return dao.updatePortfolio(pfdBean);
+	public int updatePortfolioDetail(PortfoliosDetailsBean pfdBean) {
+		return dao.updatePortfolioDetail(pfdBean);
 	}
 
 	@Override
-	public int deletePortfolio(PortfoliosDetailsBean pfdBean) {
-		return dao.deletePortfolio(pfdBean);
+	public int deletePortfolioDetail(PortfoliosDetailsBean pfdBean) {
+		return dao.deletePortfolioDetail(pfdBean);
 	}
 
 	@Override

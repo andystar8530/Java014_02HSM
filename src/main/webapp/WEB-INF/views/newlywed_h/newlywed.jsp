@@ -10,7 +10,6 @@
 </c:if>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="utf-8">
@@ -19,7 +18,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>合作商管理頁面</title>
+<title>新人 管理頁面</title>
 
 <!-- Bootstrap core CSS -->
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -58,46 +57,46 @@
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
 					<div class="list-group-item href="#" >
-						<img src="${pageContext.request.contextPath}/images/duck.jpg" width="80" style="border-radius: 50%;"
-							id="partner-icon">
-						<div>會員-可達鴨</div>
+              <img src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}" width="80" style="border-radius: 50%;" id="partner-icon">
+              <div>${NewlywedBean.n_nickname}</div>
 
 					</div>
-					<a href="newlywed.jsp" class="list-group-item"><img
-						src="icon/3253474-wedding/png/007-house.png">基本資料 <a
+					<a href="<c:url value='/newlywed_h/newlywed' />" class="list-group-item"><img src="<c:url value='/data/icon/3253474-wedding/png/007-house.png' /> ">基本資料 </a>
+					<a  class="list-group-item" href="<c:url value='/nrm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
+						
+						<a class="list-group-item"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/015-picture.png' />">我的婚禮</a> <a
 						class="list-group-item"><img
-							src="icon/3253474-wedding/png/015-picture.png">我的婚禮</a> <a
-						class="list-group-item"><img
-							src="icon/3253474-wedding/png/034-marriage certification.png">我要詢價
+							src="<c:url value='/data/icon/3253474-wedding/png/034-marriage certification.png' />">我要詢價
 
 					</a> <a class="list-group-item list-group-1"><img
-							src="icon/3253474-wedding/png/001-clipboard.png">我的討論區 </a> <a
+							src="<c:url value='/data/icon/3253474-wedding/png/001-clipboard.png' />">我的討論區 </a> <a
 						class="list-group-item list-group-2"><img
-							src="icon/3253474-wedding/png/027-wedding invitation.png">我的收藏
+							src="<c:url value='/data/icon/3253474-wedding/png/027-wedding invitation.png' />">我的收藏
 							> </a> <a class="list-group-item"
 						href="${pageContext.request.contextPath}/"><img
-							src="icon/3253474-wedding/png/025-calendar.png">回首頁</a>
+							src="<c:url value='/data/icon/3253474-wedding/png/025-calendar.png' />">回首頁</a>
 				</div>
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<h2>基本資料&nbsp</h2>
-				<a href="newlywedInfo.jsp"><img src="icon/document.png"
+				<h2>基本資料&nbsp;</h2>										
+				<a href="<c:url value='/newlywed_h/newlywedInfo'/>" ><img src="<c:url value='/data/icon/document.png' />"
 					width="30" class="editInfo"></a>
 				<div class="newlyWed">
-					會員號碼 : <span>${LoginOK.m_No}</span>
+					會員暱稱 : <span>${NewlywedBean.n_nickname}</span>
 				</div>
 				<div class="newlyWed">
 					Email(信箱) : <span>${LoginOK.m_Id}</span>
 				</div>
 				<div class="newlyWed">
-					手機號碼 : <span>${LoginOK.m_Phone}</span>
+					手機號碼 : <span>${NewlywedBean.n_phonenumber}</span>
 				</div>
 				<div class="newlyWed">
-					真實姓名 : <span>${LoginOK.m_Name}</span>
+					聯絡時間 : <span>${NewlywedBean.n_connectiontime}</span>
 				</div>
 				<div class="newlyWed">
-					聯絡時間 : <span>${LoginOK.m_Availabletime}</span>
+<%-- 					聯絡時間 : <span>${LoginOK.m_Availabletime}</span> --%>
 				</div>
 
 			</div>

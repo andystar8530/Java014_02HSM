@@ -36,11 +36,12 @@
       <div class="col-lg-3 mb-4">
         <div class="list-group" >
           <div class="list-group-item href="#" >
-              <img src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_No}" width="80" style="border-radius: 50%;" id="partner-icon">
+              <img src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}" width="80" style="border-radius: 50%;" id="partner-icon">
               <div>${partnerBean.p_storeName}</div>
 
           </div>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
+          <a  class="list-group-item" href="<c:url value='/displayPartner'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
+          <a  class="list-group-item" href="<c:url value='/crm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
 
           <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
           	<img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >作品集</a>

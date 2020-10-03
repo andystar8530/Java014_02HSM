@@ -40,7 +40,7 @@
 }
 </style>
 </head>
-<body style="background: #EBFFEB;">
+<body>
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
 	<div class="bg-secondary container rounded-lg">

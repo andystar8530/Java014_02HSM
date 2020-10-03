@@ -48,17 +48,17 @@
 			        <form:errors  path="p_info" class='errors' />
 				</div>
 			</div>
-			<div class="form-group ">
-				<label class='col' for="service">
-					主要服務項目 </label>
-				<div class='col'>
-					<form:select path="p_service">
-						<form:option value="-1" label="請挑選" />
-						<form:options items="${serviceList}" />
-					</form:select>	
-					<form:errors  path="p_service" class='errors'/>			
-				</div>
-			</div>
+<!-- 			<div class="form-group "> -->
+<!-- 				<label class='col' for="service"> -->
+<!-- 					主要服務項目 </label> -->
+<!-- 				<div class='col'> -->
+<%-- 					<form:select path="p_service"> --%>
+<%-- 						<form:option value="-1" label="請挑選" /> --%>
+<%-- 						<form:options items="${serviceList}" /> --%>
+<%-- 					</form:select>	 --%>
+<%-- 					<form:errors  path="p_service" class='errors'/>			 --%>
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div class="form-group">
 				<label class='col' for="area">
 					服務區域 </label>
@@ -76,6 +76,7 @@
 			</div>
 			<div class="form-group">
               	<label for="covImage">上傳封面圖</label><br>
+ 				
  				<label for="image">
      			<form:input type="file" id="covImage" path='covImage' style="display: none " />
      			<img src="<c:url value='/getPartnerCoverImage/${partnerBean.p_id}'/>"
@@ -88,7 +89,7 @@
             <label for="staImage">上傳公司大小章</label><br>  
 			<label for="image">
      		<form:input type="file" id="staImage" path='staImage' style="display: none " />
-     		<img src="<c:url value='/getPartnerCoverImage/${partnerBean.p_id}'/>" id="show_image_sta"
+     		<img src="<c:url value='/getPartnerStampImage/${partnerBean.p_id}'/>" id="show_image_sta"
      		 style="max-width:300px" name="image_2"/>
      		<form:errors  path="staImage" class='errors'/>	
     		</label>
@@ -164,7 +165,7 @@
       });
       </script>
 
-  <!-- 引入共同的頁尾 -->
-	<jsp:include page="/fragment/footerMVC.jsp" />
+   <!-- 引入共同的頁尾 --> 
+<%-- 	<jsp:include page="/fragment/footerMVC.jsp" /> --%>
 </body>
 </html>

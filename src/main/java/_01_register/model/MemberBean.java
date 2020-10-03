@@ -36,6 +36,7 @@ public class MemberBean implements Serializable {
 	private String m_Add;
 	private Blob m_Propic;
 	private String m_FileName;
+	private String m_Availabletime;
 	private Timestamp m_CreateTime;
 	private Timestamp m_EditTime;
 	@Transient
@@ -46,7 +47,7 @@ public class MemberBean implements Serializable {
 
 	public MemberBean(Integer m_No, Integer m_Status, Integer m_Code, String m_Id, String m_Password,
 			String m_Password1, String m_Name, String m_Email, String m_Phone, String m_Socialnum, String m_Add,
-			Blob m_Propic, String m_FileName, Timestamp m_Createtime, Timestamp m_Edittime,
+			Blob m_Propic, String m_FileName, String m_Availabletime, Timestamp m_Createtime, Timestamp m_Edittime,
 			MultipartFile memberMultipartFile) {
 		super();
 		this.m_No = m_No;
@@ -62,6 +63,7 @@ public class MemberBean implements Serializable {
 		this.m_Add = m_Add;
 		this.m_Propic = m_Propic;
 		this.m_FileName = m_FileName;
+		this.m_Availabletime = m_Availabletime;
 		this.m_CreateTime = m_Createtime;
 		this.m_EditTime = m_Edittime;
 		this.memberMultipartFile = memberMultipartFile;
@@ -69,7 +71,7 @@ public class MemberBean implements Serializable {
 
 	public MemberBean(Integer m_No, Integer m_Status, Integer m_Code, String m_Id, String m_Password, String m_Name,
 			String m_Email, String m_Phone, String m_Socialnum, String m_Add, Blob m_Propic, String m_FileName,
-			Timestamp m_CreateTime, Timestamp m_EditTime) {
+			String m_Availabletime, Timestamp m_CreateTime, Timestamp m_EditTime) {
 		super();
 		this.m_No = m_No;
 		this.m_Status = m_Status;
@@ -83,6 +85,7 @@ public class MemberBean implements Serializable {
 		this.m_Add = m_Add;
 		this.m_Propic = m_Propic;
 		this.m_FileName = m_FileName;
+		this.m_Availabletime=m_Availabletime;
 		this.m_CreateTime = m_CreateTime;
 		this.m_EditTime = m_EditTime;
 	}
@@ -215,8 +218,13 @@ public class MemberBean implements Serializable {
 		this.memberMultipartFile = memberMultipartFile;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public String getM_Availabletime() {
+		return m_Availabletime;
 	}
+
+	public void setM_Availabletime(String m_Availabletime) {
+		this.m_Availabletime = m_Availabletime;
+	}
+
 
 }

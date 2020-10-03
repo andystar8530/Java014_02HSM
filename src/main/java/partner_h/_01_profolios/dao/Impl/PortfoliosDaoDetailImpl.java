@@ -38,7 +38,7 @@ public class PortfoliosDaoDetailImpl implements PortfoliosDetailDao {
 	}
 
 	@Override
-	public int updatePortfolio(PortfoliosDetailsBean pfdBean) {
+	public int updatePortfolioDetail(PortfoliosDetailsBean pfdBean) {
 		int n = 0 ;
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(pfdBean);
@@ -48,7 +48,7 @@ public class PortfoliosDaoDetailImpl implements PortfoliosDetailDao {
 	}
 
 	@Override
-	public int deletePortfolio(PortfoliosDetailsBean pfdBean) {
+	public int deletePortfolioDetail(PortfoliosDetailsBean pfdBean) {
 		int n = 0 ;
 		Session session = factory.getCurrentSession();
 		session.delete(pfdBean);

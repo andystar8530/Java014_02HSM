@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
@@ -26,9 +27,8 @@ public class PortfoliosBean implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer pfmId; //作品集主檔編號
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="p_id")
-	@JsonIgnore
 	private PartnerBean partnerBean ; 
 	
 	@Transient
@@ -37,15 +37,16 @@ public class PortfoliosBean implements Serializable{
 	private String pfmInfo; //作品資訊
 	private String pfmStatus;//作品狀態(審核)
 	private String pfService; //作品集分類
-	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone="Asia/Taipei")
 	private Timestamp pfCreateTime;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone="Asia/Taipei")
 	private Timestamp pfUpdateTime;
 	
-	@OneToMany(mappedBy = "portfoliosBean" )
+	@OneToMany(mappedBy = "portfoliosBean",orphanRemoval = true , cascade = CascadeType.ALL )
 	@JsonIgnore
 	List<PortfoliosDetailsBean> detailList ;
 	
-	
+	String extra;
 	
 	public PortfoliosBean() {
 		super();
@@ -86,6 +87,26 @@ public class PortfoliosBean implements Serializable{
 		this.pfService = pfService;
 		this.pfCreateTime = pfCreateTime;
 		this.pfUpdateTime = pfUpdateTime;
+	}
+
+
+	
+
+	public PortfoliosBean(Integer pfmId, PartnerBean partnerBean, Integer p_id, String pfmName, String pfmInfo,
+			String pfmStatus, String pfService, Timestamp pfCreateTime, Timestamp pfUpdateTime,
+			List<PortfoliosDetailsBean> detailList, String extra) {
+		super();
+		this.pfmId = pfmId;
+		this.partnerBean = partnerBean;
+		this.p_id = p_id;
+		this.pfmName = pfmName;
+		this.pfmInfo = pfmInfo;
+		this.pfmStatus = pfmStatus;
+		this.pfService = pfService;
+		this.pfCreateTime = pfCreateTime;
+		this.pfUpdateTime = pfUpdateTime;
+		this.detailList = detailList;
+		this.extra = extra;
 	}
 
 
@@ -192,6 +213,16 @@ public class PortfoliosBean implements Serializable{
 	
 	public void setPfUpdateTime(Timestamp pfUpdateTime) {
 		this.pfUpdateTime = pfUpdateTime;
+	}
+
+
+	public String getExtra() {
+		return extra;
+	}
+
+
+	public void setExtra(String extra) {
+		this.extra = extra;
 	}
 
 

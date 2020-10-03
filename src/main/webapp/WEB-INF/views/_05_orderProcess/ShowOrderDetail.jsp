@@ -18,7 +18,7 @@
 }
 </style>
 </head>
-<body style="background: #EBFFEB;">
+<body>
 	<jsp:include page="/fragment/topMVC.jsp" />
 	<p />
 	<TABLE style="margin-left: 10%; margin-right: 10%; background: #F0E4F4; border: 1px blue solid;">

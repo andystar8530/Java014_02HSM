@@ -21,10 +21,12 @@ import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _02_login.model.LoginBean;
 import _02_login.validate.LoginBeanValidator;
+import partner_h.partnerInfoEdit_h.model.PartnerBean;
+import partner_h.partnerInfoEdit_h.service.PartnerService;
 
 @Controller
 @RequestMapping("/_02_login")
-@SessionAttributes({"LoginOK"}) 
+@SessionAttributes({"LoginOK","partnerBean"}) 
 public class LoginController {
 	
 	String loginForm = "_02_login\\loginForm";
@@ -32,6 +34,8 @@ public class LoginController {
 	
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	PartnerService partnerService;
 	
 	@GetMapping("/login")
 	public String login00(HttpServletRequest request, Model model, 
@@ -71,6 +75,7 @@ public class LoginController {
 		}
 		String password =bean.getPassword();
 		MemberBean mb = null;
+		PartnerBean pb = null;
 		try {
 			// 呼叫 loginService物件的 checkIDPassword()，傳入userid與password兩個參數
 			mb = memberService.checkIdPassword(bean.getUserId(),  
@@ -79,6 +84,15 @@ public class LoginController {
 			if (mb != null) {
 				// OK, 登入成功, 將mb物件放入Session範圍內，識別字串為"LoginOK"
 				model.addAttribute("LoginOK", mb);
+				try {
+					//若有合作商登入成功 先將pb物件放入Session範圍內，識別字串為"partnerBean"
+					pb = partnerService.queryPartner(mb.getM_No());
+					if(pb != null) {
+					model.addAttribute("partnerBean", pb);
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			} else {
 				// NG, 登入失敗, userid與密碼的組合錯誤，放相關的錯誤訊息到 errorMsgMap 之內
 				result.rejectValue("invalidCredentials", "", "該帳號不存在或密碼錯誤");
