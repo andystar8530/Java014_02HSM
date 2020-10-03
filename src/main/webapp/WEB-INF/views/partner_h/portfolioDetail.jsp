@@ -7,6 +7,18 @@
 <link rel="stylesheet"
 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>作品集資訊</title>
+<style>
+.pfDeailImage{
+
+
+
+
+}
+
+
+
+
+</style>
 </head>
 <body> 
 	<section>
@@ -21,23 +33,22 @@
 			<div class="col-md-5">
 				<h3>${portfolio.pfmName}</h3>
 				<p>作品資訊: ${portfolio.pfmInfo}</p>
-				<c:choose>
-					<c:when test='${product.discount != 1.0 }'>
-						<p>
-							折扣: ${product.discountStr} &nbsp;&nbsp; 
-							實售: <font color='red'>${product.price*product.discount}元</font>
-						</p>
-					</c:when>
-					<c:otherwise>
-						<p>&nbsp;</p>
-					</c:otherwise>
-				</c:choose>
-				<p>書商: ${product.companyBean.name}</p>
-				<p>書籍分類: ${product.category}</p>
-				<p>
-					<strong>商品編號: </strong> <span class='label label-warning'>
-						${product.bookId} </span>
-				</p>
+				<p>作品集分類: ${portfolio.pfService}</p>
+				<div>
+				<!-- <img id='img'> -->
+<%-- 					<img src="<c:url value='/getPFDetailImage/85' />"> --%>
+<%-- 					<img src="<c:url value='/getPFDetailImage/${portfolioDetailsBean.pfdId}'/>"> --%>
+				
+				<c:forEach var='pfBean' items="${pfBeanList}">
+				<img src="<c:url value='/getPFDetailImage/ ${pfBean.pfdId}'/>" class='pfDeailImage'>
+					<p> 照片名稱:   ${pfBean.pfdName}</p>
+				
+				
+				
+				
+				</c:forEach>
+				</div>
+			
 				<p>
 					<a href="<spring:url value='/portfolios' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
@@ -48,5 +59,12 @@
 				</p>
 
 	</section>
+<script>
+	var text = ${portfolioDetailsBean.pfdId};
+	console.log("text:" + text );
+	alert(text);
+
+
+</script>
 </body>
 </html>

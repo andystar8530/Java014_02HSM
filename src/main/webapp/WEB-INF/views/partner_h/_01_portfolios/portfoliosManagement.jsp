@@ -58,8 +58,8 @@ window.onload= function(){
 				      		+ "<td align='center'>" + portfolios[i].pfService + "</td>" 
 				      		+ "<td align='center'>" + formatDate(d1) + "</td>" 
 				      		+ "<td align='center'>" + formatDate(d2) + "</td>"
-				      		+ "<td width='40' scope='row'><a class ='deleteData' id='"+ portfolios[i].pfmId+"'>"
-				      		+ "<img width='36' height='36'  src='<c:url value='/data/icon/trash.png' />' ></a></td></tr>" 
+				      		+ "<td width='40' scope='row'><a class ='deleteData' >"
+				      		+ "<img width='36' height='36'  id='"+ portfolios[i].pfmId+"' src='<c:url value='/data/icon/trash.png' />' ></a></td></tr>" 
 
 							 
 				}
@@ -86,16 +86,19 @@ window.onload= function(){
   							  },
   						callback: function (result) {
   	  						if(result){
-//   	  	  						$.ajax({
-// 										type:'DELETE',
-// 										url:'"<c:url value='/portfolio/' />" + pfmId',
-// 										contentType:"application/json",
-// 										data: JSON.stringify(portfoliosItem), 
-// 										dataType:'json',
-// 										success: function(data){
-// 											alert('刪除成功')
-// 											}
-// 										  })
+  	  	  						console.log(e.target);
+  	  	  						console.log(e.target.id);
+  	  	  						var idVal = e.target.id;
+  	  	  						$.ajax({
+										type:'DELETE',
+										url:"<c:url value='/portfolio/' />" + idVal,
+										data: JSON.stringify(portfoliosItem), 
+										dataType:'json',
+										complete: function(data){
+											alert('刪除成功');
+											window.location.href="http://localhost:8080/Java014_02HSM/showPortfoliosManagement";
+											}
+										  })
   	  	  					}else{
        								;
   	  	  						}
@@ -129,7 +132,7 @@ function formatDate(now) {
 	<hr>
 	<div class='center'  id='portfoliosItem'></div>
 </div>
-<a href="<c:url value='/displayPartner'/>" class="text-center p-1" >回前頁</a>
+<a href="<c:url value='/portfoliosByPartnerId'/>" class="text-center p-1" >回前頁</a>
 
 </body>
 </html>
