@@ -85,6 +85,11 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 		dao.updateSupPageProducts(bean);
 	}
 
+	@Override
+	public void delete(Integer id) {
+			dao.delete(id);
+	}
+
 //	@Override
 //	public ProductBean getProductBean(Integer id) {
 //		return dao.getProductBean(id);

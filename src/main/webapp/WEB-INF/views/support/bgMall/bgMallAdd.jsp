@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>商城</title>
+<title>新增商品</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/support/bootstrap.min.css">

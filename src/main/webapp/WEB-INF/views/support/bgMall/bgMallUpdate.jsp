@@ -29,7 +29,6 @@
 	</h1>
 	<!-- container -->
 	<div class="bgMallAllDiv container ">
-		<!-- 	asasaas -->
 		<!-- 	選擇紐 -->
 		<div class="bgMallNavDiv d-flex justify-content-end ">
 			<div class=" bd-highlight ">
@@ -60,14 +59,12 @@
 			</div>
 		</div>
 		<!-- 	選擇紐結束 -->
-		<!-- 		<hr> -->
-		<!-- 引入共同的頁首 -->
+		<!-- 	引入共同的頁首 -->
 		<div class="bgMainDiv container ">
 			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
 			<div class="bgMainGalleryDiv row ">
 				<!-- 		內容建立位置-------------- -->
 				<!--	修改商品開始 -->
-				<!-- 				把ProductBean用set傳過來,才可以顯示圖片 -->
 				<c:set var="product" value="${ProductBean}" />
 				<form:form method="POST" modelAttribute="ProductBean"
 					enctype='multipart/form-data'>
@@ -75,175 +72,170 @@
 					<c:if test='${ProductBean.p_Id != null}'>
 						<form:hidden path="p_Id" />
 					</c:if>
+					<fieldset>
 
-
-					<Table
-						style="width: 900px; background-color: #E7CDFF; cellspacing: 0; border: 2px solid black;">
-						<tr height="36">
-
-							<td colspan='4'
-								style="text-align: center; vertical-align: middle;"><Font
-								color="#006600" size='5' face="標楷體">修改商品</Font></td>
-						</tr>
-						<tr height="16">
-							<td colspan='4'
-								style="text-align: center; vertical-align: middle;">
+						<div style="">
+							<div style="text-align: center; vertical-align: middle;">
+								<Font color="#006600" size='5' face="標楷體">修改商品</Font>
+							</div>
+						</div>
+						<div style="">
+							<div style="text-align: center; vertical-align: middle;">
 								<div class="error">${errorSaveData}<br>
 								</div>
-							</td>
-						</tr>
+							</div>
+						</div>
 
-						<tr height="52">
-							<td style="width: 90px;"><label class="fontSize">種類名稱：</label><br>&nbsp;</td>
-							<td style="width: 290px;"><form:input path='p_Category'
-									class="fieldWidth" style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Category" cssClass="error" /></td>
-						</tr>
+						<div style="">
+							<div style="width: 90px;">
+								<label class="fontSize">種類名稱：</label><br>&nbsp;
+							</div>
+							<div style="width: 290px;">
+								<form:input path='p_Category' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Category" cssClass="error" />
+							</div>
+						</div>
 
-						<tr height="52">
-							<td><label class="fontSize">商品名稱：</label><br>&nbsp;</td>
-							<td style="width: 290px;"><form:input path='p_Name'
-									class="fieldWidth" style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Name" cssClass="error" /></td>
+						<div style="">
+							<div>
+								<label class="fontSize">商品名稱：</label><br>&nbsp;
+							</div>
+							<div style="width: 290px;">
+								<form:input path='p_Name' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Name" cssClass="error" />
+							</div>
 
-						</tr>
+						</div>
 
-						<tr height="52">
+						<div style="">
 							<!--	預覽圖開始 -->
-<!-- 							<td><label for="exampleFormControlFile1">封面圖：</label><br> -->
-<%-- 								<small><Font color='red' size="-3">${MsgMap.errorPicture} --%>
-<!-- 								</Font></small></td> -->
-
-<!-- 							<td><label for="image"> <input type="file"  -->
-<!-- 								name="p_Cover1" id="p_Cover1" style="display: none"  -->
-<!-- 								accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" -->
-<!-- 								value="<img src='<c:url value="/support/p_Cover?id=${product.p_Id}" />'"/> -->
-<!-- 									<img height='100' width='80' -->
-<%-- 									src='<c:url value='/support/p_Cover?id=${product.p_Id}' />' --%>
-<!-- 									id="p_Cover1_show_image" style="max-width: 300px" -->
-<!-- 									name="image_1" />  -->
-<!-- 							</label></td> -->
-<!-- 							----------------- -->
-							<td><label for="exampleFormControlFile1">預覽圖片1：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-
-							<td><label for="image"> <input type="file"
-									name="p_Cover1" id="p_Cover1" style="display: none" />
-									<img height='100' width='80'
-									src='<c:url value='/support/p_Cover?id=${product.p_Id}' />'
+							<div class="form-group">
+								<label for="covImage">封面圖：</label><br> <label for="image">
+									<form:input type="file" id="p_Cover1" path='p_Cover1'
+										style="display: none " /> <img
+									src="<c:url value='/support/p_Cover?id=${product.p_Id}'/>"
 									id="p_Cover1_show_image" style="max-width: 300px"
 									name="image_1" />
-							</label></td>
-<!-- 							-------------------- -->
+								</label>
+								<%-- 								<form:errors path="covImage" class='errors' /> --%>
+							</div>
 							<!--	預覽圖結束 -->
-						</tr>
+						</div>
 
-						<tr height="52">
-							<td><label class="fontSize">進貨數量：</label><br>&nbsp;</td>
-							<td><form:input path='p_Pdqty' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Pdqty" cssClass="error" /></td>
+						<div style="">
+							<div>
+								<label class="fontSize">進貨數量：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:input path='p_Pdqty' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Pdqty" cssClass="error" />
+							</div>
 
-							<td><label class="fontSize">進貨金額：</label><br>&nbsp;</td>
-							<td><form:input path='p_Pdsum' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Pdsum" cssClass="error" /></td>
-						</tr>
+							<div>
+								<label class="fontSize">進貨金額：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:input path='p_Pdsum' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Pdsum" cssClass="error" />
+							</div>
+						</div>
 
-						<tr height="52">
-							<td><label class="fontSize">現有庫存：</label><br>&nbsp;</td>
-							<td><form:input path='p_Stock' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Stock" cssClass="error" /></td>
+						<div style="">
+							<div>
+								<label class="fontSize">現有庫存：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:input path='p_Stock' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Stock" cssClass="error" />
+							</div>
 
-							<td><label class="fontSize">銷售數量：</label><br>&nbsp;</td>
-							<td><form:input path='p_Sdqty' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Sdqty" cssClass="error" /></td>
-						</tr>
+							<div>
+								<label class="fontSize">銷售數量：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:input path='p_Sdqty' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Sdqty" cssClass="error" />
+							</div>
+						</div>
 
-						<tr height="52">
-							<td><label class="fontSize">出售單價：</label><br>&nbsp;</td>
-							<td><form:input path='p_Price' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Price" cssClass="error" /></td>
+						<div style="">
+							<div>
+								<label class="fontSize">出售單價：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:input path='p_Price' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="p_Price" cssClass="error" />
+							</div>
 
-						</tr>
-						<tr height="52">
+						</div>
+						<div style="">
 
 							<!--	圖片1開始 -->
-							<td><label for="exampleFormControlFile1">圖片1：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
 
-							<td><label for="image"> <input type="file"
-									name="ProductImage1" id="ProductImage1" style="display: none" />
-									<img height='100' width='80'
-									src='<c:url value='/support/p_FileName1?id=${product.p_Id}' />'
-									id="ProductImage1_show_image" style="max-width: 300px"
+							<div class="form-group">
+								<label for="covImage">圖片1：</label><br> <label for="image">
+									<form:input type="file" id="productImage1" path='productImage1'
+										style="display: none " /> <img
+									src="<c:url value='/support/p_Pic1?id=${product.p_Id}'/>"
+									id="productImage1_show_image" style="max-width: 300px"
 									name="image_2" />
-							</label></td>
-							
-						
+								</label>
+								<%-- 								<form:errors path="covImage" class='errors' /> --%>
+							</div>
 							<!--	圖片1結束 -->
+						</div>
 
-							<!-- <td><label class="fontSize">圖片1：</label><br>&nbsp;</td> -->
-							<%-- <td><form:input path="ProductImage1" type='file' /><br>&nbsp; --%>
-							<%-- <form:errors path="ProductImage1" cssClass="error" /></td> --%>
-
-						</tr>
-
-						<tr height="52">
+						<div style="">
 							<!--	圖片2開始 -->
-							<td><label for="exampleFormControlFile1">圖片2：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-
-							<td><label for="image"> <input type="file"
-									name="ProductImage2" id="ProductImage2" style="display: none" />
-									<img height='100' width='80'
-									src='<c:url value='/support/p_FileName2?id=${product.p_Id}' />'
-									id="ProductImage2_show_image" style="max-width: 300px"
+							<div class="form-group">
+								<label for="covImage">圖片2：</label><br> <label for="image">
+									<form:input type="file" id="productImage2" path='productImage2'
+										style="display: none " /> <img
+									src="<c:url value='/support/productImage2?id=${product.p_Id}'/>"
+									id="productImage2_show_image" style="max-width: 300px"
 									name="image_3" />
-							</label></td>
+								</label>
+								<%-- 								<form:errors path="covImage" class='errors' /> --%>
+							</div>
 							<!--	圖片2結束 -->
-						</tr>
+						</div>
 
-						<!--<td><label class="fontSize">圖片2：</label><br>&nbsp;</td> -->
-						<%--<td><form:input path="ProductImage2" type='file' /><br>&nbsp; --%>
-						<%--<form:errors path="ProductImage2" cssClass="error" /></td> --%>
-
-						<tr height="52">
+						<div style="">
 							<!--	圖片3開始 -->
-							<td><label for="exampleFormControlFile1">圖片3：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-
-							<td><label for="image"> <input type="file"
-									name="ProductImage3" id="ProductImage3" style="display: none" />
-									<img height='100' width='80'
-									src='<c:url value='/support/p_FileName3?id=${product.p_Id}' />'
-									id="ProductImage3_show_image" style="max-width: 300px"
-									name="image_4" /> 
-							</label></td>
+							<div class="form-group">
+								<label for="covImage">圖片3：</label><br> <label for="image">
+									<form:input type="file" id="productImage3" path='productImage3'
+										style="display: none " /> <img
+									src="<c:url value='/support/productImage3?id=${product.p_Id}'/>"
+									id="productImage3_show_image" style="max-width: 300px"
+									name="image_4" />
+								</label>
+								<%-- 								<form:errors path="covImage" class='errors' /> --%>
+							</div>
 							<!--	圖片3結束 -->
-						</tr>
-
-						<!-- 							<td><label class="fontSize">圖片3：</label><br>&nbsp;</td> -->
-						<%-- 							<td><form:input path="ProductImage3" type='file' /><br>&nbsp; --%>
-						<%-- 								<form:errors path="ProductImage3" cssClass="error" /></td> --%>
-
-						<tr height="42">
-							<td colspan='4'>
+						</div>
+						<div style="">
+							<div>
 								<div id="btnArea" align="center">
 									<input type="submit" name="updateBtn" id="submit" value="修改" />
-									<input type="reset" name="cancel" id="cancel" value="重填">
 								</div>
-							</td>
-						</tr>
-					</Table>
-					<!-- 					</form> -->
+							</div>
+						</div>
+					</fieldset>
 				</form:form>
 				<!--  商品新增標籤開結束 -->
 			</div>
@@ -256,7 +248,6 @@
 		src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-		p_Cover1_show_image
 		//	預覽圖開始
 		$("#p_Cover1_show_image").click(function(e) {
 			document.getElementById("p_Cover1").click();
@@ -276,11 +267,11 @@
 		});
 		//	預覽圖結束
 		//	圖1
-		$("#ProductImage1_show_image").click(function(e) {
-			document.getElementById("ProductImage1").click();
+		$("#productImage1_show_image").click(function(e) {
+			document.getElementById("productImage1").click();
 		});
 
-		$("#ProductImage1").on(
+		$("#productImage1").on(
 				"change",
 				function(event) {
 					const file = event.target.files[0];
@@ -288,7 +279,7 @@
 					readFile.readAsDataURL(file);
 					readFile.addEventListener("load", function(e) {
 						let image = document
-								.getElementById("ProductImage1_show_image");
+								.getElementById("productImage1_show_image");
 						image.src = this.result;
 
 						// image.width = 500 ;
@@ -297,11 +288,11 @@
 					});
 				});
 		//	圖1結束
-		$("#ProductImage2_show_image").click(function(e) {
-			document.getElementById("ProductImage2").click();
+		$("#productImage2_show_image").click(function(e) {
+			document.getElementById("productImage2").click();
 		});
 
-		$("#ProductImage2").on(
+		$("#productImage2").on(
 				"change",
 				function(event) {
 					const file = event.target.files[0];
@@ -309,7 +300,7 @@
 					readFile.readAsDataURL(file);
 					readFile.addEventListener("load", function(e) {
 						let image = document
-								.getElementById("ProductImage2_show_image");
+								.getElementById("productImage2_show_image");
 						image.src = this.result;
 
 						// image.width = 500 ;
@@ -318,11 +309,11 @@
 					});
 				});
 		//	圖2結束
-		$("#ProductImage3_show_image").click(function(e) {
-			document.getElementById("ProductImage3").click();
+		$("#productImage3_show_image").click(function(e) {
+			document.getElementById("productImage3").click();
 		});
 
-		$("#ProductImage3").on(
+		$("#productImage3").on(
 				"change",
 				function(event) {
 					const file = event.target.files[0];
@@ -330,7 +321,7 @@
 					readFile.readAsDataURL(file);
 					readFile.addEventListener("load", function(e) {
 						let image = document
-								.getElementById("ProductImage3_show_image");
+								.getElementById("productImage3_show_image");
 						image.src = this.result;
 
 						// image.width = 500 ;
