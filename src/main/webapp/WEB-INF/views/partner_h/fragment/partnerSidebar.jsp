@@ -40,7 +40,7 @@
               <div>${partnerBean.p_storeName}</div>
 
           </div>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
+          <a  class="list-group-item" href="<c:url value='/displayPartner'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
           <a  class="list-group-item" href="<c:url value='/crm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
 
           <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">

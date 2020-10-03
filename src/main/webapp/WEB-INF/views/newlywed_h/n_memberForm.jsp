@@ -18,55 +18,52 @@
 <body>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topMVC.jsp" />
- <div class="container">
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">店家
-      <small>管理頁面</small>
-    </h1>
+ 	<!-- Page Content -->
+	<div class="container">
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="${pageContext.request.contextPath}">首頁</a>
-      </li>
-      <li class="breadcrumb-item active">店家管理</li>
-    </ol>
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3">
+			新人 <small>管理頁面</small>
+		</h1>
 
-    <!-- Content Row -->
-    <div class="row">
-      <!-- Sidebar Column -->
-      <div class="col-lg-3 mb-4">
-        <div class="list-group" >
-          <div class="list-group-item href="#" >
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a
+				href="${pageContext.request.contextPath}/">首頁</a></li>
+			<li class="breadcrumb-item active">新人資料</li>
+		</ol>
+
+		<!-- Content Row -->
+		<div class="row">
+			<!-- Sidebar Column -->
+			<div class="col-lg-3 mb-4">
+				<div class="list-group">
+					<div class="list-group-item href="#" >
               <img src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}" width="80" style="border-radius: 50%;" id="partner-icon">
-              <div>${partnerBean.p_storeName}</div>
+              <div>${NewlywedBean.n_nickname}</div>
 
-          </div>
-          <a  class="list-group-item" href="<c:url value='/displayPartner'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
-          <a  class="list-group-item" href="<c:url value='/crm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
+					</div>
+					<a href="<c:url value='/newlywed_h/newlywed' />" class="list-group-item"><img src="<c:url value='/data/icon/3253474-wedding/png/007-house.png' /> ">基本資料 </a>
+					<a  class="list-group-item" href="<c:url value='/nrm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
+						
+						<a class="list-group-item"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/015-picture.png' />">我的婚禮</a> <a
+						class="list-group-item"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/034-marriage certification.png' />">我要詢價
 
-          <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
-          	<img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >作品集</a>
+					</a> <a class="list-group-item list-group-1"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/001-clipboard.png' />">我的討論區 </a> <a
+						class="list-group-item list-group-2"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/027-wedding invitation.png' />">我的收藏
+							> </a> <a class="list-group-item"
+						href="${pageContext.request.contextPath}/"><img
+							src="<c:url value='/data/icon/3253474-wedding/png/025-calendar.png' />">回首頁</a>
+				</div>
+			</div>
+		
+<!-- 		</div> -->
+		<!-- /.row -->
 
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >方案管理</a>
-            
-        
-          <a  class="list-group-item list-group-1"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/001-clipboard.png" >報價合約
-           <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
-           href="${pageContext.request.contextPath}/displaycontractemplate.do"> 合約範本</a>
-            <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >已簽約</a>
-            <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >未簽約</a>
-          </a>
-          <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >訂單管理
-            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">我的訂單</a>
-            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a>
-          </a>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/025-calendar.png" >行程管理</a>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/011-love.png" >來聊聊  &nbsp <span class="badge badge-primary badge-pill" >14</span></a></a>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/026-magnifying glass.png" >經營報表</a>
-         	</div>
-		</div>
-		<div>
-      </div>
+<!-- 	</div> -->
        
 
 	
@@ -97,12 +94,12 @@
     </div>
     <div class="form-group col-md-4">
       <label>手機號碼</label>
-      <form:input path="m_Phone" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
+      <form:input path="m_Phone" type="text" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Phone' cssClass="error"/>
     </div>
     <div class="form-group col-md-4">
       <label>身份證字號</label>
-      <form:input path="m_Socialnum" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
+      <form:input path="m_Socialnum" type="text" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Socialnum' cssClass="error"/>
     </div>
   </div>
@@ -166,7 +163,12 @@
 
 
 
-
+   <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+   <script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
+    <script>
+      new WOW().init(); 
+    </script> 
 
 <!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	
