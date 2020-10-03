@@ -76,6 +76,7 @@
 			</div>
 			<div class="form-group">
               	<label for="covImage">上傳封面圖</label><br>
+ 				
  				<label for="image">
      			<form:input type="file" id="covImage" path='covImage' style="display: none " />
      			<img src="<c:url value='/getPartnerCoverImage/${partnerBean.p_id}'/>"

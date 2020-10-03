@@ -40,6 +40,12 @@ public class MemberBeanValidatorUpdata implements Validator {
 		{ 
 			errors.rejectValue("m_Email","", "Email名稱不合法");
 		} 
+		
+//		String format2 = "/^[A-Za-z][12]\\d{8}$/";
+//		if (! mb.getM_Socialnum().matches(format2))
+//		{ 
+//			errors.rejectValue("m_Socialnum","", "身份證號碼不合法");
+//		} 
 //		System.out.println("mb.getMemberMultipartFile().getSize()=" + mb.getMemberMultipartFile().getSize());
 //		if (mb.getMemberMultipartFile().getSize() == 0) {
 //			errors.rejectValue("memberMultipartFile", "", "必須挑選圖片");

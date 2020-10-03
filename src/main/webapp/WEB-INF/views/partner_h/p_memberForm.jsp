@@ -97,12 +97,12 @@
     </div>
     <div class="form-group col-md-4">
       <label>手機號碼</label>
-      <form:input path="m_Phone" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
+      <form:input path="m_Phone" type="text" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Phone' cssClass="error"/>
     </div>
     <div class="form-group col-md-4">
       <label>身份證字號</label>
-      <form:input path="m_Socialnum" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
+      <form:input path="m_Socialnum" type="text" class="form-control" oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Socialnum' cssClass="error"/>
     </div>
   </div>
