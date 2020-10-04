@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import _01_register.model.MemberBean;
 import _04_forum.model.CategoriesBean;
 import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
@@ -23,6 +25,7 @@ import _04_forum.validator.ForumBeanValidator;
 
 @Controller
 @RequestMapping("/_04_forum")
+@SessionAttributes({"LoginOK"})
 public class ForumController {
 
 	@Autowired
@@ -32,8 +35,16 @@ public class ForumController {
 	ForumBeanValidator forumBeanValidator;
 	
 	@RequestMapping("posts")
-	public String list(Model model) {
-		List<ForumBean> list = service.getAllPosts();
+	public String list(
+			Model model,
+			@RequestParam(value = "pageNo" ,required = false) Integer pageNo
+			) {
+		if(pageNo==null) {
+			pageNo=1;
+		}
+		List<ForumBean> list = service.getPostPage(pageNo);
+		model.addAttribute("pageNo", pageNo);
+		model.addAttribute("lastPage", service.lastPage());
 		model.addAttribute("posts", list);
 		return "_04_forum/posts";
 	}
@@ -47,6 +58,7 @@ public class ForumController {
 	
 	@PostMapping("/post/add")
 	public String proccessAddNewPostForm(
+			Model model,
 			@ModelAttribute("forumBean") ForumBean fb,
 		     BindingResult bindingResult
 			) {
@@ -58,6 +70,8 @@ public class ForumController {
 		if(bindingResult.hasErrors()) {
 			return "/_04_forum/addpost";
 		}
+		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
+		fb.setMemberBean(mb);
 		service.addPost(fb);
 		return "redirect:/_04_forum/posts";
 	}
@@ -89,6 +103,8 @@ public class ForumController {
 			Model model,
 			@ModelAttribute("formCb") CommentBean cb
 			) {
+		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
+		cb.setMemberBean(mb);
 		service.addComment(cb);
 		model.addAttribute("post", service.getPostById(cb.getPostId()));
 		model.addAttribute("getComments", service.getCommentById(cb.getPostId()));

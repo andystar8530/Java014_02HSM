@@ -23,6 +23,21 @@ public class ForumServiceImpl implements ForumService {
 	public List<ForumBean> getAllPosts() {
 		return dao.getAllPosts();
 	}
+	
+	@Override
+	public List<ForumBean> getPostPage(int pageNo) {
+		return dao.getPostPage(getAllPosts(), pageNo);
+	}
+	
+	@Override
+	public int lastPage() {
+		int nums = getAllPosts().size();
+		if(nums%5==0) {
+			return nums/5;
+		}else {
+			return nums/5+1;
+		}
+	}
 
 	@Override
 	public void addPost(ForumBean newPost) {
@@ -54,6 +69,5 @@ public class ForumServiceImpl implements ForumService {
 	public void addComment(CommentBean cb) {
 		dao.addComment(cb);
 	}
-
 
 }

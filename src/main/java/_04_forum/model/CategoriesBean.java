@@ -51,6 +51,14 @@ public class CategoriesBean implements Serializable{
 		this.pcType = pcType;
 	}
 
+	public List<ForumBean> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<ForumBean> posts) {
+		this.posts = posts;
+	}
+
 	@Override
 	public String toString() {
 		return "CategoriesBean [pcNo=" + pcNo + ", pcType=" + pcType + "]";
