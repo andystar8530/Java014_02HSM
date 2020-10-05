@@ -10,6 +10,7 @@ import _04_forum.dao.ForumDao;
 import _04_forum.model.CategoriesBean;
 import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
+import _04_forum.model.LikeOrHateBean;
 import _04_forum.service.ForumService;
 
 @Service
@@ -57,7 +58,11 @@ public class ForumServiceImpl implements ForumService {
 
 	@Override
 	public ForumBean getPostById(int postId) {
-		return dao.getPostById(postId);
+		ForumBean fb = dao.getPostById(postId);
+		List<LikeOrHateBean> loh = dao.getLoh(postId);
+		fb.setfLike(getLike(loh));
+		fb.setfHate(getHate(loh));
+		return fb;
 	}
 
 	@Override
@@ -70,4 +75,40 @@ public class ForumServiceImpl implements ForumService {
 		dao.addComment(cb);
 	}
 
+	@Override
+	public void saveLike(LikeOrHateBean loh) {
+		dao.saveLike(loh);
+	}
+
+	@Override
+	public int getLike(List<LikeOrHateBean> loh) {
+		int count = 0;
+		for(LikeOrHateBean bean:loh) {
+			if(bean.getLikeOrHate()==1) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public int getHate(List<LikeOrHateBean> loh) {
+		int count = 0;
+		for(LikeOrHateBean bean:loh) {
+			if(bean.getLikeOrHate()==2) {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	@Override
+	public LikeOrHateBean getSingleLoh(int postId, int memId) {
+		return dao.getSingleLoh(postId, memId);
+	}
+
+	@Override
+	public List<ForumBean> getPostByCategory(Integer type) {
+		return dao.getPostByCategory(type);
+	}
 }
