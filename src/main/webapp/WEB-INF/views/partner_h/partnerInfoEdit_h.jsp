@@ -164,8 +164,11 @@
             });
       });
       </script>
-
+</div>
+</div>
+</div>
+</div>
    <!-- 引入共同的頁尾 --> 
-<%-- 	<jsp:include page="/fragment/footerMVC.jsp" /> --%>
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>
