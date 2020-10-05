@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,12 +35,65 @@ public class ProductDaoImpl_H implements ProductDao {
 	//取全部的商品
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProductBean> getAllProducts() {
-		List<ProductBean> list = new LinkedList<>();
+	public Map<Integer, ProductBean> getAllProducts() {
+//		List<ProductBean> list = new LinkedList<>();
+		Map<Integer, ProductBean> map = new LinkedHashMap<>();
 		String hql = "FROM ProductBean";
 		Session session = factory.getCurrentSession();
-		list = session.createQuery(hql).getResultList();
-		return list;
+//		list = session.createQuery(hql).getResultList();
+//		return list;
+		Query query = session.createQuery(hql);
+		List<ProductBean> list = query.getResultList();
+		for(ProductBean bean: list) {
+			map.put(bean.getP_Id(), bean);
+		}
+		return map;
+		
+//		Map<Integer, ProductBean> map = new LinkedHashMap<>();
+//		String hql;
+//		if (category == null)
+//			hql = "FROM ProductBean";
+//		else hql = "FROM ProductBean bb WHERE bb.p_Category = :category";
+//		Session session = factory.getCurrentSession();
+//		int startRecordNo = (pageNo - 1) * recordsPerPage;
+//		Query query = session.createQuery(hql);
+//		query.setFirstResult(startRecordNo)
+//		.setMaxResults(recordsPerPage);
+//		if (category != null)
+//			query.setParameter("category", category);
+//		List<ProductBean> list = query.getResultList();
+//		for(ProductBean bean: list) {
+//			map.put(bean.getP_Id(), bean);
+//		}
+//		return map;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public Map<Integer, ProductBean> getAllProducts(String category, int pageNo) {
+//		List<ProductBean> list = new LinkedList<>();
+//		String hql = "FROM ProductBean";
+//		Session session = factory.getCurrentSession();
+//		list = session.createQuery(hql).getResultList();
+//		return list;
+		
+		Map<Integer, ProductBean> map = new LinkedHashMap<>();
+		String hql;
+		if (category == null)
+			hql = "FROM ProductBean";
+		else hql = "FROM ProductBean bb WHERE bb.p_Category = :category";
+        Session session = factory.getCurrentSession();
+        int startRecordNo = (pageNo - 1) * recordsPerPage;
+        Query query = session.createQuery(hql);
+        query.setFirstResult(startRecordNo)
+        .setMaxResults(recordsPerPage);
+        if (category != null)
+        	query.setParameter("category", category);
+        List<ProductBean> list = query.getResultList();
+		for(ProductBean bean: list) {
+			map.put(bean.getP_Id(), bean);
+		}
+		return map;
+		
 	}
 
 	//取全部的類別
@@ -56,14 +110,28 @@ public class ProductDaoImpl_H implements ProductDao {
 	//依類別取商品
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProductBean> getProductsByCategory(String category) {
+	public Map<Integer, ProductBean> getProductsByCategory(String category, int pageNo) {
+//		String hql = "FROM ProductBean bb WHERE bb.p_Category = :category";
+//		List<ProductBean> list = new ArrayList<>();
+//		Session session = factory.getCurrentSession();
+//		list = session.createQuery(hql)
+//					.setParameter("category", category)
+//					.getResultList();
+		
+		Map<Integer, ProductBean> map = new LinkedHashMap<>();
 		String hql = "FROM ProductBean bb WHERE bb.p_Category = :category";
-		List<ProductBean> list = new ArrayList<>();
-		Session session = factory.getCurrentSession();
-		list = session.createQuery(hql)
-					.setParameter("category", category)
-					.getResultList();
-		return list;
+        Session session = factory.getCurrentSession();
+        int startRecordNo = (pageNo - 1) * recordsPerPage;
+        List<ProductBean> list = session.createQuery(hql)
+        		.setParameter("category", category)
+                .setFirstResult(startRecordNo)
+                .setMaxResults(recordsPerPage)
+                .getResultList();
+		for(ProductBean bean: list) {
+			map.put(bean.getP_Id(), bean);
+		}
+		
+		return map;
 	}
 
 	//依id取商品
@@ -178,11 +246,17 @@ public class ProductDaoImpl_H implements ProductDao {
 			return map;
 		}
 		@Override
-		public long getRecordCounts() {
+		public long getRecordCounts(String category) {
 			long count = 0; // 必須使用 long 型態
-			String hql = "SELECT count(*) FROM ProductBean";
+			String hql;
+			if (category != null)
+				hql = "SELECT count(*) FROM ProductBean bb WHERE bb.p_Category = :category";
+			else hql = "SELECT count(*) FROM ProductBean";
 			Session session = factory.getCurrentSession();
-			count = (Long)session.createQuery(hql).getSingleResult();
+			Query query = session.createQuery(hql);
+			if (category != null)
+				query.setParameter("category", category);
+			count = (Long) query.getSingleResult();
 			return count;
 		}
 
@@ -193,9 +267,9 @@ public class ProductDaoImpl_H implements ProductDao {
 
 		// 計算販售的商品總共有幾頁
 		@Override
-		public int getTotalPages() {
+		public int getTotalPages(String category) {
 			// 注意下一列敘述的每一個型態轉換
-			totalPages = (int) (Math.ceil(getRecordCounts() / (double) recordsPerPage));
+			totalPages = (int) (Math.ceil(getRecordCounts(category) / (double) recordsPerPage));
 			return totalPages;
 		}
 
