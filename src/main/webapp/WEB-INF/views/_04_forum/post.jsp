@@ -79,41 +79,36 @@
 						
 					<c:if test="${loh.likeOrHate==0 || empty loh.likeOrHate}">
 						<div class="col-12 article-mood">
-							<ul class="like-or-hate">
+							<ul class="like-or-hate d-flex">
+								<li id="like1"><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa-2x">${post.fLike}</i></a></li>
 
-								<li id="like1" button class="fas fa-thumbs-up fa-2x"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1">${post.fLike}</a></li>
-
-								<li id="hate1"  class="fas fa-thumbs-down fa-2x"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2">${post.fHate}</a></li>
+								<li id="hate1"><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa-2x">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>
 					<c:if test="${loh.likeOrHate==1}">
 						<div class="col-12 article-mood">
-							<ul class="like-or-hate">
+							<ul class="like-or-hate d-flex"">
 
-								<li id="like1" button class="fas fa-thumbs-up fa-2x"
-									type="button" style="color: red"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0">${post.fLike}</a></li>
+								<li id="like1"><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-up fa-2x" style="color: red">${post.fLike}</i></a></li>
 
-								<li id="hate1" button class="fas fa-thumbs-down fa-2x"
-									type="button"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2">${post.fHate}</a></li>
+								<li id="hate1" ><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa-2x">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>
 					<c:if test="${loh.likeOrHate==2}">
 						<div class="col-12 article-mood">
-							<ul class="like-or-hate">
+							<ul class="like-or-hate d-flex"">
 
-								<li id="like1" button class="fas fa-thumbs-up fa-2x"
-									type="button"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1">${post.fLike}</a></li>
+								<li id="like1"><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa-2x">${post.fLike}</i></a></li>
 
-								<li id="hate1" button class="fas fa-thumbs-down fa-2x"
-									type="button" style="color: red"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0">${post.fHate}</a></li>
+								<li id="hate1"><a
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-down fa-2x" style="color: red">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>
