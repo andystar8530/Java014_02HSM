@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%
+	String path = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,11 +43,11 @@
 		<div class="container mt-5">
 			<nav class="nav nav-underline">
 				<a class="nav-link alert-warning rounded mr-2" href="#">我要搜尋的主題</a>
-				<a class="nav-link alert-warning rounded mr-2" href="#">婚禮布置</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">婚禮攝影</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">新娘秘書</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">婚禮主持</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">小物商城</a> <a
+				<a class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=1">婚禮布置</a> <a
+					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=2">婚禮攝影</a> <a
+					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=3">新娘秘書</a> <a
+					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=4">婚禮主持</a> <a
+					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=5">小物商城</a> <a
 					href="<c:url value='/_04_forum/post/add'/>"
 					class="nav-link alert-warning rounded mr-2"> <span
 					class="glyphicon-info-sigh glyphicon">發文</span>
@@ -74,7 +77,7 @@
 			</div>
 		</c:forEach>
 	</main>
-
+<div class="border d-flex text-center justify-content-center" >
 	<c:if test="${pageNo > 3}">
 		<<a style="width: 30px; height:30px;border: black solid 2px;" 
 			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=1" >1</a>
@@ -91,7 +94,7 @@
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
 			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-1}">${pageNo-1}</a>
 	</c:if>
-	<a style="width: 30px; height:30px;border: black solid 2px;" href="#">${pageNo}</a>
+	<a style="width: 30px; height:30px;border: black solid 2px; background-color: red" href="#">${pageNo}</a>
 	<c:if test="${pageNo < lastPage}">
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
 			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+1}">${pageNo+1}</a>
@@ -108,6 +111,7 @@
 	<a style="width: 30px; height:30px;border: black solid 2px;" 
 			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${lastPage}">${lastPage}</a>
 	</c:if>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
