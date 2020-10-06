@@ -39,7 +39,7 @@ import support.validator.ProductBeanValidator;
 
 @Controller
 @RequestMapping("/support")
-@SessionAttributes({ "LoginOK", "pageNo", "products_DPP" })
+@SessionAttributes({ "LoginOK", "bgPageNo", "products_DPP" })
 public class CommodityServlet {
 
 	String inputDataForm = "support/bgMall/bgMallAdd";
@@ -77,22 +77,22 @@ public class CommodityServlet {
 	@RequestMapping("/bgMall")
 	@GetMapping("/bgMall")
 	public String getBgMall(Model model, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "pageNo", required = false) Integer pageNo) {
+			@RequestParam(value = "bgPageNo", required = false) Integer bgPageNo) {
 		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
 		if (memberBean == null) {
 			return "redirect:/_02_login/login";
 		}
 		String m_No = memberBean.getM_No().toString();
-		if (pageNo == null) {
-			pageNo = 1;
+		if (bgPageNo == null) {
+			bgPageNo = 1;
 			// 讀取瀏覽器送來的所有 Cookies
 			Cookie[] cookies = request.getCookies();
 			if (cookies != null) {
 				// 逐筆檢視Cookie內的資料
 				for (Cookie c : cookies) {
-					if (c.getName().equals(m_No + "pageNo")) {
+					if (c.getName().equals(m_No + "bgPageNo")) {
 						try {
-							pageNo = Integer.parseInt(c.getValue().trim());
+							bgPageNo = Integer.parseInt(c.getValue().trim());
 						} catch (NumberFormatException e) {
 							;
 						}
@@ -101,13 +101,13 @@ public class CommodityServlet {
 				}
 			}
 		}
-		Map<Integer, ProductBean> productMap = productInfoService.getSupPageProducts(pageNo);
-		model.addAttribute("pageNo", String.valueOf(pageNo));
+		Map<Integer, ProductBean> productMap = productInfoService.getSupPageProducts(bgPageNo);
+		model.addAttribute("bgPageNo", String.valueOf(bgPageNo));
 		model.addAttribute("totalPages", productInfoService.getTotalPages());
 		// 將讀到的一頁資料放入request物件內，成為它的屬性物件
 		model.addAttribute("supProducts_DPP", productMap);
 		// -----------------------
-		Cookie pnCookie = new Cookie(m_No + "pageNo", String.valueOf(pageNo));
+		Cookie pnCookie = new Cookie(m_No + "bgPageNo", String.valueOf(bgPageNo));
 		// 設定Cookie的存活期為30天
 		pnCookie.setMaxAge(30 * 24 * 60 * 60);
 		// 設定Cookie的路徑為 Context Path

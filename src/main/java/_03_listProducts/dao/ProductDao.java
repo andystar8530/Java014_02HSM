@@ -7,13 +7,14 @@ import _03_listProducts.model.ProductBean;
 
 public interface ProductDao {
 	//查詢全部記錄  
-	List<ProductBean> getAllProducts();
+	Map<Integer, ProductBean> getAllProducts();
+	Map<Integer, ProductBean> getAllProducts(String category, int pageNo);
 	
 	//取類別清單  ok
 	List<String>  getAllCategories();
 	
 	//依類別取商品資料
-	List<ProductBean>  getProductsByCategory(String category);
+	Map<Integer, ProductBean> getProductsByCategory(String category, int pageNo);
 	
 	//依ID取商品資料 ok
 	ProductBean getProductById(int p_Id);
@@ -32,9 +33,9 @@ public interface ProductDao {
 	
 	//瀏覽頁相關ok
 	Map<Integer, ProductBean> getPageProducts(int pageNo);
-	long getRecordCounts();
+	long getRecordCounts(String catagory);
 	int getRecordsPerPage();
-	int getTotalPages();
+	int getTotalPages(String catagory);
 	void setRecordsPerPage(int recordsPerPage);
 	void setSelected(String selected);
 }

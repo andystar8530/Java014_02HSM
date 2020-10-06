@@ -93,9 +93,8 @@ public class RegisterController {
 			return inputDataForm;
 		}
 		Timestamp registerTime = new Timestamp(System.currentTimeMillis());
-		Timestamp editTime = new Timestamp(System.currentTimeMillis());
 		bean.setM_CreateTime(registerTime);
-		bean.setM_EditTime(editTime);
+//		bean.setM_EditTime(registerTime);
 		bean.setM_Name("會員");
 		bean.setM_Email(bean.getM_Id());
 		bean.setM_Status(0);

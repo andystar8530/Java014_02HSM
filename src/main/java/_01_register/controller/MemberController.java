@@ -106,7 +106,7 @@ public class MemberController {
 			memberBeanUpd.setM_Email(memberBean.getM_Email());
 			memberBeanUpd.setM_Name(memberBean.getM_Name());
 			memberBeanUpd.setM_Phone(memberBean.getM_Phone());
-			if(memberBeanUpd.getM_EditTime() == memberBeanUpd.getM_CreateTime()) {
+			if(memberBeanUpd.getM_EditTime() == null ){
 				memberBeanUpd.setM_Socialnum(memberBean.getM_Socialnum());
 			}
 			memberBeanUpd.setM_Add(memberBean.getM_Add());

@@ -10,7 +10,7 @@
 <c:set var="AppName" value="${SYSTEM.systemName}" scope="application"/>
 <%-- <title>${AppName}</title> --%>
 </head>
-<body style="background: #EBFFEB;">
+<body>
 <!-- 設定變數funcName的值為"IND", top.jsp會使用此變數-->
 <c:set var="funcName" value="IND" scope="session"/>
 <!-- 引入共同的頁首 -->
@@ -119,7 +119,7 @@
       <div class="container p-lg-5 p3">
         <div class="row">
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
                 class="card-img-top"
@@ -136,7 +136,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
                 class="card-img-top"
@@ -153,7 +153,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
                 class="card-img-top"
@@ -170,7 +170,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
                 class="card-img-top"
@@ -187,7 +187,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
                 class="card-img-top"
@@ -204,7 +204,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
                 class="card-img-top"
@@ -221,7 +221,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
                 class="card-img-top"
@@ -238,7 +238,7 @@
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
-            <div class="card">
+            <div class="card shadow">
               <img
                 src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
                 class="card-img-top"
@@ -293,7 +293,7 @@
 <!--      session.removeAttribute("MsgOK");   -->
 <%--  %> --%>
 
-  <!-- 引入共同的頁尾 -->
+    <!-- 引入共同的頁尾 -->
 	<jsp:include page="/fragment/footerMVC.jsp" />
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/wow.min.js"></script>

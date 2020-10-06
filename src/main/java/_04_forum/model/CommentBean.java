@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import _01_register.model.MemberBean;
+
 @Entity
 @Table(name = "Comment")
 public class CommentBean implements Serializable {
@@ -28,6 +30,7 @@ public class CommentBean implements Serializable {
 	@Transient
 	private Integer postId;
 	@Column(name = "MemID")
+	@Transient
 	private Integer memId;
 	@Column(name = "ComText")
 	private String comText;
@@ -35,9 +38,12 @@ public class CommentBean implements Serializable {
 	private Date comTime;
 	@Column(name = "ComLike")
 	private Integer comLike;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "PostID")
 	private ForumBean forumBean;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "MemID")
+	private MemberBean memberBean;
 	
 	public CommentBean() {
 		super();
@@ -97,6 +103,14 @@ public class CommentBean implements Serializable {
 
 	public void setForumBean(ForumBean forumBean) {
 		this.forumBean = forumBean;
+	}
+
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
 	@Override
