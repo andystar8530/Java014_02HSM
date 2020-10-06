@@ -18,16 +18,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidatorUpdata;
+import _02_login.model.LoginBean;
 
 
 
 @Controller
 //@RequestMapping("/crm")
+@SessionAttributes({"LoginOK","memberBean"}) 
 public class MemberController {
 	String noImage = "/images/NoImage.png";
 	String noImageFemale = "/images/NoImage_Female.jpg";
@@ -54,7 +57,8 @@ public class MemberController {
 		// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
 		// 
 		public String modify(
-				@ModelAttribute("memberBean") MemberBean memberBean, 
+				@ModelAttribute("memberBean") MemberBean memberBean,
+				@ModelAttribute("loginBean") LoginBean logInBean,
 				BindingResult result, 
 				Model model,
 				@PathVariable Integer id, 
@@ -115,7 +119,7 @@ public class MemberController {
 			//更新時間
 			Timestamp editTime = new Timestamp(System.currentTimeMillis());
 			memberBeanUpd.setM_EditTime(editTime);
-			
+			model.addAttribute("LoginOK", memberBeanUpd);
 			memberService.update(memberBeanUpd);
 			return "/partner_h/partner_h";
 		}
