@@ -9,31 +9,33 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <title>Portfolios</title>
+<style>
+.thumbnail{
+margin:40px auto;
+
+}
+.my-col{
+height: 200px;
+
+}
+
+
+</style>
 </head>
 <body>
-    <section>
-        <div>
-            <div class="container" style="text-align: center" >
-                <h1>作品集清單</h1>    <!-- Button trigger modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
-  作品 +
-</button>
-<a type="button"  role="button" class="btn btn-secondary" href="<c:url value='/showPortfoliosManagement'/> ">作品管理</a>
-<button id='target'>test</button>
-
-
+<jsp:include page="/fragment/topMVC.jsp" />
+ 
 <!-- Modal -->
 <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      	<div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">-- 新增作品集 --</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+    		<span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
+     	</div>
+    	<div class="modal-body">
 <!--        modal body ******** -->
 			<section class='container'>
 				<form:form action='portfolios' method='POST' modelAttribute="portfoliosAll" class='form-horizontal'
@@ -58,20 +60,6 @@
    						<form:errors  path="portfoliosBean.pfmInfo" class='errors' /> 
 					</div>
 				</div>
-				<!-- <div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for='pfService'>
-						作品集分類: </label>
-					<div class="col-lg-10">
-					<form:select path="portfoliosBean.pfService">
-						<form:option value="-1" label="請挑選" />
-						<form:option value="婚禮佈置" label="婚禮佈置" />
-						<form:option value="婚禮攝影" label="婚禮攝影" />
-						<form:option value="新娘秘書" label="新娘秘書" />
-						<form:option value="婚禮主持" label="婚禮主持" />
-					</form:select>
-					<form:errors  path="portfoliosBean.pfService" class='errors' /> 
-					</div>
-				</div> -->
 				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2 "  for='portfolioImage'>
 						上傳多張圖片 </label>
@@ -89,45 +77,50 @@
 			</fieldset>
 		</form:form>	
 	</section>
-<!--         ******** -->
       </div>
     </div>
   </div>
-</div>
-            </div>
-        </div>
-    </section>
+</div>         
+<!--         ******** -->
+			<jsp:include page="./fragment/partnerSidebar.jsp" />
+
     
+		<div class='col-9'>
+	        <div class="row">
+	
+            <div  class="col-md-12 col-lg-12" style="text-align: center" >
+                <h1>作品集清單</h1>   
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
+ 			 	作品 +
+				</button>
+				<a type="button"  role="button" class="btn btn-secondary" href="<c:url value='/showPortfoliosManagement'/> ">作品管理</a>
+				<button id='target'>test</button>
+				<a href="<c:url value='/' />">回前頁</a>
+			</div>
+				<c:forEach var='portfolios' items="${portfolios}">
+				<div class="col-4">
+						<div class="thumbnail" style="width: 300px;" >
+								<p>
+									<b style='font-size: 16px;'>${portfolios.pfmName}</b>
+								</p>
+								<p>${portfolios.partnerBean.p_storeName}</p>
+						
+								<p>作品資訊: ${portfolios.pfmInfo}</p>
+								<p>
+									<a href="<spring:url value='/portfolio?pfmId=${portfolios.pfmId}' />" class="btn btn-primary">
+										<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
+									</a>
+								</p>                
+						</div>
+				</div>
+					</c:forEach>
+			</div>	
+		</div>
+    </div>
+        
+    </div>
     
-    <hr style="height:1px;border:none;color:#333;background-color:#333;">
-	<div align="center">
-	<a href="<c:url value='/' />">回前頁</a>
-	</div>
-    <hr>
-    <section class="container">
-        <div class="row">
-        <c:forEach var='portfolios' items="${portfolios}">
-            <div class="col-sm-6 col-md-3" style="width: 360px; height: 360px">
-                <div class="thumbnail" style="width: 320px; height: 340px">
-                    <div class="caption">
-                        <p>
-                            <b style='font-size: 16px;'>${portfolios.pfmName}</b>
-                        </p>
-                        <p>${portfolios.partnerBean.p_storeName}</p>
-                   
-                        <p>作品資訊: ${portfolios.pfmInfo}</p>
-                        <p>
-                        	<a href="<spring:url value='/portfolio?pfmId=${portfolios.pfmId}' />" class="btn btn-primary">
-                        		<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
-                        	</a>
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
-        </div>
-    </section>
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -176,9 +169,10 @@ $('#target').click(function(){
 
 </script>
 
- <div id='portfoliosItem'>
-
+ <div id='portfoliosItem'></div>
  </div>
+ </div>
+ <jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 
 </html>

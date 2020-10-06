@@ -117,7 +117,7 @@
 							</li>     
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 1}">
-							<c:if test="${!empty partnerBean}">
+							<c:if test="${!empty partnerBean.p_service}">
 								<li class="nav-item"><a class="nav-link wow fadeInLeft"
 								href="<c:url value='/displayPartner'/>">
 									商家頁面</a>

@@ -30,7 +30,7 @@ import partner_h._01_profolios.validator.PortfoliosValidator;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 
 @Controller
-@SessionAttributes({"partnerBean","portfoliosAll","portfolios","portfoliosBean","portfolioDetailsBean","pfBeanList"})
+@SessionAttributes({"partnerBean","portfoliosAll","portfolios","portfoliosBean","portfolioDetailsBean","pfdBeanList"})
 public class PortfoliosController {
 	
 	@Autowired
@@ -56,8 +56,8 @@ public class PortfoliosController {
 	@RequestMapping("/portfolio")
 	public String getPortfoliosById(@RequestParam("pfmId") Integer pfmId ,Model model) {
 		model.addAttribute("portfolio", pfService.getPortfolioById(pfmId));
-		List<PortfoliosDetailsBean> pfBeanList = pfdService.getPfDetailsBypfmId(pfmId);
-		model.addAttribute("pfBeanList", pfBeanList);
+		List<PortfoliosDetailsBean> pfdBeanList = pfdService.getPfDetailsBypfmId(pfmId);
+		model.addAttribute("pfdBeanList", pfdBeanList);
 		return "partner_h/portfolioDetail";
 	}
 	
