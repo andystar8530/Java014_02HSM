@@ -23,7 +23,7 @@ public class PortfoliosDaoImpl implements PortfoliosDao {
 	public List<PortfoliosBean> getAllPortfolios() {
 		
 		List<PortfoliosBean> pfList = new ArrayList<>();
-		String hql ="FROM PortfoliosBean";
+		String hql ="FROM PortfoliosBean ORDER BY pfCreateTime DESC";
 		Session session = null;
 		session = factory.getCurrentSession();
 		pfList = session.createQuery(hql).getResultList();

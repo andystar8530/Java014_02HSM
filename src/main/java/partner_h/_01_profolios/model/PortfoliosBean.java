@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class PortfoliosBean implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone="Asia/Taipei")
 	private Timestamp pfUpdateTime;
 	
-	@OneToMany(mappedBy = "portfoliosBean",orphanRemoval = true , cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "portfoliosBean",orphanRemoval = true , cascade = CascadeType.ALL,fetch = FetchType.EAGER )
 	@JsonIgnore
 	List<PortfoliosDetailsBean> detailList ;
 	
