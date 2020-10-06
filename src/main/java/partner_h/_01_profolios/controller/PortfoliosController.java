@@ -68,11 +68,11 @@ public class PortfoliosController {
 		return "partner_h/types/service";
 	}
 	//作品集分類
-	@ModelAttribute("serviceList")
-	public List<String> getServiceListItems(Model model) {
-		List<String> list  = pfService.getAllPServices();
-		return list;
-	}
+//	@ModelAttribute("serviceList")
+//	public List<String> getServiceListItems(Model model) {
+//		List<String> list  = pfService.getAllPServices();
+//		return list;
+//	}
 	@RequestMapping("/portfolios/{service}")
 	public String getPortfoliosByService(@PathVariable("service") String service, Model model ) {
 		List<PortfoliosBean> portfolios = pfService.getPortfoliosByService(service);

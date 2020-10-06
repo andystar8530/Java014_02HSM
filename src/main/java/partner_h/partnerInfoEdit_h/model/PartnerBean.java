@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mysql.cj.jdbc.Clob;
 
 import _01_register.model.MemberBean;
+import _06_Program.model.ProgramBean;
 import partner_h._01_profolios.model.PortfoliosBean;
 
 @Entity
@@ -61,6 +62,9 @@ public class PartnerBean implements Serializable {
 
 	@OneToMany(mappedBy = "partnerBean")
 	private List<PortfoliosBean> portfoliosList;
+	
+	@OneToMany(mappedBy = "partnerBean2")
+	private List<ProgramBean> programsList ; 
 	
 	@Transient
 	@JsonIgnore
@@ -213,9 +217,6 @@ public class PartnerBean implements Serializable {
 			return p_review;
 		}
 
-
-
-
 	
 		public void setP_review(Double p_review) {
 			this.p_review = p_review;
@@ -252,37 +253,16 @@ public class PartnerBean implements Serializable {
 		}
 
 
-
-
-
-
-		/**
-		 * @return the p_createTime
-		 */
 		public java.sql.Timestamp getP_createTime() {
 			return p_createTime;
 		}
 
 
-
-
-
-
-		/**
-		 * @param p_createTime the p_createTime to set
-		 */
 		public void setP_createTime(java.sql.Timestamp p_createTime) {
 			this.p_createTime = p_createTime;
 		}
 
 
-
-
-
-
-		/**
-		 * @return the p_editTime
-		 */
 		public java.sql.Timestamp getP_editTime() {
 			return p_editTime;
 		}

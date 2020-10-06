@@ -124,7 +124,7 @@
 									商家頁面</a>
 								</li>
 							</c:if>
-							<c:if test="${empty partnerBean}">
+							<c:if test="${empty partnerBean.p_service}">
 								<li class="nav-item"><a class="nav-link wow fadeInLeft"
 								href="<c:url value='/addPartner'/>">
 									填寫商家資料</a>

@@ -54,6 +54,7 @@ $(document).ready(function() {
 					<div class="card border-info mb-3 shadow" style="max-width: 18rem;">
 						
 						<div class="card-body  text-info">
+						<img src="<c:url value='/_06_Program/getProgramImage/${program.prm_Id}'/>" class='w-100' >
 							<h5 class="card-title" style="white-space: nowrap">${program.prm_Title}</h5>
 							<p class="card-text">
 								NT$

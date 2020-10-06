@@ -165,6 +165,33 @@ public class PFDetailController {
 		
 	}
 	
+	//根據作品集key顯示作品集封面圖(用第一張當封面)
+	@GetMapping("/getPFCoverImage/{pfmId}")
+	public ResponseEntity<byte[]> getPFCoverImageBypfmId(
+			@PathVariable Integer pfmId
+			) throws Exception{
+		PortfoliosBean pfBean = pfService.getPortfolioById(pfmId);
+		//取得第一張照片的bean
+		PortfoliosDetailsBean pfdBean = pfBean.getDetailList().get(0);
+		Blob pfdPic = pfdBean.getPfdPic();
+		String fileName = pfdBean.getPfdName();
+		String mimeType = servletContext.getMimeType(fileName);
+		MediaType mType = MediaType.valueOf(mimeType);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(mType);
+		
+		InputStream is = pfdPic.getBinaryStream();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		byte[]b = new byte[81920];
+		int len = 0 ;
+		while((len = is.read(b))!= -1){
+			baos.write(b, 0, len);
+		}
+		//byte[] ba回應本體形式
+		byte[]ba = baos.toByteArray();// 轉成位元組陣列   
+		ResponseEntity<byte[]> re = new ResponseEntity<>(ba,headers,HttpStatus.OK);
+		return re ; 
+	}
 	
 	
 	

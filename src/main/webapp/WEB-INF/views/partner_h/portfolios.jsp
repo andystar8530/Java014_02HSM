@@ -101,6 +101,7 @@ height: 200px;
 				<c:forEach var='portfolios' items="${portfolios}">
 				<div class="col-4">
 						<div class="thumbnail" style="width: 300px;" >
+								<img src="<c:url value='/getPFCoverImage/${portfolios.pfmId}'/>"  width="200px">
 								<p>
 									<b style='font-size: 16px;'>${portfolios.pfmName}</b>
 								</p>
