@@ -50,7 +50,7 @@ public class MemberBean implements Serializable {
 	private Timestamp m_CreateTime;
 	private Timestamp m_EditTime;
 	@Transient
-	MultipartFile memberMultipartFile;
+	private MultipartFile memberMultipartFile;
 	@OneToMany(mappedBy = "memberBean")
 	private List<ForumBean> forum = new ArrayList<>();
 	@OneToOne(mappedBy = "memberBean")

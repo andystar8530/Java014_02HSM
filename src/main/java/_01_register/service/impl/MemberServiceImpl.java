@@ -1,6 +1,5 @@
 package _01_register.service.impl;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import _01_register.dao.MemberDao;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
-import _04_ShoppingCart.model.OrderBean;
 @Transactional
 @Service
 public class MemberServiceImpl implements MemberService {

@@ -11,11 +11,9 @@ public interface ForumService {
 	
 	List<ForumBean> getAllPosts();
 	
-	List<ForumBean> getPostPage(int pageNo);
+	List<ForumBean> getPostPage(int pageNo, Integer type);
 	
 	List<ForumBean> getPostByCategory(Integer type);
-	
-	public int lastPage();
 	
 	public void addPost(ForumBean newPost);
 	
@@ -36,5 +34,9 @@ public interface ForumService {
 	public int getHate(List<LikeOrHateBean> loh);
 	
 	LikeOrHateBean getSingleLoh(int postId, int memId);
+
+	int lastPage(Integer type);
+	
+	public void setViews(int postId); 
 
 }

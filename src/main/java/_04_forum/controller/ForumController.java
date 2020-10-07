@@ -45,20 +45,23 @@ public class ForumController {
 		if(pageNo==null) {
 			pageNo=1;
 		}
-		if(type==null) {
-			list = service.getPostPage(pageNo);
-		}else {
-			list = service.getPostByCategory(type);
-		}
+		list = service.getPostPage(pageNo, type);
 		model.addAttribute("pageNo", pageNo);
-		model.addAttribute("lastPage", service.lastPage());
+		model.addAttribute("lastPage", service.lastPage(type));
+		model.addAttribute("type", type);
 		model.addAttribute("posts", list);
 		return "_04_forum/posts";
 	}
 	
 	@GetMapping("/post/add")
-	public String getAddNewPostForm(Model model) {
+	public String getAddNewPostForm(
+			Model model,
+			@RequestParam(value = "postId", required=false)Integer postId
+			) {
 		ForumBean fb = new ForumBean();
+		if(postId!=null) {
+			fb = service.getPostById(postId);
+		}
 		model.addAttribute("forumBean", fb);
 		return "/_04_forum/addpost";
 	}
@@ -77,9 +80,13 @@ public class ForumController {
 		if(bindingResult.hasErrors()) {
 			return "/_04_forum/addpost";
 		}
+		fb.setPostView(0);
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		fb.setMemberBean(mb);
 		service.addPost(fb);
+		if(fb.getfId()!=null) {
+			return "redirect:/_04_forum/post?id="+fb.getfId();
+		}
 		return "redirect:/_04_forum/posts";
 	}
 	
@@ -100,15 +107,18 @@ public class ForumController {
 			) {
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		CommentBean cb = new CommentBean();
+		ForumBean fb = new ForumBean();
 		LikeOrHateBean loh = new LikeOrHateBean();
 		try {
 			loh = service.getSingleLoh(id, mb.getM_No());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		service.setViews(id);
+		fb=service.getPostById(id);
 		model.addAttribute("loh",loh);
 		model.addAttribute("formCb", cb);
-		model.addAttribute("post", service.getPostById(id));
+		model.addAttribute("post",fb);
 		model.addAttribute("getComments", service.getCommentById(id));
 		return "_04_forum/post";
 	}
@@ -133,23 +143,14 @@ public class ForumController {
 			@RequestParam(value = "postId") Integer postId,
 			@RequestParam(value = "loh") Integer no
 			) {
-		System.out.println("==========================1");
 		LikeOrHateBean loh = new LikeOrHateBean();
-		System.out.println("==========================1");
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
-		System.out.println("==========================1");
 		ForumBean fb = service.getPostById(postId);
-		System.out.println("==========================1");
 		loh.setNo(no);
-		System.out.println("==========================1");
 		loh.setLikeOrHate(tf);
-		System.out.println("==========================1");
 		loh.setMemberBean(mb);
-		System.out.println("==========================1");
 		loh.setForumBean(fb);
-		System.out.println("==========================1");
 		service.saveLike(loh);
-		System.out.println("==========================1");
 		return "redirect:/_04_forum/post?id="+postId;
 	}
 	

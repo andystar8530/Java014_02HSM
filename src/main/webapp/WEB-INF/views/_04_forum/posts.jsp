@@ -74,6 +74,11 @@
 						href="<c:url value='/_04_forum/post?id='/>${post.fId}">
 						${post.fTitle}</a>
 				</p>
+				<p
+					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+					<a class="subtitle" style="margin-right: 400px">
+						觀看人數: ${post.postView}</a>
+				</p>
 			</div>
 		</c:forEach>
 	</main>
@@ -88,20 +93,20 @@
 	</c:if>
 	<c:if test="${pageNo > 2}">
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-2}">${pageNo-2}</a>
+			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-2}&type=${type}">${pageNo-2}</a>
 	</c:if>
 	<c:if test="${pageNo > 1}">
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-1}">${pageNo-1}</a>
+			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-1}&type=${type}">${pageNo-1}</a>
 	</c:if>
 	<a style="width: 30px; height:30px;border: black solid 2px; background-color: red" href="#">${pageNo}</a>
 	<c:if test="${pageNo < lastPage}">
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+1}">${pageNo+1}</a>
+			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+1}&type=${type}">${pageNo+1}</a>
 	</c:if>
 	<c:if test="${pageNo+1 < lastPage}">
 		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+2}">${pageNo+2}</a>
+			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+2}&type=${type}">${pageNo+2}</a>
 	</c:if>
 	<c:if test="${pageNo+2 < lastPage}">
 		<li class="page-item mt-2"><a href=""><i
@@ -109,7 +114,7 @@
 				class="fas fa-caret-right"></i><i class="fas fa-caret-right"></i><i
 				class="fas fa-caret-right"></i></a></li>
 	<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${lastPage}">${lastPage}</a>
+			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${lastPage}&type=${type}">${lastPage}</a>
 	</c:if>
 	</div>
 

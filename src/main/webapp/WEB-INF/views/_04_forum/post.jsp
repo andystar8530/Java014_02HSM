@@ -127,6 +127,7 @@
 
 		<div class="my-3 p-3 bg-white rounded box-shadow">
 			<h6 class="border-bottom border-gray pb-2 mb-0">留言板</h6>
+			<a type="submit" href="<%=path%>/_04_forum/post/add?postId=${post.fId}">編輯</a>
 			<c:forEach var="comment" items="${getComments}">
 				<div class="media text-muted pt-3">
 					<img alt="32x32" class="mr-2 rounded"
