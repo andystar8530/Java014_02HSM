@@ -19,14 +19,14 @@
 <jsp:include page="/fragment/topMVC.jsp" />
 <jsp:include page="../partner_h/fragment/partnerSidebar.jsp" />
 		<!-- cards -------------------------------------------------- -->
-	<div class="container col-8">
+	<div class="container col-9">
 		<div class="row">
 		<div class='btns'>
 			<a class="btn btn-primary" href="<c:url value='/_06_Program/addProgram'/>" role="button">新增方案&nbsp;</a>
 			<a class="btn btn-light" href="<c:url value='/_06_Program/programManagement'/>" role="button">方案管理</a>
 		</div>
 			<c:forEach varStatus="stVar" var="program" items="${programList}">
-				<div class="col-lg-4 col-sm-6 col-12 mb-4 ">
+				<div class="col-lg-4 col-md-6 col-12 mb-4 ">
 					<div class="card border-info mb-3 shadow" style="max-width: 18rem;">
 						
 						<div class="card-body  text-info">
