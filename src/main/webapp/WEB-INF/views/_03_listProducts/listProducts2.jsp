@@ -224,6 +224,17 @@ aria-labelledby="exampleModalLabel${product.value.p_Id}" aria-hidden="true">
 			</div>
       </div>
       <div class="modal-footer">
+      <div class="row  ml-auto mr-auto">
+      <div class="col-4">
+      <img src="<c:url value='/support/p_Pic1?id=${product.value.p_Id}'/>" style="max-width: 300px" />
+      </div>
+      <div class="col-4">
+      <img src="<c:url value='/support/productImage2?id=${product.value.p_Id}'/>" style="max-width: 300px" />
+      </div>
+      <div class="col-4">
+      <img src="<c:url value='/support/productImage3?id=${product.value.p_Id}'/>" style="max-width: 300px" />
+      </div>
+      </div>
 <!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
 <!--         <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>

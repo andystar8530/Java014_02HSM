@@ -45,13 +45,14 @@ public class ProgramController {
 	@RequestMapping("/showProgramsJson")
 	public @ResponseBody List<ProgramBean> list(Model model) {
 		List<ProgramBean> programs =service.getAllPrograms();
-		model.addAttribute("programs_DPP", programs);
+		model.addAttribute("programs_Json", programs);
 		return programs;
 	}
 	//顯示所有方案
 	@RequestMapping("/showPrograms")
 	public String getPrograms(Model model) {
-		model.addAttribute("programs_DPP", service.getAllPrograms());
+		List<ProgramBean>  list=service.getAllPrograms();
+		model.addAttribute("programs_DPP", list);
 		return "_06_Program/showPrograms";
 	}
 	

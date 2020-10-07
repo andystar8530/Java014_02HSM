@@ -12,6 +12,15 @@ response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Inport CSS End--------------------------------------------------------------------->
+
+    <link
+      rel="stylesheet"
+      href="<c:url value='/css/shoppingList_1.css' />"
+    />
+
+    <!-- Input CSS End---------------------------------------------------------------------->
+
 <script type="text/javascript">
 function confirmDelete(n) {
 	if (confirm("確定刪除此項商品 ? ") ) {
@@ -27,6 +36,7 @@ function modify(key, qty, index) {
 	var newQty = document.getElementById(x).value;
 	if  (newQty < 0 ) {
 		window.alert ('數量不能小於 0');
+		document.getElementById(x).value = qty;
 		return ; 
 	}
 	if  (newQty == 0 ) {
@@ -35,16 +45,16 @@ function modify(key, qty, index) {
 		return ; 
 	}
 	if  (newQty == qty ) {
-		window.alert ("新、舊數量相同，不必修改");
+// 		window.alert ("新、舊數量相同，不必修改");
 		return ; 
 	}
-	if (confirm("確定將此商品的數量由" + qty + " 改為 " + newQty + " ? ") ) {
+// 	if (confirm("確定將此商品的數量由" + qty + " 改為 " + newQty + " ? ") ) {
 		document.forms[0].action="<c:url value='UpdateItem.do?cmd=MOD&p_Id=" + key + "&newQty=" + newQty +"' />" ;
 		document.forms[0].method="POST";
 		document.forms[0].submit();
-	} else {
-		document.getElementById(x).value = qty;
-	}
+// 	} else {
+// 		document.getElementById(x).value = qty;
+// 	}
 }
 function isNumberKey(evt)
 {
@@ -92,81 +102,234 @@ function Abort() {
       <c:set var="subtotal" value="0"/>                
    </c:otherwise>
 </c:choose>
+<!-- 新畫面STAR -->
+<!-- Main Start------------------------------------------------------------------------->
+
+    <div class="container mt-5 mb-3 productList shadow">
+      <!-- 免運資格 Start-->
+      <div class="row">
+        <div
+          class="d-flex col-md-12 justify-content-between align-items-center shippingTitle"
+        >
+          <div><i class="fas fa-truck"></i> 免運資格</div>
+          <div class="pr-1">
+           開幕慶 <span class="shippingMoney">免連費</span>
+          </div>
+        </div>
+      </div>
+      <!-- 免運資格 End-->
+      <!-- 確認訂單 Start-->
+      <div class="row">
+        <div
+          class="d-flex col-md-12 justify-content-center align-items-center shoppingListTitleTop py-3 pt-5"
+        >
+          <h2>確認訂單</h2>
+        </div>
+      </div>
+      <!-- 欄位名稱 Start-->
+      <div class="row px-3 shoppingListName">
+        <div
+          class="d-flex col-md-1 col-sm-12 justify-content-center align-items-center shoppingListNameText"
+        ></div>
+        <div
+          class="d-flex col-md-5 col-sm-12 justify-content-center align-items-center shoppingListNameText"
+        >
+          商品
+        </div>
+
+        <div
+          class="d-flex col-md-2 col-sm-4 justify-content-center align-items-center shoppingListNameText"
+        >
+          刪除
+        </div>
+        <div
+          class="d-flex col-md-2 col-sm-4 justify-content-center align-items-center shoppingListNameText"
+        >
+          數量
+        </div>
+        <div
+          class="d-flex col-md-2 col-sm-4 justify-content-end align-items-center shoppingListNameText pr-5"
+        >
+          小計
+        </div>
+      </div>
+      <!-- 商品細項欄位 no1 Start-->
+      <div class="row p-3 shoppingListItemAll">
+      <c:forEach varStatus="vs" var="anEntry" items="${ShoppingCart.content}">
+        <div
+          class="col-lg-1 col-4 d-flex justify-content-center align-items-center colImage shoppingListItem"
+        >
+          <img
+            class="productImg"
+            src="<c:url value='/_00_init/getProductImage?id=${anEntry.value.soi_P_Id}' />"
+          />
+        </div>
+        <div
+          class="col-lg-5 col-8 d-flex justify-content-center align-items-center colProductName shoppingListItem"
+        >
+          ${anEntry.value.soiTitle}
+        </div>
+        <div
+          class="d-flex col-lg-2 col-4 justify-content-center align-items-center colTrash shoppingListItem"
+        >
+        <Input type="button" name="delete" value="🗑️" onclick="confirmDelete(${anEntry.key})" class="btn trashButton">
+<!--           <button class="btn trashButton"> -->
+<!--             <i class="fas fa-trash-alt"></i> -->
+<!--           </button> -->
+        </div>
+        <div
+          class="d-flex col-lg-2 col-4 justify-content-center align-items-center colQuantity shoppingListItem"
+        >
+
+          <!-- 第二種寫法   -->
+<%--           <input type="button" id="subs${vs.index}" value="-" class="trashButton"  onclick="modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})"/> --%>
+          <input type="button" id="sub10s${vs.index}" value="-10" class="trashButton"/>
+          <input type="button" id="subs${vs.index}" value="-" class="trashButton"/>
+<%-- <Input type="button" name="update" value="修改" onclick="modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})"> --%>
+<!--           <input -->
+<!--             type="text" -->
+<%--             name="newQty${vs.index}" --%>
+<!--             class="onlyNumber form-control text-center p-0" -->
+<!--             id="noOfRoom" -->
+<!--             value="1" -->
+<!--           /> -->
+          <Input id="newQty${vs.index}" style="width:28px;text-align:center" name="newQty" type="text" value="<fmt:formatNumber value="${anEntry.value.soiQty}" />" name="qty" onkeypress="return isNumberKey(event)"  />
+
+<%--           <input type="button" id="adds${vs.index}" value="+" class="trashButton" onclick="modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})"/> --%>
+          <input type="button" id="adds${vs.index}" value="+" class="trashButton"/>
+          <input type="button" id="add10s${vs.index}" value="+10" class="trashButton"/>
+        </div>
+
+        <div
+          class="d-flex col-lg-2 col-4 justify-content-end align-items-center colPrice shoppingListItem pr-5"
+        >
+          <fmt:formatNumber value="${anEntry.value.soiPrice  * anEntry.value.soiQty}" pattern="#,###,###" />元
+        </div>
+<!--         動態JS開始 -->
+        <script>
+        $('#adds${vs.index}').click(function add() {
+    var $rooms = $("#newQty${vs.index}");
+    var a = $rooms.val();
+
+    a++;
+    $("#subs${vs.index}").prop("disabled", !a);
+    $rooms.val(a);
+
+    modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})
+    $("#newQty${vs.index}").trigger(isNegative());
+    
+});
+        $('#add10s${vs.index}').click(function add() {
+    var $rooms = $("#newQty${vs.index}");
+    var a = $rooms.val();
+
+    a=(a*1+10);
+    $("#sub10s${vs.index}").prop("disabled", !a);
+    $rooms.val(a);
+
+    modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})
+    $("#newQty${vs.index}").trigger(isNegative());
+    
+});
+
+$("#subs${vs.index}").prop("disabled", !$("#newQty${vs.index}").val());
+$("#sub10s${vs.index}").prop("disabled", !$("#newQty${vs.index}").val());
+
+$('#subs${vs.index}').click(function subst() {
+    var $rooms = $("#newQty${vs.index}");
+    var b = $rooms.val();
+    if (b >= 2) {
+        b--;
+        $rooms.val(b);
+    }
+    else {
+        
+        $("#subs${vs.index}").prop("disabled", true);
+    }
+    modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})
+});
+$('#sub10s${vs.index}').click(function subst() {
+    var $rooms = $("#newQty${vs.index}");
+    var b = $rooms.val();
+    if (b >= 2) {
+        b=(b-10*1);
+        $rooms.val(b);
+    }
+    else {
+        
+        $("#sub10s${vs.index}").prop("disabled", true);
+    }
+    modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})
+});
+        </script>
+<!--         動態JS結束 -->
+        </c:forEach>
+      </div>
+      <!-- 商品細項欄位 no1 End -->
+      <!-- 總價格欄位 Start-->
+      <div class="row p-3 priceListAll justify-content-end">
+        <div class="col-md-3 mx-5">
+          <div class="row d-flex justify-content-between text-right">
+            <div class="d-flex-inline align-self-end">
+              <div class="priceAll mb-2">合計金額</div>
+              <div class="shippingPrice mb-2">運費</div>
+              <div class="discountPrice mb-2">營業稅</div>
+              <div class="totalPrice mb-0">總計金額</div>
+            </div>
+            <div class="text-right priceAll">
+              <div class="priceAll mb-2">$<fmt:formatNumber value="${subtotal}" pattern="#,###,###" />元</div>
+              <div class="shippingPrice mb-2">$0</div>
+              <div class="discountPrice discountPriceColor mb-2"><c:set var="VAT" value="${subtotal*0.05 + 0.0001}"/>
+          <fmt:formatNumber value="${VAT}" pattern="#,###,###" />元</div>
+              <div class="totalPrice"><fmt:formatNumber value="${subtotal + VAT }" pattern="#,###,###" />元</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 總價格欄位 End -->
+      <!-- 按鈕 Start-->
+      <div class="row p-3 shoppingListBtn">
+        <div class="d-flex col-md-12 col-sm-12 justify-content-end align-items-center border-top">
+          <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
+            <a href="<c:url value='/_03_listProducts/DisplayPageProducts2' />" class="btn btnEffect02 effect02"><span>繼續購物</span></a>
+          </div>
+          <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
+            <a href="<c:url value='checkout' />" onClick="return Checkout(${subtotal});" class="btn btnEffect02 effect02"><span>結帳</span></a>
+          </div>
+          <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
+            <a href="<c:url value='abort' />" onClick="return Abort();" class="btn btnEffect02 effect02"><span>放棄購物---</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 按鈕 End-->
+    <div class="container mb-3 shoppingInfo py-4 shadow">
+      <div class="row">
+        <div class="col-lg-12 d-flex align-items-center justify-content-center">
+          <div class="">
+            【預購型商品
+            須知!】當訂單內包含預購商品時，整筆訂單將依照「預購商品的實際出貨日」合併出貨!
+            (恕無法拆單出貨)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mb-5 shoppingInfo py-4 shadow">
+      <div class="row">
+        <div class="col-lg-12 d-flex align-items-center justify-content-center">
+          <div class="">
+            <i class="fas fa-shipping-fast fa-fw"></i>
+            購物享7天鑑賞期，24小時快速出貨!
+            <i class="fas fa-heart fa-fw"></i
+            >【贈品】依【購物車】顯示資訊為準，訂單會依購物車內品項出貨!
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-<table style="margin: 0 auto; width:820px; background:#EFEFFB; border:2px solid black; ">
-<tr><td colspan='4'>
-<!--          購物車的標題          --> 
-   <table style="width:820px">
-     <tr height='40'>
-     	<td width="270">&nbsp;</td>
-     	<td width="280" align='center'><FONT  size='+2'>${AppName}</FONT></td>
-     	<td width="270" align='right'></td>
-     </tr>
-     <tr height='18'>
-     	<td width="270">&nbsp;</td>
-     	<td width="280" align='center'><FONT  size='+2'>購 物 清 單</FONT></td>
-     	<td width="270" align='right'></td>
-     </tr>
-</table>
-</td></tr>
+<!-- 新畫面END -->
 
-<tr>
-   <td>
-     <table border='1'  width="820">
-     <tr><th>商品名稱</th><th>商品類別</th><th>簡述</th><th>單價</th><th>數量</th><th>小計</th><th>修改</th></tr>
-     <c:forEach varStatus="vs" var="anEntry" items="${ShoppingCart.content}">
-        <tr height='16'>
-          <td >${anEntry.value.soiTitle}</td>
-          <td style="text-align:center;">${anEntry.value.soiCategory}</td>
-          <td style="text-align:center;">${fn:substring(anEntry.value.soiDescription, 0, 20)}</td>
-          <td style="text-align:right;"><fmt:formatNumber value="${anEntry.value.soiPrice}" pattern="#,###" />元</td>
-          <td style="text-align:right;">
-                <Input id="newQty${vs.index}" style="width:28px;text-align:right" name="newQty" type="text" value="<fmt:formatNumber value="${anEntry.value.soiQty}" />" name="qty" onkeypress="return isNumberKey(event)"  />
-          </td>
-          <td style="text-align:right;"><fmt:formatNumber value="${anEntry.value.soiPrice  * anEntry.value.soiQty}" pattern="#,###,###" />元</td>
-          <td ><Input type="button" name="update" value="修改" onclick="modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})">
-               <Input type="button" name="delete" value="刪除" onclick="confirmDelete(${anEntry.key})"></td>
-        </tr>
-     </c:forEach>
-        <tr height='16'>
-          <td colspan='5' align='right'>合計金額：</td>
-          <td align='right'><fmt:formatNumber value="${subtotal}" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-        <tr>
-          <td colspan='5' align='right'>營業稅：</td>
-          <c:set var="VAT" value="${subtotal*0.05 + 0.0001}"/>
-          <td align='right'><fmt:formatNumber value="${VAT}" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-        <tr>
-          <td colspan='5' align='right'>總計金額：</td>
-          <td align='right'><fmt:formatNumber value="${subtotal + VAT }" pattern="#,###,###" />元</td>
-          <td align='right'>&nbsp;</td>          
-        </tr>
-   </table>
-   
-   </td>
-</tr>
-<tr height='80'>
-   <td > 
-     <table border='1'  width="820">
-        <tr >
-          <td align='center'>
-              <a href="<c:url value='/_03_listProducts/DisplayPageProducts2' />">繼續購物</a>
-          </td>
-          <td align='center'>
-              <a href="<c:url value='checkout' />" onClick="return Checkout(${subtotal});">再次確認</a>
-          </td>
-          <td align='center'>
-              <a href="<c:url value='abort' />" onClick="return Abort();">放棄購物---</a>
-          </td>
-        </tr>
-     </table>
-   </td>
-</tr>
-</table>
 <div style='text-align:center;'>
 <c:if test='${not empty OrderErrorMessage}'>
 		<font color='red'>${OrderErrorMessage}</font>
@@ -177,5 +340,11 @@ function Abort() {
 <form>
    <input type="hidden" name="a"/>
 </form>
+    <!-- JavaScript Plug-in End------------------------------------------------------------->
+    <script src="<c:url value='/js/shoppingList_1.js' />"></script>
+    
+    
+      <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>
