@@ -42,14 +42,14 @@
 			href="${pageContext.request.contextPath}/support/bgMain.jsp"> <img
 			src="icon/3253474-wedding/png/007-house.png">方案/作品
 		</a> <a class="list-group-item"
-			href="${pageContext.request.contextPath}/support/bgReport.jsp"> <img
+			href="<c:url value='/support/bgMember'/>"> <img
 			src="icon/3253474-wedding/png/015-picture.png">會員/文章
 		</a> <a class="list-group-item"
 			href="<c:url value='/support/bgMall'/>">
 			<img src="icon/3253474-wedding/png/034-marriage certification.png">商城商品
 
-		</a> <a class="list-group-item list-group-1"
-			href="${pageContext.request.contextPath}/support/bgArticleEdit.jsp">
+		</a> <a class="list-group-item"
+			href="<c:url value='/support/bgArticle'/>">
 			<img src="icon/3253474-wedding/png/001-clipboard.png">公版文管理
 		</a>
 	</div>

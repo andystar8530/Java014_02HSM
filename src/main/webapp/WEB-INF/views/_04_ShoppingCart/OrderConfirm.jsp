@@ -148,6 +148,7 @@ function reconfirmOrder() {
    <input type="button" name="CancelBtn" value="取消訂單" onclick="cancelOrder()">
 </FORM>
 </div>
-
+    <!-- 引入共同的頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

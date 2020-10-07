@@ -34,7 +34,7 @@
 							${product.p_Id} </span>
 					</p>
 					<p>
-						<a href="<spring:url value='/_03_listProducts/DisplayPageProducts' />"
+						<a href="<spring:url value='/_03_listProducts/DisplayPageProducts2' />"
 							class="btn btn-default"> <span
 							class="glyphicon-hand-left glyphicon"></span>返回
 						</a> <a href='#' class='btn btn-warning btn-large'> <span

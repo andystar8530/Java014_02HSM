@@ -18,16 +18,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import _01_register.model.MemberBean;
 import _03_listProducts.model.ProductBean;
+import _03_listProducts.service.ProductService;
 import _04_ShoppingCart.model.SaleOrderItemsBean;
 import _04_ShoppingCart.model.ShoppingCart;
 // 當使用者按下『加入購物車』時，瀏覽器會送出請求到本程式
 @Controller
 @RequestMapping("_03_listProducts")
-@SessionAttributes({ "LoginOK", "pageNo", "products_DPP", "ShoppingCart"})
+@SessionAttributes({ "LoginOK", "pageNo", "products_DPP", "ShoppingCart" ,"p_Category"})
 public class BuyProductController {
 
 	@Autowired
 	ServletContext context;
+	@Autowired
+	ProductService service;
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/BuyProduct.do")
@@ -53,19 +56,21 @@ public class BuyProductController {
 		}
 		String p_IdStr 	= request.getParameter("p_Id");
 		int p_Id          = Integer.parseInt(p_IdStr.trim());
-		
+		String p_Category = request.getParameter("p_Category");
 		String qtyStr 		= request.getParameter("qty");
 		Integer qty = 0 ; 
-
-		Map<Integer, ProductBean> productMap = (Map<Integer, ProductBean>) session.getAttribute("products_DPP");
-		ProductBean bean = productMap.get(p_Id);
 		String pageNo 		= request.getParameter("pageNo");
 		if (pageNo == null || pageNo.trim().length() == 0){
 			pageNo = (String) model.getAttribute("pageNo") ;
 			if (pageNo == null){
-			   pageNo = "1";
+				pageNo = "1";
 			} 
 		} 
+		int intPageNo=Integer.parseInt(pageNo);
+//		Map<Integer, ProductBean> productMap2 = (Map<Integer, ProductBean>) session.getAttribute("products_DPP");
+//		Map<Integer, ProductBean> productMap = service.getAllProducts(p_Category, intPageNo);
+		Map<Integer, ProductBean> productMap = service.getAllProducts();
+		ProductBean bean = productMap.get(p_Id);
 		
 		try{
 			// 進行資料型態的轉換
@@ -85,6 +90,6 @@ public class BuyProductController {
 		// 將OrderItem物件內加入ShoppingCart的物件內
 		cart.addToCart(p_Id, soib);
 		
-		return  "redirect:/_03_listProducts/DisplayPageProducts";
+		return  "redirect:/_03_listProducts/DisplayPageProducts2";
 	}
 }

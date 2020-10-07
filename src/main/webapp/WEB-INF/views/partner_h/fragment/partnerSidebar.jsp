@@ -46,7 +46,7 @@
           <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
           	<img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >作品集</a>
 
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >方案管理</a>
+          <a  class="list-group-item" href="<c:url value='/_06_Program/showProgramsByPid/${partnerBean.p_id}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >方案管理</a>
             
         
           <a  class="list-group-item list-group-1"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/001-clipboard.png" >報價合約

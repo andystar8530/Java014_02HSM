@@ -41,7 +41,7 @@ public class NewlywedDaoImpl implements NewlywedDao {
 	public int saveNewlyed(NewlywedBean nb) {
 		int n = 0;
 		Session session = factory.getCurrentSession();
-		session.save(nb);
+		session.saveOrUpdate(nb);
 		n++;
 		return n;
 	}

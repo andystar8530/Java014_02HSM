@@ -51,8 +51,11 @@ public class PortfoliosDaoDetailImpl implements PortfoliosDetailDao {
 	public int deletePortfolioDetail(PortfoliosDetailsBean pfdBean) {
 		int n = 0 ;
 		Session session = factory.getCurrentSession();
-		session.delete(pfdBean);
-		n++ ; 
+//		session.delete(pfdBean);
+		String hql = "DELETE FROM PortfoliosDetailsBean where pfdId = :pfdId";
+		n = session.createQuery(hql)
+				.setParameter("pfdId", pfdBean.getPfdId())
+				.executeUpdate();		
 		return n ;
 		
 		
