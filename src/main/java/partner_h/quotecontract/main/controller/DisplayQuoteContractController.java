@@ -1,11 +1,12 @@
  package partner_h.quotecontract.main.controller;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.cache.spi.support.NaturalIdNonStrictReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
 import partner_h.quotecontract.main.model.QuoteContractBean;
+import partner_h.quotecontract.main.model.QuoteContractItemBean;
 import partner_h.quotecontract.main.service.QuoteContractService;
 //import partner_h.quotecontract.main.model.ServiceItem;
 //import partner_h.quotecontract.main.service.ServiceItemService;
@@ -31,6 +33,7 @@ import partner_h.quotecontract.main.service.QuoteContractService;
 @SessionAttributes({"LoginOK","partnerBean","quoteList","quoteBean"})//裝入屬性物件中，與jsp頁面識別字有關
 
 public class DisplayQuoteContractController {
+
 	@Autowired
 	ServletContext context;
 	
@@ -39,6 +42,7 @@ public class DisplayQuoteContractController {
 	
 	@Autowired
 	QuoteContractService qcservice;
+	
 	
 //	@Autowired
 //	ServiceItemService serviceItemService;
@@ -66,7 +70,7 @@ public class DisplayQuoteContractController {
 		@RequestParam("參數名") 型態 變數名稱
 			請求參數獲少量的表單資料，依照參數的型態自動轉型		
 		*/
-		QuoteContractBean qcb = qcservice.getQuote(qcId);
+		QuoteContractBean qcb = qcservice.getQuote(qcId);	
 		model.addAttribute("quoteBean",qcb);	
 		return "partner_h/quoteContractInfo";
 	}
@@ -106,6 +110,7 @@ public class DisplayQuoteContractController {
 //			BindingResult result, 
 			) {
 		System.out.println("修改合約"+bean);
+		bean.setP_Id(p_id);
 		qcservice.updateQuote(bean);
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
 		return "redirect:quoteContractList";
@@ -114,7 +119,9 @@ public class DisplayQuoteContractController {
 	//新增單筆報價合約
 	@GetMapping("insertQuote")
 	public String getQuoteForm(Model model) {
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 		QuoteContractBean quoteBean = new QuoteContractBean();
+		quoteBean.setP_Id(partnerBean.getP_id());	
 		model.addAttribute("quoteBean",quoteBean);
 		return "partner_h/quoteContractInsert";		 
 	}
@@ -127,11 +134,10 @@ public class DisplayQuoteContractController {
 			) {
 //		QuoteContractItemBean qciBean = new QuoteContractItemBean();
 //		qciBean.setQuoteContractBean(bean);
-//		
 //		//找到對應的serviceItem物件
 //		ServiceItem serviceItem = serviceItemService.getServiceItem(qciBean.getServiceItem().getSiId());
 //		qciBean.setServiceItem(serviceItem);
-		
+
 		qcservice.save(bean);
 		
 		redirectAttributes.addFlashAttribute("SUCCESS", "新增成功!!!");
@@ -149,10 +155,11 @@ public class DisplayQuoteContractController {
 			bean = new QuoteContractBean();
 			bean.setP_Id(p_id);
 //			bean.setQcContent();
-//			bean.setQcDate();		  
+//			bean.setQcDate();		
 		}
 		return bean;
 	}
+
+
 	
-		
 }

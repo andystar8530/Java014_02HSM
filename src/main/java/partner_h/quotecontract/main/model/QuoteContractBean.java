@@ -2,7 +2,9 @@ package partner_h.quotecontract.main.model;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,9 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import _04_ShoppingCart.model.OrderItemBean;
 @Entity
 @Table(name="QuoteContracts")
 public class QuoteContractBean {
@@ -26,7 +29,7 @@ public class QuoteContractBean {
 	Date qcDateLine;//報價期限
 	String qcStatus;//報價狀態
 	String qcContent;//合約內容
-	Integer n_Id;//新人ID
+	String n_Name;//新人ID
 	Blob n_Signature;//新人簽名
 	Integer p_Id;//合作商ID
 	Blob p_Signature;//合作商簽名
@@ -36,25 +39,31 @@ public class QuoteContractBean {
 	Integer qcDeposit;//訂金金額 = 專案總價 * (訂金比例/100)
 	String qcNotes;//
 	
+	String serviceItem;
+	String serviceName;
+	Integer servicePrice;
+	
+	
 	//1中有個多
-	@OneToMany(mappedBy="quoteContractBean",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	Set<QuoteContractItemBean>items = new LinkedHashSet<>(); //訂單明細
+//	@OneToMany(mappedBy="quoteContractBean",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+//	Set<QuoteContractItemBean>items = new LinkedHashSet<>(); //訂單明細
 
 	public QuoteContractBean() {
 		super();
 	}
 
-	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, String qcStatus, String qcContent,
-			Integer n_Id, Blob n_Signature, Integer p_Id, Blob p_Signature, Date qcExecutionDate, Integer qcTotalAmount,
-			Double qcDepositRate, Integer qcDeposit, String qcNotes, Set<QuoteContractItemBean> items) {
-		super();
+	
+	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, String qcStatus,
+			String qcContent, String n_Name, Blob n_Signature, Integer p_Id, Blob p_Signature, Date qcExecutionDate,
+			Integer qcTotalAmount, Double qcDepositRate, Integer qcDeposit, String qcNotes, String serviceItem,
+			String serviceName, Integer servicePrice) {
 		this.qcId = qcId;
 		this.qcName = qcName;
 		this.qcDate = qcDate;
 		this.qcDateLine = qcDateLine;
 		this.qcStatus = qcStatus;
 		this.qcContent = qcContent;
-		this.n_Id = n_Id;
+		this.n_Name = n_Name;
 		this.n_Signature = n_Signature;
 		this.p_Id = p_Id;
 		this.p_Signature = p_Signature;
@@ -63,30 +72,12 @@ public class QuoteContractBean {
 		this.qcDepositRate = qcDepositRate;
 		this.qcDeposit = qcDeposit;
 		this.qcNotes = qcNotes;
-		this.items = items;
+		this.serviceItem = serviceItem;
+		this.serviceName = serviceName;
+		this.servicePrice = servicePrice;
 	}
 
-	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, String qcStatus, 
-			Integer n_Id, Blob n_Signature, Integer p_Id, Blob p_Signature, Date qcExecutionDate, Integer qcTotalAmount,
-			Double qcDepositRate, Integer qcDeposit, Set<QuoteContractItemBean> items) {
-		super();
-		this.qcId = qcId;
-		this.qcName = qcName;
-		this.qcDate = qcDate;
-		this.qcDateLine = qcDateLine;
-		this.qcStatus = qcStatus;
-		this.n_Id = n_Id;
-		this.n_Signature = n_Signature;
-		this.p_Id = p_Id;
-		this.p_Signature = p_Signature;
-		this.qcExecutionDate = qcExecutionDate;
-		this.qcTotalAmount = qcTotalAmount;
-		this.qcDepositRate = qcDepositRate;
-		this.qcDeposit = qcDeposit;
-		this.items = items;
-	}
-	
-	
+
 	public Integer getQcId() {
 		return qcId;
 	}
@@ -136,12 +127,12 @@ public class QuoteContractBean {
 		this.qcContent = qcContent;
 	}
 
-	public Integer getN_Id() {
-		return n_Id;
+	public String getN_Name() {
+		return n_Name;
 	}
 
-	public void setN_Id(Integer n_Id) {
-		this.n_Id = n_Id;
+	public void setN_Name(String n_Name) {
+		this.n_Name = n_Name;
 	}
 
 	public Blob getN_Signature() {
@@ -208,15 +199,47 @@ public class QuoteContractBean {
 		this.qcNotes = qcNotes;
 	}
 
-	public Set<QuoteContractItemBean> getItems() {
-		return items;
+
+	public String getServiceItem() {
+		return serviceItem;
 	}
 
-	public void setItems(Set<QuoteContractItemBean> items) {
-		this.items = items;
+
+	public void setServiceItem(String serviceItem) {
+		this.serviceItem = serviceItem;
 	}
 
+
+	public String getServiceName() {
+		return serviceName;
+	}
+
+
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
+	}
+
+
+	public Integer getServicePrice() {
+		return servicePrice;
+	}
+
+
+	public void setServicePrice(Integer servicePrice) {
+		this.servicePrice = servicePrice;
+	}
 	
+	
+	
+
+//	public Set<QuoteContractItemBean> getItems() {
+//		return items;
+//	}
+//
+//	public void setItems(Set<QuoteContractItemBean> items) {
+//		this.items = items;
+//	}
+
 	
 
 }

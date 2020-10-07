@@ -1,10 +1,11 @@
 package partner_h.quotecontract.main.dao.impl;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.engine.jdbc.ClobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -32,7 +33,7 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 	@Override
 	public Object save(QuoteContractBean bean) {
 		Session session = factory.getCurrentSession();
-		
+//		bean.setQcDate(new java.util.Date());
 		return session.save(bean);
 	}
 
@@ -80,8 +81,6 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 		return list;
 	}
 
-
-
 	
 	//依據案號查詢item明細
 	@Override
@@ -95,13 +94,8 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 	@Override
 	public void updateQuote(QuoteContractBean bean) {
 		Session session = factory.getCurrentSession();
-		
 		session.update(bean);
 	}
-
-	
-
-	
 
 
 
