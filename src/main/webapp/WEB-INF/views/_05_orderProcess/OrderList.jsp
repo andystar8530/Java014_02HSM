@@ -57,6 +57,5 @@
 			<td id='borderA' align="center" colspan="5"><a href="<c:url value='/' />">回首頁</a></td>
 		</tr>
 	</TABLE>
-	</center>
 </body>
 </html>

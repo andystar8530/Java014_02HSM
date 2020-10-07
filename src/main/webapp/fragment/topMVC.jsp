@@ -62,7 +62,7 @@
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">婚禮攝影</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="#">新娘秘書</a></li>
+						href="<c:url value ='/_06_Program/showPrograms' />">新娘秘書</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
 						href="#">婚禮主持</a></li>
 					<li class="nav-item dropdown">
@@ -70,7 +70,8 @@
   			        			小物商城
   				      		</a>
  					       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
- 				 		      <a class="dropdown-item" href="<c:url value='/_03_listProducts/DisplayPageProducts' />">購物</a>
+<%--  				 		      <a class="dropdown-item" href="<c:url value='/_03_listProducts/DisplayPageProducts' />">購物</a> --%>
+ 				 		      <a class="dropdown-item" href="<c:url value='/_03_listProducts/DisplayPageProducts2' />">購物</a>
    				 		      <a class="dropdown-item" href="<c:url value='/_04_ShoppingCart/ShowCartContent' />">購物車</a>
    				  		    <div class="dropdown-divider"></div>
    				 		      <a class="dropdown-item" href="<c:url value='/_05_orderProcess/orderList' />">訂單</a>
@@ -117,13 +118,13 @@
 							</li>     
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 1}">
-							<c:if test="${!empty partnerBean}">
+							<c:if test="${!empty partnerBean.p_service}">
 								<li class="nav-item"><a class="nav-link wow fadeInLeft"
 								href="<c:url value='/displayPartner'/>">
 									商家頁面</a>
 								</li>
 							</c:if>
-							<c:if test="${empty partnerBean}">
+							<c:if test="${empty partnerBean.p_service}">
 								<li class="nav-item"><a class="nav-link wow fadeInLeft"
 								href="<c:url value='/addPartner'/>">
 									填寫商家資料</a>

@@ -5,12 +5,15 @@ import java.util.List;
 import _04_forum.model.CategoriesBean;
 import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
+import _04_forum.model.LikeOrHateBean;
 
 public interface ForumService {
 	
 	List<ForumBean> getAllPosts();
 	
 	List<ForumBean> getPostPage(int pageNo);
+	
+	List<ForumBean> getPostByCategory(Integer type);
 	
 	public int lastPage();
 	
@@ -25,5 +28,13 @@ public interface ForumService {
 	List<CommentBean> getCommentById(int postId);
 	
 	public void addComment(CommentBean cb);
+	
+	public void saveLike(LikeOrHateBean loh);
+	
+	public int getLike(List<LikeOrHateBean> loh);
+	
+	public int getHate(List<LikeOrHateBean> loh);
+	
+	LikeOrHateBean getSingleLoh(int postId, int memId);
 
 }

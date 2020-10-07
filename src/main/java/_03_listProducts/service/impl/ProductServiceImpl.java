@@ -20,8 +20,13 @@ public class ProductServiceImpl implements ProductService {
 	//查詢全部記錄
 	@Transactional
 	@Override
-	public List<ProductBean> getAllProducts() {
+	public Map<Integer, ProductBean> getAllProducts() {
 		return dao.getAllProducts();
+	}
+	@Transactional
+	@Override
+	public Map<Integer, ProductBean> getAllProducts(String category, int pageNo) {
+		return dao.getAllProducts(category, pageNo);
 	}
 	//取類別清單
 	@Transactional
@@ -32,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
 	//依類別取商品資料
 	@Transactional
 	@Override
-	public List<ProductBean> getProductsByCategory(String category) {
-		return dao.getProductsByCategory(category);
+	public Map<Integer, ProductBean> getProductsByCategory(String category, int pageNo) {
+		return dao.getProductsByCategory(category, pageNo);
 	}
 	//依id取商品資料
 	@Transactional
@@ -83,8 +88,8 @@ public class ProductServiceImpl implements ProductService {
 		return map;
 	}
 	@Override
-	public long getRecordCounts() {
-		return dao.getRecordCounts();
+	public long getRecordCounts(String catagory) {
+		return dao.getRecordCounts(catagory);
 	}
 	@Override
 	public int getRecordsPerPage() {
@@ -92,9 +97,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	@Transactional
 	@Override
-	public int getTotalPages() {
+	public int getTotalPages(String catagory) {
 		int n = 0;
-			n = dao.getTotalPages();
+			n = dao.getTotalPages(catagory);
 		return n;
 	}
 	@Override

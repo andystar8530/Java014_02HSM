@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import _04_forum.model.CommentBean;
 import _04_forum.model.ForumBean;
+import _04_forum.model.LikeOrHateBean;
 import newlywed.model.NewlywedBean;
 
 @Entity
@@ -56,7 +57,8 @@ public class MemberBean implements Serializable {
 	private NewlywedBean newlywedBean;
 	@OneToMany(mappedBy = "memberBean")
 	private List<CommentBean> commentBean=new ArrayList<>();
-	
+	@OneToMany(mappedBy = "memberBean")
+	private List<LikeOrHateBean> likeOrHate = new ArrayList<>();
 
 	public MemberBean() {
 	}

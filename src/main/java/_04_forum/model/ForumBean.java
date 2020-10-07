@@ -42,7 +42,11 @@ public class ForumBean implements Serializable{
 		@Transient
 		private Integer fCategory;
 		@Column(name = "F_LIKE")
+		@Transient
 		private Integer fLike;
+		@Column(name = "F_HATE")
+		@Transient
+		private Integer fHate;
 		@ManyToOne(cascade = CascadeType.PERSIST)
 		@JoinColumn(name = "PK_CategoriesBean_Id")
 		private CategoriesBean categoriesBean;
@@ -51,6 +55,8 @@ public class ForumBean implements Serializable{
 		@ManyToOne(cascade = CascadeType.PERSIST)
 		@JoinColumn(name = "M_NO")
 		private MemberBean memberBean;
+		@OneToMany(mappedBy = "forumBean")
+		private List<LikeOrHateBean> likeOrHate = new ArrayList<>();
 		
 		public ForumBean() {
 			super();
@@ -145,6 +151,22 @@ public class ForumBean implements Serializable{
 
 		public void setMemberBean(MemberBean memberBean) {
 			this.memberBean = memberBean;
+		}
+
+		public Integer getfHate() {
+			return fHate;
+		}
+
+		public void setfHate(Integer fHate) {
+			this.fHate = fHate;
+		}
+
+		public List<LikeOrHateBean> getLikeOrHate() {
+			return likeOrHate;
+		}
+
+		public void setLikeOrHate(List<LikeOrHateBean> likeOrHate) {
+			this.likeOrHate = likeOrHate;
 		}
 
 		@Override

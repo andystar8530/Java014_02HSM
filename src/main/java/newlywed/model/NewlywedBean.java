@@ -24,10 +24,11 @@ import _01_register.model.MemberBean;
 public class NewlywedBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer N_id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Integer N_id;
 	
+	@Id
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="N_MID")
 	private MemberBean memberBean;
@@ -111,19 +112,19 @@ public class NewlywedBean implements Serializable{
 
 	@Override
 	public String toString() {
-		return "NewlywedBean [N_id=" + N_id + ", memberBean=" + memberBean + ", N_MID=" + N_MID + ", N_nickname="
+		return "NewlywedBean [memberBean=" + memberBean + ", N_MID=" + N_MID + ", N_nickname="
 				+ N_nickname + ", N_gender=" + N_gender + ", N_date=" + N_date + ", N_budget=" + N_budget + ", N_area="
 				+ N_area + ", N_checklist=" + N_checklist + ", N_favorite=" + N_favorite + ", N_connectiontime="
 				+ N_connectiontime + ", N_service=" + N_service + ", createtime=" + createtime + ", edittime="
 				+ edittime + ", N_phonenumber=" + N_phonenumber + "]";
 	}
 
-	public NewlywedBean(Integer n_id, MemberBean memberBean, Integer n_MID, String n_nickname, String n_gender,
+	public NewlywedBean( MemberBean memberBean, Integer n_MID, String n_nickname, String n_gender,
 			Date n_date, Integer n_budget, Integer n_area, String n_checklist, String n_favorite,
 			String n_connectiontime, String n_service, Timestamp createtime, Timestamp edittime,
 			Integer n_phonenumber) {
 		super();
-		N_id = n_id;
+		
 		this.memberBean = memberBean;
 		N_MID = n_MID;
 		N_nickname = n_nickname;
@@ -154,14 +155,6 @@ public class NewlywedBean implements Serializable{
 
 	public void setN_MID(Integer n_MID) {
 		N_MID = n_MID;
-	}
-
-	public Integer getN_id() {
-		return N_id;
-	}
-
-	public void setN_id(Integer n_id) {
-		N_id = n_id;
 	}
 
 	

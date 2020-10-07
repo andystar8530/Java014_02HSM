@@ -4,15 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"> -->
 <title>作品集資訊</title>
 <style>
-.pfDeailImage{
+.pfDetailImage{
+/* 	max-height: 200px; */
+/* 	max-width: 200px; */
 
+}
 
-
-
+.imgBox{
+/* 	display: inline; */
+	
 }
 
 
@@ -21,6 +25,7 @@
 </style>
 </head>
 <body> 
+<jsp:include page="/fragment/topMVC.jsp" />
 	<section>
 		<div>
 			<div class="container" style="text-align: center">
@@ -28,41 +33,48 @@
 			</div>
 		</div>
 	</section>
-	<section class="container">
-		<div class="row">
-			<div class="col-md-5">
+			<div >
 				<h3>${portfolio.pfmName}</h3>
 				<p>作品資訊: ${portfolio.pfmInfo}</p>
 				<p>作品集分類: ${portfolio.pfService}</p>
 				<div>
 				<!-- <img id='img'> -->
-<%-- 					<img src="<c:url value='/getPFDetailImage/85' />"> --%>
-<%-- 					<img src="<c:url value='/getPFDetailImage/${portfolioDetailsBean.pfdId}'/>"> --%>
 				
-				<c:forEach var='pfBean' items="${pfBeanList}">
-				<img src="<c:url value='/getPFDetailImage/ ${pfBean.pfdId}'/>" class='pfDeailImage'>
-					<p> 照片名稱:   ${pfBean.pfdName}</p>
+	<div class="container-fluid">
+		<div class="row row-cols-2 row-cols-md-3 row-cols-xl-4">
+				<c:forEach var='pfBean' items="${pfdBeanList}">
+					<div class="col mb-4">
+    					<div class="card h-100">										
+							<img src="<c:url value='/getPFDetailImage/ ${pfBean.pfdId}'/>" class='pfDetailImage card-img-top'>
+<%-- 						<p> 照片名稱:   ${pfBean.pfdName}</p> --%>
 				
+				 			 <div class="card-body">
+								<h5 class="card-title">${pfBean.pfdName}</h5>
+<!--         						<p class="card-text">This content is a little bit longer.</p> -->
+     			 			</div>
 				
-				
-				
+						</div>
+					</div>					
 				</c:forEach>
-				</div>
-			
+			</div>
+		</div>	
+		
 				<p>
 					<a href="<spring:url value='/portfolios' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回
 					</a> 
-					<a href='#' class='btn btn-warning btn-large'> 
+					<a href='#' class='btn btn-info btn-large'> 
 					    <span class='glyphicon-shopping-cart glyphicon'></span>加入購物車
 					</a>
 				</p>
-
-	</section>
+			</div>
+		</div>
+	</div>
+	</div>
 <script>
-	var text = ${portfolioDetailsBean.pfdId};
-	console.log("text:" + text );
-	alert(text);
+// 	var text = ${portfolioDetailsBean.pfdId};
+// 	console.log("text:" + text );
+// 	alert(text);
 
 
 </script>
