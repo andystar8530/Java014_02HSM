@@ -65,7 +65,7 @@ public class RootAppConfig {
 		// 第一次建立本檔案時就要列入所有含永續類別的套件
 		factory.setPackagesToScan(new String[] {
 				"_00_init", "_01_register.model", "_03_listProducts.model", "_04_ShoppingCart",
-				"_04_ShoppingCart.model","partner_h","_04_forum.model","newlywed.model","support.model"
+				"_04_ShoppingCart.model","partner_h","_04_forum.model","newlywed.model","support"
 		});
 		factory.setDataSource(dataSource());
 		factory.setHibernateProperties(additionalPropertiesMySQL());	

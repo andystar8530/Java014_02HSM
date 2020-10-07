@@ -112,5 +112,10 @@
          </div>
         </form:form>
       
+      </div>
+      </div>
+      </div>
+      	<!--共同頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

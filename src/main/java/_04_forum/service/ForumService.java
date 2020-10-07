@@ -10,6 +10,10 @@ public interface ForumService {
 	
 	List<ForumBean> getAllPosts();
 	
+	List<ForumBean> getPostPage(int pageNo);
+	
+	public int lastPage();
+	
 	public void addPost(ForumBean newPost);
 	
 	CategoriesBean getCategoryById(int categoryId);

@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import _01_register.model.MemberBean;
+
 @Entity
 @Table(name="forum")
 public class ForumBean implements Serializable{
@@ -26,6 +28,7 @@ public class ForumBean implements Serializable{
 		@Column(name = "F_ID")
 		private Integer fId;
 		@Column(name = "M_NO")
+		@Transient
 		private Integer mNo;
 		@Column(name = "F_TITLE")
 		private String fTitle;
@@ -40,18 +43,22 @@ public class ForumBean implements Serializable{
 		private Integer fCategory;
 		@Column(name = "F_LIKE")
 		private Integer fLike;
-		@ManyToOne(cascade = CascadeType.ALL)
+		@ManyToOne(cascade = CascadeType.PERSIST)
 		@JoinColumn(name = "PK_CategoriesBean_Id")
 		private CategoriesBean categoriesBean;
 		@OneToMany(mappedBy = "forumBean")
 		private List<CommentBean> comments = new ArrayList<>();
+		@ManyToOne(cascade = CascadeType.PERSIST)
+		@JoinColumn(name = "M_NO")
+		private MemberBean memberBean;
 		
 		public ForumBean() {
 			super();
 		}
-
+		
 		public ForumBean(Integer fId, Integer mNo, String fTitle, String fText, Date fTime, Integer fCom,
-				Integer fCategory, Integer fLike) {
+				Integer fCategory, Integer fLike, CategoriesBean categoriesBean, List<CommentBean> comments,
+				MemberBean memberBean) {
 			super();
 			this.fId = fId;
 			this.mNo = mNo;
@@ -61,8 +68,11 @@ public class ForumBean implements Serializable{
 			this.fCom = fCom;
 			this.fCategory = fCategory;
 			this.fLike = fLike;
+			this.categoriesBean = categoriesBean;
+			this.comments = comments;
+			this.memberBean = memberBean;
 		}
-		
+
 		public Integer getfId() {
 			return fId;
 		}
@@ -129,10 +139,19 @@ public class ForumBean implements Serializable{
 			this.comments = comments;
 		}
 
+		public MemberBean getMemberBean() {
+			return memberBean;
+		}
+
+		public void setMemberBean(MemberBean memberBean) {
+			this.memberBean = memberBean;
+		}
+
 		@Override
 		public String toString() {
 			return "ForumBean [fId=" + fId + ", mNo=" + mNo + ", fTitle=" + fTitle + ", fText=" + fText + ", fTime="
-					+ fTime + ", fCom=" + fCom + ", fCategory=" + fCategory + ", fLike=" + fLike + "]";
+					+ fTime + ", fCom=" + fCom + ", fCategory=" + fCategory + ", fLike=" + fLike + ", categoriesBean="
+					+ categoriesBean + ", comments=" + comments + ", memberBean=" + memberBean + "]";
 		}
 
 }

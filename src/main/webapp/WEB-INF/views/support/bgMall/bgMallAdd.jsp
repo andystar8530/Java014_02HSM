@@ -161,9 +161,6 @@
 							</label></td>
 							<!--	顯示圖1結束 -->
 
-							<!-- 							<td><label class="fontSize">圖片1：</label><br>&nbsp;</td> -->
-							<%-- 							<td><form:input path="ProductImage1" type='file' /><br>&nbsp; --%>
-							<%-- 								<form:errors path="ProductImage1" cssClass="error" /></td> --%>
 
 						</tr>
 						<tr height="52">
@@ -180,9 +177,6 @@
 									name="image_3" />
 							</label></td>
 							<!--	顯示圖2結束 -->
-							<!-- 							<td><label class="fontSize">圖片2：</label><br>&nbsp;</td> -->
-							<%-- 							<td><form:input path="ProductImage2" type='file' /><br>&nbsp; --%>
-							<%-- 								<form:errors path="ProductImage2" cssClass="error" /></td> --%>
 						</tr>
 						<tr height="52">
 							<td><label for="exampleFormControlFile1">圖片3：</label><br>
@@ -195,9 +189,6 @@
 									id="ProductImage3_show_image" style="max-width: 300px"
 									name="image_4" />
 							</label></td>
-							<!-- 							<td><label class="fontSize">圖片3：</label><br>&nbsp;</td> -->
-							<%-- 							<td><form:input path="ProductImage3" type='file' /><br>&nbsp; --%>
-							<%-- 								<form:errors path="ProductImage3" cssClass="error" /></td> --%>
 
 						</tr>
 						<tr height="42">

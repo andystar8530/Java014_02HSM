@@ -1,6 +1,7 @@
 package _04_forum.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -18,6 +19,8 @@ public class ForumDaoImpl implements ForumDao {
 
 	@Autowired
 	SessionFactory factory;
+	
+	int onePage = 5;
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -26,7 +29,18 @@ public class ForumDaoImpl implements ForumDao {
 		String hql = "FROM ForumBean";
 		List<ForumBean> list = new ArrayList<>();
 		list = session.createQuery(hql).getResultList();
+		Collections.reverse(list);
 		return list;
+	}
+	
+	@Override
+	public List<ForumBean> getPostPage(List<ForumBean> allFb, int pageNo) {
+		int a=(pageNo-1)*onePage;
+		List<ForumBean> singlePage = new ArrayList<>();
+		for(int i=a; i<a+onePage &&i<allFb.size(); i++) {
+			singlePage.add(allFb.get(i));
+		}
+		return singlePage;
 	}
 	
 	@Override

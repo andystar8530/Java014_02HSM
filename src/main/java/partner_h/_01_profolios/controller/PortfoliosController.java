@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,13 +30,15 @@ import partner_h._01_profolios.validator.PortfoliosValidator;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 
 @Controller
-@SessionAttributes({"partnerBean","portfoliosAll","portfolios","portfoliosBean"})
+@SessionAttributes({"partnerBean","portfoliosAll","portfolios","portfoliosBean","portfolioDetailsBean","pfBeanList"})
 public class PortfoliosController {
 	
 	@Autowired
 	PortfoliosService pfService;
 	@Autowired
 	PortfoliosDetailsService pfdService;
+	@Autowired
+	ServletContext servletContext;
 	@GetMapping(value="/portfolios")
 	public String getAllPortfolios (Model model) {
 		
@@ -54,6 +56,8 @@ public class PortfoliosController {
 	@RequestMapping("/portfolio")
 	public String getPortfoliosById(@RequestParam("pfmId") Integer pfmId ,Model model) {
 		model.addAttribute("portfolio", pfService.getPortfolioById(pfmId));
+		List<PortfoliosDetailsBean> pfBeanList = pfdService.getPfDetailsBypfmId(pfmId);
+		model.addAttribute("pfBeanList", pfBeanList);
 		return "partner_h/portfolioDetail";
 	}
 	
@@ -118,15 +122,16 @@ public class PortfoliosController {
 		}
 		
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+		portfoliosAll.getPortfoliosBean().setPfmStatus("1");
 		portfoliosAll.getPortfoliosBean().setPfService(partnerBean.getP_service());
 		portfoliosAll.getPortfoliosBean().setP_id(partnerBean.getP_id());
 		//新增作品集主檔
 		pfService.addPortfolio(portfoliosAll.getPortfoliosBean());
 		PortfoliosDetailsBean pfdBean = null;
 		//取得圖片
-		System.out.println("取得圖片開始");
+//		System.out.println("取得圖片開始");
 		List<MultipartFile> files = portfoliosAll.getPortfoliosDetailsBean().getPortfoliosImages();
-		System.out.println("取得圖片結束");
+//		System.out.println("取得圖片結束");
 		System.out.println("files = " + files);
 		List<String> fileNames = new ArrayList<>();
 		
@@ -162,7 +167,7 @@ public class PortfoliosController {
 				}
 				
 				pfdBean.setPfmId(portfoliosAll.getPortfoliosBean().getPfmId());
-
+	
 				pfdService.addPortfolioDetails(pfdBean);
 				System.out.println(pfdBean.getPfdName());
 				System.out.println(pfdBean.getPfmId());
@@ -171,13 +176,13 @@ public class PortfoliosController {
 		
 		}
 		model.addAttribute("portfoliosAll",portfoliosAll);
-		
+		model.addAttribute("portfolioDetailsBean", pfdBean);
 //		partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 //		model.addAttribute("portfolios", pfService.getPortfoliosByPartnerId(partnerBean.getP_id()));
 		return "redirect:/portfoliosByPartnerId";
 	}
 	
-	
+
 	
 	
 	

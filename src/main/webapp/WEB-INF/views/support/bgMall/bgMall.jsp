@@ -119,19 +119,19 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center mb-0">
 					<li class="page-item disabled"><a class="page-link" href="#"
-						tabindex="-1" aria-disabled="true">第${pageNo}頁</a></li>
-					<c:if test="${pageNo >= 1}">
-						<c:forEach var="x" begin="1" end="${totalPages}">
+						tabindex="-1" aria-disabled="true">第${MallpageNo}頁</a></li>
+					<c:if test="${MallpageNo >= 1}">
+						<c:forEach var="x" begin="1" end="${MalltotalPages}">
 							<c:if
-								test="${x>=pageNo-2 && x<=5 || x<=pageNo+2 && x>totalPages-5}">
+								test="${x>=MallpageNo-2 && x<=5 || x<=MallpageNo+2 && x>MalltotalPages-5}">
 								<li class="page-item  page-item-weight"><a
 									class="page-link"
-									href="<c:url value='/support/bgMall?pageNo=${x}' />">${x}</a></li>
+									href="<c:url value='/support/bgMall?MallpageNo=${x}' />">${x}</a></li>
 							</c:if>
 						</c:forEach>
 					</c:if>
 					<li class="page-item disabled"><a class="page-link"
-						tabindex="-1" aria-disabled="true"> 共${totalPages}頁</a></li>
+						tabindex="-1" aria-disabled="true"> 共${MalltotalPages}頁</a></li>
 				</ul>
 			</nav>
 

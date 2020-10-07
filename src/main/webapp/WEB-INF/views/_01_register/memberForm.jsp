@@ -41,7 +41,7 @@
               <div>${partnerBean.p_storeName}</div>
 
           </div>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
+          <a  class="list-group-item" href="<c:url value='/displayPartner'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
           <a  class="list-group-item" href="<c:url value='/crm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
 
           <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
@@ -97,12 +97,12 @@
     </div>
     <div class="form-group col-md-4">
       <label>手機號碼</label>
-      <form:input path="m_Phone" type="text" class="form-control"/><br>
+      <form:input path="m_Phone" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Phone' cssClass="error"/>
     </div>
     <div class="form-group col-md-4">
       <label>身份證字號</label>
-      <form:input path="m_Socialnum" type="text" class="form-control"/><br>
+      <form:input path="m_Socialnum" type="text" class="form-control"  oninput="if(value.length>10)value=value.slice(0,10)"/><br>
 	  <form:errors path='m_Socialnum' cssClass="error"/>
     </div>
   </div>

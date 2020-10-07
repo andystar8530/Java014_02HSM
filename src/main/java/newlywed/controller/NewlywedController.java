@@ -44,6 +44,16 @@ public class NewlywedController {
 	public String sendEmptyForm(Model model) {
       NewlywedBean newlywedBean =new NewlywedBean();
       model.addAttribute("NewlywedBean", newlywedBean);
+      
+      //這串 取資料秀出來
+      NewlywedBean newlywedBean2 =new NewlywedBean();
+      MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
+      newlywedBean2=newlywedService.queryNewlywed(mb.getM_No());
+      model.addAttribute("NewlywedBean2", newlywedBean2);
+      //這串 取資料秀出來
+      
+      
+      
       return "/newlywed_h/newlywedInfo";
 	}
 

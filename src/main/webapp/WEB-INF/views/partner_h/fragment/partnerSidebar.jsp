@@ -40,7 +40,7 @@
               <div>${partnerBean.p_storeName}</div>
 
           </div>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
+          <a  class="list-group-item" href="<c:url value='/displayPartner'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >基本資料</a>
           <a  class="list-group-item" href="<c:url value='/crm/${LoginOK.m_No}'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >帳號資料</a>
 
           <a  class="list-group-item" href="<c:url value='/portfoliosByPartnerId'/>">
@@ -50,8 +50,8 @@
             
         
           <a  class="list-group-item list-group-1"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/001-clipboard.png" >報價合約
-           <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
-           href="${pageContext.request.contextPath}/displaycontractemplate.do"> 合約範本</a>
+       <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
+          				 href="<c:url value='/quotecontract/quoteContractList' />"> 我的報價合約</a>
             <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >已簽約</a>
             <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >未簽約</a>
           </a>

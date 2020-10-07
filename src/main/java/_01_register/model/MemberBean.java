@@ -4,17 +4,26 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import _04_forum.model.CommentBean;
+import _04_forum.model.ForumBean;
+import newlywed.model.NewlywedBean;
 
 @Entity
 @Table(name = "Memberinfo")
@@ -40,15 +49,22 @@ public class MemberBean implements Serializable {
 	private Timestamp m_CreateTime;
 	private Timestamp m_EditTime;
 	@Transient
-	MultipartFile memberMultipartFile;
+	private MultipartFile memberMultipartFile;
+	@OneToMany(mappedBy = "memberBean")
+	private List<ForumBean> forum = new ArrayList<>();
+	@OneToOne(mappedBy = "memberBean")
+	private NewlywedBean newlywedBean;
+	@OneToMany(mappedBy = "memberBean")
+	private List<CommentBean> commentBean=new ArrayList<>();
+	
 
 	public MemberBean() {
 	}
 
 	public MemberBean(Integer m_No, Integer m_Status, Integer m_Code, String m_Id, String m_Password,
 			String m_Password1, String m_Name, String m_Email, String m_Phone, String m_Socialnum, String m_Add,
-			Blob m_Propic, String m_FileName, String m_Availabletime, Timestamp m_Createtime, Timestamp m_Edittime,
-			MultipartFile memberMultipartFile) {
+			Blob m_Propic, String m_FileName, String m_Availabletime, Timestamp m_CreateTime, Timestamp m_EditTime,
+			MultipartFile memberMultipartFile, List<ForumBean> forum, NewlywedBean newlywedBean) {
 		super();
 		this.m_No = m_No;
 		this.m_Status = m_Status;
@@ -64,30 +80,11 @@ public class MemberBean implements Serializable {
 		this.m_Propic = m_Propic;
 		this.m_FileName = m_FileName;
 		this.m_Availabletime = m_Availabletime;
-		this.m_CreateTime = m_Createtime;
-		this.m_EditTime = m_Edittime;
-		this.memberMultipartFile = memberMultipartFile;
-	}
-
-	public MemberBean(Integer m_No, Integer m_Status, Integer m_Code, String m_Id, String m_Password, String m_Name,
-			String m_Email, String m_Phone, String m_Socialnum, String m_Add, Blob m_Propic, String m_FileName,
-			String m_Availabletime, Timestamp m_CreateTime, Timestamp m_EditTime) {
-		super();
-		this.m_No = m_No;
-		this.m_Status = m_Status;
-		this.m_Code = m_Code;
-		this.m_Id = m_Id;
-		this.m_Password = m_Password;
-		this.m_Name = m_Name;
-		this.m_Email = m_Email;
-		this.m_Phone = m_Phone;
-		this.m_Socialnum = m_Socialnum;
-		this.m_Add = m_Add;
-		this.m_Propic = m_Propic;
-		this.m_FileName = m_FileName;
-		this.m_Availabletime=m_Availabletime;
 		this.m_CreateTime = m_CreateTime;
 		this.m_EditTime = m_EditTime;
+		this.memberMultipartFile = memberMultipartFile;
+		this.forum = forum;
+		this.newlywedBean = newlywedBean;
 	}
 
 	public Integer getM_No() {
@@ -226,5 +223,30 @@ public class MemberBean implements Serializable {
 		this.m_Availabletime = m_Availabletime;
 	}
 
+	public List<ForumBean> getForum() {
+		return forum;
+	}
+
+	public void setForum(List<ForumBean> forum) {
+		this.forum = forum;
+	}
+
+	public NewlywedBean getNewlywedBean() {
+		return newlywedBean;
+	}
+
+	public void setNewlywedBean(NewlywedBean newlywedBean) {
+		this.newlywedBean = newlywedBean;
+	}
+
+	public List<CommentBean> getCommentBean() {
+		return commentBean;
+	}
+
+	public void setCommentBean(List<CommentBean> commentBean) {
+		this.commentBean = commentBean;
+	}
+	
+	
 
 }

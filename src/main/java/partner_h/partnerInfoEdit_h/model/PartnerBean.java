@@ -19,6 +19,7 @@ import javax.persistence.Transient;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mysql.cj.jdbc.Clob;
 
 import _01_register.model.MemberBean;
 import partner_h._01_profolios.model.PortfoliosBean;
@@ -71,8 +72,6 @@ public class PartnerBean implements Serializable {
 	
 	public PartnerBean() {}
 
-
-
 		public PartnerBean(Integer p_id, Integer p_mId, String p_storeName, Blob p_stamp,
 			Blob p_coverPic, String p_service, String p_info, Integer p_area, Double p_review, String p_lineId,
 			String p_bankAcc, Integer p_hRate, Timestamp p_createTime, Timestamp p_editTime, String p_covFilename,
@@ -96,12 +95,11 @@ public class PartnerBean implements Serializable {
 		this.p_staFilename = p_staFilename;
 	}
 
-
 		public PartnerBean(Integer p_id, MemberBean memberBean, Integer p_mId, String p_storeName, Blob p_stamp,
 				Blob p_coverPic, String p_service, String p_info, Integer p_area, Double p_review, String p_lineId,
 				String p_bankAcc, Integer p_hRate, Timestamp p_createTime, Timestamp p_editTime, String p_covFilename,
-				String p_staFilename, List<PortfoliosBean> portfoliosList) {
-			super();
+				String p_staFilename, List<PortfoliosBean> portfoliosList, MultipartFile covImage,
+				MultipartFile staImage) {
 			this.p_id = p_id;
 			this.memberBean = memberBean;
 			this.p_mId = p_mId;
@@ -120,9 +118,9 @@ public class PartnerBean implements Serializable {
 			this.p_covFilename = p_covFilename;
 			this.p_staFilename = p_staFilename;
 			this.portfoliosList = portfoliosList;
+			this.covImage = covImage;
+			this.staImage = staImage;
 		}
-
-
 
 		public Integer getP_id() {
 			return p_id;
@@ -350,6 +348,7 @@ public class PartnerBean implements Serializable {
 		public void setStaImage(MultipartFile staImage) {
 			this.staImage = staImage;
 		}
+
 
 
 

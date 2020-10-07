@@ -10,6 +10,8 @@ public interface ForumDao {
 
 	List<ForumBean> getAllPosts();
 	
+	List<ForumBean> getPostPage(List<ForumBean> allFb, int pageNo);
+	
 	public void addPost(ForumBean newPost);
 	
 	CategoriesBean getCategoryById(int categoryId);

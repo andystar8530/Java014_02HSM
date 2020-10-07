@@ -27,7 +27,7 @@ import _01_register.validator.MemberBeanValidatorUpdata;
 
 
 @Controller
-@RequestMapping("/crm")
+//@RequestMapping("/crm")
 public class MemberController {
 	String noImage = "/images/NoImage.png";
 	String noImageFemale = "/images/NoImage_Female.jpg";
@@ -39,17 +39,18 @@ public class MemberController {
 	@Autowired
 	ServletContext context;
 	
+	//合作商帳號修改
 	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改
 	// 由這個方法送回修改記錄的表單...
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/crm/{id}")
 	public String showDataForm(@PathVariable("id") Integer id, Model model) {
 		MemberBean memberBean = memberService.get(id);
 		model.addAttribute(memberBean);
-		return "/_01_register/memberForm";
+		return "/partner_h/p_memberForm";
 	}
 	
 	// 當將瀏覽器送來修改過的會員資料時，由本方法負責檢核，若無誤則寫入資料庫
-		@PostMapping("/{id}")
+		@PostMapping("/crm/{id}")
 		// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
 		// 
 		public String modify(
@@ -59,7 +60,7 @@ public class MemberController {
 				@PathVariable Integer id, 
 				HttpServletRequest request) {
 			//取原先 MemberBean 的值。
-			MemberBean memberBeanOld = memberService.get(id);
+			MemberBean memberBeanUpd = memberService.get(id);
 			MemberBeanValidatorUpdata validator = new MemberBeanValidatorUpdata();
 			validator.validate(memberBean, result);
 			
@@ -70,7 +71,7 @@ public class MemberController {
 				for (ObjectError error : list) {
 					System.out.println("有錯誤：" + error);
 				}
-				return "/_01_register/memberForm";
+				return "/partner_h/p_memberForm";
 			}
 
 			MultipartFile picture = memberBean.getMemberMultipartFile();
@@ -83,7 +84,7 @@ public class MemberController {
 				String originalFilename = picture.getOriginalFilename();
 				if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
 					memberBean.setM_FileName(originalFilename);
-					memberBeanOld.setM_FileName(memberBean.getM_FileName());
+					memberBeanUpd.setM_FileName(memberBean.getM_FileName());
 				}
 
 				// 建立Blob物件
@@ -96,24 +97,107 @@ public class MemberController {
 						e.printStackTrace();
 						throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 					}
-					memberBeanOld.setM_Propic(memberBean.getM_Propic());
+					memberBeanUpd.setM_Propic(memberBean.getM_Propic());
 				}
 			}
 			
 
 			//更新項目
-			memberBeanOld.setM_Email(memberBean.getM_Email());
-			memberBeanOld.setM_Name(memberBean.getM_Name());
-			memberBeanOld.setM_Phone(memberBean.getM_Phone());
-			memberBeanOld.setM_Socialnum(memberBean.getM_Socialnum());
-			memberBeanOld.setM_Add(memberBean.getM_Add());
+			memberBeanUpd.setM_Email(memberBean.getM_Email());
+			memberBeanUpd.setM_Name(memberBean.getM_Name());
+			memberBeanUpd.setM_Phone(memberBean.getM_Phone());
+			if(memberBeanUpd.getM_EditTime() == null ){
+				memberBeanUpd.setM_Socialnum(memberBean.getM_Socialnum());
+			}
+			memberBeanUpd.setM_Add(memberBean.getM_Add());
 
 			
 			//更新時間
 			Timestamp editTime = new Timestamp(System.currentTimeMillis());
-			memberBeanOld.setM_EditTime(editTime);
+			memberBeanUpd.setM_EditTime(editTime);
 			
-			memberService.update(memberBeanOld);
+			memberService.update(memberBeanUpd);
 			return "/partner_h/partner_h";
+		}
+		
+		
+		
+		//新人帳號修改
+		// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改
+		// 由這個方法送回修改記錄的表單...
+		@GetMapping(value = "/nrm/{id}")
+		public String showDataFormN(@PathVariable("id") Integer id, Model model) {
+			MemberBean memberBean = memberService.get(id);
+			model.addAttribute(memberBean);
+			return "/newlywed_h/n_memberForm";
+		}
+		
+		// 當將瀏覽器送來修改過的會員資料時，由本方法負責檢核，若無誤則寫入資料庫
+		@PostMapping("/nrm/{id}")
+		// BindingResult 參數必須與@ModelAttribute修飾的參數連續編寫，中間不能夾其他參數
+		// 
+		public String modifyN(
+				@ModelAttribute("memberBean") MemberBean memberBean, 
+				BindingResult result, 
+				Model model,
+				@PathVariable Integer id, 
+				HttpServletRequest request) {
+			//取原先 MemberBean 的值。
+			MemberBean memberBeanUpd = memberService.get(id);
+			MemberBeanValidatorUpdata validator = new MemberBeanValidatorUpdata();
+			validator.validate(memberBean, result);
+			
+			
+			if (result.hasErrors()) {
+				System.out.println("result hasErrors(), memberBean=" + memberBean);
+				List<ObjectError> list = result.getAllErrors();
+				for (ObjectError error : list) {
+					System.out.println("有錯誤：" + error);
+				}
+				return "/newlywed_h/n_memberForm";
+			}
+			
+			MultipartFile picture = memberBean.getMemberMultipartFile();
+			
+			if (picture.getSize() == 0) {
+				// 表示使用者並未挑選圖片
+//				Member original = memberService.get(id);
+//				member.setImage(original.getImage());
+			} else {
+				String originalFilename = picture.getOriginalFilename();
+				if (originalFilename.length() > 0 && originalFilename.lastIndexOf(".") > -1) {
+					memberBean.setM_FileName(originalFilename);
+					memberBeanUpd.setM_FileName(memberBean.getM_FileName());
+				}
+				
+				// 建立Blob物件
+				if (picture != null && !picture.isEmpty()) {
+					try {
+						byte[] b = picture.getBytes();
+						Blob blob = new SerialBlob(b);
+						memberBean.setM_Propic(blob);
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+					}
+					memberBeanUpd.setM_Propic(memberBean.getM_Propic());
+				}
+			}
+			
+			
+			//更新項目
+			memberBeanUpd.setM_Email(memberBean.getM_Email());
+			memberBeanUpd.setM_Name(memberBean.getM_Name());
+			memberBeanUpd.setM_Phone(memberBean.getM_Phone());
+			memberBeanUpd.setM_Socialnum(memberBean.getM_Socialnum());
+			memberBeanUpd.setM_Add(memberBean.getM_Add());
+			
+			
+			//更新時間
+			Timestamp editTime = new Timestamp(System.currentTimeMillis());
+			memberBeanUpd.setM_EditTime(editTime);
+			
+			memberService.update(memberBeanUpd);
+			return "/newlywed_h/newlywed";
 		}
 }

@@ -5,38 +5,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>合作商頁面</title>
+<title>合作商報價合約列表</title>
 </head>
 <body>
 <jsp:include page="/fragment/topMVC.jsp" />
 <jsp:include page="./fragment/partnerSidebar.jsp" />
-<%-- <jsp:useBean id='partner' class='partnerInfoEdit.dao.Impl.PartnerDaoImpl_Jdbc' scope='session'/> --%>
-<%-- <jsp:getProperty name='partner' property='partnerBean'/> --%>
-<!-- <div class="col-lg-9 mb-4">  -->
       
 <div class="title col-lg-9 mb-4">
 <!-- title ------------------ -->
-        <h2>報價合約&nbsp</h2>
-           <a href="${pageContext.request.contextPath}/partner/partnerInfoEdit.jsp"><img src="${pageContext.request.contextPath}/data/icon/document.png" width="50" style="display: inline;" ></a>
+        <h2>${partnerBean.p_storeName}的報價合約清單&nbsp</h2>
+<!--         新增鏈結 -->
+           <a href="<c:url value='insertQuote'/>"><img src="${pageContext.request.contextPath}/data/icon/document.png" width="50" style="display: inline;" ></a>
+      			                
          <br>
         <hr>
         
 <!-- insert / delete / search ------------- -->
 
- <form action="<c:url value='/displayPartnerInfo.do' />" method="GET" name="partnerForm" 
-      class="needs-validation">
-      <c:set var='nullInfo' value="" />
-      <div class ="d-flex">
-        <nav class="navbar navbar-light bg-light">
-            <button type="button"><img src="./Image/add-pink.png"></button>
-            <button type="button"><img src="./Image/delete-pink.png"></button>      
- 
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-      </div>
+<%--  <form action="<c:url value='/displayPartnerInfo.do' />" method="post" name="partnerForm"  --%>
+<!--       class="needs-validation"> -->
+<%--       <c:set var='nullInfo' value="" /> --%>
+<!--       <div class ="d-flex"> -->
+<!--         <nav class="navbar navbar-light bg-light"> -->
+<!--             <button type="button"><img src="/data/icon/add-pink.png"></button> -->
+<!--             <button type="button"><img src="/data/icon/delete-pink.png"></button>       -->
+<!--             <form class="form-inline"> -->
+<!--               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+<!--               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+<!--             </form> -->
+<!-- 	 	</nav> -->
+<!--       </div> -->
 
+<!-- Main Content -->
     <div class="list">
     <div class="d-flex justify-content-center align-items-center">
         <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
@@ -44,7 +44,7 @@
                 <tr>
                     <th>單號</th>
                     <th><button type="button" class="btn btn-status btn-white dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                        狀態
+                                                狀態
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">未發送</a>
                             <a class="dropdown-item" href="#">報價中</a>
@@ -62,70 +62,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><button type="button"><img class="editor" src="./Image/editor-pen.png"></button>1
-                        </td>
-                    <td>報價中</td>
-                    <td>陳賴婚宴</td>
-                    <td>陳芒果</td>
-                    <td>2020/12/31</td>
-                    <td>$30,000</td>
-                    <td>2020/8/1</td>
-                    <td>2020/8/31</td>
-                    <td></td>
-                </tr>
-                <tr>
+            <c:forEach var="aQuoteBean" varStatus="stat" items="${quoteList}">
+               <tr>
+					<!--單筆修改圖樣與單號 與訂單有連結 -->
                     <td>
-                        <button type="button"><img class="editor" src="./Image/editor-pen.png"></button>
-                        2</td>
+                    <a href="<c:url value='quoteDetail?p_id=${partnerBean.p_id}&qcId=${aQuoteBean.qcId}'/>">${aQuoteBean.qcId}</a>
+<%--                     <a href="<c:url value='quoteDetail?qc=${partnerBean.p_id}'/>">${aQuoteBean.qcId}</a> --%>
+                    </td>
                     <td>報價中</td>
-                    <td>南林婚宴</td>
-                    <td>南林楠</td>
-                    <td>2020/12/1</td>
-                    <td>$20,000</td>
-                    <td>2020/8/7</td>
-                    <td>2020/8/31</td>
+                    <td>${aQuoteBean.qcName}</td>
+                    <td>新人名字</td>
+                    <td>${aQuoteBean.qcExecutionDate}</td>
+                    <td>${aQuoteBean.qcTotalAmount}</td>
+                    <td>${aQuoteBean.qcDate}</td>
+                    <td>${aQuoteBean.qcDateLine}</td>
                     <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button"><img class="editor" src="./Image/editor-pen.png"></button>
-                        3</td>
-                    <td>報價中</td>
-                    <td>陳陳婚宴</td>
-                    <td>陳陳陳</td>
-                    <td>2020/11/1</td>
-                    <td>$25,000</td>
-                    <td>2020/8/10</td>
-                    <td>2020/8/31</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button"><img class="editor" src="./Image/editor-pen.png"></button>
-                        4</td>
-                    <td>報價中</td>
-                    <td>陳陳婚宴</td>
-                    <td>陳陳陳</td>
-                    <td>2020/11/1</td>
-                    <td>$25,000</td>
-                    <td>2020/8/10</td>
-                    <td>2020/8/31</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button"><img class="editor" src="./Image/editor-pen.png"></button>
-                        5</td>
-                    <td>報價中</td>
-                    <td>陳陳婚宴</td>
-                    <td>陳陳陳</td>
-                    <td>2020/11/1</td>
-                    <td>$25,000</td>
-                    <td>2020/8/10</td>
-                    <td>2020/8/31</td>
-                    <td></td>
-                </tr>
+                </tr>   
+            </c:forEach>                   
             </tbody>
         </table>
     </div>
@@ -150,5 +103,10 @@
       </div>  
       </form>
     </div>  
+    
+    </div>
+    </div>
+    <!--共同頁尾 -->
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

@@ -27,7 +27,7 @@ public class PortfoliosBean implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer pfmId; //作品集主檔編號
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="p_id")
 	private PartnerBean partnerBean ; 
 	
@@ -42,7 +42,7 @@ public class PortfoliosBean implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone="Asia/Taipei")
 	private Timestamp pfUpdateTime;
 	
-	@OneToMany(mappedBy = "portfoliosBean" )
+	@OneToMany(mappedBy = "portfoliosBean",orphanRemoval = true , cascade = CascadeType.ALL )
 	@JsonIgnore
 	List<PortfoliosDetailsBean> detailList ;
 	

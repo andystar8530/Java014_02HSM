@@ -23,7 +23,7 @@ public class PortfoliosDetailsBean implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer pidId; //照片序號(主鍵)
+	private Integer pfdId; //照片序號(主鍵)
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="pfmId")
@@ -42,9 +42,9 @@ public class PortfoliosDetailsBean implements Serializable{
 	}
 
 
-	public PortfoliosDetailsBean(Integer pidId, Integer pfmId, String pfdName, Blob pfdPic) {
+	public PortfoliosDetailsBean(Integer pfdId, Integer pfmId, String pfdName, Blob pfdPic) {
 		super();
-		this.pidId = pidId;
+		this.pfdId = pfdId;
 		this.pfmId = pfmId;
 		this.pfdName = pfdName;
 		this.pfdPic = pfdPic;
@@ -63,14 +63,14 @@ public class PortfoliosDetailsBean implements Serializable{
 	}
 
 
-	public Integer getPidId() {
-		return pidId;
+	public Integer getPfdId() {
+		return pfdId;
 	}
 
 
 	
-	public void setPidId(Integer pidId) {
-		this.pidId = pidId;
+	public void setPfdId(Integer pfdId) {
+		this.pfdId = pfdId;
 	}
 
 
