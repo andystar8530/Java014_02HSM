@@ -53,6 +53,7 @@
 						<label for="exampleFormControlSelect1 " style="font-size: 55px;">發文類別</label>
 					</div>
 					<div class="form-control" id="exampleFormControlSelect1">
+					<form:input style="display:none" path="fId"/>
 						<form:select path="fCategory">
 							<form:option value="-1" label="請挑選" />
 							<form:options items="${categoryList}" />

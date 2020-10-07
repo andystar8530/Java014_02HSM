@@ -49,7 +49,7 @@ public class ForumDaoImpl implements ForumDao {
 		Session session = factory.getCurrentSession();
 		CategoriesBean cb = getCategoryById(newPost.getfCategory());
 		newPost.setCategoriesBean(cb);
-		session.save(newPost);
+		session.saveOrUpdate(newPost);
 	}
 
 	@Override
@@ -130,6 +130,12 @@ public class ForumDaoImpl implements ForumDao {
 		String hql = "FROM ForumBean where categoriesBean.pcNo = :p";
 		list = (List<ForumBean>) session.createQuery(hql).setParameter("p", type).getResultList();
 		return list;
+	}
+
+	@Override
+	public void UpdateViews(ForumBean newPost) {
+		Session session = factory.getCurrentSession();
+		session.saveOrUpdate(newPost);
 	}
 
 }

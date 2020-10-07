@@ -36,8 +36,10 @@ public class ForumBean implements Serializable{
 		private String fText;
 		@Column(name = "F_TIME")
 		private Date fTime;
-		@Column(name = "F_COM")
+		@Transient
 		private Integer fCom;
+		@Column(name = "PostView")
+		private Integer PostView;
 		@Column(name = "F_CATEGORY")
 		@Transient
 		private Integer fCategory;
@@ -167,6 +169,14 @@ public class ForumBean implements Serializable{
 
 		public void setLikeOrHate(List<LikeOrHateBean> likeOrHate) {
 			this.likeOrHate = likeOrHate;
+		}
+
+		public Integer getPostView() {
+			return PostView;
+		}
+
+		public void setPostView(Integer postView) {
+			PostView = postView;
 		}
 
 		@Override
