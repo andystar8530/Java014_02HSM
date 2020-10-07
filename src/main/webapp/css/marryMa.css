@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    list-style: none;
     font-family: Microsoft JhengHei,'Courier New', Courier, monospace;
 }
 body{
@@ -21,22 +20,7 @@ body{
 div h2{
     display: inline;
 }
-.bg-pink{
-    background-color: #FDEDEF;
-}
 
-
-.bg-pink .nav-item:active .nav-link,
-.bg-pink .nav-item:hover .nav-link {
-    color: #FF6687;
-}  
-.nav-link:hover,
-.nav-link:focus {
-    color: #FF6687!important;
-}
-.bg-pink .dropdown-item:hover{
-    background-color: #FDEDEF;
-}
 .header div{
     width: 300px;
     color: brown;
@@ -186,10 +170,6 @@ div h2{
     vertical-align: bottom;
 }
 
-/* #littleBox{
-    border: 1px solid black; 
-    width: 100%;
-} */
 .product .text{
     display: flex;
     flex-direction: column;
@@ -298,43 +278,7 @@ div h2{
 #pic{
     position: relative;
 }
-.btn-block{
-    border:1px solid #f07469;
-    background-color:#f07469;
-}
-.btn-block:hover{
-    border:1px solid #e48888;
-    background-color:#e48888
-}
-.btn-primary{
-    border:1px solid #f07469;
-    background-color:#f07469;
-}
-.btn-primary:hover{
-    border:1px solid #e48888;
-    background-color:#e48888
-}
-.email-box{
-    height: 40px;
-    display: flex;
-    justify-content: center;
-}
-.email-box i{
-    background:#2f3542;
-    width: 40px;
-    line-height:40px;
-}
-.tbox,.btn{
-    border:none;
-    outline:none;
-}
-.tbox{
-    width: 0px;
-}
-.email-box:hover > .tbox,.tbox:focus{
-    width: 260px;
-    padding: 0 10px;
-}
+
 .sidebar-item .list-group-open1{
 	width:20px;
 }

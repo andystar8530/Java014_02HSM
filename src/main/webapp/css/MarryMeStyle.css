@@ -8,3 +8,18 @@
 .bg-myfoot{
     background-color: #EDEFFD;
 }
+.bg-pink{
+    background-color: #FDEDEF;
+}
+
+.bg-pink .nav-item:active .nav-link,
+.bg-pink .nav-item:hover .nav-link {
+    color: #FF6687;
+}  
+.nav-link:hover,
+.nav-link:focus {
+    color: #FF6687!important;
+}
+.bg-pink .dropdown-item:hover{
+    background-color: #FDEDEF;
+}
