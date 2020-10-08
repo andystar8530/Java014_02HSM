@@ -28,7 +28,8 @@ body{
 	
 }
 .form-group{
-	color:#6d6875;
+	color:#293241;
+	font-weight: bold;
 }
 
 .bg-pink{
