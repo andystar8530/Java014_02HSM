@@ -33,4 +33,6 @@ public interface ForumDao {
 	
 	LikeOrHateBean getSingleLoh(int postId, int memId);
 	
+	void UpdateViews(ForumBean newPost);
+	
 }

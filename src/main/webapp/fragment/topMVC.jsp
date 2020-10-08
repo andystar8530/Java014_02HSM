@@ -35,7 +35,7 @@
 	href="${pageContext.request.contextPath}/css/modern-business.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/marryMa.css">
+	href="${pageContext.request.contextPath}/css/MarryMeStyle.css">
 <!-- 	wow.js -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/animate.css">
@@ -55,17 +55,19 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+			
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="#">婚禮佈置</a></li>
+						href="<c:url value ='/getALLByService/婚禮佈置' />">婚禮佈置</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="#">婚禮攝影</a></li>
+						href="<c:url value ='/getALLByService/婚禮攝影' />">婚禮攝影</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="<c:url value ='/_06_Program/showPrograms' />">新娘秘書</a></li>
+						href="<c:url value ='/getALLByService/新娘秘書' />">新娘秘書</a></li>
 					<li class="nav-item"><a class="nav-link  wow fadeInLeft"
-						href="#">婚禮主持</a></li>
+						href="<c:url value ='/getALLByService/婚禮主持' />">婚禮主持</a></li>
 					<li class="nav-item dropdown">
+				
     			    		<a class="nav-link dropdown-toggle wow fadeInLeft" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
   			        			小物商城
   				      		</a>
@@ -77,15 +79,16 @@
    				 		      <a class="dropdown-item" href="<c:url value='/_05_orderProcess/orderList' />">訂單</a>
    				     		</div>
     			  	</li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle wow fadeInLeft" href="#"
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle wow fadeInLeft" href="#"
 						id="navbarDropdownBlog" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 社群分享 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
 							<a class="dropdown-item" href="<c:url value='/_04_forum/posts'/>">分享討論區</a>  <a
 								class="dropdown-item" href="#">商家評價</a>
-						</div></li>
+						</div>
+					</li>
 
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle wow fadeInLeft" href="#"
@@ -133,7 +136,7 @@
 						</c:if>
 						<c:if test="${LoginOK.m_Code == 2}">
 							<li class="nav-item"><a class="nav-link wow fadeInLeft"
-								href="<c:url value='/support/bgMain' />">管理頁面</a></li>
+								href="<c:url value='/support/bgMall' />">管理頁面</a></li>
 						</c:if>
 						<li class="nav-item"><a class="nav-link wow fadeInLeft"
 							href="<c:url value='/_02_login/logout' />"> 登出 </a></li>

@@ -19,8 +19,11 @@
 	
 }
 
+.partnerIcon{
+	
+	border-radius: 50%;
 
-
+}
 
 </style>
 </head>
@@ -33,14 +36,18 @@
 			</div>
 		</div>
 	</section>
-			<div >
+			<div>
+			<div class= 'mx-auto text-center'>
+				<h3><img height='80px'
+	src="<c:url value='/getPartnerCoverImage/${portfolio.partnerBean.p_id}'/> " width="80px" class='partnerIcon'>${portfolio.partnerBean.p_storeName}</h3>
 				<h3>${portfolio.pfmName}</h3>
 				<p>作品資訊: ${portfolio.pfmInfo}</p>
 				<p>作品集分類: ${portfolio.pfService}</p>
-				<div>
-				<!-- <img id='img'> -->
 				
-	<div class="container-fluid">
+				<!-- <img id='img'> -->
+			</div>
+				
+	<div class="container col-10">
 		<div class="row row-cols-2 row-cols-md-3 row-cols-xl-4">
 				<c:forEach var='pfBean' items="${pfdBeanList}">
 					<div class="col mb-4">
@@ -58,15 +65,16 @@
 				</c:forEach>
 			</div>
 		</div>	
-		
+			<div class='text-center'>
 				<p>
-					<a href="<spring:url value='/portfolios' />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span>返回
+					<a href="<spring:url value='/' />" class="btn btn-default">
+						<span class="glyphicon-hand-left glyphicon"></span>返回上頁
 					</a> 
 					<a href='#' class='btn btn-info btn-large'> 
-					    <span class='glyphicon-shopping-cart glyphicon'></span>加入購物車
+					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
 					</a>
 				</p>
+			</div>
 			</div>
 		</div>
 	</div>

@@ -46,7 +46,12 @@
 		</a> <a class="list-group-item" href="<c:url value='/support/bgMall'/>">
 			<img src="icon/3253474-wedding/png/034-marriage certification.png">商城商品
 
+<<<<<<< HEAD
 		</a> <a class="list-group-item" href="<c:url value='/support/bgArticle'/>">
+=======
+		</a> <a class="list-group-item"
+			href="<c:url value='/support/bgArticle/index2'/>">
+>>>>>>> 0d689920ee8b586401a724d908174bd95fefa91e
 			<img src="icon/3253474-wedding/png/001-clipboard.png">公版文管理
 		</a>
 	</div>

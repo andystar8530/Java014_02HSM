@@ -1,5 +1,6 @@
 package _04_forum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,23 @@ public class ForumServiceImpl implements ForumService {
 	}
 	
 	@Override
-	public List<ForumBean> getPostPage(int pageNo) {
-		return dao.getPostPage(getAllPosts(), pageNo);
+	public List<ForumBean> getPostPage(int pageNo, Integer type) {
+		if(type==null) {			
+			return dao.getPostPage(getAllPosts(), pageNo);
+		}else {			
+			return dao.getPostPage(getPostByCategory(type), pageNo);
+		}
 	}
 	
 	@Override
-	public int lastPage() {
-		int nums = getAllPosts().size();
+	public int lastPage(Integer type) {
+		List<ForumBean> li = new ArrayList<>();
+		if(type==null) {			
+			li = dao.getAllPosts();
+		}else {			
+			li = dao.getPostByCategory(type);
+		}
+		int nums = li.size();
 		if(nums%5==0) {
 			return nums/5;
 		}else {
@@ -60,6 +71,7 @@ public class ForumServiceImpl implements ForumService {
 	public ForumBean getPostById(int postId) {
 		ForumBean fb = dao.getPostById(postId);
 		List<LikeOrHateBean> loh = dao.getLoh(postId);
+		fb.setfCategory(fb.getCategoriesBean().getPcNo());
 		fb.setfLike(getLike(loh));
 		fb.setfHate(getHate(loh));
 		return fb;
@@ -111,4 +123,13 @@ public class ForumServiceImpl implements ForumService {
 	public List<ForumBean> getPostByCategory(Integer type) {
 		return dao.getPostByCategory(type);
 	}
+
+	@Override
+	public void setViews(int postId) {
+		ForumBean fb = getPostById(postId);
+		fb.setPostView(fb.getPostView()+1);
+		dao.UpdateViews(fb);
+	}
+
+
 }

@@ -12,9 +12,9 @@
 	<div align='center'>
 		<h3>公版文資料</h3>
 		
-		<a href='Plateanns'>顯示公版文資料</a><br> <a href='insertPlateann'>新增公版文資料</a><br>
+		<a href="<c:url value='/support/Plateannouncements' />">顯示公版文資料</a><br> <a href="<c:url value='/support/bgArticle' />">新增公版文資料</a><br>
 		<hr>
-		<a href="<c:url value='/' />">首頁</a><br>
+		<a href="<c:url value='/support/bgMall' />">首頁</a><br>
 	</div>
 </body>
 </html>
