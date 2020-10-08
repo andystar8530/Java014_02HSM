@@ -29,19 +29,22 @@ public class QuoteContractBean {
 	Date qcDateLine;//報價期限
 	String qcStatus;//報價狀態
 	String qcContent;//合約內容
-	String n_Name;//新人ID
+	String n_Name;//新人名字
+	String m_Id; //新人帳號
 	Blob n_Signature;//新人簽名
+	
 	Integer p_Id;//合作商ID
+	String p_storeName; //新人帳號
 	Blob p_Signature;//合作商簽名
 	Date qcExecutionDate;//服務日期
 	Integer qcTotalAmount;//專案總價
 	Double qcDepositRate;//訂金比例
 	Integer qcDeposit;//訂金金額 = 專案總價 * (訂金比例/100)
-	String qcNotes;//
+	String qcNotes;//備註
 	
-	String serviceItem;
-	String serviceName;
-	Integer servicePrice;
+	String serviceItem;//服務項目 0,1,2,3
+	String serviceName;//服務名目
+	Integer servicePrice;//專案金額
 	
 	
 	//1中有個多
@@ -51,12 +54,11 @@ public class QuoteContractBean {
 	public QuoteContractBean() {
 		super();
 	}
-
 	
 	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, String qcStatus,
-			String qcContent, String n_Name, Blob n_Signature, Integer p_Id, Blob p_Signature, Date qcExecutionDate,
-			Integer qcTotalAmount, Double qcDepositRate, Integer qcDeposit, String qcNotes, String serviceItem,
-			String serviceName, Integer servicePrice) {
+			String qcContent, String n_Name, String m_Id, Blob n_Signature, Integer p_Id, String p_storeName,
+			Blob p_Signature, Date qcExecutionDate, Integer qcTotalAmount, Double qcDepositRate, Integer qcDeposit,
+			String qcNotes, String serviceItem, String serviceName, Integer servicePrice) {
 		this.qcId = qcId;
 		this.qcName = qcName;
 		this.qcDate = qcDate;
@@ -64,8 +66,10 @@ public class QuoteContractBean {
 		this.qcStatus = qcStatus;
 		this.qcContent = qcContent;
 		this.n_Name = n_Name;
+		this.m_Id = m_Id;
 		this.n_Signature = n_Signature;
 		this.p_Id = p_Id;
+		this.p_storeName = p_storeName;
 		this.p_Signature = p_Signature;
 		this.qcExecutionDate = qcExecutionDate;
 		this.qcTotalAmount = qcTotalAmount;
@@ -75,6 +79,24 @@ public class QuoteContractBean {
 		this.serviceItem = serviceItem;
 		this.serviceName = serviceName;
 		this.servicePrice = servicePrice;
+	}
+
+
+	public String getP_storeName() {
+		return p_storeName;
+	}
+
+	public void setP_storeName(String p_storeName) {
+		this.p_storeName = p_storeName;
+	}
+
+	public String getM_Id() {
+		return m_Id;
+	}
+
+
+	public void setM_Id(String m_Id) {
+		this.m_Id = m_Id;
 	}
 
 

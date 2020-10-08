@@ -5,15 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>合作商報價合約列表</title>
+<title>我的報價</title>
 </head>
 <body>
-<jsp:include page="/fragment/topMVC.jsp" />
-<jsp:include page="./fragment/partnerSidebar.jsp" />
+	<jsp:include page="/fragment/topMVC.jsp" /> 
+	<jsp:include page="./fragment/newlywedSidebar.jsp" />
       
 <div class="title col-lg-9 mb-4">
 <!-- title ------------------ -->
-        <h2>${partnerBean.p_storeName}的報價合約清單&nbsp</h2>
+        <h2>我的報價清單&nbsp</h2>
 <!--         新增鏈結 -->
            <a href="<c:url value='insertQuote'/>"><img src="${pageContext.request.contextPath}/data/icon/document.png" width="50" style="display: inline;" ></a>
       			                
@@ -50,9 +50,9 @@
                             <a class="dropdown-item" href="#">報價中</a>
                             <a class="dropdown-item" href="#">已簽約</a>
                           </div>
-                      </button></th>
-                    <th>名稱</th>
-                    <th>新人姓名</th>
+                      </button>
+                     </th>
+                    <th>合作商</th>
                     <th>服務日期</th>                
                     <th>報價金額</th>
                     <th>報價日期</th>
@@ -66,7 +66,7 @@
                <tr>
 					<!--單筆修改圖樣與單號 與訂單有連結 -->
                     <td>
-                    <a href="<c:url value='quoteDetail?p_id=${partnerBean.p_id}&qcId=${aQuoteBean.qcId}'/>">${aQuoteBean.qcId}</a>
+                    <a href="<c:url value='newlyQuoteDetail?m_Id=${LoginOK.m_Id}&qcId=${aQuoteBean.qcId}'/>">${aQuoteBean.qcId}</a>
 <%--                     <a href="<c:url value='quoteDetail?qc=${partnerBean.p_id}'/>">${aQuoteBean.qcId}</a> --%>
                     </td>
                     <td >
@@ -91,13 +91,8 @@
     			</c:otherwise>
 			</c:choose>
 
-            </td>
-                    
-                    
-                    
-                    
-                    <td>${aQuoteBean.qcName}</td>
-                    <td>${aQuoteBean.n_Name}</td>
+            </td>                    
+                    <td>${aQuoteBean.p_storeName}</td>
                     <td>${aQuoteBean.qcExecutionDate}</td>
                     <td>${aQuoteBean.servicePrice}</td>
                     <td>${aQuoteBean.qcDate}</td>
@@ -109,6 +104,7 @@
         </table>
     </div>
         <!-- page ------------------------ -->
+        <!-- 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
               <li class="page-item">
@@ -126,12 +122,16 @@
               </li>
             </ul>
           </nav>
+           -->
+           
+           
+           
       </div>  
       </form>
     </div>  
-    
-  </div>
+    </div>
 </div>
-<jsp:include page="/fragment/footerMVC.jsp" />  
+ <jsp:include page="/fragment/footerMVC.jsp" />
+    
 </body>
 </html>

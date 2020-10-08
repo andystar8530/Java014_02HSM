@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import newlywed.dao.NewlywedDao;
 import newlywed.model.NewlywedBean;
+import partner_h.quotecontract.main.model.QuoteContractBean;
 @Repository
 public class NewlywedDaoImpl implements NewlywedDao {
 
@@ -60,4 +61,30 @@ public class NewlywedDaoImpl implements NewlywedDao {
 	}
 		return nb;
 }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuoteContractBean> getNewlyQuotes(String m_Id) {
+		List<QuoteContractBean> list =null;
+		String hql ="FROM QuoteContractBean qcb WHERE qcb.m_Id = :m_Id" ;
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql)
+					  .setParameter("m_Id", m_Id)
+//					  .setParameter("status", 0)
+					  .getResultList();
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, String status) {
+		List<QuoteContractBean> list =null;
+		String hql ="FROM QuoteContractBean qcb WHERE qcb.m_Id = :m_Id";
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql)
+					  .setParameter("m_Id", m_Id)
+					  .setParameter("status", status)
+					  .getResultList();
+				return list;
+	}
 }

@@ -97,6 +97,19 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 		session.update(bean);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuoteContractBean> getStatusQuotes(int p_Id,String status) {
+		List<QuoteContractBean> list = null;
+		String hql = "FROM QuoteContractBean q WHERE q.p_Id = :pid and q.qcStatus = :status";
+		Session session = factory.getCurrentSession();
+		list = session.createQuery(hql)
+					  .setParameter("pid", p_Id)
+					  .setParameter("status", status)
+				      .getResultList();
+		return list;
+	}
+
 
 
 }

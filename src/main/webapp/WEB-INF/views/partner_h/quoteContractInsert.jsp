@@ -93,6 +93,19 @@
             </div>
  
  
+           	 <div class="form-group col-md-6">
+              <label for="m_Id">新人帳號(Mail)</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="m_Id"
+                  path="m_Id"
+                  class="showQuote"
+                />
+                <form:errors path="m_Id" class="errors" />
+              </div>
+            </div>
+ 
 <!-- 狀態(未完)                  	 -->
           	<td>
           	 <div class="form-group col-md-5">
@@ -305,7 +318,9 @@ function serviceItemChange(){
 	
 
 </script>
-
+</div>
+</div>
+<jsp:include page="/fragment/footerMVC.jsp" />
     
 </body>
 </html>

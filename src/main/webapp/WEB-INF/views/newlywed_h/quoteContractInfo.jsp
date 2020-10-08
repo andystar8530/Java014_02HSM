@@ -29,11 +29,11 @@
   
   <body>
     <!-- 引用上與左側 -->
-<jsp:include page="/fragment/topMVC.jsp" />
-<jsp:include page="./fragment/partnerSidebar.jsp" />
+	<jsp:include page="/fragment/topMVC.jsp" /> 
+	<jsp:include page="./fragment/newlywedSidebar.jsp" />
 <div class="col-lg-9 mb-4"> 
         <h2>報價合約</h2>
-           <a href="<c:url value='/editPartner?p_id=${partnerBean.p_id}'/>"><img src="${pageContext.request.contextPath}/data/icon/document.png" width="50" style="display: inline;" ></a>
+          
         <br>
         <hr>
       
@@ -201,49 +201,20 @@
 </tr>
 
 
-<!-- 合約內容(未完)	             -->
+
 	<tr>
-		<td>
-           <div class="form-group">
-              <label for="qcContent">合約內容</label>
-              <div class="col">
-                <form:textarea                  
-                  id="qcContent"
-                  path="qcContent"
-                  class="showQuote col-mb-12 w-100" 
-                />
-                <form:errors path="qcContent" class="qcContent" />
-              </div>
-            </div>
-</td>
-</tr>
-
-
-
-<!-- 新人姓名(未完).專案總價.訂金比例.訂金金額  -->
-	<tr>
-            <!-- 新人id如何查詢到新人名字 -->
+            <!-- 合作商 -->
 		<td>
             <div class="form-group">
-              <label for="n_Name">新人姓名</label>
+              <label for="p_storeName">合作商</label>
               <div class="col">
                 <form:input
                   type="text"
-                  id="n_Name"
-                  path="n_Name"
+                  id="p_storeName"
+                  path="p_storeName"
                   class="showQuote"
                 />
-                <form:errors path="n_Name" class="errors" />
-              </div>
-              <label for="m_Id">新人帳號(mail)</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="m_Id"
-                  path="m_Id"
-                  class="showQuote"
-                />
-                <form:errors path="m_Id" class="errors" />
+                <form:errors path="p_storeName" class="errors" />
               </div>
             </div>
 </td>
@@ -303,6 +274,23 @@
 
 
 
+<!-- 合約內容(未完)	             -->
+	<tr>
+		<td>
+           <div class="form-group">
+              <label for="qcContent">合約內容</label>
+              <div class="col">
+                <form:textarea                  
+                  id="qcContent"
+                  path="qcContent"
+                  class="showQuote col-mb-12 w-100" 
+                />
+                <form:errors path="qcContent" class="qcContent" />
+              </div>
+            </div>
+</td>
+</tr>
+
 
 <!-- 送出 -->
 	<tr>
@@ -314,11 +302,28 @@
                   id="submit"
                   path="submit"
                   class="showQuote btn btn-outline-danger"
-                  value="儲存"
-                  onclick="UpdateQuote(${partnerBean.p_id},${quoteBean.qcId})"
+                  value="簽名"
+                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
                 />
               </div>
             </div>
+            
+            <div class="form-group">
+              <div class="col col-mb-1">
+                <input
+                  type="submit"
+                  id="submit"
+                  path="submit"
+                  class="showQuote btn btn-outline-danger"
+                  value="意見回覆"
+                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
+                />
+              </div>
+            </div>
+            
+            
+            
+            
 		</td>
 		</tr>	
 	        </form:form> 
@@ -331,7 +336,7 @@
 
 <!-- UpdateQuote修改儲存 -->
 <script type="text/javascript">
-function UpdateQuote(p_id,qcId){
+function UpdateQuote(m_Id,qcId){
  var hiddenField = document.getElementById("update");
  document.forms[0].method="POST";
  document.forms[0].submit();
@@ -381,9 +386,9 @@ changeService(1);
 	
 
 </script>
-
 </div>
 </div>
 <jsp:include page="/fragment/footerMVC.jsp" />
+
 </body>
 </html>

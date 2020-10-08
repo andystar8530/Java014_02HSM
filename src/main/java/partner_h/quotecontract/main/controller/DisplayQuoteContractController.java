@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +61,24 @@ public class DisplayQuoteContractController {
 		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
+	
+	//合約狀態列表
+	@GetMapping("/quoteContractStatusList")
+	protected String getStatusQuotes(
+			Model model,
+			@RequestParam("status") String status) {
+		
+		//抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+
+		//透過合作商的ID,找到清單-報價單
+		
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	
 	
 	//單筆合約明細
 	@GetMapping("quoteDetail")
@@ -121,7 +140,8 @@ public class DisplayQuoteContractController {
 	public String getQuoteForm(Model model) {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 		QuoteContractBean quoteBean = new QuoteContractBean();
-		quoteBean.setP_Id(partnerBean.getP_id());	
+		quoteBean.setP_Id(partnerBean.getP_id());
+		quoteBean.setP_storeName(partnerBean.getP_storeName());
 		model.addAttribute("quoteBean",quoteBean);
 		return "partner_h/quoteContractInsert";		 
 	}
@@ -158,8 +178,5 @@ public class DisplayQuoteContractController {
 //			bean.setQcDate();		
 		}
 		return bean;
-	}
-
-
-	
+	}	
 }
