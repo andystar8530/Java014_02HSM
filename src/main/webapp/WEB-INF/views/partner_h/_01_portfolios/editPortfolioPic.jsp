@@ -84,6 +84,7 @@ h2,h3{
        
     })
     $('#removeImage').click(function(){
+			$('#pfdPic').val("");
     	  $("#deleteBtn").toggle();
           $('#cancelBtn').toggle();
         $('.uploadImage').css('pointer-events','none');
