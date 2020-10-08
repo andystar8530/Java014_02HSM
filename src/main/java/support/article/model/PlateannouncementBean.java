@@ -16,11 +16,29 @@ import javax.persistence.Transient;
 @Entity		   
 @Table(name = "Plateannouncement")
 public class PlateannouncementBean implements Serializable{
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PlateannouncementBean [paId=");
+		builder.append(paId);
+		builder.append(", paCode=");
+		builder.append(paCode);
+		builder.append(", paName=");
+		builder.append(paName);
+		builder.append(", paContent=");
+		builder.append(paContent);
+		builder.append(", paDate=");
+		builder.append(paDate);
+		builder.append(", paEnDate=");
+		builder.append(paEnDate);
+		builder.append("]");
+		return builder.toString();
+	}
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer paId;
-	private Integer paCode;
+	private String paCode;
 	private String paName;
 	private String paContent;
 	private Timestamp paDate;
@@ -32,7 +50,7 @@ public class PlateannouncementBean implements Serializable{
 	public PlateannouncementBean() {
 		super();
 	}
-	public PlateannouncementBean(Integer paId, Integer paCode, String paName, String paContent, Timestamp paDate,
+	public PlateannouncementBean(Integer paId, String paCode, String paName, String paContent, Timestamp paDate,
 			Timestamp paEnDate) {
 		super();
 		this.paId = paId;
@@ -48,10 +66,10 @@ public class PlateannouncementBean implements Serializable{
 	public void setPaId(Integer paId) {
 		this.paId = paId;
 	}
-	public Integer getPaCode() {
+	public String getPaCode() {
 		return paCode;
 	}
-	public void setPaCode(Integer paCode) {
+	public void setPaCode(String paCode) {
 		this.paCode = paCode;
 	}
 	public String getPaName() {
