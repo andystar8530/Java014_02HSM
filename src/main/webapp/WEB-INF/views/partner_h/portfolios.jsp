@@ -105,7 +105,7 @@ height: 200px;
 								<p>
 									<b style='font-size: 16px;'>${portfolios.pfmName}</b>
 								</p>
-								<p>${portfolios.partnerBean.p_storeName}</p>
+								<p>商家名稱:${portfolios.partnerBean.p_storeName}</p>
 						
 								<p>作品資訊: ${portfolios.pfmInfo}</p>
 								<p>

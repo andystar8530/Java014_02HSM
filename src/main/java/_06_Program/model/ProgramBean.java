@@ -1,7 +1,7 @@
 package _06_Program.model;
 
 import java.sql.Blob;
-
+import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,8 +35,8 @@ public class ProgramBean {
 	String prm_Content;		//方案內容
 	String prm_Detail;		//方案說明
 	String prm_Status;		//方案狀態
-	java.sql.Timestamp prm_Createdate;	//建檔日期
-	java.sql.Timestamp prm_Editdate;		//修改日期
+	Timestamp prm_Createdate;	//建檔日期
+	Timestamp prm_Editdate;		//修改日期
 	@JsonIgnore
 	Blob prm_CoverImage; //方案封面圖
 	String prm_ImageFilename; //圖片檔案名稱

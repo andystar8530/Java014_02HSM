@@ -40,7 +40,6 @@ import support.member.service.BgMemberInfoService;
 @SessionAttributes({ "LoginOK", "MemberpageNo", "MemberBean" })
 public class BgMemberServlet {
 
-//	String inputDataForm = "support/bgMall/bgMallAdd";
 
 	@Autowired
 	BgMemberInfoService bgMemberInfoService;
@@ -168,7 +167,6 @@ public class BgMemberServlet {
 //		if(a==0) {
 //		}
 		model.addAttribute("MemberBean", memberBean);
-		System.out.println("aaaaaa");
 		return "support/bgMember/bgMemberUpdate";
 
 	}
@@ -198,9 +196,7 @@ public class BgMemberServlet {
 			memberBeanOld.setM_Propic(memberBean.getM_Propic());
 			memberBeanOld.setM_FileName(memberBean.getM_FileName());
 			memberBeanOld.setM_Add(memberBean.getM_Add());
-//			memberBeanOld.setM_FileName(memberBean.getM_FileName());
 			memberBeanOld.setM_Availabletime(memberBean.getM_Availabletime());
-			System.out.println("會員裝箱結束");
 			bgMemberInfoService.updateSupPageMember(memberBeanOld);
 //			return "support/bgMall/bgMall";
 		return "redirect:/support/bgMall";

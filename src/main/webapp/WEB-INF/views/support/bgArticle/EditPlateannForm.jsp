@@ -44,91 +44,65 @@ span.error {
 </head>
 <body>
 	<div align="center">
-		<form:form method='POST' modelAttribute="PlateannBean">
+		<form:form method='POST' modelAttribute="plateannouncementBean">
 			<input type="hidden" name="noname" id='putOrDelete' value="">
-			<c:if test='${plateannBean.PAId != null}'>
-				<form:hidden path="PAId" />
+			<c:if test='${plateannouncementBean.paId != null}'>
+				<form:hidden path="paId" />
 				<br>&nbsp;
 			</c:if>
 			<fieldset class="fieldset-auto-width">
 				<legend>公版文資料</legend>
 				<table> 
 					<tr>
+						<td align='right'>分類<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
+						</td>
+						<td><form:input path="paCode" /><br>&nbsp; <form:errors
+								path="paCode" cssClass="error" /></td>
+					</tr>
+					<tr>
 						<td align='right'>名稱<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
 						</td>
-						<td><form:input path="PAName" /><br>&nbsp; <form:errors
-								path="PAName" cssClass="error" /></td>
+						<td><form:input path="paName" /><br>&nbsp; <form:errors
+								path="paName" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td align='right'>發布日期<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
 						</td>
-						<td><form:input path="PADate" /><br>&nbsp; <form:errors
-								path="PADate" cssClass="error" /></td>
+						<td><form:input path="paDate" /><br>&nbsp; <form:errors
+								path="paDate" cssClass="error" /></td>
 					</tr>
 					<tr>
 						<td align='right'>修改日期<font size='-3' color='blue'>(yyyy-MM-dd
 								HH:mm:ss SSS)</font>：<br>&nbsp;
 						</td>
-						<td><form:input path="PAEndate" /><br>&nbsp; <form:errors
-								path="PAEndate" cssClass="error" /></td>
+						<td><form:input path="paEnDate" /><br>&nbsp; <form:errors
+								path="paEnDate" cssClass="error" /></td>
 					</tr>
-
-					<textarea>
- 					
-							<c:forEach var="aBean" items="${plateannService.allMembers}">
-																		 
-								${aBean.PAContent}
-					
-							</c:forEach>
-						
-					</textarea>
-
-					<!-- 					<tr> -->
-					<!-- 						<td align='right'>姓名：<br>&nbsp;</td> -->
-					<%-- 						<td><form:input path="name" /><br>&nbsp; --%>
-					<%-- 							<form:errors path="name" cssClass="error" /> --%>
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-					<!-- 					<tr> -->
-					<!-- 						<td align='right'>密碼：<br>&nbsp; -->
-					<!-- 						</td> -->
-					<%-- 						<td><form:input path="password" /><br>&nbsp; --%>
-					<%-- 						    <form:errors path="password" cssClass="error" /> --%>
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-					<!-- 					<tr> -->
-					<!-- 						<td align='right'>確認密碼：<br>&nbsp; -->
-					<!-- 						</td> -->
-					<%-- 						<td><form:input path="password1" /><br>&nbsp; --%>
-					<%-- 						    <form:errors path="password1" cssClass="error" /> --%>
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-					<!-- 					<tr> -->
-					<!-- 						<td align='right'>Email：<br>&nbsp; -->
-					<!-- 						</td> -->
-					<%-- 						<td><form:input path="email" /><br>&nbsp; --%>
-					<%-- 						    <form:errors path="email" cssClass="error" /> --%>
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
-					<!-- 					<tr> -->
-					<!-- 						<td align='right'>總付款金額：<br>&nbsp;</td> -->
-					<%-- 						<td><form:input path="totalPayment" /><br>&nbsp; --%>
-					<%-- 							<form:errors path="totalPayment" cssClass="error" /> --%>
-					<!-- 						</td> -->
-					<!-- 					</tr> -->
+					<tr>
+						<td align='right'>內容：<br>&nbsp;
+						</td>
+						<td><form:textarea path="paContent"
+								style="width: 500px; height:500px;" /> <form:errors
+								path="paContent" cssClass="error" /></td>
+					</tr>
+<!-- 					<textarea> -->
+<%-- 							<c:forEach var="aBean" items="${plateannService.allMembers}">								  --%>
+<%-- 								${aBean.PAContent} --%>
+<%-- 							</c:forEach> --%>
+<!-- 					</textarea> -->
 					<tr>
 						<td colspan='2' align='center'><input type='submit'
 							value='修改' name='updateBtn'
-							onclick="return confirmUpdate('${plateannBean.PAId}');">&nbsp;
+							onclick="return confirmUpdate('${plateannouncementBean.paId}');">&nbsp;
 							<input type='submit' value='刪除' name='deleteBtn'
-							onclick="return confirmDelete('${plateannBean.PAId}');">
+							onclick="return confirmDelete('${plateannouncementBean.paId}');">
 						</td>
 					</tr>
 
 				</table>
 			</fieldset>
 		</form:form>
-		<a href="<c:url value='/_01_Plateann/index' />">回首頁</a>
+		<a href="<c:url value='/support/bgArticle/index2' />">回首頁</a>
 	</div>
 </body>
 </html>

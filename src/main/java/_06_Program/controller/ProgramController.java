@@ -222,4 +222,16 @@ public class ProgramController {
 			return "redirect:/_06_Program/programManagement";
 		}
 		
+		//方案詳細內容
+				@GetMapping(value="/ProgramDetail/{prm_Id}")
+				public String  ProgramDetail(Model model,
+						@PathVariable Integer prm_Id) {
+					PartnerBean pb = (PartnerBean) model.getAttribute("partnerBean");
+					ProgramBean programBean = service.getProgramByKey(prm_Id);
+					model.addAttribute("programBean", programBean);
+					model.addAttribute("partnerBean", pb);
+					
+					return "/_06_Program/programDetails";
+				}
+		
 }
