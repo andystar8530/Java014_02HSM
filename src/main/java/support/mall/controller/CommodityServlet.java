@@ -528,15 +528,6 @@ public class CommodityServlet {
 		return "redirect:/support/bgMall";
 	}
 
-	@GetMapping("/bgMain")
-	public String getBgMain(Model model) {
-		return "support/bgMain";
-	}
-
-	@PostMapping("/bgMain")
-	public String postBgMain(Model model) {
-		return "support/bgMain";
-	}
 
 	@PostMapping("/bgMallAdd")
 	public String processFormData(@ModelAttribute("ProductBean") ProductBean bean, BindingResult result, Model model,
