@@ -23,7 +23,7 @@ span.error {
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center">
+	<div align="center">						 
 		<form:form method='POST' modelAttribute="PlateannouncementBean">
 			<c:set var="PlateannouncementBean" />
 			<fieldset class="fieldset-auto-width">
@@ -31,6 +31,12 @@ span.error {
 				<table>
 					<tr>
 						<td align='right'>分類：<br>&nbsp;
+						</td>
+						<td><form:input path="paCode" /><br>&nbsp; <form:errors
+								path="paCode" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td align='right'>名稱：<br>&nbsp;
 						</td>
 						<td><form:input path="paName" /><br>&nbsp; <form:errors
 								path="paName" cssClass="error" /></td>
@@ -50,7 +56,7 @@ span.error {
 				</table>
 			</fieldset>
 		</form:form>
-		<br> <a href="<c:url value='/_01_customer/index' />">回首頁</a>
+		<br> <a href="<c:url value='/support/bgMall' />">回首頁</a>
 	</div>
 </body>
 </html>

@@ -20,22 +20,22 @@
 				<th width='200'>公版文名稱</th>
 			</tr>
 			<c:choose>
-				<c:when test="${not empty plateannList}">
-					<c:forEach var='plateann' items="${plateannBeanList}">
+				<c:when test="${not empty plateannouncementBeanList}">
+					<c:forEach var='plateann' items="${plateannouncementBeanList}">
 						<tr>
 							<td align='center'><a
-								href='modifyPlateann/${plateann.PAId}'>${plateann.PAId}</a></td>
-							<td>${plateann.PASort}</td>
-							<td>${plateann.PAName}</td>
+								href='modifyPlateannouncement/${plateann.paId}'>${plateann.paId}</a></td>
+							<td>${plateann.paCode}</td>
+							<td>${plateann.paName}</td>
 						</tr>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-				查無Plateann資料
+				查無Plateannouncement資料
 			</c:otherwise>
 			</c:choose>
 		</table>
-		<br> <a href="<c:url value='/_01_Plateann/index' />">回首頁</a>
+		<br> <a href="<c:url value='/support/bgMall' />">回首頁</a>
 	</div>
 </body>
 </html>
