@@ -62,26 +62,38 @@ public class DisplayQuoteContractController {
 		return "partner_h/quoteContractList";
 	}
 	
-	//合約狀態列表
-	@GetMapping("/quoteContractStatusList")
-	protected String getStatusQuotes(
-			Model model,
-			@RequestParam("status") String status) {
-		
+	//合約狀態列表(未簽約)
+	@GetMapping("quoteContractStatusList/undone")
+	protected String getUndoneStatusQuotes(Model model) {
+		int status = 0;
 		//抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 
 		//透過合作商的ID,找到清單-報價單
-		
+			
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	//合約狀態列表(已簽約)
+	@GetMapping("quoteDoneContractStatusList/done")
+	protected String getStatusQuotes(
+			Model model) {
+		int status = 2;
+		//抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+
+		//透過合作商的ID,找到清單-報價單
+			
 		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
 		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
 	
 	
-	
 	//單筆合約明細
-	@GetMapping("quoteDetail")
+	@GetMapping({"quoteDetail","quoteDoneContractStatusList/quoteDetail","quoteContractStatusList/quoteDetail"})
 	protected String quoteDetail(Model model,
 			@RequestParam("p_id") Integer p_id,
 			@RequestParam("qcId") Integer qcId) {
@@ -142,6 +154,7 @@ public class DisplayQuoteContractController {
 		QuoteContractBean quoteBean = new QuoteContractBean();
 		quoteBean.setP_Id(partnerBean.getP_id());
 		quoteBean.setP_storeName(partnerBean.getP_storeName());
+		quoteBean.setP_Signature(partnerBean.getP_stamp());
 		model.addAttribute("quoteBean",quoteBean);
 		return "partner_h/quoteContractInsert";		 
 	}

@@ -29,7 +29,7 @@ public interface QuoteContractDao {
 	List<QuoteContractBean> getAllQuotes();
 	
 	//查詢 合作商未簽約所有報價單
-	List<QuoteContractBean> getStatusQuotes(int p_Id,String status);
+	List<QuoteContractBean> getStatusQuotes(int p_Id,int status);
 	
 	//修改報價合約
 	void updateQuote(QuoteContractBean bean);

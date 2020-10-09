@@ -99,7 +99,7 @@ public class QuoteContractServiceImpl implements QuoteContractService {
 }
 
 	@Override
-	public List<QuoteContractBean> getStatusQuotes(int p_Id, String status) {
+	public List<QuoteContractBean> getStatusQuotes(int p_Id, int status) {
 		List<QuoteContractBean> list = null;
 		list = qcdao.getStatusQuotes(p_Id,status);
 		return list;

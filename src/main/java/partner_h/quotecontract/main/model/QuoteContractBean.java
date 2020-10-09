@@ -27,7 +27,8 @@ public class QuoteContractBean {
 	String qcName;//合約名稱
 	Date qcDate;//報價日期
 	Date qcDateLine;//報價期限
-	String qcStatus;//報價狀態
+//	String qcStatus;//報價狀態
+	Integer qcStatus;//報價狀態
 	String qcContent;//合約內容
 	String n_Name;//新人名字
 	String m_Id; //新人帳號
@@ -55,7 +56,7 @@ public class QuoteContractBean {
 		super();
 	}
 	
-	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, String qcStatus,
+	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, Integer qcStatus,
 			String qcContent, String n_Name, String m_Id, Blob n_Signature, Integer p_Id, String p_storeName,
 			Blob p_Signature, Date qcExecutionDate, Integer qcTotalAmount, Double qcDepositRate, Integer qcDeposit,
 			String qcNotes, String serviceItem, String serviceName, Integer servicePrice) {
@@ -132,11 +133,11 @@ public class QuoteContractBean {
 		this.qcDateLine = qcDateLine;
 	}
 
-	public String getQcStatus() {
+	public Integer getQcStatus() {
 		return qcStatus;
 	}
 
-	public void setQcStatus(String qcStatus) {
+	public void setQcStatus(Integer qcStatus) {
 		this.qcStatus = qcStatus;
 	}
 

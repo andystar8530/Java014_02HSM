@@ -53,9 +53,9 @@
   			<a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/quotecontract/quoteContractList' />"> 報價合約</a>
            <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
-          				 href="<c:url value='/quotecontract/quoteContractStatusList/2' />">已簽約</a>         
+          				 href="<c:url value='/quotecontract/quoteDoneContractStatusList/done' />">已簽約</a>         
          <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
-          				 href="<c:url value='/quotecontract/quoteContractStatusList/0' />">未簽約</a>
+          				 href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未簽約</a>
                   
                    <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/template/editTemplate' />">合約範本</a>
