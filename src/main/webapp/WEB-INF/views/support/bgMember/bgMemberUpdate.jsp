@@ -21,8 +21,6 @@
 </head>
 <body>
 
-	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
-	<c:set var="funcName" value="REG" scope="session" />
 	<jsp:include page="/fragment/topMVC.jsp" />
 	<h1 class="mt-4 mb-3">
 		後台 <small>會員管理</small>
@@ -68,7 +66,6 @@
 				<c:set var="member" value="${MemberBean}" />
 				<form:form method="POST" modelAttribute="MemberBean"
 					enctype='multipart/form-data'>
-					<input type="hidden" name="noname" id='putOrDelete' value="">
 					<c:if test='${MemberBean.m_No != null}'>
 						<form:hidden path="m_No" />
 					</c:if>
@@ -117,7 +114,7 @@
 							<!--	大頭照開始 -->
 							<div class="form-group">
 								<img height='100' width='80'
-									src="<c:url value='/support/bgMemberImage?id=${member.m_No}' />">
+									src="<c:url value='/support/getBgMemberImage?id=${member.m_No}' />">
 							</div>
 							<!--	大頭照結束 -->
 						</div>

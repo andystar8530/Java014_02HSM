@@ -9,8 +9,8 @@
 <meta charset="UTF-8">
 <title>新增商品</title>
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/support/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/css/support/bootstrap.min.css"> --%>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css ">
 <!-- Custom styles for this template -->
@@ -18,191 +18,205 @@
 	href="${pageContext.request.contextPath}/css/support/bgMain.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/support/bgMall.css">
+<!-- <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/css/support/bgMallAdd.css"> --%>
 </head>
 <body>
 
 	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
 	<c:set var="funcName" value="REG" scope="session" />
 	<jsp:include page="/fragment/topMVC.jsp" />
-	<h1 class="mt-4 mb-3">
-		後台 <small>商城管理</small>
-	</h1>
 	<!-- container -->
-	<div class="bgMallAllDiv container ">
-		<!-- 	asasaas -->
-		<!-- 	選擇紐 -->
-		<div class="bgMallNavDiv d-flex justify-content-end ">
-			<div class=" bd-highlight ">
-				<div class="bgMallSearchNavDiv nav ">
-					<div class="SearchDiv1 nav-item text-center border border-primary">
-						<a class="nav-link " href="#">Active</a>
-					</div>
-					<div
-						class="SearchDiv2 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">篩選</a>
-					</div>
-					<div
-						class="SearchDiv3 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">新增</a>
-					</div>
-					<div
-						class="SearchDiv4 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="<c:url value='/support/bgMallAdd' />">新增</a>
-					</div>
+	<div
+		style='height:800px; width: 100%;
+		background-position: center;
+    	background-size: cover; 
+   		 background-image:url("${pageContext.request.contextPath}/data/images/bigPic/8.jpg");'>
+		<div class="bgMallAllDiv container ">
+			<!-- 		<h1 class="mt-4 mb-3"> -->
+			<div class="h1 border-bottom sub-title text-white"style="text-shadow: 5px 5px 10px rgb(88, 88, 80);padding-top:30px;">
+				後台 <small class="h3">商城管理</small>
+			</div>
+			<!-- 		</h1> -->
+
+			<!-- 引入共同的頁首 -->
+			<div class="bgMainDiv "style="padding-top:30px;">
+				<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
+				<div class="bgMainGalleryDiv MallMain">
+					<!-- 		內容建立位置-------------- -->
+					<!-- 新增商品開始 -->
+					<form:form method="POST" modelAttribute="ProductBean"
+						enctype='multipart/form-data'>
+						<!-- 	最外框 -->
+<!-- 						backdrop-filter: blur(5px); -->
+						<div class="ml-5 col-8 container justify-content-center container  text-white"
+							style="padding-top:20px; background:rgba(2,2,2,0.1);backdrop-filter: blur(1px);form-group; border-bottom; box-shadow: 5px 10px 8px #888888; text-shadow: 5px 5px 10px rgb(88, 88, 80);">
+							<div class="col-12">
+								<div
+									class="row mx-0 justify-content-center  align-items-center w-100">
+									<div class="border-bottom sub-title col-8 justify-content-center">
+										<Font size='5'>增加商品</Font>
+									</div>
+								</div>
+							</div>
+							<!--	第一層 -->
+							<div class="col-12  justify-content-center">
+								<div
+									class="row row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-4  justify-content-center">
+										<div>
+											<label class="fontSize">商品名稱</label>
+										</div>
+										<div>
+											<form:input path='p_Name' class="form-control" style="" />
+											<form:errors path="p_Name" cssClass="error" />
+										</div>
+									</div>
+									<div class="col-4">
+										<div>
+											<label class="fontSize">種類名稱</label>
+										</div>
+										<div>
+											<form:input path='p_Category' class="fieldWidth" style="" />
+
+											<form:errors path="p_Category" cssClass="error" />
+										</div>
+									</div>
+								</div>
+								<!--	第二層 -->
+								<div
+									class="row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-4">
+										<div>
+											<label class="fontSize">進貨數量</label>
+										</div>
+										<div>
+											<form:input path='p_Pdqty' class="form-control" style="" />
+
+											<form:errors path="p_Pdqty" cssClass="error" />
+										</div>
+									</div>
+									<div class="col-4">
+										<div>
+											<label class="fontSize">進貨金額</label>
+										</div>
+										<div>
+											<form:input path='p_Pdsum' class="form-control" style="" />
+											<form:errors path="p_Pdsum" cssClass="error" />
+										</div>
+									</div>
+								</div>
+								<!--	第三層 -->
+								<div
+									class="row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-4">
+										<div>
+											<label class="fontSize">售價</label>
+										</div>
+										<div>
+											<form:input path='p_Price' class="form-control" style="" />
+
+											<form:errors path="p_Price" cssClass="error" />
+										</div>
+									</div>
+									<div class="col-4">
+										<div></div>
+										<div></div>
+									</div>
+								</div>
+							</div>
+							<!-- 	最外層第二層 -->
+							<div class="col-12">
+								<div
+									class="row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-4">
+										<div>
+											<label for="exampleFormControlFile1">預覽圖</label><br> <small><Font
+												color='red' size="-3">${MsgMap.errorPicture} </Font></small>
+										</div>
+										<div>
+											<label for="image"> <input type="file"
+												name="p_Cover1" id="p_Cover1" style="display: none" /> <img
+												src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
+												id="p_Cover1_show_image" style="max-width: 300px"
+												name="image_1" />
+											</label>
+										</div>
+									</div>
+									<div class="col-4">
+										<div>
+											<label for="exampleFormControlFile1">圖片</label><br> <small><Font
+												color='red' size="-3">${MsgMap.errorPicture} </Font></small>
+										</div>
+										<div>
+											<label for="image"> <input type="file"
+												name="ProductImage1" id="ProductImage1"
+												style="display: none" /> <img
+												src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
+												id="ProductImage1_show_image" style="max-width: 300px"
+												name="image_2" />
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div
+									class="row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-4">
+										<div>
+											<label for="exampleFormControlFile1">圖片</label><br> <small><Font
+												color='red' size="-3">${MsgMap.errorPicture} </Font></small>
+										</div>
+										<div>
+											<label for="image"> <input type="file"
+												name="ProductImage2" id="ProductImage2"
+												style="display: none" /> <img
+												src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
+												id="ProductImage2_show_image" style="max-width: 300px"
+												name="image_3" />
+											</label>
+										</div>
+									</div>
+									<div class="col-4">
+										<div>
+											<label for="exampleFormControlFile1">圖片</label><br> <small><Font
+												color='red' size="-3">${MsgMap.errorPicture} </Font></small>
+										</div>
+										<div>
+											<label for="image"><input type="file"
+												name="ProductImage3" id="ProductImage3"
+												style="display: none" /> <img
+												src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
+												id="ProductImage3_show_image" style="max-width: 300px"
+												name="image_4" /> </label>
+										</div>
+									</div>
+								</div>
+								<div
+									class="row mx-0 justify-content-center align-items-center w-100">
+									<div class="col-8">
+										<div>
+											<label class="fontSize">商品敘述</label>
+										</div>
+										<div>
+											<form:textarea path='P_Note' class="w-100 p-3 form-control" />
+											<form:errors path="P_Note" cssClass="error" />
+										</div>
+									</div>
+
+								</div>
+								<div>
+									<div style="padding:20px 20px;" id="btnArea" align="center">
+										<input class="btn btn-outline-primary" type="submit" name="submit" id="submit" value="儲存" />
+										<!-- 							<input type="reset" name="cancel" id="cancel" value="重填"> -->
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form:form>
+					<!--  商品新增標籤開結束 -->
 				</div>
-			</div>
-			<div class="SearchDiv5 bd-highlight">
-				<form class="form-inline my-2 my-lg-0 ">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="品名/種類/金額" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-		<!-- 	選擇紐結束 -->
-		<!-- 		<hr> -->
-		<!-- 引入共同的頁首 -->
-		<div class="bgMainDiv container ">
-			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
-			<div class="bgMainGalleryDiv row ">
-				<!-- 		內容建立位置-------------- -->
-				<!-- 新增商品開始 -->
-				<form:form method="POST" modelAttribute="ProductBean"
-					enctype='multipart/form-data'>
-
-					<Table
-						style="width: 900px; background-color: #E7CDFF; cellspacing: 0; border: 2px solid black;">
-						<tr height="36">
-
-							<td colspan='4'
-								style="text-align: center; vertical-align: middle;"><Font
-								color="#006600" size='5' face="標楷體">增加商品</Font></td>
-						</tr>
-						<tr height="16">
-							<td colspan='4'
-								style="text-align: center; vertical-align: middle;">
-								<div class="error">${errorSaveData}<br>
-								</div>
-							</td>
-						</tr>
-
-						<tr height="52">
-							<td style="width: 90px;"><label class="fontSize">種類名稱：</label><br>&nbsp;</td>
-							<td style="width: 290px;"><form:input path='p_Category'
-									class="fieldWidth" style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Category" cssClass="error" /></td>
-						</tr>
-
-						<tr height="52">
-							<td><label class="fontSize">商品名稱：</label><br>&nbsp;</td>
-							<td style="width: 290px;"><form:input path='p_Name'
-									class="fieldWidth" style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Name" cssClass="error" /></td>
-
-						</tr>
-						<tr height="52">
-							<!--	顯示預覽圖開始  name:p_Cover1-->
-							<td><label for="exampleFormControlFile1">預覽圖：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-							<td><label for="image"> <input type="file"
-									name="p_Cover1" id="p_Cover1" style="display: none" /> <img
-									src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
-									id="p_Cover1_show_image" style="max-width: 300px"
-									name="image_1" />
-							</label></td>
-							<!--	顯示小圖結束 -->
-						</tr>
-
-						<tr height="52">
-
-							<td><label class="fontSize">進貨數量：</label><br>&nbsp;</td>
-							<td><form:input path='p_Pdqty' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Pdqty" cssClass="error" /></td>
-
-							<td><label class="fontSize">進貨金額：</label><br>&nbsp;</td>
-							<td><form:input path='p_Pdsum' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Pdsum" cssClass="error" /></td>
-						</tr>
-
-						<tr height="52">
-							<td><label class="fontSize">現有庫存量：</label><br>&nbsp;</td>
-							<td><form:input path='p_Stock' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Stock" cssClass="error" /></td>
-
-							<td><label class="fontSize">銷貨數量：</label><br>&nbsp;</td>
-							<td><form:input path='p_Sdqty' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Sdqty" cssClass="error" /></td>
-						</tr>
-
-						<tr height="52">
-							<td><label class="fontSize">P_PRICE：</label><br>&nbsp;</td>
-							<td><form:input path='p_Price' class="fieldWidth"
-									style="width: 200px;" /><br>&nbsp; <form:errors
-									path="p_Price" cssClass="error" /></td>
-
-						</tr>
-
-						<tr height="52">
-							<!--	顯示圖1開始  name:ProductImage1-->
-							<td><label for="exampleFormControlFile1">圖片1：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-							<td><label for="image"> <input type="file"
-									name="ProductImage1" id="ProductImage1" style="display: none" />
-									<img
-									src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
-									id="ProductImage1_show_image" style="max-width: 300px"
-									name="image_2" />
-							</label></td>
-							<!--	顯示圖1結束 -->
-
-
-						</tr>
-						<tr height="52">
-
-							<!--	顯示圖2開始  name:ProductImage2-->
-							<td><label for="exampleFormControlFile1">圖片2：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-							<td><label for="image"> <input type="file"
-									name="ProductImage2" id="ProductImage2" style="display: none" />
-									<img
-									src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
-									id="ProductImage2_show_image" style="max-width: 300px"
-									name="image_3" />
-							</label></td>
-							<!--	顯示圖2結束 -->
-						</tr>
-						<tr height="52">
-							<td><label for="exampleFormControlFile1">圖片3：</label><br>
-								<small><Font color='red' size="-3">${MsgMap.errorPicture}
-								</Font></small></td>
-							<td><label for="image"> <input type="file"
-									name="ProductImage3" id="ProductImage3" style="display: none" />
-									<img
-									src="${pageContext.request.contextPath}/util/getPartnerCoverImage?m_No=${LoginOK.m_No}"
-									id="ProductImage3_show_image" style="max-width: 300px"
-									name="image_4" />
-							</label></td>
-
-						</tr>
-						<tr height="42">
-							<td colspan='4'>
-								<div id="btnArea" align="center">
-									<input type="submit" name="submit" id="submit" value="儲存" /> <input
-										type="reset" name="cancel" id="cancel" value="重填">
-								</div>
-							</td>
-						</tr>
-					</Table>
-					<!-- 					</form> -->
-				</form:form>
-				<!--  商品新增標籤開結束 -->
 			</div>
 		</div>
 	</div>

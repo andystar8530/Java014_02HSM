@@ -3,6 +3,7 @@
   <groupId>nutu.java014.springmvc</groupId>
   <artifactId>Java014_02HSM</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+
   <packaging>war</packaging>
   <name>Java014_02HSM</name>
   <description>這是一個Spring MVC專案</description>
