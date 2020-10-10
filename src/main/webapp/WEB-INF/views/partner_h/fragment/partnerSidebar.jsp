@@ -52,11 +52,16 @@
           <a  class="list-group-item list-group-1"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/001-clipboard.png" >報價合約
   			<a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/quotecontract/quoteContractList' />"> 報價合約</a>
-            <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >已簽約</a>
-            <a class="sidebar-item list-group-open1 wow  bounce" data-wow-duration="1s" >未簽約</a>
+           <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
+          				 href="<c:url value='/quotecontract/quoteDoneContractStatusList/done' />">已簽約</a>         
+         <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
+          				 href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未簽約</a>
+                  
                    <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/template/editTemplate' />">合約範本</a>
           </a>
+    
+    
           <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >訂單管理
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">我的訂單</a>
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a>

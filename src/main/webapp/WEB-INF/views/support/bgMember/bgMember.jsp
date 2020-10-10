@@ -87,7 +87,7 @@
 							class="bgMainGalleryDivIn2 border border-primary d-flex align-items-center row">
 							<!--	會員頭貼 -->
 							<img height='100' width='80'
-								src="<c:url value='/support/bgMemberImage?id=${member.value.m_No}' />">
+								src="<c:url value='/support/getBgMemberImage?id=${member.value.m_No}' />">
 						</div>
 						<div
 							class="bgMainGalleryDivIn3 border border-primary border-left-0 d-flex flex-column align-items-center row">

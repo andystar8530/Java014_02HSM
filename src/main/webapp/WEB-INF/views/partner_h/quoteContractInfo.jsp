@@ -142,76 +142,7 @@
 		
 
  
-<!-- 新人姓名(未完).專案總價.訂金比例.訂金金額  -->
-	<tr>
-            <!-- 新人id如何查詢到新人名字 -->
-		<td>
-            <div class="form-group">
-              <label for="n_Name">新人姓名</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="n_Name"
-                  path="n_Name"
-                  class="showQuote"
-                />
-                <form:errors path="n_Name" class="errors" />
-              </div>
-            </div>
-</td>
 
-<td>
-            <div class="form-group">
-              <label for="qcTotalAmount">專案總價</label>
-              <div class="col">
-<%--                 <form:input --%>
-<%--                   type="text" --%>
-<%--                   id="qcTotalAmount" --%>
-<%--                   path="qcTotalAmount" --%>
-<%--                   class="showQuote" --%>
-<%--                 /> --%>
-<%--                 <form:errors path="qcTotalAmount" class="errors" /> --%>
-            <c:set var="subtotal"
-            	   value="${quoteBean.servicePrice}"/>
-            	   ${quoteBean.servicePrice}
-			 </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDepositRate">訂金比例</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcDepositRate"
-                  path="qcDepositRate"
-                  class="showQuote"/>
-          
-                <form:errors path="qcDepositRate" class="errors" />
-              </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDeposit">訂金金額</label>
-              <div class="col">
-<%--                 <form:input --%>
-<%--                   type="text" --%>
-<%--                   id="qcDeposit" --%>
-<%--                   path="qcDeposit" --%>
-<%--                   class="showQuote" --%>
-<%--                 /> --%>
-<%--                 <form:errors path="qcDeposit" class="errors" /> --%>
-               <c:set var="deposit"
-            	   value="${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)}"/>
-            	   ${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)} 
-            
-              </div>
-            </div>
-</td>
-</tr>
 
 <!-- 服務細項 -->
 	<tr>
@@ -254,13 +185,14 @@
 		</td>
 		
 
-<%-- 		${aBean.value.屬性} --%>
+<%-- 		服務價格 --%>
 		<td width="10%">
                 <form:input
                   type="text"
                   id="servicePrice"
                   path="servicePrice"
                   class="showQuote"
+                  onkeyup="profit()"
                 />
                 <form:errors path="servicePrice" class="errors" />
 		</td>
@@ -268,7 +200,6 @@
 	</table>
 	</td>
 </tr>
-
 
 
 <!-- 合約內容(未完)	             -->
@@ -287,6 +218,178 @@
             </div>
 </td>
 </tr>
+
+
+
+<!-- 新人姓名(未完).專案總價.訂金比例.訂金金額  -->
+	<tr>
+            <!-- 新人id如何查詢到新人名字 -->
+		<td>
+            <div class="form-group">
+              <label for="n_Name">新人姓名</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="n_Name"
+                  path="n_Name"
+                  class="showQuote"
+                />
+                <form:errors path="n_Name" class="errors" />
+              </div>
+              <label for="m_Id">新人帳號(mail)</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="m_Id"
+                  path="m_Id"
+                  class="showQuote"
+                />
+                <form:errors path="m_Id" class="errors" />
+              </div>
+            </div>
+</td>
+
+<td>
+            <div class="form-group">
+              <label for="qcTotalAmount">專案總價</label>
+              <div class="col">
+                <form:input
+                 type="text" 
+                   id="qcTotalAmount" 
+                   path="qcTotalAmount" 
+                  class="showQuote" 
+                 /> 
+                <form:errors path="qcTotalAmount" class="errors" />
+<%--             <c:set var="subtotal" --%>
+<%--             	   value="${quoteBean.servicePrice}"/> --%>
+<%--             	   ${quoteBean.servicePrice} --%>
+			 </div>
+            </div>
+</td>
+
+<td>
+            <div class="form-group">
+              <label for="qcDepositRate">訂金比例(%)</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="qcDepositRate"
+                  path="qcDepositRate"
+                  class="showQuote"
+                  onkeyup="profit()"/>
+          
+                <form:errors path="qcDepositRate" class="errors" />
+              </div>
+            </div>
+</td>
+
+<td>
+            <div class="form-group">
+              <label for="qcDeposit">訂金金額</label>
+              <div class="col">
+                <form:input 
+                 type="text" 
+                   id="qcDeposit" 
+                  path="qcDeposit" 
+                  class="showQuote" 
+                /> 
+<%--                 <form:errors path="qcDeposit" class="errors" /> --%>
+<%--                <c:set var="deposit" --%>
+<%--             	   value="${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)}"/> --%>
+<%--             	   ${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)}  --%>
+            
+              </div>
+            </div>
+</td>
+</tr>
+
+
+<!-- 成本區 -->
+<tr>
+<td>
+            <div class="form-group">
+              <label for="costHour">專案工時</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="costHour"
+                  path="costHour"
+                  class="showQuote"
+                  onkeyup="costCal()"/>
+                <form:errors path="costHour" class="errors" />
+              </div>
+            </div>
+            
+              <div class="form-group">
+              <label for="costPerHour">時薪</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="costPerHour"
+                  path="costPerHour"
+                  class="showQuote"
+                  onkeyup="costCal()"/>
+                <form:errors path="costPerHour" class="errors" />
+              </div>
+            </div>
+            
+		<div class="form-group">
+              <label for="costMen">人工成本</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="costMen"
+                  path="costMen"
+                  class="showQuote"
+                  />
+                <form:errors path="costMen" class="errors" />
+              </div>
+            </div>
+            
+          <div class="form-group">
+              <label for="costOther">其他費用</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="costOther"
+                  path="costOther"
+                  class="showQuote"
+                  onkeyup="costCal()"/>
+                <form:errors path="costOther" class="errors" />
+              </div>
+            </div>
+            
+            
+          <div class="form-group">
+              <label for="costTotal">總成本</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="costTotal"
+                  path="costTotal"
+                  class="showQuote"/>
+                <form:errors path="costTotal" class="errors" />
+              </div>
+            </div>
+            
+            
+             <div class="form-group">
+              <label for="qcProfit">總潤利</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="qcProfit"
+                  path="qcProfit"
+                  class="showQuote"/>
+                <form:errors path="qcProfit" class="errors" />
+              </div>
+            </div>
+            
+</td>
+
+</tr>
+
+
 
 
 <!-- 送出 -->
@@ -350,6 +453,44 @@ sectors[4]=['豪華專案','經濟專案','包套專案','其他專案','婚禮�
 
 
 
+var qcTotalAmount;
+function profit(){
+//servicePrice服務項目的專案金額
+var servicePrice = parseInt(document.getElementById("servicePrice").value);
+var qcDepositRate = parseInt(document.getElementById("qcDepositRate").value);    
+qcTotalAmount=servicePrice;
+//qcTotalAmount專案總價
+document.getElementById("qcTotalAmount").value = qcTotalAmount;
+document.getElementById("qcDeposit").value = (servicePrice*(qcDepositRate/100));
+}
+
+
+function costCal(){
+	
+    var costHour = parseInt(document.getElementById("costHour").value);
+    if(costHour == null){
+    	costHour = 1;
+        }
+    var costPerHour = parseInt(document.getElementById("costPerHour").value);
+    if(costPerHour == null){
+    	coscostPerHourtHour = 1000;
+        }
+    var costMen =(costHour*costPerHour);
+    var costOther = parseInt(document.getElementById("costOther").value);
+    if(costOther == null){
+    	costOther = 0;
+        }
+    var costTotal = (costOther+costMen);
+    qcTotalAmount = document.getElementById("qcTotalAmount").value;
+    var qcProfit = qcTotalAmount-costMen;
+    document.getElementById("costMen").value = costMen;
+    document.getElementById("costTotal").value =costTotal ;
+    document.getElementById("qcProfit").value =qcProfit ;
+    
+}
+
+
+
 function changeService(index){
 // 	index=document.getElementById("service-list").selectedIndex);
 	console.log(index);
@@ -367,6 +508,8 @@ changeService(1);
 
 </script>
 
-
+</div>
+</div>
+<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

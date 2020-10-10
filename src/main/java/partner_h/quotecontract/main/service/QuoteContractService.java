@@ -27,5 +27,7 @@ public interface QuoteContractService {
 	//修改報價
 	void updateQuote(QuoteContractBean bean);
 	
+	//查詢 未簽約所有報價單
+	List<QuoteContractBean> getStatusQuotes(int p_Id,int status);
 	
 }

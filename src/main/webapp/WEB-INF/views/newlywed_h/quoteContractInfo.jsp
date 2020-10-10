@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> 
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
   <head>
-  
   <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/marryMa.css">
     <meta charset="UTF-8" />
@@ -29,22 +29,23 @@
   
   <body>
     <!-- 引用上與左側 -->
-<jsp:include page="/fragment/topMVC.jsp" />
-<jsp:include page="./fragment/partnerSidebar.jsp" />
-
-    
+	<jsp:include page="/fragment/topMVC.jsp" /> 
+	<jsp:include page="./fragment/newlywedSidebar.jsp" />
 <div class="col-lg-9 mb-4"> 
-        <h2>新增報價合約</h2>
-<%--            <a href="<c:url value='/editPartner?p_id=${partnerBean.p_id}'/>"><img src="${pageContext.request.contextPath}/data/icon/document.png" width="50" style="display: inline;" ></a> --%>
+        <h2>報價合約</h2>
+          
         <br>
         <hr>
-        
-<form:form  id="form1" modelAttribute='quoteBean' method="post"  enctype="multipart/form-data" > 
-<table>
-     <tr>
-          
+      
+      <!-- 內容 -->
+        <TABLE>
+        <form:form
+          method="POST"
+          modelAttribute="quoteBean"
+          enctype="multipart/form-data" >
+		<input type='hidden' id='update' name='_method'>
 <!-- 案號 -->
-<!--  
+     <tr>
           	<td>
           	<div class="form-group col-md-6">
               <label for="qcId">案號</label>
@@ -59,7 +60,6 @@
               </div>
             </div>
           	</td>
- -->
           	
 <!--  專案名稱         	 -->
           	<td>
@@ -76,39 +76,9 @@
               </div>
             </div>
  
- 
-<!--  新人名字 -->
-           	<td>
-          	 <div class="form-group col-md-6">
-              <label for="n_Name">新人名字</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="n_Name"
-                  path="n_Name"
-                  class="showQuote"
-                />
-                <form:errors path="n_Name" class="errors" />
-              </div>
-            </div>
- 
- 
-           	 <div class="form-group col-md-6">
-              <label for="m_Id">新人帳號(Mail)</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="m_Id"
-                  path="m_Id"
-                  class="showQuote"
-                />
-                <form:errors path="m_Id" class="errors" />
-              </div>
-            </div>
- 
-<!-- 狀態(未完)                  	 -->
+<!-- 狀態 -->
           	<td>
-          	 <div class="form-group col-md-5">
+          	  <div class="form-group col-md-6">
               <label for="qcStatus">狀態</label>
               <div class="col">             
              <form:select path="qcStatus">
@@ -122,9 +92,10 @@
               </div>
             </div>
           	</td>        	
-          </tr> 
+          </tr>  
 
- <tr>
+<!-- 報價日期.服務日期.報價期限-->
+	 <tr>
 		<td>
 		<div class="form-group col-md-6">
               <label for="qcDate">報價日期</label>
@@ -149,7 +120,7 @@
                   path="qcExecutionDate"
                   class="showQuote"
                 />
-                <form:errors path="qcExecutionDate" class="errors" />
+                <form:errors path="qcExecutionDate" class="qcContent" />
               </div>
             </div>
 		</td>
@@ -169,10 +140,14 @@
 		</td>		
 		</tr>
 		
+
+ 
+
+
 <!-- 服務細項 -->
 	<tr>
 		<td>
-<table>
+		<table border='1' width="150%">
 <!-- 		標題列 -->
 		<tr>
 		<th>服務項目</th>
@@ -193,7 +168,9 @@
 						<form:option value="4" label="誤餐費" />
 						<form:option value="5" label="超時服務" />
 					</form:select>
-					<form:errors  path="serviceItem" class='errors'/>	  
+					<form:errors  path="serviceItem" class='errors'/>	
+    
+    
 		</td>
 
 <!-- 細項品名		 -->
@@ -207,35 +184,56 @@
                 <form:errors path="serviceName" class="errors" />
 		</td>
 		
+
+<%-- 		${aBean.value.屬性} --%>
 		<td width="10%">
                 <form:input
                   type="text"
                   id="servicePrice"
                   path="servicePrice"
                   class="showQuote"
-                  onkeyup="profit()"
                 />
                 <form:errors path="servicePrice" class="errors" />
 		</td>
 		</tr>		
 	</table>
-</td>
+	</td>
 </tr>
 
-<!-- 專案$$ -->
-<tr>
+
+
+	<tr>
+            <!-- 合作商 -->
+		<td>
+            <div class="form-group">
+              <label for="p_storeName">合作商</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="p_storeName"
+                  path="p_storeName"
+                  class="showQuote"
+                />
+                <form:errors path="p_storeName" class="errors" />
+              </div>
+            </div>
+</td>
+
 <td>
             <div class="form-group">
               <label for="qcTotalAmount">專案總價</label>
               <div class="col">
-                <form:input
-                  type="text"
-                  id="qcTotalAmount"
-                  path="qcTotalAmount"
-                  class="showQuote"
-                />
-                <form:errors path="qcTotalAmount" class="errors" />
-              </div>
+<%--                 <form:input --%>
+<%--                   type="text" --%>
+<%--                   id="qcTotalAmount" --%>
+<%--                   path="qcTotalAmount" --%>
+<%--                   class="showQuote" --%>
+<%--                 /> --%>
+<%--                 <form:errors path="qcTotalAmount" class="errors" /> --%>
+            <c:set var="subtotal"
+            	   value="${quoteBean.servicePrice}"/>
+            	   ${quoteBean.servicePrice}
+			 </div>
             </div>
 </td>
 
@@ -247,9 +245,8 @@
                   type="text"
                   id="qcDepositRate"
                   path="qcDepositRate"
-                  class="showQuote"
-                  onkeyup="deposit()"
-                />
+                  class="showQuote"/>
+          
                 <form:errors path="qcDepositRate" class="errors" />
               </div>
             </div>
@@ -259,22 +256,26 @@
             <div class="form-group">
               <label for="qcDeposit">訂金金額</label>
               <div class="col">
-                <form:input
-                  type="text"
-                  id="qcDeposit"
-                  path="qcDepositRate"
-                  class="showQuote"
-                />
-                <form:errors path="qcDeposit" class="errors" />
+<%--                 <form:input --%>
+<%--                   type="text" --%>
+<%--                   id="qcDeposit" --%>
+<%--                   path="qcDeposit" --%>
+<%--                   class="showQuote" --%>
+<%--                 /> --%>
+<%--                 <form:errors path="qcDeposit" class="errors" /> --%>
+               <c:set var="deposit"
+            	   value="${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)}"/>
+            	   ${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)} 
+            
               </div>
             </div>
 </td>
 </tr>
-	
-	
 
 
-			<tr>
+
+<!-- 合約內容(未完)	             -->
+	<tr>
 		<td>
            <div class="form-group">
               <label for="qcContent">合約內容</label>
@@ -284,60 +285,110 @@
                   path="qcContent"
                   class="showQuote col-mb-12 w-100" 
                 />
-                <form:errors path="qcContent" class="errors" />
+                <form:errors path="qcContent" class="qcContent" />
               </div>
             </div>
 </td>
 </tr>
 
 
-
-    
-<!--  新增按鈕 -->
-    <tr height="42" >
-      <td height="61" colspan="6" align="center">         
-         <input type="submit" name="Submit" value="新增" />
-      </td>
-    </tr>
-  </table>
-</form:form> 
-        
- <!-- Bootstrap   -->
+<!-- 送出 -->
+	<tr>
+		<td>
+            <div class="form-group">
+              <div class="col col-mb-1">
+                <input
+                  type="submit"
+                  id="submit"
+                  path="submit"
+                  class="showQuote btn btn-outline-danger"
+                  value="簽名"
+                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
+                />
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="col col-mb-1">
+                <input
+                  type="submit"
+                  id="submit"
+                  path="submit"
+                  class="showQuote btn btn-outline-danger"
+                  value="意見回覆"
+                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
+                />
+              </div>
+            </div>
+            
+            
+            
+            
+		</td>
+		</tr>	
+	        </form:form> 
+     </TABLE>
+      </div>
+<!-- Bootstrap   -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>       
-        
-</div>  
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+<!-- UpdateQuote修改儲存 -->
+<script type="text/javascript">
+function UpdateQuote(m_Id,qcId){
+ var hiddenField = document.getElementById("update");
+ document.forms[0].method="POST";
+ document.forms[0].submit();
+}
+</script>
+
+<!-- 合約狀態選取  暫時沒用到-->
+<script type="text/javascript">
+$(".status").val();//獲取下拉是選單的Value值
+</script>
 
 
-<!-- 服務項目的option選單 -->
+
+
+<!-- 服務項目的select選單 -->
 <script type="text/javascript"> 
-function serviceItemChange(){
-	var x = document.getElemetById("service-list").value;
+var service=['豪華專案','經濟專案','包套專案','其他專案','誤餐費','超時服務']
+var serviceSelect = document.getElementById("service-list");
+var inner="";
+for(var i=0;i<service.length;i++){
+   inner = inner+'<option value=i>'+ service[i]+'</option>';
+    }
+serviceSelect.innerHTML = inner;
 
-}
+var sectors = new Array();
+sectors[0]=['請選擇主要業務'];
+sectors[1]=['豪華專案','經濟專案','包套專案','其他專案','新娘梳化','新郎梳化','家人梳化','誤餐費','超時服務'];
+sectors[2]=['豪華專案','經濟專案','包套專案','其他專案','婚紗攝影','婚宴攝影','婚宴拍照','儀式攝影','儀式拍照','誤餐費','超時服務'];
+sectors[3]=['豪華專案','經濟專案','包套專案','其他專案','婚禮主持','儀式主持','誤餐費','超時服務'];
+sectors[4]=['豪華專案','經濟專案','包套專案','其他專案','婚禮布置','捧花、花藝','誤餐費','超時服務'];
 
-//專案的總價計算
-var servicePrice
-function profit(){
-//servicePrice服務項目的專案金額
-servicePrice = parseInt(document.getElementById("servicePrice").value);
-//qcTotalAmount專案總價
-document.getElementById("qcTotalAmount").value = servicePrice;
-}
 
-//訂金計算
-function deposit(){
-	//qcDepositRate訂金比例
-    var qcDepositRate = parseInt(document.getElementById("qcDepositRate").value);    
-    document.getElementById("qcDeposit").value = (servicePrice*qcDepositRate/100);
-}
 
+function changeService(index){
+// 	index=document.getElementById("service-list").selectedIndex);
+	console.log(index);
+    var Sinner="";
+    for(var i=0;i<sectors[index].length;i++){
+    	Sinner = Sinner+'<option value=i>'+sectors[index][i]+'</option>';
+        }
+    var sectorSelect = document.getElementById("sector-list");
+    sectorSelect.innerHTML=Sinner;
+    }
+// changeService(document.getElementById("service-list").selectedIndex);   
+changeService(1);   
+
+	
 
 </script>
 </div>
 </div>
 <jsp:include page="/fragment/footerMVC.jsp" />
-    
+
 </body>
 </html>
