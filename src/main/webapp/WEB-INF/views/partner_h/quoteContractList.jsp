@@ -91,11 +91,7 @@
     			</c:otherwise>
 			</c:choose>
 
-            </td>
-                    
-                    
-                    
-                    
+            </td>               
                     <td>${aQuoteBean.qcName}</td>
                     <td>${aQuoteBean.n_Name}</td>
                     <td>${aQuoteBean.qcExecutionDate}</td>

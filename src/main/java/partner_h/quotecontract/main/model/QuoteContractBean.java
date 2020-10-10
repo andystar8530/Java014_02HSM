@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.cfg.beanvalidation.IntegrationException;
+
 import _04_ShoppingCart.model.OrderItemBean;
 @Entity
 @Table(name="QuoteContracts")
@@ -47,6 +49,12 @@ public class QuoteContractBean {
 	String serviceName;//服務名目
 	Integer servicePrice;//專案金額
 	
+	Integer costHour;//專案花費時間
+	Integer costPerHour; //專案每小時費用
+	Integer costMen; //專案人工成本:小時*成本
+	Integer costOther;//專案其他花費
+	Integer costTotal;//專案總花費
+	Integer qcProfit;//專案利潤
 	
 	//1中有個多
 //	@OneToMany(mappedBy="quoteContractBean",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
@@ -55,11 +63,15 @@ public class QuoteContractBean {
 	public QuoteContractBean() {
 		super();
 	}
-	
+
+
+
+
 	public QuoteContractBean(Integer qcId, String qcName, Date qcDate, Date qcDateLine, Integer qcStatus,
 			String qcContent, String n_Name, String m_Id, Blob n_Signature, Integer p_Id, String p_storeName,
 			Blob p_Signature, Date qcExecutionDate, Integer qcTotalAmount, Double qcDepositRate, Integer qcDeposit,
-			String qcNotes, String serviceItem, String serviceName, Integer servicePrice) {
+			String qcNotes, String serviceItem, String serviceName, Integer servicePrice, Integer costHour,
+			Integer costPerHour, Integer costMen, Integer costOther, Integer costTotal, Integer qcProfit) {
 		this.qcId = qcId;
 		this.qcName = qcName;
 		this.qcDate = qcDate;
@@ -80,6 +92,76 @@ public class QuoteContractBean {
 		this.serviceItem = serviceItem;
 		this.serviceName = serviceName;
 		this.servicePrice = servicePrice;
+		this.costHour = costHour;
+		this.costPerHour = costPerHour;
+		this.costMen = costMen;
+		this.costOther = costOther;
+		this.costTotal = costTotal;
+		this.qcProfit = qcProfit;
+	}
+
+	@Override
+	public String toString() {
+		return "QuoteContractBean [qcId=" + qcId + ", qcName=" + qcName + ", qcDate=" + qcDate + ", qcDateLine="
+				+ qcDateLine + ", qcStatus=" + qcStatus + ", qcContent=" + qcContent + ", n_Name=" + n_Name + ", m_Id="
+				+ m_Id + ", n_Signature=" + n_Signature + ", p_Id=" + p_Id + ", p_storeName=" + p_storeName
+				+ ", p_Signature=" + p_Signature + ", qcExecutionDate=" + qcExecutionDate + ", qcTotalAmount="
+				+ qcTotalAmount + ", qcDepositRate=" + qcDepositRate + ", qcDeposit=" + qcDeposit + ", qcNotes="
+				+ qcNotes + ", serviceItem=" + serviceItem + ", serviceName=" + serviceName + ", servicePrice="
+				+ servicePrice + ", costHour=" + costHour + ", costPerHour=" + costPerHour + ", costMen=" + costMen
+				+ ", costOther=" + costOther + ", costTotal=" + costTotal + ", qcProfit=" + qcProfit + "]";
+	}
+
+
+
+
+	public Integer getCostHour() {
+		return costHour;
+	}
+
+
+	public void setCostHour(Integer costHour) {
+		this.costHour = costHour;
+	}
+
+
+	public Integer getCostPerHour() {
+		return costPerHour;
+	}
+
+
+	public void setCostPerHour(Integer costPerHour) {
+		this.costPerHour = costPerHour;
+	}
+
+
+	public Integer getCostMen() {
+		return costMen;
+	}
+
+
+	public void setCostMen(Integer costMen) {
+		this.costMen = costMen;
+	}
+
+
+	public Integer getCostOther() {
+		return costOther;
+	}
+
+
+	public void setCostOther(Integer costOther) {
+		this.costOther = costOther;
+	}
+
+
+	public Integer getCostTotal() {
+		return costTotal;
+	}
+
+
+	public void setCostTotal(Integer costTotal) {
+		this.costTotal = costTotal;
 	}
 
 
@@ -222,26 +304,21 @@ public class QuoteContractBean {
 		this.qcNotes = qcNotes;
 	}
 
-
 	public String getServiceItem() {
 		return serviceItem;
 	}
-
 
 	public void setServiceItem(String serviceItem) {
 		this.serviceItem = serviceItem;
 	}
 
-
 	public String getServiceName() {
 		return serviceName;
 	}
 
-
 	public void setServiceName(String serviceName) {
 		this.serviceName = serviceName;
 	}
-
 
 	public Integer getServicePrice() {
 		return servicePrice;
@@ -251,8 +328,14 @@ public class QuoteContractBean {
 	public void setServicePrice(Integer servicePrice) {
 		this.servicePrice = servicePrice;
 	}
-	
-	
+
+	public Integer getQcProfit() {
+		return qcProfit;
+	}
+
+	public void setQcProfit(Integer qcProfit) {
+		this.qcProfit = qcProfit;
+	}
 	
 
 //	public Set<QuoteContractItemBean> getItems() {

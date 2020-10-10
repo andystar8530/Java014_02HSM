@@ -33,7 +33,9 @@ public class NewlyQuoteController {
 	@GetMapping("quoteAllList")
 	protected String getNewlyQuotes(Model model) {
 	      MemberBean mb = (MemberBean) model.getAttribute("LoginOK");	
-		 List<QuoteContractBean> qcb = newlywedService.getNewlyQuotes((mb.getM_Id()));
+	      int status = 1;
+//		 List<QuoteContractBean> qcb = newlywedService.getNewlyQuotes((mb.getM_Id()));
+		 List<QuoteContractBean> qcb = newlywedService.getNewlyStatusQuotes((mb.getM_Id()), status);
 		 model.addAttribute("quoteList",qcb);
 		return "newlywed_h/quoteContractList";
 	}

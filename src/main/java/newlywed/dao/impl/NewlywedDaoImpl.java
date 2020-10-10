@@ -75,15 +75,16 @@ public class NewlywedDaoImpl implements NewlywedDao {
 		return list;
 	}
 
+	//status: 0:未報價, 1:未簽約, 2:未訂金, 3:結案:完成服務, 4:結案:放棄服務
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, String status) {
+	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, int status) {
 		List<QuoteContractBean> list =null;
-		String hql ="FROM QuoteContractBean qcb WHERE qcb.m_Id = :m_Id";
+		String hql ="FROM QuoteContractBean qcb WHERE qcb.m_Id = :m_Id and qcb.qcStatus >0";
 		Session session = factory.getCurrentSession();
 		list = session.createQuery(hql)
 					  .setParameter("m_Id", m_Id)
-					  .setParameter("status", status)
+//					  .setParameter("status", status)
 					  .getResultList();
 				return list;
 	}

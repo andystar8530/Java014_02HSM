@@ -44,7 +44,7 @@ public class DisplayQuoteContractController {
 	@Autowired
 	QuoteContractService qcservice;
 	
-	
+	String p_storeName;
 //	@Autowired
 //	ServiceItemService serviceItemService;
 	
@@ -103,6 +103,8 @@ public class DisplayQuoteContractController {
 		*/
 		QuoteContractBean qcb = qcservice.getQuote(qcId);	
 		model.addAttribute("quoteBean",qcb);	
+		p_storeName = qcb.getP_storeName();
+		System.out.println("get_p_storeName:"+p_storeName);
 		return "partner_h/quoteContractInfo";
 	}
 	
@@ -123,7 +125,6 @@ public class DisplayQuoteContractController {
  		System.out.println("當表單資料有誤時, bean===>"+bean);
  		return "編輯畫面";
  	}
-
 		System.out.println("修改合約"+bean);
 		qcservice.updateQuote(bean);	
 		return "partner_h/quoteContractInfo";
@@ -136,14 +137,18 @@ public class DisplayQuoteContractController {
 			@ModelAttribute QuoteContractBean bean,
 			Model model,
 			@RequestParam("p_id") Integer p_id,
-			@RequestParam("qcId") Integer qcId,
+			@RequestParam("qcId") Integer qcId,			
 			RedirectAttributes redirectAttributes
 //			BindingResult result, 
 			) {
 		System.out.println("修改合約"+bean);
 		bean.setP_Id(p_id);
+		bean.setP_storeName(p_storeName);
 		qcservice.updateQuote(bean);
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
+		String p_storeName1 = bean.getP_storeName();
+		System.out.println("post_p_storeName:"+p_storeName);
+		System.out.println("post_p_storeName1:"+p_storeName1);
 		return "redirect:quoteContractList";
 	}
 
@@ -155,6 +160,7 @@ public class DisplayQuoteContractController {
 		quoteBean.setP_Id(partnerBean.getP_id());
 		quoteBean.setP_storeName(partnerBean.getP_storeName());
 		quoteBean.setP_Signature(partnerBean.getP_stamp());
+		quoteBean.setCostPerHour(partnerBean.getP_hRate());
 		model.addAttribute("quoteBean",quoteBean);
 		return "partner_h/quoteContractInsert";		 
 	}
@@ -170,7 +176,6 @@ public class DisplayQuoteContractController {
 //		//找到對應的serviceItem物件
 //		ServiceItem serviceItem = serviceItemService.getServiceItem(qciBean.getServiceItem().getSiId());
 //		qciBean.setServiceItem(serviceItem);
-
 		qcservice.save(bean);
 		
 		redirectAttributes.addFlashAttribute("SUCCESS", "新增成功!!!");

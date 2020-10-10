@@ -17,7 +17,7 @@ public interface NewlywedService {
 	 List<QuoteContractBean> getNewlyQuotes(String m_Id);
 	 
 	 //依會員帳號與狀態查詢
-	 List<QuoteContractBean> getNewlyStatusQuotes(String m_Id,String status);
+	 List<QuoteContractBean> getNewlyStatusQuotes(String m_Id,int status);
 
 	 
 }
