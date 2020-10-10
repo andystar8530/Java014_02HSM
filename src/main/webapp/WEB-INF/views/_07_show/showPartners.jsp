@@ -37,7 +37,7 @@
 		width:60px;
 		position: fixed;
 		bottom:30px;
-		left:1400px;
+		right:5%;
  		z-index:55; /*重疊時會在其他元素之上*/
 	}
 	.card img{
@@ -66,7 +66,7 @@
 				    <h5 class="card-title">${partnerBean.p_storeName}</h5>
 				    <p class="card-text">${partnerBean.p_service}</p>
 				    <p class="card-text">${partnerBean.p_info}</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				    <a href="<c:url value='/showPartnerDetail/${partnerBean.p_id}'/>" class="btn btn-primary">查看店家</a>
 				  </div>
 				</div>
 			</div>

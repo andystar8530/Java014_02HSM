@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +44,7 @@ public class DisplayQuoteContractController {
 	@Autowired
 	QuoteContractService qcservice;
 	
-	
+	String p_storeName;
 //	@Autowired
 //	ServiceItemService serviceItemService;
 	
@@ -61,8 +62,38 @@ public class DisplayQuoteContractController {
 		return "partner_h/quoteContractList";
 	}
 	
+	//合約狀態列表(未簽約)
+	@GetMapping("quoteContractStatusList/undone")
+	protected String getUndoneStatusQuotes(Model model) {
+		int status = 0;
+		//抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+
+		//透過合作商的ID,找到清單-報價單
+			
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	//合約狀態列表(已簽約)
+	@GetMapping("quoteDoneContractStatusList/done")
+	protected String getStatusQuotes(
+			Model model) {
+		int status = 2;
+		//抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+
+		//透過合作商的ID,找到清單-報價單
+			
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);//將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	
 	//單筆合約明細
-	@GetMapping("quoteDetail")
+	@GetMapping({"quoteDetail","quoteDoneContractStatusList/quoteDetail","quoteContractStatusList/quoteDetail"})
 	protected String quoteDetail(Model model,
 			@RequestParam("p_id") Integer p_id,
 			@RequestParam("qcId") Integer qcId) {
@@ -72,6 +103,8 @@ public class DisplayQuoteContractController {
 		*/
 		QuoteContractBean qcb = qcservice.getQuote(qcId);	
 		model.addAttribute("quoteBean",qcb);	
+		p_storeName = qcb.getP_storeName();
+		System.out.println("get_p_storeName:"+p_storeName);
 		return "partner_h/quoteContractInfo";
 	}
 	
@@ -92,7 +125,6 @@ public class DisplayQuoteContractController {
  		System.out.println("當表單資料有誤時, bean===>"+bean);
  		return "編輯畫面";
  	}
-
 		System.out.println("修改合約"+bean);
 		qcservice.updateQuote(bean);	
 		return "partner_h/quoteContractInfo";
@@ -105,14 +137,18 @@ public class DisplayQuoteContractController {
 			@ModelAttribute QuoteContractBean bean,
 			Model model,
 			@RequestParam("p_id") Integer p_id,
-			@RequestParam("qcId") Integer qcId,
+			@RequestParam("qcId") Integer qcId,			
 			RedirectAttributes redirectAttributes
 //			BindingResult result, 
 			) {
 		System.out.println("修改合約"+bean);
 		bean.setP_Id(p_id);
+		bean.setP_storeName(p_storeName);
 		qcservice.updateQuote(bean);
 		redirectAttributes.addFlashAttribute("SUCCESS", "修改成功!!!");
+		String p_storeName1 = bean.getP_storeName();
+		System.out.println("post_p_storeName:"+p_storeName);
+		System.out.println("post_p_storeName1:"+p_storeName1);
 		return "redirect:quoteContractList";
 	}
 
@@ -121,7 +157,10 @@ public class DisplayQuoteContractController {
 	public String getQuoteForm(Model model) {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 		QuoteContractBean quoteBean = new QuoteContractBean();
-		quoteBean.setP_Id(partnerBean.getP_id());	
+		quoteBean.setP_Id(partnerBean.getP_id());
+		quoteBean.setP_storeName(partnerBean.getP_storeName());
+		quoteBean.setP_Signature(partnerBean.getP_stamp());
+		quoteBean.setCostPerHour(partnerBean.getP_hRate());
 		model.addAttribute("quoteBean",quoteBean);
 		return "partner_h/quoteContractInsert";		 
 	}
@@ -137,7 +176,6 @@ public class DisplayQuoteContractController {
 //		//找到對應的serviceItem物件
 //		ServiceItem serviceItem = serviceItemService.getServiceItem(qciBean.getServiceItem().getSiId());
 //		qciBean.setServiceItem(serviceItem);
-
 		qcservice.save(bean);
 		
 		redirectAttributes.addFlashAttribute("SUCCESS", "新增成功!!!");
@@ -158,8 +196,5 @@ public class DisplayQuoteContractController {
 //			bean.setQcDate();		
 		}
 		return bean;
-	}
-
-
-	
+	}	
 }

@@ -136,7 +136,7 @@ public class PFDetailController {
 			
 			model.addAttribute("pfdBeanList", pfdService.getPfDetailsBypfmId(pfmId));
 			
-			return "partner_h/_01_portfolios/editPortfolioPic";
+			return "redirect:/portfolioPicEdit/" + pfmId ; 
 		}
 				
 	//編輯畫面刪除圖片
@@ -193,6 +193,7 @@ public class PFDetailController {
 		return re ; 
 	}
 	
+		
 	
 	
 }

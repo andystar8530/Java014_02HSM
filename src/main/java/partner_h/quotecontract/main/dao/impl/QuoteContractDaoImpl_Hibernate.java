@@ -97,6 +97,31 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 		session.update(bean);
 	}
 
+	
+	//狀態0:未報價、1:未簽約、2:已付訂金未簽約、3:服務完成結案、4:未服務完成結案
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<QuoteContractBean> getStatusQuotes(int p_Id,int status) {
+		List<QuoteContractBean> list = null;
+		String hql = "FROM QuoteContractBean q WHERE q.p_Id = :pid and q.qcStatus = :status";
+		String hql1 ="FROM QuoteContractBean q WHERE q.p_Id = :pid and q.qcStatus < :status";
+		Session session = factory.getCurrentSession();
+		if(status==0) {
+				list = session.createQuery(hql1)
+						  .setParameter("pid", p_Id)
+						  .setParameter("status", 2)
+					      .getResultList();						
+		}else if(status==2) {
+			list = session.createQuery(hql)
+					  .setParameter("pid", p_Id)
+					  .setParameter("status", status)
+				      .getResultList();
+			
+		}
+		
+		return list;
+	}
+
 
 
 }

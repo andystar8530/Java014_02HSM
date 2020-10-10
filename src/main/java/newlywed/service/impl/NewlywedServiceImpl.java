@@ -1,5 +1,8 @@
 package newlywed.service.impl;
 
+import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import newlywed.dao.NewlywedDao;
 import newlywed.dao.impl.NewlywedDaoImpl;
 import newlywed.model.NewlywedBean;
 import newlywed.service.NewlywedService;
+import partner_h.quotecontract.main.model.QuoteContractBean;
 
 
 @Transactional
@@ -44,6 +48,20 @@ public class NewlywedServiceImpl implements NewlywedService {
 		NewlywedBean nb = null;
 		nb=dao.queryNewlywed(id);
 		return nb;
+	}
+
+	@Override
+	public List<QuoteContractBean> getNewlyQuotes(String m_Id) {
+		List<QuoteContractBean> list = null;
+		list = dao.getNewlyQuotes(m_Id);
+		return list;
+	}
+
+	@Override
+	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, int status) {
+		List<QuoteContractBean> list = null;
+		list = dao.getNewlyStatusQuotes(m_Id, status);
+		return list;
 	}
 
 
