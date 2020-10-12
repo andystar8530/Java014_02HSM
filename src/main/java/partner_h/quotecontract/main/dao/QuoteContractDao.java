@@ -34,6 +34,7 @@ public interface QuoteContractDao {
 	//修改報價合約
 	void updateQuote(QuoteContractBean bean);
 	
+
 	
 
 }
