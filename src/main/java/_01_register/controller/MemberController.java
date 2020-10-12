@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import _00_init.util.RegisterSmtp;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidatorUpdata;
@@ -41,6 +42,8 @@ public class MemberController {
 	
 	@Autowired
 	ServletContext context;
+	
+
 	
 	//合作商帳號修改
 	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改

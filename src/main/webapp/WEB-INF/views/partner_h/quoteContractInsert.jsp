@@ -169,56 +169,6 @@
 		</td>		
 		</tr>
 		
-
-
-<tr>
-<td>
-            <div class="form-group">
-              <label for="qcTotalAmount">專案總價</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcTotalAmount"
-                  path="qcTotalAmount"
-                  class="showQuote"
-                />
-                <form:errors path="qcTotalAmount" class="errors" />
-              </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDepositRate">訂金比例</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcDepositRate"
-                  path="qcDepositRate"
-                  class="showQuote"
-                />
-                <form:errors path="qcDepositRate" class="errors" />
-              </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDeposit">訂金金額</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcDeposit"
-                  path="qcDepositRate"
-                  class="showQuote"
-                />
-                <form:errors path="qcDeposit" class="errors" />
-              </div>
-            </div>
-</td>
-</tr>
-	
-	
 <!-- 服務細項 -->
 	<tr>
 		<td>
@@ -257,14 +207,13 @@
                 <form:errors path="serviceName" class="errors" />
 		</td>
 		
-
-<%-- 		${aBean.value.屬性} --%>
 		<td width="10%">
                 <form:input
                   type="text"
                   id="servicePrice"
                   path="servicePrice"
                   class="showQuote"
+                  onkeyup="profit()"
                 />
                 <form:errors path="servicePrice" class="errors" />
 		</td>
@@ -272,6 +221,58 @@
 	</table>
 </td>
 </tr>
+
+<!-- 專案$$ -->
+<tr>
+<td>
+            <div class="form-group">
+              <label for="qcTotalAmount">專案總價</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="qcTotalAmount"
+                  path="qcTotalAmount"
+                  class="showQuote"
+                />
+                <form:errors path="qcTotalAmount" class="errors" />
+              </div>
+            </div>
+</td>
+
+<td>
+            <div class="form-group">
+              <label for="qcDepositRate">訂金比例</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="qcDepositRate"
+                  path="qcDepositRate"
+                  class="showQuote"
+                  onkeyup="deposit()"
+                />
+                <form:errors path="qcDepositRate" class="errors" />
+              </div>
+            </div>
+</td>
+
+<td>
+            <div class="form-group">
+              <label for="qcDeposit">訂金金額</label>
+              <div class="col">
+                <form:input
+                  type="text"
+                  id="qcDeposit"
+                  path="qcDepositRate"
+                  class="showQuote"
+                />
+                <form:errors path="qcDeposit" class="errors" />
+              </div>
+            </div>
+</td>
+</tr>
+	
+	
+
 
 			<tr>
 		<td>
@@ -315,7 +316,23 @@ function serviceItemChange(){
 	var x = document.getElemetById("service-list").value;
 
 }
-	
+
+//專案的總價計算
+var servicePrice
+function profit(){
+//servicePrice服務項目的專案金額
+servicePrice = parseInt(document.getElementById("servicePrice").value);
+//qcTotalAmount專案總價
+document.getElementById("qcTotalAmount").value = servicePrice;
+}
+
+//訂金計算
+function deposit(){
+	//qcDepositRate訂金比例
+    var qcDepositRate = parseInt(document.getElementById("qcDepositRate").value);    
+    document.getElementById("qcDeposit").value = (servicePrice*qcDepositRate/100);
+}
+
 
 </script>
 </div>

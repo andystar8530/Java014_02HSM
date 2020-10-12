@@ -1,12 +1,10 @@
 package _01_register.controller;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _00_init.util.GlobalService;
+import _00_init.util.RegisterSmtp;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidator;
@@ -34,6 +32,9 @@ public class RegisterController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	RegisterSmtp registerSmtp;
 	
 	@GetMapping("/register")   
 	public String sendingEmptyForm(Model model) {
@@ -131,6 +132,10 @@ public class RegisterController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
+		new Thread(()->{
+			  registerSmtp.send("姻緣聚繪--恭喜註冊成功", "親愛的會員您好，恭喜註冊成功，可以開始使用本系統 \n http://localhost:8080/Java014_02HSM", bean.getM_Id());
+		  }).start();
+		
 		return "redirect:/";
 		
 	}

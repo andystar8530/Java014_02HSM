@@ -68,7 +68,7 @@
 				<c:set var="product" value="${ProductBean}" />
 				<form:form method="POST" modelAttribute="ProductBean"
 					enctype='multipart/form-data'>
-					<input type="hidden" name="noname" id='putOrDelete' value="">
+					<!-- 					<input type="hidden" name="noname" id='putOrDelete' value=""> -->
 					<c:if test='${ProductBean.p_Id != null}'>
 						<form:hidden path="p_Id" />
 					</c:if>
@@ -226,7 +226,18 @@
 								</label>
 								<%-- 								<form:errors path="covImage" class='errors' /> --%>
 							</div>
-							<!--	圖片3結束 -->
+						</div>
+						<!--	圖片3結束 -->
+						<div style="">
+							<div>
+								<label class="fontSize">商品敘述：</label><br>&nbsp;
+							</div>
+							<div>
+								<form:textarea path='P_Note' class="fieldWidth"
+									style="width: 200px;" />
+								<br>&nbsp;
+								<form:errors path="P_Note" cssClass="error" />
+							</div>
 						</div>
 						<div style="">
 							<div>

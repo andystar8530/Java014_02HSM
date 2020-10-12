@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<footer class="py-5 bg-pink">
+	<footer class="py-5 ">
 		<div class="container">
 			<p class="m-0 text-center text-dark">Copyright &copy; Your
 				Website 2020</p>

@@ -58,7 +58,7 @@ public class NewlywedServiceImpl implements NewlywedService {
 	}
 
 	@Override
-	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, String status) {
+	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, int status) {
 		List<QuoteContractBean> list = null;
 		list = dao.getNewlyStatusQuotes(m_Id, status);
 		return list;
