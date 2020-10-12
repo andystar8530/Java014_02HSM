@@ -169,6 +169,8 @@ body{
 		</div>
 	</div>
 </section>
+	<!-- ---------------------------分隔線---------------------------------------			 -->
 
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

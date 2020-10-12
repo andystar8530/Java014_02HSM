@@ -60,16 +60,15 @@
                    <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/template/editTemplate' />">合約範本</a>
           </a>
-    
-    
-          <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >訂單管理
-            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">我的訂單</a>
-            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a>
-          </a>
+  
           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/025-calendar.png" >行程管理</a>
           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/011-love.png" >來聊聊  &nbsp <span class="badge badge-primary badge-pill" >14</span></a></a>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/026-magnifying glass.png" >經營報表</a>
-         
+          <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >經營報表
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year'/>">年度經營報表</a>       
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year2'/>">年度經營報表2</a>       
+<%--             href="<c:url value='/quotReport/year/${partnerBean.p_id}'/>">年度經營報表</a>        --%>
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a>
+          </a>
         </div>
       </div>
 <!--    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script> -->

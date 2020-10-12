@@ -21,13 +21,18 @@
 <body>
 	<jsp:include page="/fragment/topMVC.jsp" />
 	<p />
-	<TABLE style="margin-left: 10%; margin-right: 10%; background: #F0E4F4; border: 1px blue solid;">
+	
+	<div class="m-5">
+	<div class="m-5">
+	
+<!-- 	<TABLE style="margin-left: 10%; margin-right: 10%; background: #F0E4F4; border: 1px blue solid;"> -->
+	<TABLE class="table table-striped">
 		<tr id='borderA' height='50'>
 			<th id='borderA' align="center" colspan="5"><h3>${LoginOK.m_Name}的訂單明細</h3></th>
 		</tr>
 		<tr id='borderA' height='36'>
 			<td colspan="5">
-				<table width="100%">
+				<table width="100%" class="m-0">
 					<tr id='borderA'>
 						<td align="Left" width="350px">
 							<b>出貨地址：</b>${SaleOrderBean.s_M_Address}
@@ -99,5 +104,12 @@
 		<a href="<c:url value='orderList' />">回上一頁</a>&nbsp;&nbsp;
 		<a href="<c:url value='/' />">回首頁</a>
 	</div>
+	
+	</div>
+	</div>
+	
+		<!-- ---------------------------分隔線---------------------------------------			 -->
+
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

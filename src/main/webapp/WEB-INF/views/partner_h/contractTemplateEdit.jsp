@@ -28,6 +28,10 @@ enctype='multipart/form-data'>
   
 </div>  
 </form>
+
+	<!-- ---------------------------分隔線---------------------------------------			 -->
+
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>
 

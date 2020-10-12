@@ -233,8 +233,8 @@
 								<label class="fontSize">商品敘述：</label><br>&nbsp;
 							</div>
 							<div>
-								<form:textarea path='P_Note' class="fieldWidth"
-									style="width: 200px;" />
+								<form:textarea path='P_Note' class="fieldWidth" cols="100"
+									rows="15" />
 								<br>&nbsp;
 								<form:errors path="P_Note" cssClass="error" />
 							</div>
