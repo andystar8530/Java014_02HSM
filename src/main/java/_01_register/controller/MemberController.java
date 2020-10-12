@@ -58,7 +58,6 @@ public class MemberController {
 		// 
 		public String modify(
 				@ModelAttribute("memberBean") MemberBean memberBean,
-				@ModelAttribute("loginBean") LoginBean logInBean,
 				BindingResult result, 
 				Model model,
 				@PathVariable Integer id, 
@@ -119,8 +118,8 @@ public class MemberController {
 			//更新時間
 			Timestamp editTime = new Timestamp(System.currentTimeMillis());
 			memberBeanUpd.setM_EditTime(editTime);
-			model.addAttribute("LoginOK", memberBeanUpd);
 			memberService.update(memberBeanUpd);
+			model.addAttribute("LoginOK", memberBeanUpd);
 			return "/partner_h/partner_h";
 		}
 		
