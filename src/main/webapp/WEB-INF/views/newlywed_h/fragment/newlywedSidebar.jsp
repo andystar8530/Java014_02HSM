@@ -67,7 +67,7 @@
 						
 						
 							
-							 <a class="list-group-item list-group-1"><img
+							 <a class="list-group-item"><img
 							src="<c:url value='/data/icon/3253474-wedding/png/001-clipboard.png' />">我的討論區 </a> <a
 						class="list-group-item list-group-2"><img
 							src="<c:url value='/data/icon/3253474-wedding/png/027-wedding invitation.png' />">我的收藏

@@ -20,7 +20,7 @@ import javax.sql.rowset.serial.SerialClob;
 
 public class GlobalService {
 
-	public static final int IMAGE_FILENAME_LENGTH = 20;
+	public static final int IMAGE_FILENAME_LENGTH = 7;
 
 //	只是取圖片名稱
 

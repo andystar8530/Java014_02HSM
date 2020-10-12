@@ -39,10 +39,9 @@ import support.mall.validator.ProductBeanValidator;
 
 @Controller
 @RequestMapping("/support")
-@SessionAttributes({ "LoginOK", "MallpageNo", "products_DPP" })
+@SessionAttributes({ "LoginOK", "MallpageNo", "products_DPP" ,"ProductBean" })
 public class CommodityServlet {
 
-	String inputDataForm = "support/bgMall/bgMallAdd";
 
 	@Autowired
 	ProductInfoService productInfoService;
@@ -53,25 +52,25 @@ public class CommodityServlet {
 	@GetMapping("/bgMallAdd")
 	public String sendingEmptyForm(Model model) {
 		ProductBean productBean = new ProductBean();
-		productBean.setP_Category("沒資料");
-		productBean.setP_Name("沒資料");
-		productBean.setP_Cover(null);
-		productBean.setP_FileName("沒名字");
-		productBean.setP_Pdqty(0);
-		productBean.setP_Pdsum(0);
-		productBean.setP_Stock(0);
-		productBean.setP_Sdqty(0);
-		productBean.setP_Price(0.0);
+//		productBean.setP_Category("沒資料");
+//		productBean.setP_Name("沒資料");
+//		productBean.setP_Cover(null);
+//		productBean.setP_FileName("沒名字");
+//		productBean.setP_Pdqty(0);
+//		productBean.setP_Pdsum(0);
+//		productBean.setP_Stock(0);
+//		productBean.setP_Sdqty(0);
+//		productBean.setP_Price(0.0);
 		productBean.setP_Pic1(null);
-		productBean.setP_FileName1("沒名字");
+		productBean.setP_FileName1("");
 		productBean.setP_Pic2(null);
-		productBean.setP_FileName2("沒名字");
+		productBean.setP_FileName2("");
 		productBean.setP_Pic3(null);
-		productBean.setP_FileName3("沒名字");
-		productBean.setP_Note("作者很懶什麼都沒有留");
+		productBean.setP_FileName3("");
+		productBean.setP_Note("");
 
 		model.addAttribute("ProductBean", productBean);
-		return inputDataForm;
+		return "support/bgMall/bgMallAdd";
 	}
 
 	@RequestMapping("/bgMall")
@@ -197,7 +196,6 @@ public class CommodityServlet {
 	@GetMapping("/p_Pic1")
 	public ResponseEntity<byte[]> getP_Pic1(@RequestParam("id") Integer id) {
 		InputStream is = null;
-		System.out.println("ssssss");
 		OutputStream os = null;
 		String fileName = null;
 		String mimeType = null;
@@ -390,6 +388,7 @@ public class CommodityServlet {
 				;
 			}
 		}
+		
 		return responseEntity;
 	}
 
@@ -407,6 +406,7 @@ public class CommodityServlet {
 			BindingResult bindingResult, @PathVariable Integer id, HttpServletRequest request) {
 
 		ProductBean productBeanOld = productInfoService.getSupPageProductsById(id);
+		
 		ProductBeanValidator ProductBeanValidator = new ProductBeanValidator(false);
 		ProductBeanValidator.validate(productBean, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -623,11 +623,11 @@ public class CommodityServlet {
 		catch (Exception ex) {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 			result.rejectValue("p_Id", "", "發生異常，請通知系統人員..." + ex.getMessage());
-			return inputDataForm;
+			return "support/bgMall/bgMallAdd";
 		}
 
-		return inputDataForm;
-
+//		return inputDataForm;
+		return "redirect:/support/bgMall";
 	}
 
 	// 商品刪除
@@ -641,26 +641,4 @@ public class CommodityServlet {
 
 }
 
-//	@ModelAttribute
-//	public Product1Bean prepareMemberBean(HttpServletRequest req) {
-//		Product1Bean product1Bean = new Product1Bean();
-//		product1Bean.setP_Category("沒資料");
-//		product1Bean.setP_Name("沒資料");
-//		product1Bean.setP_Cover(null);
-//		product1Bean.setP_FileName("沒名字");
-//		product1Bean.setP_Pdqty(0);
-//		product1Bean.setP_Pdsum(0);
-//		product1Bean.setP_Stock(0);
-//		product1Bean.setP_Sdqty(0);
-//		product1Bean.setP_Price(0.0);
-//		product1Bean.setP_Pic1(null);
-//		product1Bean.setP_FileName1("沒名字");
-//
-//		product1Bean.setP_Pic2(null);
-//		product1Bean.setP_FileName2("沒名字");
-//
-//		product1Bean.setP_Pic3(null);
-//		product1Bean.setP_FileName3("沒名字");
-//		product1Bean.setP_Note("作者很懶什麼都沒有留");
-//		return product1Bean;
-//	}
+

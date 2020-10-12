@@ -12,7 +12,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import _01_register.model.MemberBean;
 import support.member.service.BgMemberInfoService;
@@ -46,9 +44,9 @@ public class BgMemberServlet {
 
 	@Autowired
 	ServletContext servletContext;
-
-	@GetMapping("/bgMemberImage")
-	public ResponseEntity<byte[]> bgMemberImage(@RequestParam("id") Integer id) {
+				  
+	@GetMapping("/getBgMemberImage")
+	public ResponseEntity<byte[]> getBgMemberImage(@RequestParam("id") Integer id) {
 		InputStream is = null;
 		OutputStream os = null;
 		String fileName = null;
@@ -60,13 +58,13 @@ public class BgMemberServlet {
 		Blob blob = null;
 		try {
 			MemberBean bean = bgMemberInfoService.getSupMemberById(id);
-			;
 			if (bean != null) {
 				blob = bean.getM_Propic();
 				if (blob != null) {
 					is = blob.getBinaryStream();
 				}
 				fileName = bean.getM_FileName();
+				System.out.println(fileName);
 			}
 			// 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)
 			if (is == null) {
@@ -106,6 +104,7 @@ public class BgMemberServlet {
 				;
 			}
 		}
+		System.out.println("會員照片顯示");
 		return responseEntity;
 	}
 
@@ -163,9 +162,6 @@ public class BgMemberServlet {
 	public String getBgMemberUpdate(Model model, @PathVariable Integer id) {
 
 		MemberBean memberBean = bgMemberInfoService.getSupMemberById(id);
-//		int a = memberBean.getM_Status();
-//		if(a==0) {
-//		}
 		model.addAttribute("MemberBean", memberBean);
 		return "support/bgMember/bgMemberUpdate";
 

@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/marryMa.css">
+<!--   <link rel="stylesheet" -->
+<%-- 	href="${pageContext.request.contextPath}/css/marryMa.css"> --%>
     <meta charset="UTF-8" />
     <title>編輯報價合約資訊</title>
     <style>
@@ -386,6 +386,7 @@ changeService(1);
 	
 
 </script>
+</div>
 </div>
 </div>
 <jsp:include page="/fragment/footerMVC.jsp" />
