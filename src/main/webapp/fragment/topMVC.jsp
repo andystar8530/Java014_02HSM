@@ -90,18 +90,19 @@
 						</div>
 					</li>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle wow fadeInLeft" href="#"
-						id="navbarDropdownPages" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> 平台說明 </a>
-						<div class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarDropdownPages">
-							<a class="dropdown-item" href="#">關於本站</a> <a
-								class="dropdown-item" href="#">最新公告</a> <a class="dropdown-item"
-								href="#">服務條款</a> <a class="dropdown-item" href="#">隱私權說明</a> <a
-								class="dropdown-item" href="#">免責聲明</a> <a class="dropdown-item"
-								href="#">問題回報</a>
-						</div></li>
+<!-- 					<li class="nav-item dropdown"><a -->
+<!-- 						class="nav-link dropdown-toggle wow fadeInLeft" href="#" -->
+<!-- 						id="navbarDropdownPages" data-toggle="dropdown" -->
+<!-- 						aria-haspopup="true" aria-expanded="false"> 平台說明 </a> -->
+<!-- 						<div class="dropdown-menu dropdown-menu-right" -->
+<!-- 							aria-labelledby="navbarDropdownPages"> -->
+<!-- 							<a class="dropdown-item" href="#">關於本站</a> <a -->
+<!-- 								class="dropdown-item" href="#">最新公告</a> <a class="dropdown-item" -->
+<!-- 								href="#">服務條款</a> <a class="dropdown-item" href="#">隱私權說明</a> <a -->
+<!-- 								class="dropdown-item" href="#">免責聲明</a> <a class="dropdown-item" -->
+<!-- 								href="#">問題回報</a> -->
+<!-- 						</div></li> -->
+					
 					<c:if test="${empty LoginOK}">
 						<li class="nav-item wow fadeInLeft">
 							<!--                 如果沒登入才會顯示會員登入按鈕 --> <%-- 							<a class="nav-link" href="<c:url value='/ch02_login/login.jsp' />">會員登入</a> --%>
@@ -141,9 +142,8 @@
 						<li class="nav-item"><a class="nav-link wow fadeInLeft"
 							href="<c:url value='/_02_login/logout' />"> 登出 </a></li>
 
-						<li class="nav-item"><img height='40px' width='40px'
+						<li class="nav-item"><img height='40px' width='40px' style="border-radius: 50%;"
 							src="<c:url value='/_00_init/getMemberImage?id=${LoginOK.m_Id}' /> ">
-
 <!-- 下面這個圖也可以用 -->
 <!-- 							<img height='40px' width='40px' -->
 <%-- 							src=' --%>

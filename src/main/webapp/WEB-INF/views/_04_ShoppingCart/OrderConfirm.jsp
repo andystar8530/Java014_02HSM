@@ -71,7 +71,7 @@ function reconfirmOrder() {
             class="align-items-center banner-text animate__animated animate__fadeInUp"
           >
             <h5 class="text-center">
-              超多特惠商品，週週下殺便宜精選，讓你愛寵物愛得輕鬆又溫馨
+              超多特惠商品，週週下殺便宜精選。
             </h5>
           </div>
         </div>
@@ -214,7 +214,7 @@ function reconfirmOrder() {
          <div class="col-md-6 px-3 ">
           <div
             class="row d-flex justify-content-center align-items-center  mb-4"
-          > <h5 class="pb-4 pt-2 custInfoText custInfoRightText"><i class="fas fa-user-check custIcon"></i> 收件人資料(可修改)</h5>
+          > <h5 class="pb-4 pt-2 custInfoText custInfoRightText"><i class="fas fa-user-check custIcon"></i> 收件地址(可修改)</h5>
            <div class="col-12 ml-md-2 ml-0 ">
               <div class="input-group mb-4 ">
                 <label for="">發票抬頭</label>
@@ -239,10 +239,36 @@ function reconfirmOrder() {
         </div>
         <!-- 右邊資料 End -->
         </div>
+         <div class="row justify-content-center align-items-center">
+        <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
+<!--           <a -->
+<!--             href="#" -->
+<!--             class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center" -->
+<!--             ><div class="btnText1">提交訂單</div> -->
+<!--             </a> -->
+           <input type="hidden" name="finalDecision"  value="">   
+   			<input type="button" name="OrderBtn"  value="確定送出" onclick="reconfirmOrder()" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1">
+   			<input type="button" name="CancelBtn" value="取消訂單" onclick="cancelOrder()" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1">
+        </div>
       </div>
-     <input type="hidden" name="finalDecision"  value="">   
-   <input type="button" name="OrderBtn"  value="確定送出" onclick="reconfirmOrder()">
-   <input type="button" name="CancelBtn" value="取消訂單" onclick="cancelOrder()">
+      
+<!--       有動畫的按鈕 -->
+<!-- 		<div class="row justify-content-center align-items-center"> -->
+<!--         <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3"> -->
+<!--           <a -->
+<!--             href="#" -->
+<!--             class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center" -->
+<!--              onclick="reconfirmOrder()"><div class="btnText1">提交訂單</div></a> -->
+<!--         </div> -->
+<!--         <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3"> -->
+<!--           <a -->
+<!--             href="#" -->
+<!--             class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center" -->
+<!--              onclick="cancelOrder()"><div class="btnText1">取消訂單</div></a> -->
+<!--         </div> -->
+<!--       </div> -->
+      </div>
+    
      </FORM>
     <!-- Customer Info End ----------------------------------------------------------------->
 

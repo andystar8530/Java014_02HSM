@@ -56,5 +56,9 @@ fieldset {
 			</fieldset>
 		</form:form>
 	</section>
+	
+		<!-- ---------------------------分隔線---------------------------------------			 -->
+
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

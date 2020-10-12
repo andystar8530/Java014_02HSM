@@ -133,6 +133,8 @@ function formatDate(now) {
 	<div class='center'  id='portfoliosItem'></div>
 </div>
 <a href="<c:url value='/portfoliosByPartnerId'/>" class="text-center p-1" >回前頁</a>
+	<!-- ---------------------------分隔線---------------------------------------			 -->
 
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>
