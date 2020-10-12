@@ -19,7 +19,6 @@ import partner_h.quotecontract.report.dao.QuoteReportDao;
 import partner_h.quotecontract.report.model.QuoteReportBean;
 
 @Repository
-@Service
 public class QuoteReportDaoImpl implements QuoteReportDao {
 	
 	@Autowired
