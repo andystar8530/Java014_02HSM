@@ -1,5 +1,6 @@
 package partner_h.quotecontract.report.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,10 +20,12 @@ import partner_h.quotecontract.report.service.QuoteReportService;
 
 @Controller
 @RequestMapping("quotReport")
-@SessionAttributes({"LoginOK","partnerBean"})//裝入屬性物件中，與jsp頁面識別字有關
+@SessionAttributes({"LoginOK","partnerBean","QuoteReportBean"})//裝入屬性物件中，與jsp頁面識別字有關
 
 public class DisplayQuoteReportController {
 
+
+	
 	@Autowired
 	PartnerService partnerService;
 	
@@ -52,27 +55,34 @@ public class DisplayQuoteReportController {
 		protected String getYearQuoteReport2(Model model) {
 			System.out.println("載入到每月營收報表中囉");
 			PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+//			QuoteReportBean qrBean = (QuoteReportBean) model.getAttribute("QuoteReportBean");
+			
 			System.out.println(partnerBean.getP_id());
 			List<QuoteContractBean> qcBean = qrService.getYearQuotes2(partnerBean.getP_id());
 		System.out.println("qrBean長度"+qcBean.size());
-		
 		
 		Integer revenue = null;
 		Integer count=0;
 		Integer profit=0;
 		Integer cost=0;
 		Integer month = null;
-		Integer exmonth = null;
+		Integer exmonth = 0;
 		int n=0;
-		List<QuoteReportBean> qrList = null;
-		QuoteReportBean qrBean = null;
-		
+		List<QuoteReportBean> qrList = new ArrayList<QuoteReportBean>();
+//		QuoteReportBean qrBean = null;
+		QuoteReportBean qrBean = new QuoteReportBean();
+				
 		Calendar calendar=Calendar.getInstance();//java.sql.date 取月份
 		for(int i=0;i<qcBean.size();i++) {
 			calendar.setTime(qcBean.get(i).getQcExecutionDate());//服務日期塞入 calender型態中
+			System.out.println(qcBean.get(i).getQcExecutionDate());
 			month = calendar.get(Calendar.MONTH);//服務日期取月份
+			month=month+1;
+			System.out.println(month);
+			
 			if(exmonth != month) {
 				if (revenue!=null) { //單月
+					System.out.println(month);
 					qrBean.setMonth(month);
 					qrBean.setQuoteCount(count);//單據筆數
 					qrBean.setQrRevenue(revenue);//收入總和
@@ -81,7 +91,7 @@ public class DisplayQuoteReportController {
 					qrBean.setQrAvgCost(cost/count);//成本平均
 					qrBean.setQrProfit(profit);//利潤總和
 					qrBean.setQrAvgPro(profit/count);//平均利潤
-					qrList.set(n, qrBean);
+					qrList.add(n, qrBean);
 					n++;
 				}									
 				revenue =0;
@@ -91,11 +101,11 @@ public class DisplayQuoteReportController {
 					exmonth =month;
 			}
 			count++;
+			System.out.println("test"+qcBean.get(i).getQcTotalAmount());
 			revenue += qcBean.get(i).getQcTotalAmount();//取收入
 			profit  += qcBean.get(i).getQcProfit();     //取利潤
 			cost    += qcBean.get(i).getCostTotal();    //取成本	
 		}
-		
 				qrBean.setMonth(month);
 				qrBean.setQuoteCount(count);//單據筆數
 				qrBean.setQrRevenue(revenue);//收入總和
@@ -104,19 +114,16 @@ public class DisplayQuoteReportController {
 				qrBean.setQrAvgCost(cost/count);//成本平均
 				qrBean.setQrProfit(profit);//利潤總和
 				qrBean.setQrAvgPro(profit/count);//平均利潤
-				qrList.set(n, qrBean);
-		
-		
-		
+				qrList.add(n, qrBean);
 		
 		System.out.println(qrList.size());
-		
-		
 		
 		for(int i=0; i<qcBean.size();i++) {
 			System.out.println("第"+i+"筆");
 //			System.out.println(qrBean.get(i).getMonth());
 		}
+		
+		model.addAttribute("qrList", qrList);
 			return "partner_h/quoteReport";
 	}	
 }

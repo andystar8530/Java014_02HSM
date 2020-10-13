@@ -8,13 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="QuoteReport")
+//@Entity
+//@Table(name="QuoteReport")
 public class QuoteReportBean {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Integer qrNo;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer qrNo;
 	Integer month;
 	Integer quoteCount;
 	Integer qrRevenue;
