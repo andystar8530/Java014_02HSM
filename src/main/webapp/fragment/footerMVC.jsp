@@ -29,7 +29,7 @@
               <h3>關於我們</h3>
               <ul>
                 <li><a href="#">關於姻緣聚繪</a></li>
-                <li><a href="#">最新公告</a></li>
+                <li><a href="<c:url value='/support/Plateannouncements' />">最新公告</a></li>
                 <li><a href="#">服務條款</a></li>
               </ul>
             </div>

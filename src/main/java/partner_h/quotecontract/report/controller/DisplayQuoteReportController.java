@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
+import partner_h.quotecontract.main.model.QuoteContractBean;
 import partner_h.quotecontract.main.service.QuoteContractService;
 import partner_h.quotecontract.report.model.QuoteReportBean;
 import partner_h.quotecontract.report.service.QuoteReportService;
@@ -31,24 +32,31 @@ public class DisplayQuoteReportController {
 	QuoteReportService qrService;
 	
 	//每月營業收入、利潤加總、結案單數
-	@GetMapping("year")	
+	@GetMapping("/year")	
 	protected String getYearQuoteReport(Model model) {
 		System.out.println("載入到每月營收報表中囉");
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 		System.out.println(partnerBean.getP_id());
 		List<QuoteReportBean> qrBean = qrService.getYearQuotes((partnerBean.getP_id()),3);
-//		System.out.println("qrBean長度"+qrBean.size());
-//		for(int i=0; i<qrBean.size();i++) {
-//			System.out.println(qrBean.get(i));
-//		}
+		System.out.println("qrBean長度"+qrBean.size());
+		for(int i=0; i<qrBean.size();i++) {
+			System.out.println(i+"次: "+qrBean.get(i));
+		}
 		return "partner_h/quoteReport";
-
 	}
-	
-	
-	
-	
-	
-	
-	
+
+		//每月營業收入、利潤加總、結案單數
+		@GetMapping("/year2")	
+		protected String getYearQuoteReport2(Model model) {
+			System.out.println("載入到每月營收報表中囉");
+			PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+			System.out.println(partnerBean.getP_id());
+			List<QuoteReportBean> qrBean = qrService.getYearQuotes2(partnerBean.getP_id());
+		System.out.println("qrBean長度"+qrBean.size());
+		for(int i=0; i<qrBean.size();i++) {
+			System.out.println("第"+i+"筆");
+			System.out.println(qrBean.get(i).getMonth());
+		}
+			return "partner_h/quoteReport";
+	}	
 }
