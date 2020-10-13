@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,10 +27,11 @@ list-group-item>img{
 }
 </style>
 <body>
+<div class="m-5">
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topMVC.jsp" />
 	<section>
-		<div class="container-fluid" style="height:800px; width:1500px" >
+		<div class="container-fluid" class="m-2" >
 			<div class="row " >
 				<h1 class="mt-4 mb-3 ml-3">
 					後台 <small>商城管理</small>
@@ -78,23 +80,25 @@ list-group-item>img{
 						<thead>
 							  <tr>
 								<th scope="col" width='30' class='text-center'>編號</th>
-								<th scope="col" width='40' class='text-center'>銷售數量</th>      
+								<th scope="col" width='40' class='text-center'>銷量</th>      
 								<th scope="col" width='30' class='text-center'>圖片</th>
-								<th scope="col" width='50' class='text-center'>產品名稱</th>
+								<th scope="col" width='50' class='text-center'>品名</th>
 								<th scope="col" width='120' class='text-center'>內容</th>
 								<th scope="col" width='30' class='text-center'>創建日期</th>
-								<th scope="col" width='30' class='text-center'>最後修改日期</th>					
+								<th scope="col" width='30' class='text-center'>最後修改</th>					
 								<th scope="col" width='30' class='text-center'>刪除</th>
 							  </tr>
 						</thead>
 						<tbody>
 						  <c:forEach var='product' items="${supProducts_DPP}">
 							  <tr>
-								<td width='30'>
+								<td width='30' class="text-center">
 									<div onclick="location.href='<c:url value="/support/bgMallUpdate/${product.value.p_Id}"/>';" 
 										style="cursor: pointer;">${product.value.p_Id}
 										<input id='p_id' type="hidden"
 											name='p_id' value="${product.value.p_Id}">
+											<br>
+											<a href="<c:url value='/support/bgMallUpdate/${product.value.p_Id}'/>"><img src="<c:url value='/data/icon/document.png' />" width="50" style="display: inline;" >
 									</div>
 								</td>
 								<td width='30'>售出:${product.value.p_Sdqty}</td>
@@ -116,12 +120,12 @@ list-group-item>img{
 									</button></td>
 								<td  width='30' >
 									<div class='text-center'>
-										${product.value.p_CreateTime}
+									<fmt:formatDate value="${product.value.p_CreateTime}" type="date"/>
 									</div>	
 								</td> 
 								<td  width='30'>
 									<div class='text-center'>
-									${product.value.p_UpdataTime}
+									<fmt:formatDate value="${product.value.p_UpdataTime}" type="date"/>
 									</div>
 								</td>
 						
@@ -198,7 +202,7 @@ aria-labelledby="exampleModalLabel${product.value.p_Id}" aria-hidden="true">
 
 	</section>
      	
-
+</div>
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
  	<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 	<script>
