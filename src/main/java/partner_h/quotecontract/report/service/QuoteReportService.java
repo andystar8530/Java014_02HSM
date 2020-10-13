@@ -11,5 +11,5 @@ public interface QuoteReportService {
 	
 	
 	//依合作商ID 查詢 每月營業收入、利潤加總、結案筆數
-	List<QuoteReportBean> getYearQuotes2(int p_Id);
+	List<QuoteContractBean> getYearQuotes2(int p_Id);
 }

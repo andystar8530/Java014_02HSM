@@ -29,8 +29,8 @@ public class QuoteReportServiceImpl implements QuoteReportService {
 	
 	
 	@Override
-	public List<QuoteReportBean>  getYearQuotes2(int p_Id) {
-		List<QuoteReportBean> list = null;
+	public List<QuoteContractBean>  getYearQuotes2(int p_Id) {
+		List<QuoteContractBean> list = null;
 		list = qrdao.getYearQuotes2(p_Id);
 		return list;
 	}

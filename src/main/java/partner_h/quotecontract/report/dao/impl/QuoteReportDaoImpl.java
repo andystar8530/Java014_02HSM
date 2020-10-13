@@ -58,7 +58,7 @@ public class QuoteReportDaoImpl implements QuoteReportDao {
 	//抓全部的QuoteContractBean後透過list拆解Bean
 	@SuppressWarnings({ "unchecked", "null" })
 	@Override
-	public List<QuoteReportBean>  getYearQuotes2(int p_Id) {
+	public List<QuoteContractBean>  getYearQuotes2(int p_Id) {
 		//and (MONTH(q.qcdate)=9)
 		int status=3;
 		String sql = "SELECT MONTH(q.qcdate), COUNT(q.qcstatus) "
@@ -73,57 +73,10 @@ public class QuoteReportDaoImpl implements QuoteReportDao {
 										.setParameter("status", status)
 										.getResultList();	
 		System.out.println(qcList);	
-		Integer revenue = null;
-		Integer count=0;
-		Integer profit=0;
-		Integer cost=0;
-		Integer month = null;
-		Integer exmonth = null;
-		int n=0;
-		List<QuoteReportBean> qrList = null;
-		QuoteReportBean qrBean = null;
 		
-		Calendar calendar=Calendar.getInstance();//java.sql.date 取月份
-		for(int i=0;i<qcList.size();i++) {
-			calendar.setTime(qcList.get(i).getQcExecutionDate());//服務日期塞入 calender型態中
-			month = calendar.get(Calendar.MONTH);//服務日期取月份
-			if(exmonth != month) {
-				if (revenue ==0) { //單月
-					qrBean.setMonth(month);
-					qrBean.setQuoteCount(count);//單據筆數
-					qrBean.setQrRevenue(revenue);//收入總和
-					qrBean.setQrAvgRev(revenue/count);//收入平均
-					qrBean.setQrCost(cost);//成本總和
-					qrBean.setQrAvgCost(cost/count);//成本平均
-					qrBean.setQrProfit(profit);//利潤總和
-					qrBean.setQrAvgPro(profit/count);//平均利潤
-					qrList.set(n, qrBean);
-					n++;
-				}									
-					revenue =0;
-					profit=0;
-					cost=0;
-					count=0;
-					exmonth =month;
-			}
-			count++;
-			revenue += qcList.get(i).getQcTotalAmount();//取收入
-			profit  += qcList.get(i).getQcProfit();     //取利潤
-			cost    += qcList.get(i).getCostTotal();    //取成本	
-		}
-		
-				qrBean.setMonth(month);
-				qrBean.setQuoteCount(count);//單據筆數
-				qrBean.setQrRevenue(revenue);//收入總和
-				qrBean.setQrAvgRev(revenue/count);//收入平均
-				qrBean.setQrCost(cost);//成本總和
-				qrBean.setQrAvgCost(cost/count);//成本平均
-				qrBean.setQrProfit(profit);//利潤總和
-				qrBean.setQrAvgPro(profit/count);//平均利潤
-				qrList.set(n, qrBean);
 
 		
-		return qrList;
+		return qcList;
 	}
 }
 
