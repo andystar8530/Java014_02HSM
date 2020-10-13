@@ -21,6 +21,8 @@ import _00_init.util.RegisterSmtp;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidator;
+import newlywed.model.NewlywedBean;
+import newlywed.service.NewlywedService;
 
 @Controller
 @RequestMapping("/_01_register")
@@ -32,6 +34,9 @@ public class RegisterController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	NewlywedService newlywedService;
 	
 	@Autowired
 	RegisterSmtp registerSmtp;
@@ -103,10 +108,14 @@ public class RegisterController {
 		bean.setM_Password(GlobalService.getMD5Endocing(
 				GlobalService.encryptString(bean.getM_Password())));
 		
-
+		NewlywedBean nb=new NewlywedBean();
+		
 		
 		try {
 			int n = memberService.saveMember(bean);
+			nb.setMemberBean(bean); 
+			
+			newlywedService.saveNewlyed(nb);
 			if (n == 1) {
 				String farewellMessage = "<Font color='red'>新增成功，請開始使用本系統</Font>";
 				redirectAtt.addFlashAttribute("FlashMSG_farewell", farewellMessage);

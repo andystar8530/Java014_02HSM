@@ -3,6 +3,8 @@ package newlywed.model;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -18,6 +21,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import _01_register.model.MemberBean;
+import favorites.model.FavoritesBean;
 
 @Entity
 @Table(name="newlywed")
@@ -29,6 +33,9 @@ public class NewlywedBean implements Serializable{
 //	private Integer N_id;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer nId;
+	
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="N_MID")
 	private MemberBean memberBean;
@@ -36,9 +43,20 @@ public class NewlywedBean implements Serializable{
 	@Transient
 	private Integer N_MID;
 	
+	@OneToMany(mappedBy = "newlywedBean")
+	private List<FavoritesBean> myfavorites = new ArrayList<>();
+	
 	@Column(name="N_NICKNAME")
 	private String N_nickname;
 	
+	public List<FavoritesBean> getMyfavorites() {
+		return myfavorites;
+	}
+
+	public void setMyfavorites(List<FavoritesBean> myfavorites) {
+		this.myfavorites = myfavorites;
+	}
+
 	public String getN_connectiontime() {
 		return N_connectiontime;
 	}
@@ -63,7 +81,8 @@ public class NewlywedBean implements Serializable{
 	private String N_checklist;
 	
 	@Column(name="N_FAVORITE")
-	private String N_favorite;
+	@Transient
+	private Integer N_favorite;
 	
 	@Column(name="N_CONNECTIONTIME")
 	private String N_connectiontime;
@@ -91,25 +110,21 @@ public class NewlywedBean implements Serializable{
 		N_phonenumber = n_phonenumber;
 	}
 
-	public NewlywedBean() {
-		
+	
+	
+	public Integer getnId() {
+		return nId;
 	}
-	
-	
+
+	public void setnId(Integer nId) {
+		this.nId = nId;
+	}
+
+	public NewlywedBean() {
+		super();
+	}
 
 	
-	
-
-	
-
-	
-
-	
-
-	
-
-	
-
 	@Override
 	public String toString() {
 		return "NewlywedBean [memberBean=" + memberBean + ", N_MID=" + N_MID + ", N_nickname="
@@ -119,14 +134,17 @@ public class NewlywedBean implements Serializable{
 				+ edittime + ", N_phonenumber=" + N_phonenumber + "]";
 	}
 
-	public NewlywedBean( MemberBean memberBean, Integer n_MID, String n_nickname, String n_gender,
-			Date n_date, Integer n_budget, Integer n_area, String n_checklist, String n_favorite,
-			String n_connectiontime, String n_service, Timestamp createtime, Timestamp edittime,
+	
+
+	public NewlywedBean(Integer nId, MemberBean memberBean, Integer n_MID, List<FavoritesBean> myfavorites,
+			String n_nickname, String n_gender, Date n_date, Integer n_budget, Integer n_area, String n_checklist,
+			Integer n_favorite, String n_connectiontime, String n_service, Timestamp createtime, Timestamp edittime,
 			Integer n_phonenumber) {
 		super();
-		
+		this.nId = nId;
 		this.memberBean = memberBean;
 		N_MID = n_MID;
+		this.myfavorites = myfavorites;
 		N_nickname = n_nickname;
 		N_gender = n_gender;
 		N_date = n_date;
@@ -207,11 +225,11 @@ public class NewlywedBean implements Serializable{
 		N_checklist = n_checklist;
 	}
 
-	public String getN_favorite() {
+	public Integer getN_favorite() {
 		return N_favorite;
 	}
 
-	public void setN_favorite(String n_favorite) {
+	public void setN_favorite(Integer n_favorite) {
 		N_favorite = n_favorite;
 	}
 

@@ -115,12 +115,12 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 			list = session.createQuery(hql)
 					  .setParameter("pid", p_Id)
 					  .setParameter("status", status)
-				      .getResultList();
-			
+				      .getResultList();		
 		}
 		
 		return list;
 	}
+
 
 
 

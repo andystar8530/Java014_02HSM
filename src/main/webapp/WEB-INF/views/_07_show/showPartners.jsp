@@ -630,6 +630,10 @@ function myFunction() {
 		})(jQuery);
 
 </script>	
+
+	<!-- ---------------------------分隔線---------------------------------------			 -->
+
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 
 </html>

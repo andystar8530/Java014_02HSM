@@ -131,6 +131,7 @@
     </div>  
     </div>
 </div>
+</div>
  <jsp:include page="/fragment/footerMVC.jsp" />
     
 </body>

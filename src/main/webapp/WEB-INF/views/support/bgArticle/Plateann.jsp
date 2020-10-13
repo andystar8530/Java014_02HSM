@@ -23,6 +23,9 @@ span.error {
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 引入共同的頁首 -->
+	<jsp:include page="/fragment/topMVC.jsp" />
+
 	<div align="center">						 
 		<form:form method='POST' modelAttribute="PlateannouncementBean">
 			<c:set var="PlateannouncementBean" />
