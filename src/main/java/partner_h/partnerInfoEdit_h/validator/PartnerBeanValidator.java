@@ -27,20 +27,19 @@ public class PartnerBeanValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		PartnerBean partnerBean = (PartnerBean)target;
-		//傳入Spring MVC的path屬性
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_storeName", "","名稱不能空白");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_info", "","簡介不能空白");
+		//傳入Spring MVC的path屬性		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_storeName", "","店家名稱不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_info", "","店家簡介不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_bankAcc", "","銀行帳號不能空白");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_hRate", "","預估時薪不能空白");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_lineId", "","LineId不能空白");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "p_lineId", "","LineID不能空白");
 //		ValidationUtils.rejectIfEmpty(errors, "covImage", "", "必須挑選圖片");
 //		ValidationUtils.rejectIfEmpty(errors, "staImage", "", "必須挑選圖片");
 		
 		if(partnerBean.getP_area() == -1) {
-			errors.rejectValue("p_area", "", "必須挑選服務區域");
+			errors.rejectValue("p_area", "", "服務區域必須挑選");
 		}
 		if(partnerBean.getP_service().equals("-1")) {
-			errors.rejectValue("p_service", "", "必須挑選服務類型");
+			errors.rejectValue("p_service", "", "服務類型必須挑選");
 		}
 		
 		if(insertMode) {

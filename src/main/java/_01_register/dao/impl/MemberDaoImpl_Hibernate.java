@@ -26,9 +26,8 @@ public class MemberDaoImpl_Hibernate implements MemberDao {
 	public int saveMember(MemberBean mb) {
 		int n = 0;
 		Session session = factory.getCurrentSession();
-		session.save(mb);
-		n++;
-		return n;
+		session.save(mb);n++;
+		return mb.getM_No();
 	}
 	// 判斷參數id(會員帳號)是否已經被現有客戶使用，如果是，傳回true，表示此id不能使用，
 	// 否則傳回false，表示此id可使用。

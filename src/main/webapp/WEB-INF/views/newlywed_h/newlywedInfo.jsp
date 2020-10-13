@@ -36,69 +36,53 @@
 	<jsp:include page="./fragment/newlywedSidebar.jsp" />
 
 
-	
-			<!-- Content Column -->
-			<div class="col-lg-9 mb-4">
-				<h2>基本資料&nbsp;</h2>
-				<form:form modelAttribute="NewlywedBean" method="POST" enctype='multipart/form-data'>
+<div class="col-lg-9 mb-4">
+				<h2>婚禮籌備&nbsp;</h2>
+				<form:form name="updateMemberFormA" modelAttribute="NewlywedBean" method="POST">
 					<div class="form-group">
-						<label for="formGroupExampleInput">平台暱稱</label> 
-						<form:input
-							path="N_nickname" class="form-control" id="formGroupExampleInput"
-							type="text" placeholder="您的暱稱"  />
-					</div>
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput">結婚日期</label> <input type="text" -->
-<!-- 							class="form-control" id="formGroupExampleInput" -->
-<!-- 							placeholder="Your password" name="updatePswd"> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput">婚禮預算</label> <input type="text" -->
-<!-- 							class="form-control" id="formGroupExampleInput" -->
-<!-- 							placeholder="Your IDnumber" name="updateId"> -->
-<!-- 					</div> -->
-<!-- 					<div class="form-group"> -->
-<!-- 						<label for="formGroupExampleInput2">婚禮地區</label> <input -->
-<!-- 							type="text" class="form-control" id="formGroupExampleInput2" -->
-<!-- 							placeholder="Telephone" name="updatePhone" -->
-<%-- 							value="${param.updatePhone}"> --%>
-<!-- 					</div> -->
-					<div class="form-group">
-						<label for="formGroupExampleInput2">電話號碼</label> <form:input 
-						path="N_phonenumber"
-							type="text" class="form-control" id="formGroupExampleInput2"
-							placeholder="09xx-xxx-xxx"/>
+						<label for="formGroupExampleInput">結婚日期</label> <form:input
+							path="N_date" type="date" class="form-control" id="formGroupExampleInput"
+							placeholder="20xx/MM/DD" name="updateEmail" />
 					</div>
 					<div class="form-group">
-						<label for="formGroupExampleInput">您的性別</label>
-					</div>
-					<div class="form-check form-check-inline">
-                            <form:radiobutton path="N_gender" value="0" label="男生"
-												class="form-check-input" />&nbsp;
-											<br>
-											<form:radiobutton path="N_gender" value="1" label="女生"
-												class="form-check-input" />
-<%-- 											<form:errors path="m_Code" cssClass="error" /> --%>
-
-
-<!-- 						<input class="form-check-input" type="checkbox" -->
-<!-- 							id="inlineCheckbox1" value="option1" /> <label -->
-<!-- 							class="form-check-label" for="inlineCheckbox1">男</label> -->
-<!--  					</div> --> 
-<!--  					<div class="form-check form-check-inline"> --> 
-<!-- 						<input class="form-check-input" type="checkbox" -->
-<!-- 							id="inlineCheckbox1" value="option2" > <label -->
-<!-- 							class="form-check-label" for="inlineCheckbox2">女</label> -->
-					</div>
-					<div class="form-group">
-						<label for="formGroupExampleInput2">聯絡時間</label> 
-						<form:select path="N_connectiontime" class="form-control" name="avTime">
-                                <form:options  items="${FreeTime}" />
+						<label for="formGroupExampleInput">婚禮預算(可複選)</label>
+						<div class="form-group">
+						<label for="formGroupExampleInput2"></label> <form:select
+							path="N_budget" class="form-control" name="avTime">
+							<form:options  items="${budget}" />
 <!-- 							<option value="早上9點到中午12點">早上9點到中午12點</option> -->
 <!-- 							<option>下午1點到晚上6點</option> -->
 <!-- 							<option>晚上六點到晚上10點</option> -->
-						</form:select>
+ 						</form:select>
 					</div>
+					</div>
+					<div class="form-group">
+						<label for="formGroupExampleInput">婚禮地區</label>
+					</div>
+                     <div class="form-check form-check-inline">
+					 <form:radiobutton path="N_area" value="0" label="北部"
+												class="form-check-input" />&nbsp;
+											<br>
+											<form:radiobutton path="N_area" value="1" label="中部"
+												class="form-check-input" />
+												<br>
+											<form:radiobutton path="N_area" value="2" label="南部"
+												class="form-check-input" />
+												<br>
+											<form:radiobutton path="N_area" value="3" label="東部"
+												class="form-check-input" />
+												<br>
+											<form:radiobutton path="N_area" value="4" label="離島"
+												class="form-check-input" />
+                       </div>
+					
+					<div class="form-group">
+						<label for="formGroupExampleInput2">準備清單</label>
+						</div>
+						<div>
+						<form:checkboxes items="${weddingList}" path="N_checklist" /> 
+					</div>
+					
 					<div>
 						<input class="btn btn-primary" type="submit" value="送出" />
 					</div>
@@ -106,9 +90,16 @@
 
 			</div>
 		</div>
+	
+
+	</div>
+	</div>
+	</div>
+			
+
+			
 		<!-- /.row -->
-</div>
-</div>
+
 	<!-- /.container -->
 
 

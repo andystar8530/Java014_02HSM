@@ -88,4 +88,6 @@ public class NewlywedDaoImpl implements NewlywedDao {
 					  .getResultList();
 				return list;
 	}
+	
+	
 }
