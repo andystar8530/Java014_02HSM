@@ -82,7 +82,7 @@
 				    <p class="card-text">${programBean.prm_Content}</p>
 				    <p class="card-text">${programBean.prm_Price}</p>
 				    <a href="<c:url value='/_06_Program/ProgramDetail/${programBean.prm_Id}'/>" class="btn btn-primary">詳細內容</a>
-				  	<input type='hidden' value=${programList.partnerBean.memberBean.m_Add} class='' >
+				  	
 				  </div>
 				</div>
 			</div>
