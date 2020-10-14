@@ -8,30 +8,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="QuoteReport")
+//@Entity
+//@Table(name="QuoteReport")
 public class QuoteReportBean {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer qrNo;
-	Date month;
+	Integer month;
 	Integer quoteCount;
-
-	public QuoteReportBean(Date month, Integer quoteCount) {
-		this.month = month;
-		this.quoteCount = quoteCount;
-	}
-		
+	Integer qrRevenue;
+	Integer qrProfit;
+	Integer qrCost;
+	Integer qrAvgRev;
+	Integer qrAvgPro;
+	Integer qrAvgCost;
+	
 	public QuoteReportBean() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Date getMonth() {
+	public QuoteReportBean(Integer month, Integer quoteCount, Integer qrRevenue, Integer qrProfit, Integer qrCost,
+			Integer qrAvgRev, Integer qrAvgPro, Integer qrAvgCost) {
+		this.month = month;
+		this.quoteCount = quoteCount;
+		this.qrRevenue = qrRevenue;
+		this.qrProfit = qrProfit;
+		this.qrCost = qrCost;
+		this.qrAvgRev = qrAvgRev;
+		this.qrAvgPro = qrAvgPro;
+		this.qrAvgCost = qrAvgCost;
+	}
+
+	public Integer getMonth() {
 		return month;
 	}
 
-	public void setMonth(Date month) {
+	public void setMonth(Integer month) {
 		this.month = month;
 	}
 
@@ -43,17 +57,60 @@ public class QuoteReportBean {
 		this.quoteCount = quoteCount;
 	}
 
-	public Integer getQrNo() {
-		return qrNo;
+	public Integer getQrRevenue() {
+		return qrRevenue;
 	}
 
-	public void setQrNo(Integer qrNo) {
-		this.qrNo = qrNo;
+	public void setQrRevenue(Integer qrRevenue) {
+		this.qrRevenue = qrRevenue;
+	}
+
+	public Integer getQrProfit() {
+		return qrProfit;
+	}
+
+	public void setQrProfit(Integer qrProfit) {
+		this.qrProfit = qrProfit;
+	}
+
+	public Integer getQrCost() {
+		return qrCost;
+	}
+
+	public void setQrCost(Integer qrCost) {
+		this.qrCost = qrCost;
+	}
+
+	public Integer getQrAvgRev() {
+		return qrAvgRev;
+	}
+
+	public void setQrAvgRev(Integer qrAvgRev) {
+		this.qrAvgRev = qrAvgRev;
+	}
+
+	public Integer getQrAvgPro() {
+		return qrAvgPro;
+	}
+
+	public void setQrAvgPro(Integer qrAvgPro) {
+		this.qrAvgPro = qrAvgPro;
+	}
+
+	public Integer getQrAvgCost() {
+		return qrAvgCost;
+	}
+
+	public void setQrAvgCost(Integer qrAvgCost) {
+		this.qrAvgCost = qrAvgCost;
 	}
 
 	@Override
 	public String toString() {
-		return "QuoteReportBean [qrNo=" + qrNo + ", month=" + month + ", quoteCount=" + quoteCount + "]";
+		return "QuoteReportBean [month=" + month + ", quoteCount=" + quoteCount + ", qrRevenue=" + qrRevenue
+				+ ", qrProfit=" + qrProfit + ", qrCost=" + qrCost + ", qrAvgRev=" + qrAvgRev + ", qrAvgPro=" + qrAvgPro
+				+ ", qrAvgCost=" + qrAvgCost + "]";
 	}
+
 
 }

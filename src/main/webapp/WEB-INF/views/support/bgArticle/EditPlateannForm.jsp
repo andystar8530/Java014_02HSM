@@ -43,6 +43,8 @@ span.error {
 
 </head>
 <body>
+<!-- 引入共同的頁首 -->
+<jsp:include page="/fragment/topMVC.jsp" />
 	<div align="center">
 		<form:form method='POST' modelAttribute="plateannouncementBean">
 			<input type="hidden" name="noname" id='putOrDelete' value="">
@@ -54,13 +56,13 @@ span.error {
 				<legend>公版文資料</legend>
 				<table> 
 					<tr>
-						<td align='right'>分類<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
+						<td align='right'>分類：<br>&nbsp;
 						</td>
 						<td><form:input path="paCode" /><br>&nbsp; <form:errors
 								path="paCode" cssClass="error" /></td>
 					</tr>
 					<tr>
-						<td align='right'>名稱<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
+						<td align='right'>名稱：<br>&nbsp;
 						</td>
 						<td><form:input path="paName" /><br>&nbsp; <form:errors
 								path="paName" cssClass="error" /></td>
@@ -72,8 +74,7 @@ span.error {
 								path="paDate" cssClass="error" /></td>
 					</tr>
 					<tr>
-						<td align='right'>修改日期<font size='-3' color='blue'>(yyyy-MM-dd
-								HH:mm:ss SSS)</font>：<br>&nbsp;
+						<td align='right'>修改日期<font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
 						</td>
 						<td><form:input path="paEnDate" /><br>&nbsp; <form:errors
 								path="paEnDate" cssClass="error" /></td>
