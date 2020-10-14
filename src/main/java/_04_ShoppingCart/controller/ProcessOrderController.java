@@ -36,7 +36,7 @@ public class ProcessOrderController {
 	@PostMapping("ProcessOrder")
 	protected String processOrder(Model model, 
 			@RequestParam("ShippingAddress") String ShippingAddress,
-//			@RequestParam("s_M_Name") String s_M_Name,
+//			@RequestParam("bNo") String bNo,
 //			@RequestParam("s_M_Phone") String s_M_Phone, 
 			WebRequest webRequest, SessionStatus status
 			) {

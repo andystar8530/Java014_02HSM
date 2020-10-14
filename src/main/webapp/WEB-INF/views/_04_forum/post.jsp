@@ -24,6 +24,11 @@
 .bgcolor {
 	background-color: #EBFFEB;
 }
+.fas{
+	letter-spacing: 5px;
+	margin-right: 10px;
+}
+li{list-style-type:none;}
 </style>
 </head>
 <body class="">
@@ -81,10 +86,10 @@
 						<div class="col-12 article-mood">
 							<ul class="like-or-hate d-flex">
 								<li id="like1"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa-2x">${post.fLike}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa">${post.fLike}</i></a></li>
 
 								<li id="hate1"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa-2x">${post.fHate}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>
@@ -93,10 +98,10 @@
 							<ul class="like-or-hate d-flex"">
 
 								<li id="like1"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-up fa-2x" style="color: red">${post.fLike}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-up fa" style="color: red">${post.fLike}</i></a></li>
 
 								<li id="hate1" ><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa-2x">${post.fHate}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=2"><i class="fas fa-thumbs-down fa">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>
@@ -105,10 +110,10 @@
 							<ul class="like-or-hate d-flex"">
 
 								<li id="like1"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa-2x">${post.fLike}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=1"><i class="fas fa-thumbs-up fa">${post.fLike}</i></a></li>
 
 								<li id="hate1"><a
-									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-down fa-2x" style="color: red">${post.fHate}</i></a></li>
+									href="<%=path%>/_04_forum/like?postId=${post.fId}&loh=${loh.no}&tf=0"><i class="fas fa-thumbs-down fa" style="color: red">${post.fHate}</i></a></li>
 							</ul>
 						</div>
 					</c:if>

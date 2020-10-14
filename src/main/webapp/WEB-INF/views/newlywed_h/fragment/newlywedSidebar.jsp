@@ -50,9 +50,11 @@
 							
 							
 				 
-	        <a  class="list-group-item list-group-1"><img src="<c:url value='/data/icon/3253474-wedding/png/034-marriage certification.png' />">我要詢價
+	        <a  class="list-group-item list-group-1"><img src="<c:url value='/data/icon/3253474-wedding/png/034-marriage certification.png' />">我的報價
   			<a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
           				 href="<c:url value='/quote/quoteAllList'/>"> 報價清單</a>
+          	  			<a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"  
+          				 href="<c:url value='/quote/askingQuote'/>"> 我要詢價</a>			 
           				 
 <!--            <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"   -->
 <%--           				 href="<c:url value='/quotecontract/quoteContractStatusList/2' />">已簽約</a>          --%>

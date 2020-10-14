@@ -20,17 +20,19 @@ span.error {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>新增公告</title>
 </head>
 <body>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topMVC.jsp" />
+	<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
 
-	<div align="center">						 
+	<div class="col-lg-9 mb-4 ">						 
 		<form:form method='POST' modelAttribute="PlateannouncementBean">
 			<c:set var="PlateannouncementBean" />
 			<fieldset class="fieldset-auto-width">
-				<legend>公版文資料</legend>
+				<legend>公告資料</legend>
+				<hr>
 				<table>
 					<tr>
 						<td align='right'>分類：<br>&nbsp;
@@ -59,7 +61,8 @@ span.error {
 				</table>
 			</fieldset>
 		</form:form>
-		<br> <a href="<c:url value='/support/bgMall' />">回首頁</a>
+	</div>
+	</section>
 	</div>
 </body>
 </html>
