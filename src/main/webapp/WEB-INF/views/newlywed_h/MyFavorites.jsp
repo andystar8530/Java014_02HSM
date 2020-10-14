@@ -90,7 +90,8 @@
 			<div>
 			<c:forEach var="pb" items="${pbli}">
 				<div class="store mt-3">
-			   <img src="${pb.p_coverPic}">
+<%-- 			   <img src="${pb.p_coverPic}"> --%>
+			<div class="profile__image"><img src="<c:url value='/getPartnerStampImage/${pb.p_id}'/>" width="80"/></div>
 			   <a href="<c:url value='/showPartnerDetail/${pb.p_id}'/>">${pb.p_storeName}<br/></a>
 				</div>
 			</c:forEach>
