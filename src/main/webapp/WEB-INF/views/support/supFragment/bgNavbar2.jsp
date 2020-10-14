@@ -56,7 +56,7 @@ list-group-item>img {
 
           <a  class="list-group-item" href="<c:url value='/support/bgMall'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >商城商品</a>
 
-          <a  class="list-group-item" href="<c:url value='/support/bgMall'/>'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >公告管理</a>
+          <a  class="list-group-item" href="<c:url value='/support/Plateannouncements' />"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >公告管理</a>
   
         </div>
       </div>

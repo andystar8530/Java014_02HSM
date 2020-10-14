@@ -32,10 +32,10 @@ list-group-item>img {
 	<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
 		
 		<div class="col-lg-9 mb-4">
-			<a class="btn btn-outline-primary" href="#" role="button">Active</a>
-			<a class="btn btn-outline-secondary" href="#" role="button">篩選</a> <a
-				class="btn btn-outline-warning" href="#" role="button">新增</a> <a
-				class="btn btn-outline-info"
+<!-- 			<a class="btn btn-outline-primary" href="#" role="button">Active</a> -->
+<!-- 			<a class="btn btn-outline-secondary" href="#" role="button">篩選</a> -->
+<!-- 			 <a class="btn btn-outline-warning" href="#" role="button">新增</a> -->
+			  <a class="btn btn-outline-info"
 				href="<c:url value='/support/bgMallAdd' />" role="button">新增</a>
 
 			<form class="form-inline my-2 my-lg-0" style='float: right;'>
