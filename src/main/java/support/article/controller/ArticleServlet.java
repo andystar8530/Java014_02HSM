@@ -65,7 +65,7 @@ public class ArticleServlet {
 			System.out.println(ex.getClass().getName() + ", ex.getMessage()=" + ex.getMessage());
 		}
 
-		return "support/bgMall/bgMall";
+		return "redirect:/support/Plateannouncements";
 	}
 
 	@GetMapping("/Plateannouncements")

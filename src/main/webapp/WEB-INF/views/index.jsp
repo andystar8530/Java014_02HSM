@@ -259,16 +259,16 @@
     </div>
  
     <!-- Call to Action Section -->
-    <div class="mb-0 bg-pink">
-      <div class="row ml-5 mr-5">
-        <div class="col-md-8">
-          <p>姻緣聚繪: 搜尋方式最多元、快速回覆零時差、優質店家把關</p>
-        </div>
-        <div class="col-md-4">
-          <a class="btn btn-lg btn-secondary btn-block" href="<c:url value='/_01_register/register' />">我要註冊</a>
-        </div>
-      </div>
-     </div>
+<!--     <div class="mb-0 bg-pink"> -->
+<!--       <div class="row ml-5 mr-5"> -->
+<!--         <div class="col-md-8"> -->
+<!--           <p>姻緣聚繪: 搜尋方式最多元、快速回覆零時差、優質店家把關</p> -->
+<!--         </div> -->
+<!--         <div class="col-md-4"> -->
+<%--           <a class="btn btn-lg btn-secondary btn-block" href="<c:url value='/_01_register/register' />">我要註冊</a> --%>
+<!--         </div> -->
+<!--       </div> -->
+<!--      </div> -->
     <!-- /.container -->
  
 <%--  <br><font color='RED'>${AppName}</font><br> --%>

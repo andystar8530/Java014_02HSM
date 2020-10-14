@@ -87,6 +87,7 @@
 						<form:option value="2" label="未付訂金" />
 						<form:option value="3" label="結案:服務完成" />
 						<form:option value="4" label="結案:未完結案" />
+						<form:option value="5" label="客戶詢價" />
 					</form:select>
 					<form:errors  path="qcStatus" class='errors'/>	
               </div>
