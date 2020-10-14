@@ -7,6 +7,20 @@
 <meta charset="UTF-8">
 <title>經營報表</title>
 </head>
+<script>
+window.month1 =0;
+window.month2 =0;
+window.month3 =0;
+window.month4 =0;
+window.month5 =0;
+window.month6 =0;
+window.month7 =0;
+window.month8 =0;
+window.month9 =0;
+window.month10 =0;
+window.month11 =0;
+window.month12 =0;
+	</script>
 <body>
 <jsp:include page="/fragment/topMVC.jsp" />
 <jsp:include page="./fragment/partnerSidebar.jsp" />
@@ -38,13 +52,13 @@
 	<td>${qrList.qrProfit}</td>
 	<td>${qrList.quoteCount}</td>
 	<script>
-	let a${vs.index} = ${qrList.qrRevenue}
+	window.month${qrList.month} = ${qrList.qrRevenue}
 	</script>
 </tr>
 </c:forEach>
 </table>       
 </div>
-
+<hr class="mt-5 mb-5">
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
@@ -61,18 +75,18 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "line",
       	indexLabelFontSize: 16,
 		dataPoints: [
-			{ y: 450},
-			{ y: 414},
-			{ y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-			{ y: 460 },
-			{ y: 450 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 480 },
-			{ y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-			{ y: 500 },
-		 	{ y: 480 },
-            { y: 510 }
+			{ label: "1月份",y: window.month1},
+			{ label: "2月份",y: window.month2},
+			{ label: "3月份",y: window.month3},
+			{ label: "4月份",y: window.month4 },
+			{ label: "5月份",y: window.month5 },
+			{ label: "6月份",y: window.month6 },
+			{ label: "7月份",y: window.month7 },
+			{ label: "8月份",y: window.month8 },
+			{ label: "9月份",y: window.month9 },
+			{ label: "10月份",y: window.month10 },
+		 	{ label: "11月份",y: window.month11 },
+            { label: "12月份",y: window.month12 }
 		 	//{label: "月份",  y: Revenue} 
 			]
 	}]
