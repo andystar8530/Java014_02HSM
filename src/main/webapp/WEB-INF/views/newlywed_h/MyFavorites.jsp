@@ -25,6 +25,12 @@
 <script
 	src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
 <script src="${pageContext.request.contextPath}/js/partner.js"></script>
+<style>
+	.store{
+ 		/* margin-bottom: 50px; */
+		 margin-top: 50px;
+	}
+</style>
 </head>
 
 <body>
@@ -80,11 +86,15 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 			<!-- Content Column -->
-			<c:forEach var="pb" items="${pbli}">
+			
 			<div>
-			   <a href="<c:url value='/showPartnerDetail/${pb.p_id}'/>">${pb.p_storeName}</a>
-			</div>
+			<c:forEach var="pb" items="${pbli}">
+				<div class="store mt-3">
+			   <img src="${pb.p_coverPic}">
+			   <a href="<c:url value='/showPartnerDetail/${pb.p_id}'/>">${pb.p_storeName}<br/></a>
+				</div>
 			</c:forEach>
+			</div>
 			</div>
 	</div>
 	</div>
