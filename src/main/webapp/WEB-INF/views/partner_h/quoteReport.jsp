@@ -81,27 +81,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "line",
       	indexLabelFontSize: 16,
 		dataPoints: [
-<<<<<<< HEAD
-			{ y: 450},
-			{ y: 414},
-			{ y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-			{ y: 460 },
-			{ y: 450 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 480 },
-			{ y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-			{ y: 500 },
-		 	{ y: 480 },
-            { y: 510 }
-		 	//{label: "月份",  y: Revenue}
-			let a = new Array[][];
-			let y = 400;
-		 	for(let x=0;x<10;x++) {
-			 	a[x][0]={y};
-			 	y+=20;
-			 	}
-=======
 			{ label: "1月份",y: window.month1},
 			{ label: "2月份",y: window.month2},
 			{ label: "3月份",y: window.month3},
@@ -115,7 +94,6 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		 	{ label: "11月份",y: window.month11 },
             { label: "12月份",y: window.month12 }
 		 	//{label: "月份",  y: Revenue} 
->>>>>>> 6f5da2a7f9ccf0894a0884ed92f838f53b416382
 			]
 	}]
 });
