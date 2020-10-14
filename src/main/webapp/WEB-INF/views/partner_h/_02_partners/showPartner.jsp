@@ -44,12 +44,16 @@
 				<!-- <img id='img'> -->
 			</div>
 <h2 class='text-center p-3' id="bb">作品集</h2>				
-	<div class="container col-10">
-		<div class="row row-cols-2 row-cols-md-3 row-cols-xl-4">
+	<div class="container">
+		<div class="row-cols-lg-4 row-cols-md-3 row-cols-2 row mx-auto">
+			<c:if test="${empty pfBeanList}">			
+				<h4 class='mx-auto pl-5'>目前尚未有作品集</h4>
+			</c:if>
 				<c:forEach var='pfBean' items="${pfBeanList}" end='7'>
 					<div class="col mb-4">
     					<div class="card h-100">										
-							<img src="<c:url value='/getPFCoverImage/${pfBean.pfmId}'/>" class='pfDetailImage card-img-top'>
+							<img src="<c:url value='/getPFCoverImage/${pfBean.pfmId}'/>" class='pfDetailImage card-img-top'
+							style='max-width:250px;max-height:250px;'>
 <%-- 						<p> 照片名稱:   ${pfBean.pfdName}</p> --%>
 				
 				 			 <div class="card-body">
@@ -66,7 +70,9 @@
 		<div class='programDiv'>	
 <h2 class='text-center p-3' id="bb">方案</h2>
 	<div class='row ml-5 mr-5 col-9 mx-auto'>
-	
+		<c:if test="${empty programList}">
+				<h4 class='mx-auto'>目前尚未有合作方案</h4>
+			</c:if>
 		<c:forEach var='programBean' items="${programList}" end='7'>
 			<div class='col-lg-3 col-sm-6 col-12 mb-3 mt-3'>
 				<div class="card shadow border-info">
@@ -76,6 +82,7 @@
 				    <p class="card-text">${programBean.prm_Content}</p>
 				    <p class="card-text">${programBean.prm_Price}</p>
 				    <a href="<c:url value='/_06_Program/ProgramDetail/${programBean.prm_Id}'/>" class="btn btn-primary">詳細內容</a>
+				  	<input type='hidden' value=${programList.partnerBean.memberBean.m_Add} class='' >
 				  </div>
 				</div>
 			</div>
@@ -97,8 +104,45 @@
 		</div>
 	</div>
 	</div>
+	
+	<div id="map" class="mt-3"></div>
+	<div>
+	 <iframe src="https://maps.google.com?output=embed&q=光華商場"width="600"
+                height="300"
+                frameborder="0"></iframe>
+   </div>             
 		<!-- ---------------------------分隔線---------------------------------------			 -->
 
 	<jsp:include page="/fragment/footerMVC.jsp" />
+	
+	
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQYmuo5h9pGY0c83EpRPJKTSUoLsk64FA&callback=initMap"
+		async defer></script>
+	<script type="text/javascript">
+    var map, geocoder;
+    function initMap() {
+        geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document
+                .getElementById('map'), {
+            zoom : 17
+        });
+        var address = '台北科技大學'')
+        geocoder.geocode({
+            'address' : address
+        },
+        function(results, status) {
+            if (status == 'OK') {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map : map,
+                    position : results[0].geometry.location
+                });
+            } else {
+                console.log(status);
+            }
+        });
+    }
+</script>
 </body>
 </html>

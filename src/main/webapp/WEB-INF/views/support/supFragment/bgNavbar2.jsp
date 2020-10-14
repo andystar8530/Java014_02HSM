@@ -27,59 +27,45 @@ list-group-item>img {
 }
 </style>
 <body>
-	<div class="m-5">
-		<!-- 引入共同的頁首 -->
-		<jsp:include page="/fragment/topMVC.jsp" />
+<!-- Page Content -->
+  <div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">後台
+      <small>管理頁面</small>
+    </h1>
 
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="${pageContext.request.contextPath}">首頁</a>
+      </li>
+      <li class="breadcrumb-item active">後台管理</li>
+    </ol>
 
-		<section>
-			<div class="container-fluid" class="m-2">
-				<div class="row ">
-					<h1 class="mt-4 mb-3 ml-3">
-						後台 <small>商城管理</small>
-					</h1>
-				</div>
-				<ol class="breadcrumb g-0">
-					<li class="breadcrumb-item"><a
-						href="${pageContext.request.contextPath}">首頁</a></li>
-					<li class="breadcrumb-item active">後台管理</li>
-				</ol>
+    <!-- Content Row -->
+    <div class="row">
+      <!-- Sidebar Column -->
+      <div class="col-lg-3 mb-4">
+        <div class="list-group" >
+          <div class="list-group-item href="#" >
+              <img src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}" width="80" style="border-radius: 50%;" id="partner-icon">
+              <div>${partnerBean.p_storeName}</div>
 
-				<div class="row  d-flex" style="height: 700px">
-					<div class="mx-3 my-3 col-2" style="height: 600px">
-						<div class="">
-							<div class="list-group">
-								<div class="list-group-item href="#" >
-									<img
-										src="${pageContext.request.contextPath}/_00_init/getMemberImage?id=${LoginOK.m_Id}"
-										width="80" style="border-radius: 50%;" id="partner-icon">
-								</div>
+          </div>
+          <a  class="list-group-item" href="<c:url value='/support/bgMember'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >方案/作品</a>
+          <a  class="list-group-item" href="<c:url value='/support/bgMember'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >會員/文章</a>
 
-								<a class="list-group-item"
-									href="<c:url value='/support/bgMember'/>"><img
-									src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png"
-									style='width: 20px;'>方案/作品</a> <a class="list-group-item"
-									href="<c:url value='/support/bgMember'/>"> <img
-									src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png"
-									style='width: 20px;'>會員/文章
-								</a> <a class="list-group-item"
-									href="<c:url value='/support/bgMall'/>"><img
-									src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png"
-									style='width: 20px;'>商城商品</a> <a class="list-group-item"
-									href="<c:url value='/support/bgArticle/index2'/>"><img
-									src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/025-calendar.png"
-									style='width: 20px;'>公告管理</a>
+          <a  class="list-group-item" href="<c:url value='/support/bgMall'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >商城商品</a>
 
-
-							</div>
-						</div>
-					</div>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 				</section> -->
-<!-- 			</div> -->
-			<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-			<script
-				src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+          <a  class="list-group-item" href="<c:url value='/support/bgMall'/>'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/034-marriage certification.png" >公告管理</a>
+  
+        </div>
+      </div>
+<!--       </div> -->
+<!--       </div> -->
+<!--    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script> -->
+<%--   <script src="${pageContext.request.contextPath}/data/js/partner.js"></script> --%>
+   <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+   <script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
 </body>
 </html>

@@ -322,7 +322,7 @@ a.button {
   padding: 20px;
   cursor: pointer;
   border-radius: var(--borderRadius);
-  background: var(--primaryColor);
+  background: var(--primaryColor); 
   color: var(--backgroundColor);
   position: relative;
   top: 0;
@@ -952,10 +952,10 @@ section:nth-child(7) {
 		<c:forEach var='partnerBean' items="${pbList}" end='3'>
 		
 		<div class="profile profile-wide col-4 mx-2 my-2">
-              <div class="profile__image"><img src="<c:url value='/getPartnerStampImage/${partnerBean.p_id}'/>" alt="Doggo"/></div>
+              <div class="profile__image"><img src="<c:url value='/getPartnerCoverImage/${partnerBean.p_id}'/>" alt="Doggo"/></div>
               <div class="profile__info">
                 <h3>${partnerBean.p_storeName}</h3>
-                <p class="profile__info__extra">${partnerBean.p_info}</p>
+                <p class="profile__info__extra JQellipsis">${partnerBean.p_info}</p>
               </div>
               <div class="profile__stats">
                 <p class="profile__stats__title">Service</p>
@@ -989,7 +989,7 @@ section:nth-child(7) {
                 	
                 </h5>
               </div>
-              <div class="profile__cta"><a class="button">More</a></div>
+              <div class="profile__cta"><a class="button" href="<c:url value='/showPartnerDetail/${partnerBean.p_id}'/>">More</a></div>
             </div>
 		
 		
@@ -1085,8 +1085,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=10" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=10">
+									<img src="${pageContext.request.contextPath}/images/show/show8.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show8.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1095,8 +1095,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=8" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=8">
+									<img src="${pageContext.request.contextPath}/images/show/show6.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show6.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1105,8 +1105,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=7" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=7">
+									<img src="${pageContext.request.contextPath}/images/show/show7.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1115,8 +1115,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=1" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=1">
+									<img src="${pageContext.request.contextPath}/images/show/show2.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show2.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1125,8 +1125,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=2" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=2">
+									<img src="${pageContext.request.contextPath}/images/show/show7.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1135,8 +1135,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="https://picsum.photos/400/500?random=3" alt="">
-									<div class="menorie-icon" href="https://picsum.photos/400/500?random=3">
+									<img src="${pageContext.request.contextPath}/images/show/show9.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show9.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1232,13 +1232,13 @@ function myFunction() {
 <!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/show/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/show/vendor/jquery-1.12.4.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/show/popper.min.js"></script>
+<%--         <script src="${pageContext.request.contextPath}/js/show/bootstrap.min.js"></script> --%>
 	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
+        <script src="${pageContext.request.contextPath}/js/show/jquery.slicknav.min.js"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
         <script src="${pageContext.request.contextPath}/js/show/owl.carousel.min.js"></script>
@@ -1246,7 +1246,7 @@ function myFunction() {
         <!-- Date Picker -->
         <script src="${pageContext.request.contextPath}/js/show/gijgo.min.js"></script>
 		<!-- One Page, Animated-HeadLin -->
-<%--         <script src="${pageContext.request.contextPath}/js/show/wow.min.js"></script> --%>
+        <script src="${pageContext.request.contextPath}/js/show/wow.min.js"></script>
 		<script src="${pageContext.request.contextPath}/js/show/animated.headline.js"></script>
         <script src="${pageContext.request.contextPath}/js/show/jquery.magnific-popup.js"></script>
 
@@ -1265,5 +1265,19 @@ function myFunction() {
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="${pageContext.request.contextPath}/js/show/plugins.js"></script>
         <script src="${pageContext.request.contextPath}/js/show/main.js"></script>
+        <script>
+//         如果字數太多，用...取代
+		$(function() {
+			var len = 40;
+			$(".JQellipsis").each(function(i) {
+				if ($(this).text().length > len) {
+					$(this).attr("title", $(this).text());
+					var text = $(this).text().substring(0, len - 1) + "...";
+					$(this).text(text);
+				}
+			});
+		});
+	</script>
+        
 </body>
 </html>
