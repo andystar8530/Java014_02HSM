@@ -48,7 +48,7 @@ span.error {
 						<td align='right'>內容：<br>&nbsp;
 						</td>
 						<td><form:textarea path="paContent"
-								style="width: 500px; height:500px;" /> <form:errors
+								style="width: 500px; height:400px;" /> <form:errors
 								path="paContent" cssClass="error" /></td>
 					</tr>
 
