@@ -19,7 +19,7 @@ span.error {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>修改公告</title>
 <script type="text/javascript">
 	function confirmDelete(id) {
 		var result = confirm("確定刪除此筆記錄(帳號:" + id.trim() + ")?");
@@ -45,7 +45,9 @@ span.error {
 <body>
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
-	<div align="center">
+	<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
+	
+	<div class="col-lg-9 mb-4">
 		<form:form method='POST' modelAttribute="plateannouncementBean">
 			<input type="hidden" name="noname" id='putOrDelete' value="">
 			<c:if test='${plateannouncementBean.paId != null}'>
@@ -53,7 +55,8 @@ span.error {
 				<br>&nbsp;
 			</c:if>
 			<fieldset class="fieldset-auto-width">
-				<legend>公版文資料</legend>
+				<legend>公告資料</legend>
+				<hr>
 				<table> 
 					<tr>
 						<td align='right'>分類：<br>&nbsp;
@@ -103,7 +106,6 @@ span.error {
 				</table>
 			</fieldset>
 		</form:form>
-		<a href="<c:url value='/support/bgArticle/index2' />">回首頁</a>
 	</div>
 </body>
 </html>
