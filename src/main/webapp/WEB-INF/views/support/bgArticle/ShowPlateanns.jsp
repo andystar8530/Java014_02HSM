@@ -12,7 +12,11 @@
 <body>
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
-	<div align='center' class="m-5">
+				<c:if test="${LoginOK.m_Code == 2}">
+					<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
+				</c:if>
+
+	<div class="m-5">
 		<h3>公版文資料</h3>
 		<hr>
 		<table border='1' class="table">
@@ -59,6 +63,8 @@
 			</c:choose>
 		</table>
 		<br> <a href="<c:url value='/' />">回首頁</a>
-	</div>
+<!-- 	</div> -->
+<!-- 	</section> -->
+<!-- 	</div> -->
 </body>
 </html>

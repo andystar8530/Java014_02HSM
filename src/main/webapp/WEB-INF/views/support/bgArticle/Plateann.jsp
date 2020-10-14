@@ -25,8 +25,9 @@ span.error {
 <body>
 	<!-- 引入共同的頁首 -->
 	<jsp:include page="/fragment/topMVC.jsp" />
+	<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
 
-	<div align="center">						 
+	<div align="center" class="mx-3 my-2 col-9">						 
 		<form:form method='POST' modelAttribute="PlateannouncementBean">
 			<c:set var="PlateannouncementBean" />
 			<fieldset class="fieldset-auto-width">
@@ -60,6 +61,8 @@ span.error {
 			</fieldset>
 		</form:form>
 		<br> <a href="<c:url value='/support/bgMall' />">回首頁</a>
+	</div>
+	</section>
 	</div>
 </body>
 </html>

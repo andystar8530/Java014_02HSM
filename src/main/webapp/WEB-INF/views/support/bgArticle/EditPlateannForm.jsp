@@ -45,6 +45,8 @@ span.error {
 <body>
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
+	<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
+	
 	<div align="center">
 		<form:form method='POST' modelAttribute="plateannouncementBean">
 			<input type="hidden" name="noname" id='putOrDelete' value="">
