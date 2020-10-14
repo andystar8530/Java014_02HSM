@@ -85,7 +85,10 @@
     				</c:when>
     			<c:when test="${aQuoteBean.qcStatus == 3}">
      					結案:服務完成
-  					  </c:when>	   	
+  					  </c:when>
+  				<c:when test="${aQuoteBean.qcStatus == 5}">
+     					詢價中
+  					  </c:when>		   	
     			<c:otherwise>
        					結案:未完結案
     			</c:otherwise>
