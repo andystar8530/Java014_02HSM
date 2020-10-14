@@ -91,6 +91,10 @@
 					<a href="${pageContext.request.contextPath}/getFavorites?p_id=${p_id}" class='btn btn-info btn-large'> 
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
 					</a>
+					<a href="<c:url value='/quote/askingQuote?p_id=${p_id}'/>"
+					class='btn btn-info btn-large'> 				
+					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價
+					    </a>
 				</p>
 			</div>
 			</div>

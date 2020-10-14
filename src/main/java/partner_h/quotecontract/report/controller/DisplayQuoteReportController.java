@@ -20,7 +20,7 @@ import partner_h.quotecontract.report.service.QuoteReportService;
 
 @Controller
 @RequestMapping("quotReport")
-@SessionAttributes({"LoginOK","partnerBean","QuoteReportBean"})//裝入屬性物件中，與jsp頁面識別字有關
+@SessionAttributes({"LoginOK","partnerBean","QuoteReportBean","qrList"})//裝入屬性物件中，與jsp頁面識別字有關
 
 public class DisplayQuoteReportController {
 
@@ -36,7 +36,7 @@ public class DisplayQuoteReportController {
 	QuoteReportService qrService;
 	
 	//每月營業收入、利潤加總、結案單數
-	@GetMapping("/year")	
+//	@GetMapping("/year")	
 	protected String getYearQuoteReport(Model model) {
 		System.out.println("載入到每月營收報表中囉");
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
@@ -51,7 +51,7 @@ public class DisplayQuoteReportController {
 
 		//每月營業收入、利潤加總、結案單數
 		@SuppressWarnings("null")
-		@GetMapping("/year2")	
+		@GetMapping("/year")	
 		protected String getYearQuoteReport2(Model model) {
 			System.out.println("載入到每月營收報表中囉");
 			PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
@@ -59,31 +59,35 @@ public class DisplayQuoteReportController {
 			
 			System.out.println(partnerBean.getP_id());
 			List<QuoteContractBean> qcBean = qrService.getYearQuotes2(partnerBean.getP_id());
-		System.out.println("qrBean長度"+qcBean.size());
+		System.out.println("qcBean長度"+qcBean.size());
 		
-		Integer revenue = null;
+		Integer revenue = 0;
 		Integer count=0;
 		Integer profit=0;
 		Integer cost=0;
-		Integer month = null;
-		Integer exmonth = 0;
-		int n=0;
+		Integer month = 0;
+		Integer exRecMonth = 0;
+		int index=0; 
 		List<QuoteReportBean> qrList = new ArrayList<QuoteReportBean>();
 //		QuoteReportBean qrBean = null;
-		QuoteReportBean qrBean = new QuoteReportBean();
+		
 				
 		Calendar calendar=Calendar.getInstance();//java.sql.date 取月份
 		for(int i=0;i<qcBean.size();i++) {
+
 			calendar.setTime(qcBean.get(i).getQcExecutionDate());//服務日期塞入 calender型態中
 			System.out.println(qcBean.get(i).getQcExecutionDate());
 			month = calendar.get(Calendar.MONTH);//服務日期取月份
 			month=month+1;
-			System.out.println(month);
+			if(i==0) {
+				exRecMonth = month;
+			}
+			System.out.println("第"+i+"筆: "+month+"月");
 			
-			if(exmonth != month) {
-				if (revenue!=null) { //單月
-					System.out.println(month);
-					qrBean.setMonth(month);
+			if(i!=0 && exRecMonth != month) {
+				QuoteReportBean qrBean = new QuoteReportBean();
+				//寫入 quoteRepotBean
+					qrBean.setMonth(exRecMonth); //單筆月份
 					qrBean.setQuoteCount(count);//單據筆數
 					qrBean.setQrRevenue(revenue);//收入總和
 					qrBean.setQrAvgRev(revenue/count);//收入平均
@@ -91,21 +95,27 @@ public class DisplayQuoteReportController {
 					qrBean.setQrAvgCost(cost/count);//成本平均
 					qrBean.setQrProfit(profit);//利潤總和
 					qrBean.setQrAvgPro(profit/count);//平均利潤
-					qrList.add(n, qrBean);
-					n++;
-				}									
-				revenue =0;
+					qrList.add(qrBean);
+					index++;// list quoteRepotBean 的index
+				
+				//累計歸零，月份複製
+					revenue =0;
 					profit=0;
 					cost=0;
 					count=0;
-					exmonth =month;
+					exRecMonth =month;
 			}
-			count++;
+			
+			
+			count++;//計算單月份訂單筆數
 			System.out.println("test"+qcBean.get(i).getQcTotalAmount());
 			revenue += qcBean.get(i).getQcTotalAmount();//取收入
 			profit  += qcBean.get(i).getQcProfit();     //取利潤
 			cost    += qcBean.get(i).getCostTotal();    //取成本	
+	
+			
 		}
+				QuoteReportBean qrBean = new QuoteReportBean();
 				qrBean.setMonth(month);
 				qrBean.setQuoteCount(count);//單據筆數
 				qrBean.setQrRevenue(revenue);//收入總和
@@ -114,13 +124,13 @@ public class DisplayQuoteReportController {
 				qrBean.setQrAvgCost(cost/count);//成本平均
 				qrBean.setQrProfit(profit);//利潤總和
 				qrBean.setQrAvgPro(profit/count);//平均利潤
-				qrList.add(n, qrBean);
+				qrList.add(qrBean);
 		
-		System.out.println(qrList.size());
+		System.out.println("qrList長度:"+qrList.size());
 		
-		for(int i=0; i<qcBean.size();i++) {
-			System.out.println("第"+i+"筆");
-//			System.out.println(qrBean.get(i).getMonth());
+		
+	for(int i=0;i<qrList.size();i++) {	
+			System.out.println(i+"筆 服務月份:"+qrList.get(i).getMonth()+"月  收入金額:"+qrList.get(i).getQrRevenue()+" 收入平均金額:"+qrList.get(i).getQrAvgRev());	
 		}
 		
 		model.addAttribute("qrList", qrList);
