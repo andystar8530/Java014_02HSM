@@ -49,6 +49,12 @@
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 window.onload = function () {
+// var qrList=${qrList};
+
+// //取qrList值
+// for(let i=0;i<qrList.length;i++){
+// 	console.log(qrList[i]);
+// }
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
@@ -73,7 +79,13 @@ var chart = new CanvasJS.Chart("chartContainer", {
 			{ y: 500 },
 		 	{ y: 480 },
             { y: 510 }
-		 	//{label: "月份",  y: Revenue} 
+		 	//{label: "月份",  y: Revenue}
+			let a = new Array[][];
+			let y = 400;
+		 	for(let x=0;x<10;x++) {
+			 	a[x][0]={y};
+			 	y+=20;
+			 	}
 			]
 	}]
 });
