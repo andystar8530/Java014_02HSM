@@ -24,11 +24,17 @@
 <c:if test="${LoginOK.m_Code != 2}">
 	<div class="ml-5 mr-5">
 				</c:if>
-	<div>
+		<div>
+		<div class="row">
+		<div class="col-3">
 		<h2>公告資料</h2>
+		</div>
 		<c:if test="${LoginOK.m_Code == 2}">
+		<div class="col-9">
 		<a href="<c:url value='/support/bgArticle' />" class="btn btn-outline-primary">新增公告</a>
+		</div>
 		</c:if>
+		</div>
 		</div>
 		<hr>
 					<c:choose>
