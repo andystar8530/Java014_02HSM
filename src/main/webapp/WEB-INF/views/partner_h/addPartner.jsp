@@ -13,6 +13,18 @@
     width: 100%;
     background: transparent;
 }
+/* 瀏覽歷史紀錄顏色 Start */
+ 	input:-webkit-autofill, 
+	textarea:-webkit-autofill, 
+ 	select:-webkit-autofill { 
+/*      background-color: transparent !important;  */
+	 transition: background-color 10000s;
+     background-image: none !important; 
+/*      -webkit-box-shadow: 0 0 0 1000px white inset !important;  */
+     -webkit-text-fill-color: #808aa0; 
+ } 
+ /* 瀏覽歷史紀錄顏色 End */
+
 </style>
 <title>加入合作商的行列!!!!!</title>
 <link rel="stylesheet"
