@@ -6,329 +6,182 @@
 <!DOCTYPE html>
 <html>
   <head>
-<!--   <link rel="stylesheet" -->
-<%-- 	href="${pageContext.request.contextPath}/css/marryMa.css"> --%>
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/marryMa.css">
     <meta charset="UTF-8" />
-    <title>編輯報價合約資訊</title>
-    <style>
-      .titlename {
-        padding: 50px;
-        color: #778da9;
-      }
-      .form-group {
-        font-size: 16px;
-        margin: 10px;
-      }
-      .errors {
-        color: #fe5f55;
-        font-weight: bold;
-      }
-    </style>
- 
+    <title>檢視報價合約資訊</title>
   </head>
   
   <body>
     <!-- 引用上與左側 -->
 	<jsp:include page="/fragment/topMVC.jsp" /> 
 	<jsp:include page="./fragment/newlywedSidebar.jsp" />
-<div class="col-lg-9 mb-4"> 
+<div class="col-lg-9 mb-4 border rounded"> 
         <h2>報價合約</h2>
-          
         <br>
         <hr>
-      
-      <!-- 內容 -->
-        <TABLE>
-        <form:form
-          method="POST"
-          modelAttribute="quoteBean"
-          enctype="multipart/form-data" >
-		<input type='hidden' id='update' name='_method'>
-<!-- 案號 -->
-     <tr>
-          	<td>
-          	<div class="form-group col-md-6">
-              <label for="qcId">案號</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcId"
-                  path="qcId"
-                  class="showQuote"
-                />
-                <form:errors path="qcId" class="errors" />
-              </div>
-            </div>
-          	</td>
-          	
-<!--  專案名稱         	 -->
-          	<td>
-          	 <div class="form-group col-md-6">
-              <label for="qcName">專案名稱</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcName"
-                  path="qcName"
-                  class="showQuote"
-                />
-                <form:errors path="qcName" class="errors" />
-              </div>
-            </div>
- 
-<!-- 狀態 -->
-          	<td>
-          	  <div class="form-group col-md-6">
-              <label for="qcStatus">狀態</label>
-              <div class="col">             
-             <form:select path="qcStatus">
-						<form:option value="0" label="未報價" />
-						<form:option value="1" label="未簽約" />
-						<form:option value="2" label="未付訂金" />
-						<form:option value="3" label="結案:服務完成" />
-						<form:option value="4" label="結案:未完結案" />
-						<form:option value="5" label="客戶詢價" />
-					</form:select>
-					<form:errors  path="qcStatus" class='errors'/>	
-              </div>
-            </div>
-          	</td>        	
-          </tr>  
+      	 
+ <!-- 內容 -->
+ <form:form method="POST" modelAttribute="quoteBean" enctype="multipart/form-data" >
+	 
+ <!-- 第一行 案號、專案名稱、狀態 -->
+ <div class="form-row">
+ <div class="form-group col-md-4">
+	 <label>案號</label>
+	 <fieldset disabled>
+	   <form:input type="text" id="qcId" path="qcId" class="form-control"/>
+	   </fieldset>
+	 </div>
 
-<!-- 報價日期.服務日期.報價期限-->
-	 <tr>
-		<td>
-		<div class="form-group col-md-6">
-              <label for="qcDate">報價日期</label>
-              <div class="col">
-                <form:input
-                 type="date"
-                  id="qcDate"
-                  path="qcDate"
-                  class="showQuote"
-                />
-                <form:errors path="qcDate" class="errors" />
-              </div>
-            </div>
-            </td>
-		<td>
-		 <div class="form-group col-md-6">
-              <label for="qcExecutionDate">服務日期</label>
-              <div class="col">
-                <form:input
-                  type="date"
-                  id="qcExecutionDate"
-                  path="qcExecutionDate"
-                  class="showQuote"
-                />
-                <form:errors path="qcExecutionDate" class="qcContent" />
-              </div>
-            </div>
-		</td>
-		<td>
-		  <div class="form-group col-md-6">
-              <label for="qcDateLine">報價期限</label>
-              <div class="col">
-                <form:input
-                  type="date"
-                  id="qcDateLine"
-                  path="qcDateLine"
-                  class="showQuote"
-                />
-                <form:errors path="qcDateLine" class="errors" />
-              </div>
-            </div>
-		</td>		
-		</tr>
-		
-
- 
+	 <div class="form-group col-md-4">
+         <label>專案名稱</label>
+         <fieldset disabled>
+		   <form:input type="text" id="qcName" path="qcName" class="form-control"/><br>
+           </fieldset>
+		 </div>
 
 
-<!-- 服務細項 -->
-	<tr>
-		<td>
-		<table border='1' width="150%">
-<!-- 		標題列 -->
-		<tr>
-		<th>服務項目</th>
-		<th>細項名</th>		
-		<th>金額</th>
-		</tr>
+	 <div class="form-group col-md-4">
+     <label>狀態</label>
+<!-- 	<fieldset disabled> -->
+	 <form:select path="qcStatus"  class="form-control">
+		 <form:option value="0" label="未報價" />
+		 <form:option value="1" label="未簽約" />
+		 <form:option value="2" label="已簽約" />
+		 <form:option value="3" label="結案:服務完成" />
+		 <form:option value="4" label="結案:未完結案" />
+		 <form:option value="5" label="客戶詢價" />
+     </form:select>
+		</fieldset>
+	 </div>
+   </div>
 
-<!-- 服務明細列 -->
-<tr>
+<!-- 第一行結束 案號、專案名稱、狀態		 -->
 
-	         <td width="40%">
-         
-    	<form:select path="serviceItem">
-						<form:option value="0" label="豪華專案" />
-						<form:option value="1" label="經濟專案" />
-						<form:option value="2" label="包套專案" />
-						<form:option value="3" label="其他專案" />
-						<form:option value="4" label="誤餐費" />
-						<form:option value="5" label="超時服務" />
-					</form:select>
-					<form:errors  path="serviceItem" class='errors'/>	
-    
-    
-		</td>
+<!-- 第二行 合作商姓名 與 合作商帳號  -->
+<div class="form-row">
+    <div class="form-group col-md-4">
+        <label >合作商代號</label>
+        <fieldset disabled="disabled">
+            <form:input  type="text" id="p_Id"  path="p_Id" class="form-control"/>
+        </fieldset>
+    </div>
+    <div class="form-group col-md-8">
+        <label >合作商</label>
+        <fieldset disabled="disabled">
+            <form:input  type="text" id="p_storeName"  path="p_storeName" class="form-control"/>
+        </fieldset>
+    </div>
+</div>
+<!-- 第二行 結束 合作商姓名 與 合作商帳號  -->
 
-<!-- 細項品名		 -->
-		<td width="50%">
-                <form:input
-                  type="text"
-                  id="serviceName"
-                  path="serviceName"
-                  class="showQuote"
-                />
-                <form:errors path="serviceName" class="errors" />
-		</td>
-		
+<!-- 第三行  報價日期.服務日期.報價期限 -->
+<div class="form-row">
+<div class="form-group col-md-4">
+ <label >報價日期</label>
+ <fieldset disabled>
+ 	 <form:input
+			  type="date"  id="qcDate"  path="qcDate"  class="form-control" /> <br>		
+	</fieldset>
+</div>
 
-<%-- 		${aBean.value.屬性} --%>
-		<td width="10%">
-                <form:input
-                  type="text"
-                  id="servicePrice"
-                  path="servicePrice"
-                  class="showQuote"
-                />
-                <form:errors path="servicePrice" class="errors" />
-		</td>
-		</tr>		
-	</table>
-	</td>
-</tr>
+<div class="form-group col-md-4">
+ <label >服務日期</label>
+ <fieldset disabled>
+ 	 <form:input
+	 type="date" id="qcExecutionDate" path="qcExecutionDate" class="form-control" /> <br>	
+</fieldset>
+</div>
+<div class="form-group col-md-4">
+ <label >報價期限</label>
+ <fieldset disabled>
+ <form:input
+	 type="date" id="qcDateLine" path="qcDateLine" class="form-control" /> <br>
+ </fieldset>
+</div>
+</div>
+<!-- 第三行結束  報價日期.服務日期.報價期限 -->		
 
+<!-- 第四行 服務項目、服務品名、服務金額 -->
+<div class="form-row">
+<div class="form-group col-md-4">
+ <label >服務項目</label>
+ <fieldset disabled>
+ <form:select path="serviceItem" class="form-control">
+	 <form:option value="0" label="豪華專案" />
+	 <form:option value="1" label="經濟專案" />
+	 <form:option value="2" label="包套專案" />
+	 <form:option value="3" label="其他專案" />
+	 <form:option value="4" label="誤餐費" />
+	 <form:option value="5" label="超時服務" />
+ </form:select>
+ </fieldset>
+</div>
+<div class="form-group col-md-4">
+ <label >服務品名</label>
+ <fieldset disabled>
+ <form:input	type="text"	id="serviceName" path="serviceName"	class="form-control" />
+ </fieldset>
+</div>
+<div class="form-group col-md-4">
+ <label>金額</label>
+ <fieldset disabled>
+ <form:input	type="text"	id="servicePrice" path="servicePrice" class="form-control"	onkeyup="profit()"  />
+ </fieldset>
+</div>
+</div>
+<!-- 第四行 結束 服務項目、服務品名、服務金額 -->
 
+<!-- 第五行 專案總價.訂金比例.訂金金額  -->
+<div class="form-row">
+	<div class="form-group col-md-4">
+        <label >專案總價</label>
+        <fieldset disabled="disabled">
+            <form:input
+            type="text" id="qcTotalAmount" path="qcTotalAmount" class="form-control" /> 
+        </fieldset>
+	</div>
+	<div class="form-group col-md-4">
+        <label >訂金比例%</label>
+        <fieldset disabled="disabled">
+            <form:input type="text" id="qcDepositRate" path="qcDepositRate" class="form-control" /> 
+           <form:errors path="qcDepositRate" class="errors" />
+        </fieldset>
+	</div>
+	<div class="form-group col-md-4">
+        <label >訂金金額</label>
+        <fieldset disabled="disabled">
+            <form:input type="text" id="qcDeposit" path="qcDeposit" class="form-control" /> 		
+        </fieldset>
+	</div>
+</div>
+<!-- 第五行 結束 專案總價.訂金比例.訂金金額  -->
 
-	<tr>
-            <!-- 合作商 -->
-		<td>
-            <div class="form-group">
-              <label for="p_storeName">合作商</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="p_storeName"
-                  path="p_storeName"
-                  class="showQuote"
-                />
-                <form:errors path="p_storeName" class="errors" />
-              </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcTotalAmount">專案總價</label>
-              <div class="col">
-<%--                 <form:input --%>
-<%--                   type="text" --%>
-<%--                   id="qcTotalAmount" --%>
-<%--                   path="qcTotalAmount" --%>
-<%--                   class="showQuote" --%>
-<%--                 /> --%>
-<%--                 <form:errors path="qcTotalAmount" class="errors" /> --%>
-            <c:set var="subtotal"
-            	   value="${quoteBean.servicePrice}"/>
-            	   ${quoteBean.servicePrice}
-			 </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDepositRate">訂金比例</label>
-              <div class="col">
-                <form:input
-                  type="text"
-                  id="qcDepositRate"
-                  path="qcDepositRate"
-                  class="showQuote"/>
-          
-                <form:errors path="qcDepositRate" class="errors" />
-              </div>
-            </div>
-</td>
-
-<td>
-            <div class="form-group">
-              <label for="qcDeposit">訂金金額</label>
-              <div class="col">
-<%--                 <form:input --%>
-<%--                   type="text" --%>
-<%--                   id="qcDeposit" --%>
-<%--                   path="qcDeposit" --%>
-<%--                   class="showQuote" --%>
-<%--                 /> --%>
-<%--                 <form:errors path="qcDeposit" class="errors" /> --%>
-               <c:set var="deposit"
-            	   value="${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)}"/>
-            	   ${quoteBean.servicePrice*(quoteBean.qcDepositRate/100)} 
-            
-              </div>
-            </div>
-</td>
-</tr>
-
-
-
-<!-- 合約內容(未完)	             -->
-	<tr>
-		<td>
-           <div class="form-group">
-              <label for="qcContent">合約內容</label>
-              <div class="col">
-                <form:textarea                  
-                  id="qcContent"
-                  path="qcContent"
-                  class="showQuote col-mb-12 w-100" 
-                />
-                <form:errors path="qcContent" class="qcContent" />
-              </div>
-            </div>
-</td>
-</tr>
-
+<!-- 第六行 合約內容 -->
+<div class="form-row">
+<div class="form-group col-md-12">
+ <label >合約內容</label>
+ <fieldset disabled>
+	<form:textarea   id="qcContent" path="qcContent" class="form-control"  rows="15"/>
+ </fieldset>
+</div>
+	</div>
+<!-- 第六行 結束 合約內容 -->
 
 <!-- 送出 -->
-	<tr>
-		<td>
-            <div class="form-group">
-              <div class="col col-mb-1">
-                <input
-                  type="submit"
-                  id="submit"
-                  path="submit"
-                  class="showQuote btn btn-outline-danger"
-                  value="簽名"
-                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
-                />
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="col col-mb-1">
-                <input
-                  type="submit"
-                  id="submit"
-                  path="submit"
-                  class="showQuote btn btn-outline-danger"
-                  value="意見回覆"
-                  onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"
-                />
-              </div>
-            </div>
-            
-            
-            
-            
-		</td>
-		</tr>	
+<div class="form-row">
+<div class="form-group col-md-6">
+    <input  type="submit" id="submit" path="submit" class="form-control btn btn-outline-danger"
+            value="合約簽名"    onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"/>
+   </div>
+
+ <div class="form-group col-md-6">
+ 	<input type="submit"  id="submit" path="submit" class="form-control btn btn-outline-danger"
+           value="意見回覆" onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})">
+	</div>
+	</div>   
+<!-- form結束 -->
 	        </form:form> 
-     </TABLE>
       </div>
 <!-- Bootstrap   -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
