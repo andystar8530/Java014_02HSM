@@ -28,7 +28,7 @@ list-group-item>img {
 </style>
 <body>
 <!-- Page Content -->
-  <div class="container">
+  <div class="container mb-5">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">後台
       <small>管理頁面</small>
@@ -51,7 +51,7 @@ list-group-item>img {
               <div>${partnerBean.p_storeName}</div>
 
           </div>
-          <a  class="list-group-item" href="<c:url value='/support/bgMember'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >方案/作品</a>
+          <a  class="list-group-item" href="<c:url value='/support/bgMain'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >方案/作品</a>
           <a  class="list-group-item" href="<c:url value='/support/bgMember'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/007-house.png" >會員/文章</a>
 
           <a  class="list-group-item" href="<c:url value='/support/bgMall'/>"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/015-picture.png" >商城商品</a>
