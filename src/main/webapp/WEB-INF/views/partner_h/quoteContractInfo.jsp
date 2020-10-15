@@ -296,7 +296,7 @@ function costCal(){
         }
     var costTotal = (costOther+costMen);
     qcTotalAmount = document.getElementById("qcTotalAmount").value;
-    var qcProfit = qcTotalAmount-costMen;
+    var qcProfit = qcTotalAmount-costMen-costOther;
     document.getElementById("costMen").value = costMen;
     document.getElementById("costTotal").value =costTotal ;
     document.getElementById("qcProfit").value =qcProfit ;
