@@ -24,54 +24,19 @@
 	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
 	<c:set var="funcName" value="REG" scope="session" />
 	<jsp:include page="/fragment/topMVC.jsp" />
-	<h1 class="mt-4 mb-3">
-		後台 <small>商城管理</small>
-	</h1>
+			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
+	
 	<!-- container -->
-	<div class="bgMallAllDiv container ">
-		<!-- 	選擇紐 -->
-		<div class="bgMallNavDiv d-flex justify-content-end ">
-			<div class=" bd-highlight ">
-				<div class="bgMallSearchNavDiv nav ">
-					<div class="SearchDiv1 nav-item text-center border border-primary">
-						<a class="nav-link " href="#">Active</a>
-					</div>
-					<div
-						class="SearchDiv2 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">篩選</a>
-					</div>
-					<div
-						class="SearchDiv3 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">新增</a>
-					</div>
-					<div
-						class="SearchDiv4 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="<c:url value='/support/bgMallAdd' />">新增</a>
-					</div>
-				</div>
-			</div>
-			<div class="SearchDiv5 bd-highlight">
-				<form class="form-inline my-2 my-lg-0 ">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="品名/種類/金額" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-		<!-- 	選擇紐結束 -->
-		<!-- 	引入共同的頁首 -->
-		<div class="bgMainDiv container ">
-			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
-			<div class="bgMainGalleryDiv row ">
+	<div class="col-lg-9 mb-4">
 				<!-- 		內容建立位置-------------- -->
 				<!--	修改商品開始 -->
 				<c:set var="product" value="${ProductBean}" />
 				<form:form method="POST" modelAttribute="ProductBean"
 					enctype='multipart/form-data'>
 					<!-- 					<input type="hidden" name="noname" id='putOrDelete' value=""> -->
-<%-- 					<c:if test='${ProductBean.p_Id != null}'> --%>
-<%-- 						<form:hidden path="p_Id" /> --%>
-<%-- 					</c:if> --%>
+					<c:if test='${ProductBean.p_Id != null}'>
+						<form:hidden path="p_Id" />
+					</c:if>
 					<fieldset>
 
 						<div style="">
@@ -79,6 +44,7 @@
 								<Font color="#006600" size='5' face="標楷體">修改商品</Font>
 							</div>
 						</div>
+							<hr>
 						<div style="">
 							<div style="text-align: center; vertical-align: middle;">
 								<div class="error">${errorSaveData}<br>
@@ -233,8 +199,8 @@
 								<label class="fontSize">商品敘述：</label><br>&nbsp;
 							</div>
 							<div>
-								<form:textarea path='P_Note' class="fieldWidth"
-									style="width: 200px;" />
+								<form:textarea path='P_Note' class="fieldWidth" cols="100"
+									rows="15" />
 								<br>&nbsp;
 								<form:errors path="P_Note" cssClass="error" />
 							</div>
@@ -253,7 +219,7 @@
 		</div>
 	</div>
 
-	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" /> --%>
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
@@ -262,7 +228,6 @@
 		//	預覽圖開始
 		$("#p_Cover1_show_image").click(function(e) {
 			document.getElementById("p_Cover1").click();
-			alert(document.getElementById("p_Cover1").value);
 		});
 		$("#p_Cover1").on("change", function(event) {
 			const file = event.target.files[0];
@@ -271,7 +236,7 @@
 			readFile.addEventListener("load", function(e) {
 				let image = document.getElementById("p_Cover1_show_image");
 				image.src = this.result;
-				alert(document.getElementById("p_Cover1").value);
+
 				// image.width = 500 ;
 				image.style.maxWidth = "200px"; //css屬性
 				image.style.maxHeight = "200px";
