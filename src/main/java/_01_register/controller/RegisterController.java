@@ -1,12 +1,10 @@
 package _01_register.controller;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _00_init.util.GlobalService;
+import _00_init.util.RegisterSmtp;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidator;
+import newlywed.model.NewlywedBean;
+import newlywed.service.NewlywedService;
 
 @Controller
 @RequestMapping("/_01_register")
@@ -34,6 +34,12 @@ public class RegisterController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	NewlywedService newlywedService;
+	
+	@Autowired
+	RegisterSmtp registerSmtp;
 	
 	@GetMapping("/register")   
 	public String sendingEmptyForm(Model model) {
@@ -102,10 +108,14 @@ public class RegisterController {
 		bean.setM_Password(GlobalService.getMD5Endocing(
 				GlobalService.encryptString(bean.getM_Password())));
 		
-
+		NewlywedBean nb=new NewlywedBean();
+		
 		
 		try {
 			int n = memberService.saveMember(bean);
+			nb.setMemberBean(bean); 
+			
+			newlywedService.saveNewlyed(nb);
 			if (n == 1) {
 				String farewellMessage = "<Font color='red'>新增成功，請開始使用本系統</Font>";
 				redirectAtt.addFlashAttribute("FlashMSG_farewell", farewellMessage);
@@ -131,6 +141,10 @@ public class RegisterController {
 //			e.printStackTrace();
 //			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 //		}
+		new Thread(()->{
+			  registerSmtp.send("姻緣聚繪--恭喜註冊成功", "親愛的會員您好，恭喜註冊成功，可以開始使用本系統 \n http://localhost:8080/Java014_02HSM", bean.getM_Id());
+		  }).start();
+		
 		return "redirect:/";
 		
 	}

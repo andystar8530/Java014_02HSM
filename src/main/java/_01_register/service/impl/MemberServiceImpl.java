@@ -22,10 +22,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int saveMember(MemberBean mb) {
-		int n = 0;
-		memberDao.saveMember(mb);
-		n++;
-		return n;
+	
+		return memberDao.saveMember(mb);
 	}
 	@Override
 	public boolean idExists(String id) {

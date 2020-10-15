@@ -2,6 +2,7 @@ package partner_h._01_profolios.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import favorites.model.FavoritesBean;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 
 @Entity
@@ -32,6 +34,13 @@ public class PortfoliosBean implements Serializable{
 	@JoinColumn(name="p_id")
 	private PartnerBean partnerBean ; 
 	
+	
+
+
+
+
+	
+
 	@Transient
 	private Integer p_id; //作者(合作商id)
 	private String pfmName; //作品名稱

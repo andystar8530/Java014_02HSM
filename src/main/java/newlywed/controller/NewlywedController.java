@@ -43,13 +43,14 @@ public class NewlywedController {
 	@GetMapping("/newlywedInfo")
 	public String sendEmptyForm(Model model) {
       NewlywedBean newlywedBean =new NewlywedBean();
-      model.addAttribute("NewlywedBean", newlywedBean);
+      //model.addAttribute("NewlywedBean", newlywedBean);
       
       //這串 取資料秀出來
-      NewlywedBean newlywedBean2 =new NewlywedBean();
+      //NewlywedBean newlywedBean2 =new NewlywedBean();
       MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
-      newlywedBean2=newlywedService.queryNewlywed(mb.getM_No());
-      model.addAttribute("NewlywedBean2", newlywedBean2);
+      newlywedBean=newlywedService.queryNewlywed(mb.getM_No());
+      System.out.println(newlywedBean.getnId()+"++++++++++++++++++++++++++++++++++");
+      model.addAttribute("NewlywedBean", newlywedBean);
       //這串 取資料秀出來
       
       
@@ -60,20 +61,22 @@ public class NewlywedController {
 	@PostMapping("/newlywedInfo")
 	public String processFormData(@ModelAttribute("NewlywedBean") NewlywedBean bean,
 			                       BindingResult result ,Model model,HttpServletRequest request) {
-		
+		//NewlywedBean Bean2 =new NewlywedBean();
 		Timestamp registerTime = new Timestamp(System.currentTimeMillis());
 		bean.setCreatetime(registerTime);
-		
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
+		//Bean2=newlywedService.queryNewlywed(mb.getM_No());
 		bean.setMemberBean(mb);
-		bean.setN_MID(mb.getM_No());
+		System.out.println(bean.getnId()+"++++++++++++++++++++++++++++++++++");
+	      
+		//bean.setN_MID(mb.getM_No());
 		
 		
 		if (newlywedService.idExists(bean.getN_nickname())) {
 			result.rejectValue("N_nickname", "", "暱稱已存在，請重新輸入");
 			return "/newlywed_h/newlywedInfo";
 		}
-		
+		newlywedService.saveNewlyed(bean);
 		try {
 			newlywedService.saveNewlyed(bean);
 		} 

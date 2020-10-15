@@ -73,6 +73,10 @@
 					<a href='#' class='btn btn-info btn-large'> 
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
 					</a>
+				<a href="<c:url value='quote/askingQuote/${portfolio.partnerBean.p_id}'/>"
+					class='btn btn-info btn-large'> 				
+					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價
+					</a>
 				</p>
 			</div>
 			</div>
@@ -86,5 +90,8 @@
 
 
 </script>
+	<!-- ---------------------------分隔線---------------------------------------			 -->
+
+	<jsp:include page="/fragment/footerMVC.jsp" />
 </body>
 </html>

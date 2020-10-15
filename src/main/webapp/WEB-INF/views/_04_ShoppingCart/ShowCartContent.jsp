@@ -193,8 +193,9 @@ function Abort() {
 <!--             id="noOfRoom" -->
 <!--             value="1" -->
 <!--           /> -->
+		<fieldset disabled>
           <Input id="newQty${vs.index}" style="width:28px;text-align:center" name="newQty" type="text" value="<fmt:formatNumber value="${anEntry.value.soiQty}" />" name="qty" onkeypress="return isNumberKey(event)"  />
-
+		</fieldset>
 <%--           <input type="button" id="adds${vs.index}" value="+" class="trashButton" onclick="modify(${anEntry.key}, ${anEntry.value.soiQty}, ${vs.index})"/> --%>
           <input type="button" id="adds${vs.index}" value="+" class="trashButton"/>
           <input type="button" id="add10s${vs.index}" value="+10" class="trashButton"/>
@@ -290,9 +291,9 @@ $('#sub10s${vs.index}').click(function subst() {
       <!-- 按鈕 Start-->
       <div class="row p-3 shoppingListBtn">
         <div class="d-flex col-md-12 col-sm-12 justify-content-end align-items-center border-top">
-          <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
-            <a href="<c:url value='/_03_listProducts/DisplayPageProducts2' />" class="btn btnEffect02 effect02"><span>繼續購物</span></a>
-          </div>
+<!--           <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3"> -->
+<%--             <a href="<c:url value='/_03_listProducts/DisplayPageProducts2' />" class="btn btnEffect02 effect02"><span>繼續購物</span></a> --%>
+<!--           </div> -->
           <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
             <a href="<c:url value='checkout' />" onClick="return Checkout(${subtotal});" class="btn btnEffect02 effect02"><span>結帳</span></a>
           </div>

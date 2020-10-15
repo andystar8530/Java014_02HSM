@@ -38,6 +38,7 @@ public interface QuoteContractDao {
 	
 	//	新增簽名後更新資料庫
 	void updateQuoteContractBean(QuoteContractBean bean);
+
 	
 	//	查詢會員資料
 	MemberBean getMemberId(int id); 

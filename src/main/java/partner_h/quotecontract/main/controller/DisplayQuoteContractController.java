@@ -132,7 +132,7 @@ public class DisplayQuoteContractController {
 		return "redirect:quoteContractList";
 	}
 
-	// 新增單筆報價合約
+	//新增單筆報價合約(帶出資料)
 	@GetMapping("insertQuote")
 	public String getQuoteForm(Model model) {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
@@ -144,10 +144,13 @@ public class DisplayQuoteContractController {
 		model.addAttribute("quoteBean", quoteBean);
 		return "partner_h/quoteContractInsert";
 	}
-
-	@PostMapping(value = "/insertQuote")
-	public String add(Model model, @ModelAttribute("quoteBean") QuoteContractBean bean,
-			RedirectAttributes redirectAttributes) {
+	//新增單筆報價合約(更新資料)
+	@PostMapping(value="/insertQuote")
+	public String add(
+			Model model,
+			@ModelAttribute("quoteBean") QuoteContractBean bean,
+			RedirectAttributes redirectAttributes
+			) {
 //		QuoteContractItemBean qciBean = new QuoteContractItemBean();
 //		qciBean.setQuoteContractBean(bean);
 //		//找到對應的serviceItem物件

@@ -37,4 +37,7 @@ public interface QuoteContractService {
 	
 	//	查詢會員資料
 	MemberBean getMemberId(int id);
+	
+
+	
 }

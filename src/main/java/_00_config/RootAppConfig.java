@@ -66,7 +66,7 @@ public class RootAppConfig {
 		factory.setPackagesToScan(new String[] {
 				"_00_init", "_01_register.model", "_03_listProducts.model", "_04_ShoppingCart",
 				"_04_ShoppingCart.model","partner_h","_04_forum.model","newlywed.model","support",
-				"_06_Program.model"
+				"_06_Program.model","favorites"
 		});
 		factory.setDataSource(dataSource());
 		factory.setHibernateProperties(additionalPropertiesMySQL());	

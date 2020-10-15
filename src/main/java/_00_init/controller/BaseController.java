@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.sql.Blob;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
@@ -18,6 +19,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
@@ -25,6 +29,7 @@ import _03_listProducts.model.ProductBean;
 import _03_listProducts.service.ProductService;
 
 @Controller
+@SessionAttributes({"LoginOK"}) 
 public class BaseController {
 	
 	@Autowired
@@ -41,10 +46,19 @@ public class BaseController {
 		return "index";
 	}
 	
+//	@GetMapping("ThanksForOrdering")
+//	protected String thanksForOrdering(Model model) {
+//		System.out.println("ThanksForOrdering......");
+//		return "ThanksForOrdering";
+//	}
 	@GetMapping("ThanksForOrdering")
-	protected String thanksForOrdering(Model model) {
+	protected String thanksForOrdering(HttpSession session,  Model model, SessionStatus status,
+			RedirectAttributes redirectAtt) {
+		MemberBean memberBean = (MemberBean) model.getAttribute("LoginOK");
+		String farewellMessage = memberBean.getM_Name() + "感謝您的訂購";
+		redirectAtt.addFlashAttribute("FlashMSG_farewell", farewellMessage);
 		System.out.println("ThanksForOrdering......");
-		return "ThanksForOrdering";
+		return "redirect:/";
 	}
 	
 	

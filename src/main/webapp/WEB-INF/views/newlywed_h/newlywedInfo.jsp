@@ -41,6 +41,7 @@
 			<div class="col-lg-9 mb-4">
 				<h2>基本資料&nbsp;</h2>
 				<form:form modelAttribute="NewlywedBean" method="POST" enctype='multipart/form-data'>
+					<form:input path="nId" style="display:none"/>
 					<div class="form-group">
 						<label for="formGroupExampleInput">平台暱稱</label> 
 						<form:input

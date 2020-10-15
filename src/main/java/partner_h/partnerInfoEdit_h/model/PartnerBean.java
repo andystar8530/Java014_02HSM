@@ -3,6 +3,7 @@
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,6 +24,7 @@ import com.mysql.cj.jdbc.Clob;
 
 import _01_register.model.MemberBean;
 import _06_Program.model.ProgramBean;
+import favorites.model.FavoritesBean;
 import partner_h._01_profolios.model.PortfoliosBean;
 
 @Entity
@@ -39,6 +41,9 @@ public class PartnerBean implements Serializable {
 	@JoinColumn(name="p_mId")
 	@JsonIgnore
 	private MemberBean memberBean;
+	
+	@OneToMany(mappedBy = "partnerBean3")
+	 private List<FavoritesBean> myfavorites = new ArrayList<>();
 	
 	@Transient
 	private Integer p_mId;      //會員編號
@@ -130,6 +135,14 @@ public class PartnerBean implements Serializable {
 			return p_id;
 		}
 
+
+		public List<FavoritesBean> getMyfavorites() {
+			return myfavorites;
+		}
+
+		public void setMyfavorites(List<FavoritesBean> myfavorites) {
+			this.myfavorites = myfavorites;
+		}
 
 		public void setP_id(Integer p_id) {
 			this.p_id = p_id;

@@ -1,4 +1,4 @@
-package _01_register.controller;
+ package _01_register.controller;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import _00_init.util.RegisterSmtp;
 import _01_register.model.MemberBean;
 import _01_register.service.MemberService;
 import _01_register.validator.MemberBeanValidatorUpdata;
@@ -42,6 +43,8 @@ public class MemberController {
 	@Autowired
 	ServletContext context;
 	
+
+	
 	//合作商帳號修改
 	// 當使用者需要修改時，本方法送回含有會員資料的表單，讓使用者進行修改
 	// 由這個方法送回修改記錄的表單...
@@ -58,7 +61,6 @@ public class MemberController {
 		// 
 		public String modify(
 				@ModelAttribute("memberBean") MemberBean memberBean,
-				@ModelAttribute("loginBean") LoginBean logInBean,
 				BindingResult result, 
 				Model model,
 				@PathVariable Integer id, 
@@ -119,8 +121,8 @@ public class MemberController {
 			//更新時間
 			Timestamp editTime = new Timestamp(System.currentTimeMillis());
 			memberBeanUpd.setM_EditTime(editTime);
-			model.addAttribute("LoginOK", memberBeanUpd);
 			memberService.update(memberBeanUpd);
+			model.addAttribute("LoginOK", memberBeanUpd);
 			return "/partner_h/partner_h";
 		}
 		

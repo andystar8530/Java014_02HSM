@@ -75,7 +75,7 @@ public class NewlywedDaoImpl implements NewlywedDao {
 		return list;
 	}
 
-	//status: 0:未報價, 1:未簽約, 2:未訂金, 3:結案:完成服務, 4:結案:放棄服務
+	//status: 0:未報價, 1:未簽約, 2:未訂金, 3:結案:完成服務, 4:結案:放棄服務,5:詢價中
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<QuoteContractBean> getNewlyStatusQuotes(String m_Id, int status) {
@@ -88,4 +88,6 @@ public class NewlywedDaoImpl implements NewlywedDao {
 					  .getResultList();
 				return list;
 	}
+	
+	
 }

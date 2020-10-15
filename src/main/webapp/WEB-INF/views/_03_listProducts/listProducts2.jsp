@@ -107,7 +107,7 @@
             <TR height='2'>
                 <TD width="270">
 	               <A href="<c:url value='../_04_ShoppingCart/ShowCartContent' />" >
-	                                               購物清單
+	                                                查看購物車
 	               </A>
 	            </TD>
                 <TD width="280">&nbsp;</TD>
@@ -120,11 +120,11 @@
 </div>
 </div>
 <!-- 		分類按鈕 -->
-	<div class="p-lg5 p3 mb-0 ml-2 mr-2 text-center">
+	<div class="p-lg5 p3 m-2 text-center">
 		<div class="row">
 			<c:if test="${categoryList != null}">
 				<c:forEach var='category' items='${categoryList}'>
-					<div class="col-lg-2 col-sm-3 col-4 mb-0">
+					<div class="col-lg-2 col-sm-3 col-4 mb-2">
 					<a class="btn btn-outline-primary"
 						href="<c:url value='/_03_listProducts/DisplayPageProducts2?pageNo=1&category=${category}'/>">${category}</a>
 					</div>
