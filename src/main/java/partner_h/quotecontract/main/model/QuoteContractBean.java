@@ -9,13 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-<<<<<<< HEAD
+
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
-=======
->>>>>>> 0af1e9a8bb7c06ec283816df8f89dbe89c9f4a4d
+
 @Entity
 @Table(name="QuoteContracts")
 public class QuoteContractBean implements Serializable{

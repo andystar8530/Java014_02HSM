@@ -20,22 +20,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import _01_register.model.MemberBean;
 import newlywed.model.NewlywedBean;
 import newlywed.service.NewlywedService;
-<<<<<<< HEAD
-=======
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
->>>>>>> 0af1e9a8bb7c06ec283816df8f89dbe89c9f4a4d
 import partner_h.quotecontract.main.model.QuoteContractBean;
 import partner_h.quotecontract.main.service.QuoteContractService;
 
 @Controller
-<<<<<<< HEAD
-@RequestMapping("quote")
-@SessionAttributes({ "LoginOK" })
-=======
+
 @RequestMapping({"quote"})
 @SessionAttributes({"LoginOK"})
->>>>>>> 0af1e9a8bb7c06ec283816df8f89dbe89c9f4a4d
+
 public class NewlyQuoteController {
 
 	@Autowired
@@ -43,14 +37,11 @@ public class NewlyQuoteController {
 
 	@Autowired
 	QuoteContractService qcservice;
-<<<<<<< HEAD
-
-=======
 	
 	@Autowired
 	PartnerService partnerService;
 	
->>>>>>> 0af1e9a8bb7c06ec283816df8f89dbe89c9f4a4d
+
 	@GetMapping("quoteAllList")
 	protected String getNewlyQuotes(Model model) {
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");

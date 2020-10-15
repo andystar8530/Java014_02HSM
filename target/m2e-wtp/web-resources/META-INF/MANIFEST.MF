@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: HP
-=======
-Built-By: NTUT
->>>>>>> 0af1e9a8bb7c06ec283816df8f89dbe89c9f4a4d
 Build-Jdk: 1.8.0_252
 Created-By: Maven Integration for Eclipse
 
