@@ -30,7 +30,7 @@
  	
 	}
 	.partnerDiv{
- 		background-image: url("${pageContext.request.contextPath}/images/bg7.jpg"); 
+ 		background-image: url("${pageContext.request.contextPath}/images/bg20.jpg"); 
  		background-repeat: no-repeat; 
  		background-size:cover; 
  		background-attachment: fixed; 
@@ -944,7 +944,7 @@ section:nth-child(7) {
 </div>
 
 <div class='partnerDiv'>
-<h2 class='text-center p-3 display-4' id="aa" >店家一覽</h2>
+<h2 class='text-center p-3 display-4 text-light' id="aa" >店家一覽</h2>
 	<div class='container'>
 	<div class='row justify-content-center'>
 		

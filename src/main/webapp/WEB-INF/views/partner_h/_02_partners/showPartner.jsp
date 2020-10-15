@@ -109,12 +109,15 @@
 	</div>
 	</div>
 	
-	<div id="map" class="mt-3"></div>
-	<div>
-	 <iframe src="https://maps.google.com?output=embed&q=光華商場"width="600"
-                height="300"
-                frameborder="0"></iframe>
-   </div>             
+	<div class='container-fluid'>
+		<div class='row justify-content-center '>
+			 <iframe src="https://maps.google.com?output=embed&q=${partnerBean.memberBean.m_Add}"width="1500"
+		                height="350"
+		                frameborder="0">
+		     </iframe>
+	   </div>  
+	</div>
+	           
 		<!-- ---------------------------分隔線---------------------------------------			 -->
 
 	<jsp:include page="/fragment/footerMVC.jsp" />
