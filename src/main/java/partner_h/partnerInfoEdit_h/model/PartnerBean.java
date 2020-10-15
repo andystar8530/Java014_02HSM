@@ -329,13 +329,21 @@ public class PartnerBean implements Serializable {
 			this.staImage = staImage;
 		}
 
-
-
-
 		@Override
 		public String toString() {
-			return p_id+"/"+p_storeName+"/"+p_info+"/"+p_lineId;
+			return "PartnerBean [p_id=" + p_id + ", memberBean=" + memberBean + ", p_mId=" + p_mId + ", p_storeName="
+					+ p_storeName + ", p_stamp=" + p_stamp + ", p_coverPic=" + p_coverPic + ", p_service=" + p_service
+					+ ", p_info=" + p_info + ", p_area=" + p_area + ", p_review=" + p_review + ", p_lineId=" + p_lineId
+					+ ", p_bankAcc=" + p_bankAcc + ", p_hRate=" + p_hRate + ", p_createTime=" + p_createTime
+					+ ", p_editTime=" + p_editTime + ", p_covFilename=" + p_covFilename + ", p_staFilename="
+					+ p_staFilename + ", portfoliosList=" + portfoliosList + ", programsList=" + programsList
+					+ ", covImage=" + covImage + ", staImage=" + staImage + "]";
 		}
+
+
+
+
+	
 
 
 	

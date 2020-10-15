@@ -69,9 +69,9 @@
 				<form:form method="POST" modelAttribute="ProductBean"
 					enctype='multipart/form-data'>
 					<!-- 					<input type="hidden" name="noname" id='putOrDelete' value=""> -->
-					<c:if test='${ProductBean.p_Id != null}'>
-						<form:hidden path="p_Id" />
-					</c:if>
+<%-- 					<c:if test='${ProductBean.p_Id != null}'> --%>
+<%-- 						<form:hidden path="p_Id" /> --%>
+<%-- 					</c:if> --%>
 					<fieldset>
 
 						<div style="">
@@ -262,6 +262,7 @@
 		//	預覽圖開始
 		$("#p_Cover1_show_image").click(function(e) {
 			document.getElementById("p_Cover1").click();
+			alert(document.getElementById("p_Cover1").value);
 		});
 		$("#p_Cover1").on("change", function(event) {
 			const file = event.target.files[0];
@@ -270,7 +271,7 @@
 			readFile.addEventListener("load", function(e) {
 				let image = document.getElementById("p_Cover1_show_image");
 				image.src = this.result;
-
+				alert(document.getElementById("p_Cover1").value);
 				// image.width = 500 ;
 				image.style.maxWidth = "200px"; //css屬性
 				image.style.maxHeight = "200px";

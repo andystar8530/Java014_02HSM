@@ -34,27 +34,30 @@
    		 background-image:url("${pageContext.request.contextPath}/data/images/bigPic/8.jpg");'>
 		<div class="bgMallAllDiv container ">
 			<!-- 		<h1 class="mt-4 mb-3"> -->
-			<div class="h1 border-bottom sub-title text-white"style="text-shadow: 5px 5px 10px rgb(88, 88, 80);padding-top:30px;">
+			<div class="h1 border-bottom sub-title text-white"
+				style="text-shadow: 5px 5px 10px rgb(88, 88, 80); padding-top: 30px;">
 				後台 <small class="h3">商城管理</small>
 			</div>
 			<!-- 		</h1> -->
 
 			<!-- 引入共同的頁首 -->
-			<div class="bgMainDiv "style="padding-top:30px;">
+			<div class="bgMainDiv " style="padding-top: 30px;">
 				<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
 				<div class="bgMainGalleryDiv MallMain">
 					<!-- 		內容建立位置-------------- -->
-					<!-- 新增商品開始 -->
+					<!-- 	新增商品開始 -->
 					<form:form method="POST" modelAttribute="ProductBean"
 						enctype='multipart/form-data'>
 						<!-- 	最外框 -->
-<!-- 						backdrop-filter: blur(5px); -->
-						<div class="ml-5 col-8 container justify-content-center container  text-white"
-							style="padding-top:20px; background:rgba(2,2,2,0.1);backdrop-filter: blur(1px);form-group; border-bottom; box-shadow: 5px 10px 8px #888888; text-shadow: 5px 5px 10px rgb(88, 88, 80);">
+						<!-- 						backdrop-filter: blur(5px); -->
+						<div
+							class="ml-5 col-8 container justify-content-center container  text-white"
+							style="padding-top: 20px; background: rgba(2, 2, 2, 0.1); backdrop-filter: blur(1px); form-group; border-bottom; box-shadow: 5px 10px 8px #888888; text-shadow: 5px 5px 10px rgb(88, 88, 80);">
 							<div class="col-12">
 								<div
 									class="row mx-0 justify-content-center  align-items-center w-100">
-									<div class="border-bottom sub-title col-8 justify-content-center">
+									<div
+										class="border-bottom sub-title col-8 justify-content-center">
 										<Font size='5'>增加商品</Font>
 									</div>
 								</div>
@@ -91,9 +94,9 @@
 											<label class="fontSize">進貨數量</label>
 										</div>
 										<div>
-											<form:input path='p_Pdqty' class="form-control" style="" />
+											<form:input path='p_Pdqty' class="form-control" style="" class="sss"/>
 
-											<form:errors path="p_Pdqty" cssClass="error" />
+											<form:errors path="p_Pdqty" cssClass="error"  />
 										</div>
 									</div>
 									<div class="col-4">
@@ -203,11 +206,11 @@
 											<form:errors path="P_Note" cssClass="error" />
 										</div>
 									</div>
-
 								</div>
 								<div>
-									<div style="padding:20px 20px;" id="btnArea" align="center">
-										<input class="btn btn-outline-primary" type="submit" name="submit" id="submit" value="儲存" />
+									<div style="padding: 20px 20px;" id="btnArea" align="center">
+										<input class="btn btn-outline-primary" type="submit"
+											name="submit" id="submit" value="儲存" />
 										<!-- 							<input type="reset" name="cancel" id="cancel" value="重填"> -->
 									</div>
 								</div>

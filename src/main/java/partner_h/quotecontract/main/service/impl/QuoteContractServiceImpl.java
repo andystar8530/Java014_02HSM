@@ -1,23 +1,21 @@
 package partner_h.quotecontract.main.service.impl;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import _04_ShoppingCart.model.OrderItemBean;
+import _01_register.model.MemberBean;
 import partner_h.quotecontract.main.dao.QuoteContractDao;
 //import partner_h.quotecontract.main.dao.QuoteContractItemDao;
 import partner_h.quotecontract.main.model.QuoteContractBean;
-import partner_h.quotecontract.main.model.QuoteContractItemBean;
 import partner_h.quotecontract.main.service.QuoteContractService;
 
 @Service
 @Transactional
-
+												 
 public class QuoteContractServiceImpl implements QuoteContractService {
 
 	@Autowired
@@ -103,6 +101,23 @@ public class QuoteContractServiceImpl implements QuoteContractService {
 		List<QuoteContractBean> list = null;
 		list = qcdao.getStatusQuotes(p_Id,status);
 		return list;
+	}
+
+	@Override
+	public QuoteContractBean getQuoteContractBeanById(int id) {
+		return qcdao.getQuoteContractBeanById(id);
+	}
+
+	@Override
+	public void updateQuoteContractBean(QuoteContractBean bean) {
+		qcdao.updateQuoteContractBean(bean);
+		
+	}
+
+	@Override
+	public MemberBean getMemberId(int id) {
+		
+		return qcdao.getMemberId(id);
 	}
 
 

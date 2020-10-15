@@ -3,8 +3,8 @@ package partner_h.quotecontract.main.dao;
 
 import java.util.List;
 
+import _01_register.model.MemberBean;
 import partner_h.quotecontract.main.model.QuoteContractBean;
-import partner_h.quotecontract.main.model.QuoteContractItemBean;
 
 
 public interface QuoteContractDao {
@@ -18,6 +18,8 @@ public interface QuoteContractDao {
 	//查詢 合作商多筆報價
 	List<QuoteContractBean> getPartnerQuotes(int p_Id);
 	
+	//	查詢單筆合約資料
+	QuoteContractBean getQuoteContractBeanById(int id);
 	
 	//依合作商ID 查詢 單一筆報價???
 	QuoteContractBean getP_Id(int p_Id);
@@ -34,6 +36,10 @@ public interface QuoteContractDao {
 	//修改報價合約
 	void updateQuote(QuoteContractBean bean);
 	
+	//	新增簽名後更新資料庫
+	void updateQuoteContractBean(QuoteContractBean bean);
 	
+	//	查詢會員資料
+	MemberBean getMemberId(int id); 
 
 }

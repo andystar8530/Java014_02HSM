@@ -4,11 +4,15 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import _01_register.model.MemberBean;
+import _03_listProducts.model.ProductBean;
 import partner_h.quotecontract.main.dao.QuoteContractDao;
 import partner_h.quotecontract.main.model.QuoteContractBean;
 /*
@@ -122,6 +126,42 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 		return list;
 	}
 
+	//	抓取欄位內所有值
+	@Override
+	public QuoteContractBean getQuoteContractBeanById(int id) {
+		QuoteContractBean bean = null;
+		Session session = factory.getCurrentSession();
+		String hql  = "FROM QuoteContractBean cb WHERE cb.qcId = :id";
+		try {
+			bean = (QuoteContractBean)session.createQuery(hql)
+									.setParameter("id", id)
+									.getSingleResult();
+		} catch(NoResultException e) {
+			  // 表示查無紀錄
+		}
+		return bean;
+	}
+
+	@Override
+	public void updateQuoteContractBean(QuoteContractBean bean) {
+		Session session = factory.getCurrentSession();
+		session.update(bean);
+	}
+
+	@Override
+	public MemberBean getMemberId(int id) {
+		MemberBean bean = null;
+		Session session = factory.getCurrentSession();
+		String hql  = "FROM MemberBean cb WHERE cb.m_No = :id";
+		try {
+			bean = (MemberBean)session.createQuery(hql)
+									.setParameter("id", id)
+									.getSingleResult();
+		} catch(NoResultException e) {
+			  // 表示查無紀錄
+		}
+		return bean;
+	}
 
 
 }
