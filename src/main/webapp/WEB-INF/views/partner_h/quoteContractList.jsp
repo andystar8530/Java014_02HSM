@@ -46,9 +46,12 @@
                     <th><button type="button" class="btn btn-status btn-white dropdown-toggle font-weight-bold " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                                 狀態
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">未發送</a>
-                            <a class="dropdown-item" href="#">報價中</a>
-                            <a class="dropdown-item" href="#">已簽約</a>
+                            <a class="dropdown-item" href="#">詢價中</a>
+                            <a class="dropdown-item" href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未報價</a>
+                            <a class="dropdown-item" href="#">未簽約</a>
+                            <a class="dropdown-item" href="#">未付訂金</a>
+                            <a class="dropdown-item" href="#">結案:服務完</a>
+                            <a class="dropdown-item" href="#">結案:未服務</a>
                           </div>
                       </button></th>
                     <th>名稱</th>

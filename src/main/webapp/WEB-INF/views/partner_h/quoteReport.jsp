@@ -31,8 +31,15 @@ window.month12 =0;
         <h2>經營狀況</h2>	                
          <br>
         <hr>
+        
+<!-- 圖表 -->
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- 圖表結束 -->
 
-<!-- 測試內容 -->
+<hr class="mt-5 mb-5">
+
+<!-- 表格 -->
     <div class="d-flex justify-content-center align-items-center">
         <table id="dt-basic-example" class="table table-bordered table-hover table-striped w-100">
             <thead class="bg-highlight">
@@ -58,18 +65,11 @@ window.month12 =0;
 </c:forEach>
 </table>       
 </div>
-<hr class="mt-5 mb-5">
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<!-- 表格結束 -->
+
+
 <script>
 window.onload = function () {
-// var qrList=${qrList};
-
-// //取qrList值
-// for(let i=0;i<qrList.length;i++){
-// 	console.log(qrList[i]);
-// }
-
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
     theme: "light2",//引用canvasjs的主題
