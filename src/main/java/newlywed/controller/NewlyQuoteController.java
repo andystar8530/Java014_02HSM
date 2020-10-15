@@ -111,8 +111,8 @@ public class NewlyQuoteController {
 	
 	//新人新增單筆報價合約(帶出資料)
 //		@GetMapping("/askingQuote/{p_id}")
-//		@GetMapping("/askingQuote")
-		@GetMapping({"/askingQuote","/askingQuote/"})
+		@GetMapping("/askingQuote")
+//		@GetMapping({"/askingQuote","/askingQuote/"})
 		public String getAskingQuoteForm(Model model,
 				HttpServletRequest request, HttpServletResponse reponse,
 				@RequestParam(value="p_id", required = false) Integer p_id
@@ -120,15 +120,18 @@ public class NewlyQuoteController {
 			System.out.println("p_id: "+p_id);
 			MemberBean mb = (MemberBean) model.getAttribute("LoginOK");//新人會員資料
 //			p_id=13;
-			PartnerBean pb = partnerService.getPartner(p_id);//合作商
-			NewlywedBean nb = newlywedService.queryNewlywed(mb.getM_No());//新人資料
 			QuoteContractBean quoteBean = new QuoteContractBean();
-			quoteBean.setP_Id(p_id);//合作商id
-			quoteBean.setP_storeName(pb.getP_storeName());//合作商店名稱
-			quoteBean.setP_Signature(pb.getP_stamp());
-			quoteBean.setCostPerHour(pb.getP_hRate());
-			quoteBean.setN_Name(mb.getM_Name());
-			quoteBean.setM_Id(mb.getM_Id());
+			if(p_id!=null) {
+				PartnerBean pb = partnerService.getPartner(p_id);//合作商
+				NewlywedBean nb = newlywedService.queryNewlywed(mb.getM_No());//新人資料
+				quoteBean.setP_Id(p_id);//合作商id
+				quoteBean.setP_storeName(pb.getP_storeName());//合作商店名稱
+				quoteBean.setP_Signature(pb.getP_stamp());
+				quoteBean.setCostPerHour(pb.getP_hRate());
+				quoteBean.setN_Name(mb.getM_Name());
+				quoteBean.setM_Id(mb.getM_Id());
+			}
+
 			model.addAttribute("quoteBean",quoteBean);
 			return "newlywed_h/newlywedInsert";
 			       
