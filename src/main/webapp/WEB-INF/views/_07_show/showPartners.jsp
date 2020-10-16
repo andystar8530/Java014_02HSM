@@ -1017,10 +1017,10 @@ section:nth-child(7) {
 <div class='container'>
 
 
-	<div class='row  col-12 justify-content-center ml-3'>
+	<div class='row col-12 justify-content-center ml-3'>
 	
 		<c:forEach var='programBean' items="${programList}" end='7'>
-		<div class="  col-lg-3  col-md-4 col-12">
+		<div class=" col-lg-3  col-md-4 col-12">
 			<article class="my-card card--1 mb-5" style='background-image: url("${pageContext.request.contextPath}/_06_Program/getProgramImage/${programBean.prm_Id}")'>
         
 				<div class="card__img" style='background-image: url("${pageContext.request.contextPath}/_06_Program/getProgramImage/${programBean.prm_Id}")'></div>
@@ -1029,8 +1029,8 @@ section:nth-child(7) {
 				 </a>
 				 
 				<div class="card__info">
-				  <span class="card__category">方案類別:${programBean.prm_Category}</span>
-				  <h3 class="card__title">${programBean.prm_Title}</h3>
+				  <span class="card__category">類別:${programBean.prm_Category}</span>
+				  <h4 class="card__title">${programBean.prm_Title}</h4>
 				  <span class="card__by"><a href="<c:url value='/_06_Program/ProgramDetail/${programBean.prm_Id}'/>" class="card__author" title="author">價錢:${programBean.prm_Price}</a></span>
 				</div>
 			  </article>

@@ -31,10 +31,7 @@
 					<a href="<spring:url value='/' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回上頁
 					</a> 
-					<a href='#' class='btn btn-info btn-large'> 
-					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
-					</a>
-					
+								
 					<a href="<c:url value='quote/askingQuote/${programBean.partnerBean2.p_id}'/>"
 					class='btn btn-info btn-large'> 				
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價	    

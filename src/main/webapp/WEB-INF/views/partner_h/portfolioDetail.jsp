@@ -41,8 +41,8 @@
 				<h3><img height='80px'
 	src="<c:url value='/getPartnerCoverImage/${portfolio.partnerBean.p_id}'/> " width="80px" class='partnerIcon'>${portfolio.partnerBean.p_storeName}</h3>
 				<h3>${portfolio.pfmName}</h3>
-				<p>作品資訊: ${portfolio.pfmInfo}</p>
 				<p>作品集分類: ${portfolio.pfService}</p>
+				<p>作品資訊: ${portfolio.pfmInfo}</p>
 				
 				<!-- <img id='img'> -->
 			</div>
@@ -55,10 +55,10 @@
 							<img src="<c:url value='/getPFDetailImage/ ${pfBean.pfdId}'/>" class='pfDetailImage card-img-top'>
 <%-- 						<p> 照片名稱:   ${pfBean.pfdName}</p> --%>
 				
-				 			 <div class="card-body">
-								<h5 class="card-title">${pfBean.pfdName}</h5>
-<!--         						<p class="card-text">This content is a little bit longer.</p> -->
-     			 			</div>
+<!-- 				 			 <div class="card-body"> -->
+<%-- 								<h5 class="card-title">${pfBean.pfdName}</h5> --%>
+<!--       						<p class="card-text">This content is a little bit longer.</p> --> 
+<!--      			 			</div> -->
 				
 						</div>
 					</div>					
@@ -70,9 +70,6 @@
 					<a href="<spring:url value='/' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回上頁
 					</a> 
-					<a href='#' class='btn btn-info btn-large'> 
-					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
-					</a>
 				<a href="<c:url value='quote/askingQuote/${portfolio.partnerBean.p_id}'/>"
 					class='btn btn-info btn-large'> 				
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價

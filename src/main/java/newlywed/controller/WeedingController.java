@@ -23,7 +23,7 @@ import newlywed.service.NewlywedService;
 
 @Controller
 @RequestMapping("/newlywed_h")
-@SessionAttributes({ "LoginOK", "NewlywedBean" })
+@SessionAttributes({ "LoginOK", "NewlywedBean","weddingList" })
 public class WeedingController {
 	@Autowired
 	NewlywedService newlywedService;
@@ -82,7 +82,7 @@ System.out.println(bean);
 	      budget.put("3", "100萬~~150萬");
 	     model.addAttribute("budget",budget);
 	   }
-	@ModelAttribute
+	@ModelAttribute("weddingList")
 	   public void getWeddingList(Model model) {
 	      Map<Integer, String> weddingList = new HashMap<Integer, String>();
 	      weddingList.put(1, "婚禮布置");
