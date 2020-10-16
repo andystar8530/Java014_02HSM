@@ -24,47 +24,8 @@
 	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
 	<%-- 	<c:set var="funcName" value="REG" scope="session" /> --%>
 	<jsp:include page="/fragment/topMVC.jsp" />
-	<h1 class="mt-4 mb-3">
-		後台 <small>會員管理</small>
-	</h1>
-	<!-- container -->
-	<div class="bgMallAllDiv container ">
-		<!-- 	asasaas -->
-		<!-- 	選擇紐 -->
-		<div class="bgMallNavDiv d-flex justify-content-end ">
-			<div class=" bd-highlight ">
-				<div class="bgMallSearchNavDiv nav ">
-					<div class="SearchDiv1 nav-item text-center border border-primary">
-						<a class="nav-link " href="#">Active</a>
-					</div>
-					<div
-						class="SearchDiv2 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">篩選</a>
-					</div>
-					<div
-						class="SearchDiv3 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">新增</a>
-					</div>
-					<div
-						class="SearchDiv4 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="<c:url value='/support/bgMallAdd' />">新增</a>
-					</div>
-				</div>
-			</div>
-			<div class="SearchDiv5 bd-highlight">
-				<form class="form-inline my-2 my-lg-0 ">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="品名/種類/金額" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-		<!-- 	選擇紐結束 -->
-		<!-- 		<hr> -->
-		<!--	引入共同的頁首 -->
-		<div class="bgMainDiv container ">
-			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
-			<div class="bgMainGalleryDiv row ">
+			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
+	<div class="col-lg-9 mb-4">
 				<!--	內容建立位置-------------- -->
 				<c:forEach var='member' items="${supMember_DPP}">
 					<!--	外層div給予連結到商品編輯,裡面的style經過會有點擊符號 -->
@@ -134,7 +95,7 @@
 		</div>
 	</div>
 	<!-- 	尾端選擇按鈕結束 -->
-	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" /> --%>
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

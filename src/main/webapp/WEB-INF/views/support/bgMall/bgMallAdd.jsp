@@ -26,23 +26,16 @@
 	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
 	<c:set var="funcName" value="REG" scope="session" />
 	<jsp:include page="/fragment/topMVC.jsp" />
+				<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
 	<!-- container -->
-	<div
+	<div class="col-lg-9 mb-4"
 		style='height:800px; width: 100%;
 		background-position: center;
     	background-size: cover; 
    		 background-image:url("${pageContext.request.contextPath}/data/images/bigPic/8.jpg");'>
 		<div class="bgMallAllDiv container ">
-			<!-- 		<h1 class="mt-4 mb-3"> -->
-			<div class="h1 border-bottom sub-title text-white"
-				style="text-shadow: 5px 5px 10px rgb(88, 88, 80); padding-top: 30px;">
-				後台 <small class="h3">商城管理</small>
-			</div>
-			<!-- 		</h1> -->
 
-			<!-- 引入共同的頁首 -->
 			<div class="bgMainDiv " style="padding-top: 30px;">
-				<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
 				<div class="bgMainGalleryDiv MallMain">
 					<!-- 		內容建立位置-------------- -->
 					<!-- 新增商品開始 -->
@@ -51,7 +44,7 @@
 						<!-- 	最外框 -->
 						<!-- 						backdrop-filter: blur(5px); -->
 						<div
-							class="ml-5 col-8 container justify-content-center container  text-white"
+							class=" container justify-content-center container  text-white"
 							style="padding-top: 20px; background: rgba(2, 2, 2, 0.1); backdrop-filter: blur(1px); form-group; border-bottom; box-shadow: 5px 10px 8px #888888; text-shadow: 5px 5px 10px rgb(88, 88, 80);">
 							<div class="col-12">
 								<div
@@ -225,8 +218,10 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
 
-	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" />
+<%-- 	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" /> --%>
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
