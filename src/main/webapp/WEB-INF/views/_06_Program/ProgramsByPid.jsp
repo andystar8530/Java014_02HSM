@@ -46,13 +46,51 @@
 								${program.prm_Status}<br>
 								${program.prm_Createdate}<br>
 							</p>
-							<a href="<spring:url value='/_06_Program/ProgramDetail/${programBean.prm_Id}' />"
-    							class="btn btn-primary">
-    							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
- 							</a>
+<%-- 							<a href="<c:url value='/_06_Program/ProgramDetail/${program.prm_Id}' />" --%>
+<!--     							class="btn btn-outline-danger"> -->
+<!--     							<span class="glyphicon-info-sigh glyphicon"></span>詳細資料 -->
+<!--  							</a> -->
+ 							<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+  							詳細內容
+							</button>
 						</div>
 					</div>
 				</div>
+							<!-- Button trigger modal -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">詳細內容</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		       		
+		
+				<h4><img height='80px'
+	src="<c:url value='/getPartnerCoverImage/${program.partnerBean2.p_id}'/>" width="80px" class='partnerIcon'>${program.partnerBean2.p_storeName}</h4>
+				<h3>${portfolio.pfmName}</h3>
+				<h3 class='col-12'>方案名稱:${program.prm_Title}</h3>
+				<p>方案類別: ${program.prm_Category}</p>
+				<p>方案內容: ${program.prm_Content}</p>
+				<p>方案說明: ${program.prm_Detail}</p>
+				<p>方案價格: ${program.prm_Price}</p>
+				
+	<div>
+				
+			</div>
+		      </div>
+		      <div class="modal-footer">
+		       
+		      </div>
+		    </div>
+		  </div>
+		</div>
+				
 			</c:forEach>
 		</div>
 	</div>
