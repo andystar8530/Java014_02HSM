@@ -204,6 +204,7 @@ public class MemberController {
 			memberBeanUpd.setM_EditTime(editTime);
 			
 			memberService.update(memberBeanUpd);
+			model.addAttribute("LoginOK", memberBeanUpd);
 			return "/newlywed_h/newlywed";
 		}
 }

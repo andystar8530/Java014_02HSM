@@ -72,10 +72,12 @@ public class NewlywedController {
 		//bean.setN_MID(mb.getM_No());
 		
 		
-		if (newlywedService.idExists(bean.getN_nickname())) {
-			result.rejectValue("N_nickname", "", "暱稱已存在，請重新輸入");
-			return "/newlywed_h/newlywedInfo";
-		}
+//		if (newlywedService.idExists(bean.getN_nickname())) {
+//			result.rejectValue("N_nickname", "", "暱稱已存在，請重新輸入");
+//			return "/newlywed_h/newlywedInfo";
+//		}
+//		String phoenStr="0919599369";
+//		bean.setN_phonenumber(Integer.valueOf(phoenStr));
 		newlywedService.saveNewlyed(bean);
 		try {
 			newlywedService.saveNewlyed(bean);

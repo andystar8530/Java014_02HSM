@@ -64,12 +64,13 @@
 <!-- 							placeholder="Telephone" name="updatePhone" -->
 <%-- 							value="${param.updatePhone}"> --%>
 <!-- 					</div> -->
-					<div class="form-group">
-						<label for="formGroupExampleInput2">電話號碼</label> <form:input 
-						path="N_phonenumber"
-							type="text" class="form-control" id="formGroupExampleInput2"
-							placeholder="09xx-xxx-xxx"/>
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label for="formGroupExampleInput2">電話號碼</label> -->
+<%-- 						 <form:input  --%>
+<%-- 						path="N_phonenumber" --%>
+<%-- 							type="text" class="form-control" id="formGroupExampleInput2" --%>
+<%-- 							placeholder="09xx-xxx-xxx"/> --%>
+<!-- 					</div> -->
 					<div class="form-group">
 						<label for="formGroupExampleInput">您的性別</label>
 					</div>
