@@ -43,6 +43,7 @@ public class PartnerBean implements Serializable {
 	private MemberBean memberBean;
 	
 	@OneToMany(mappedBy = "partnerBean3")
+	@JsonIgnore
 	 private List<FavoritesBean> myfavorites = new ArrayList<>();
 	
 	@Transient

@@ -60,7 +60,11 @@
 								<h5 class="card-title">${pfBean.pfmName}</h5>
         						<p class="card-text">${pfBean.pfmInfo}</p>
      			 			</div>
-				
+							<p>
+									<a href="<spring:url value='/portfolio?pfmId=${pfBean.pfmId}' />" class="btn btn-primary">
+										<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
+									</a>
+							</p>  
 						</div>
 					</div>					
 				</c:forEach>
