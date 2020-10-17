@@ -85,11 +85,6 @@
 <div class="form-row">
 <div class="form-group col-md-4">
  <label >報價日期</label>
-<%--  <c:if test="quoteBean.qcDate !=null"> --%>
-<!-- 	 <label Class="error">*必填欄位</label> -->
-<%-- 	 <form:input --%>
-<%-- 			  type="date"  id="qcDate"  path="qcDate"  class="form-control" /> <br>			 --%>
-<%--  </c:if> --%>
  	 <form:input
 			  type="date"  id="qcDate"  path="qcDate"  class="form-control" /> <br>		
 		 <form:errors path="qcDate" class="errors" />

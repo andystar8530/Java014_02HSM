@@ -57,40 +57,14 @@
          <a class="sidebar-item list-group-open1"  data-wow-duration="1s"  
           				 href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未簽約</a>
                   
-<<<<<<< HEAD
-<!--                    <a class="sidebar-item list-group-open1 wow  bounce"  data-wow-duration="1s"   -->
-<%--           				 href="<c:url value='/template/editTemplate' />">合約範本</a> --%>
-<!--           </a> -->
-<%--           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/025-calendar.png" >行程管理</a> --%>
-<%--           <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/011-love.png" >來聊聊  &nbsp <span class="badge badge-primary badge-pill" >14</span></a></a> --%>
           <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >經營報表
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year'/>">年度經營報表</a>             
-<!--             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s"  href="#">專案成本表</a> -->
-=======
-                   <a class="sidebar-item list-group-open1"  data-wow-duration="1s"  
-          				 href="<c:url value='/template/editTemplate' />">合約範本</a>
-          </a>
-  
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/025-calendar.png" >行程管理</a>
-          <a  class="list-group-item"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/011-love.png" >來聊聊  &nbsp <span class="badge badge-primary badge-pill" >14</span></a></a>
-          <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >經營報表
-            <a class="sidebar-item list-group-open2" data-wow-duration="1s" href="<c:url value='/quotReport/year'/>">年度經營報表</a>             
-            <a class="sidebar-item list-group-open2" data-wow-duration="1s"  href="#">專案成本表</a>
->>>>>>> 0363aa4e64e09d7df8c47ea66b2bf7a7953c6d7d
-          </a>
+
         </div>
       </div>
-<!--    <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script> -->
-<%--   <script src="${pageContext.request.contextPath}/data/js/partner.js"></script> --%>
+
    <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-<<<<<<< HEAD
-   <script src="${pageContext.request.contextPath}/js/wow.min.js"></script>
-    <script>
-//       new WOW().init(); 
-    </script> 
-=======
 
->>>>>>> 0363aa4e64e09d7df8c47ea66b2bf7a7953c6d7d
 </body>
 </html>

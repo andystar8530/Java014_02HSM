@@ -50,7 +50,7 @@ public class DisplayQuoteContractController {
 
 		// 抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-
+		String hql = "From QuoteContractBean ORDER BY qcId DESC";
 		// 透過合作商的ID,找到清單-報價單
 		List<QuoteContractBean> qcbs = qcservice.getPartnerQuotes(partnerBean.getP_id());
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
