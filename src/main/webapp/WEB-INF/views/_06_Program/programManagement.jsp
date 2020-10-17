@@ -30,9 +30,9 @@ td{vertical-align: middle !important;}
 <body>
 <!-- 引入共同的頁首 -->
 <jsp:include page="/fragment/topMVC.jsp" />
-<h2>方案管理</h2>
+<h2 class='text-center'>方案管理<a class="btn btn-outline-dark  btn-sm" href="<c:url value='/_06_Program/showProgramsByPid/${partnerBean.p_id}'/>" role="button">回前頁</a></h2>
 <div class="col-11">
-    <table border='1' colspan='10' class="table table-hover mx-auto m-2 table-bordered">
+    <table border='1' colspan='10' class="table table-hover ml-5  table-bordered">
         <thead>
               <tr>
                 <th scope="col">編輯</th>
@@ -57,10 +57,8 @@ td{vertical-align: middle !important;}
                 <td><img src="<c:url value='/_06_Program/getProgramImage/${program.prm_Id}'/>" 
                   class='editImage'></td>
                 <td>${program.prm_Title}</td> 
-                <td>${program.prm_Content}</td>
                 <td>${program.prm_Category}</td>
                 <td>${program.prm_Price}</td> 
-                <td>${program.prm_Status}</td>
                 <td>${program.prm_Createdate}</td>
                 <td>${program.prm_Editdate}</td>
                 <td>

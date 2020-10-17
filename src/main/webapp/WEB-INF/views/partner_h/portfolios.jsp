@@ -42,7 +42,7 @@ height: 200px;
 				 enctype='multipart/form-data'>
 			<fieldset>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 " for='pfmName'>
+					<label class="control-label col-lg-12" for='pfmName'>
 						作品集名稱:</label>
 					<div class="col-lg-10">
 						 <form:input id="pfmName" path="portfoliosBean.pfmName" type='text'
@@ -52,7 +52,7 @@ height: 200px;
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for='pfmInfo'>
+					<label class="control-label col-lg-12"  for='pfmInfo'>
 						作品資訊: </label>
 					<div class="col-lg-10">
 						<form:textarea id="pfmInfo" path="portfoliosBean.pfmInfo" rows="5" cols="30"
@@ -61,7 +61,7 @@ height: 200px;
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for='portfolioImage'>
+					<label class="control-label col-lg-12"  for='portfolioImage'>
 						上傳多張圖片 </label>
 					<div class="col-lg-10">
 						<form:input path="portfoliosDetailsBean.portfoliosImages" id="pfdPic" type='file' multiple="multiple" 
@@ -71,8 +71,8 @@ height: 200px;
 				</div>
 			
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">確定新增</button>
       </div>
 			</fieldset>
 		</form:form>	
@@ -95,7 +95,7 @@ height: 200px;
  			 	作品 +
 				</button>
 				<a type="button"  role="button" class="btn btn-secondary" href="<c:url value='/showPortfoliosManagement'/> ">作品管理</a>
-				<button id='target'>test</button>
+<!-- 				<button id='target'>test</button> -->
 				<a href="<c:url value='/' />">回前頁</a>
 			</div>
 				<c:forEach var='portfolios' items="${portfolios}">
@@ -107,9 +107,9 @@ height: 200px;
 								</p>
 								<p>商家名稱:${portfolios.partnerBean.p_storeName}</p>
 						
-								<p>作品資訊: ${portfolios.pfmInfo}</p>
-								<p>
-									<a href="<spring:url value='/portfolio?pfmId=${portfolios.pfmId}' />" class="btn btn-primary">
+								<p><div class='m-2'>作品資訊: ${portfolios.pfmInfo}</div></p>
+								<p class='text-center'>
+									<a href="<spring:url value='/portfolio?pfmId=${portfolios.pfmId}' />" class="btn btn-outline-primary">
 										<span class="glyphicon-info-sigh glyphicon"></span>詳細資料
 									</a>
 								</p>                
@@ -131,6 +131,26 @@ height: 200px;
 	 </script>
  </c:if>
  <script>
+
+//如果字數太多，用...取代
+$(document).ready(function(){
+
+	$(function() {
+		var len = 20;
+		$(".JQellipsis").each(function(i) {
+			if ($(this).text().length > len) {
+				$(this).attr("title", $(this).text());
+				var text = $(this).text().substring(0, len - 1) + "...";
+				$(this).text(text);
+			}
+		});
+	});
+})
+
+</script>
+
+</script>
+<script>
 $('#target').click(function(){
 
 	var xhr = new XMLHttpRequest();
@@ -174,6 +194,7 @@ $('#target').click(function(){
  </div>
  </div>
  <jsp:include page="/fragment/footerMVC.jsp" />
+
 </body>
 
 </html>

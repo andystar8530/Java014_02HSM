@@ -13,7 +13,6 @@
 <jsp:include page="/fragment/topMVC.jsp" />
 <div id='resultMsg' style="height: 18px; font-weight: bold;"></div>
 <h2 class='text-center'>請修改下列資料</h2>
-<input type='submit' class='btn btn-light justify-content-center' value='回上頁'>
 <input type="hidden" name="id" id='id'><br>
 <div class="row justify-content-center">
 	<div class="col-auto">
@@ -44,6 +43,7 @@
 			<tr>
 				<td>
 					 <button class="btn btn-primary" type="submit" id='submitBtn'>送出</button>
+					<a href="<c:url value='/showPortfoliosManagement'/>" class="text-center p-1" >回前頁</a>
 				</td>
 			</tr>	
 		</table>	

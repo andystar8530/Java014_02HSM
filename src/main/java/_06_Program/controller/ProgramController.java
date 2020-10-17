@@ -34,7 +34,7 @@ import partner_h.partnerInfoEdit_h.model.PartnerBean;
 
 @Controller
 @RequestMapping("_06_Program")
-@SessionAttributes({ "LoginOK", "programs_DPP","programList","partnerBean","programBean"})
+@SessionAttributes({ "LoginOK", "programs_DPP","programList","partnerBean","programBean","prm_Pid"})
 public class ProgramController {
 
 	@Autowired
@@ -63,6 +63,8 @@ public class ProgramController {
 			) {
 		List<ProgramBean> programList = service.getProgramsByPid(prm_Pid);
 		model.addAttribute("programList", programList);
+		model.addAttribute("prm_Pid", prm_Pid);
+		
 		return "_06_Program/ProgramsByPid";		
 	}
 	

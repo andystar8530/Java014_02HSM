@@ -12,10 +12,7 @@
 h2,h3{
 	text-align: center;
 }
-.imageDiv{
-	text-align: center;
 
-}
 .chooseIcon{
 	width:25px;
 	height:25px;
@@ -33,24 +30,37 @@ h2,h3{
 </head>
 <body>
 <jsp:include page="/fragment/topMVC.jsp" />
-    <h2>作品集名稱: ${portfoliosBean.pfmName}</h2>
-    <h3>作品集資訊: ${portfoliosBean.pfmInfo}</h3>
-  	<div class='imageDiv'>
-     <form:form method='POST' modelAttribute='portfolioDetailsBean' enctype='multipart/form-data'>
-        <div class="form-group">
-            <label for="uploadImage">
-                <img src='<c:url value="/data/icon/photo+.png"/>' width='50px' style="display:inline;"  class='uploadImage' >
-                <form:input type='file' path="portfoliosImages" id="pfdPic"  multiple="multiple" class='form:input-large' style="display:none" />
-            </label>
-            <button class="btn btn-light" type="submit" style="display:none" id="submitBtn">確定新增</button>
+    <h2 class='p-3'>作品集名稱: ${portfoliosBean.pfmName}</h2>
+    <h3 class='p-1 pb-2'>作品集資訊: ${portfoliosBean.pfmInfo}</h3>
+        <div class="container">
+            <div class="row col-12 justify-content-center">
+                <div class='imageDiv'>                      
+                    <div class="d-flex">
+                      
+                       <form:form method='POST' modelAttribute='portfolioDetailsBean' enctype='multipart/form-data'>
+                            <div class="form-group w-50">
+                                    <label for="uploadImage">
+                                        <img src='<c:url value="/data/icon/photo+.png"/>' width='50px' style="display:inline;"  class='uploadImage' >
+                                        <form:input type='file' path="portfoliosImages" id="pfdPic"  multiple="multiple" class='form:input-large' style="display:none" />
+                                    </label>
+                                    <button class="btn btn-light" type="submit" style="display:none" id="submitBtn">確定新增</button>
+                            </div>
+                        </form:form>
+                       
+                        <div class='w-50'>
+                            <img src='<c:url value="/data/icon/photo-.png"/>' width='50px'  id='removeImage'>
+                            <button class="btn btn-light" type="submit" style="display:none" id="deleteBtn">確定刪除</button>
+                            <button class="btn btn-light" type="reset" style="display:none" id="cancelBtn">取消</button>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-     </form:form>     
+       
     
-    	<img src='<c:url value="/data/icon/photo-.png"/>' width='50px' style="display:inline;" id='removeImage'>
-        <button class="btn btn-light" type="submit" style="display:none" id="deleteBtn">確定刪除</button>
-        <button class="btn btn-light" type="reset" style="display:none" id="cancelBtn">取消</button>
-
-  	</div>
+    
     <div class="container mt-5">
 		<div class="row row-cols-2 row-cols-md-3 row-cols-xl-4">
 				<c:forEach var='pfBean' items="${pfdBeanList}">
@@ -71,7 +81,9 @@ h2,h3{
 				</c:forEach>
 			</div>
         </div>	
-        
+        <div class='text-center'>
+        	<a class="btn btn-outline-dark" href="<c:url value='/showPortfoliosManagement'/>" role="button">回作品集管理</a>
+        </div>
 <script>
 
      $(".uploadImage").click(function (e) {
@@ -109,7 +121,7 @@ h2,h3{
                 contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
                 dataType:'json',
                 success:function(data){
-                    alert('刪除成功');
+//                     alert('刪除成功');
                     $("[name='subCheck']:checkbox").attr("checked",false);
                     location.reload();//页面刷新
                 },

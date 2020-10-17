@@ -88,6 +88,7 @@
 			<!-- Content Column -->
 			
 			<div>
+			<div class="container">
 			<c:forEach var="pb" items="${pbli}">
 				<div class="store mt-3">
 <%-- 			   <img src="${pb.p_coverPic}"> --%>
@@ -95,6 +96,7 @@
 			   <a href="<c:url value='/showPartnerDetail/${pb.p_id}'/>">${pb.p_storeName}<br/></a>
 				</div>
 			</c:forEach>
+				</div>
 			</div>
 			</div>
 	</div>
