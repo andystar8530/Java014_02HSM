@@ -99,9 +99,11 @@
 					<a href="<spring:url value='/' />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>返回上頁
 					</a> 
+					<c:if test="${LoginOK.m_Code == 0}">
 					<a href="${pageContext.request.contextPath}/getFavorites?p_id=${p_id}" class='btn btn-info btn-large'> 
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我有興趣
 					</a>
+					</c:if>
 					<a href="<c:url value='/quote/askingQuote?p_id=${p_id}'/>"
 					class='btn btn-info btn-large'> 				
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價

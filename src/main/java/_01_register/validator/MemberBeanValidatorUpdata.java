@@ -35,7 +35,7 @@ public class MemberBeanValidatorUpdata implements Validator {
 //			errors.rejectValue("m_Password","", "密碼欄與確認密碼不一致");
 //		}
 		
-		String format = "\\p{Alpha}\\w{2,15}[@][a-z0-9]{3,}[.]\\p{Lower}{2,}";
+		String format = "\\p{Alpha}\\w{2,25}[@][a-z0-9]{3,}[.]\\p{Lower}{2,}";
 		if (! mb.getM_Email().matches(format))
 		{ 
 			errors.rejectValue("m_Email","", "Email名稱不合法");
