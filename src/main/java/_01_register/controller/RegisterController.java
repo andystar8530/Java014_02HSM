@@ -44,6 +44,7 @@ public class RegisterController {
 	@GetMapping("/register")   
 	public String sendingEmptyForm(Model model) {
 		MemberBean memberBean = new MemberBean();
+		//預設註冊資料
 //		memberBean.setM_Password("Do!ng123");
 //		memberBean.setM_Password1("Do!ng123");
 //		memberBean.setM_Id("rockstar@rock.star");
@@ -101,7 +102,7 @@ public class RegisterController {
 		Timestamp registerTime = new Timestamp(System.currentTimeMillis());
 		bean.setM_CreateTime(registerTime);
 //		bean.setM_EditTime(registerTime);
-		bean.setM_Name("會員");
+		bean.setM_Name("預設會員");
 		bean.setM_Email(bean.getM_Id());
 		bean.setM_Status(0);
 		

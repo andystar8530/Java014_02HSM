@@ -42,7 +42,7 @@ height: 200px;
 				 enctype='multipart/form-data'>
 			<fieldset>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 " for='pfmName'>
+					<label class="control-label col-lg-12" for='pfmName'>
 						作品集名稱:</label>
 					<div class="col-lg-10">
 						 <form:input id="pfmName" path="portfoliosBean.pfmName" type='text'
@@ -52,7 +52,7 @@ height: 200px;
 				</div>
 				
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for='pfmInfo'>
+					<label class="control-label col-lg-12"  for='pfmInfo'>
 						作品資訊: </label>
 					<div class="col-lg-10">
 						<form:textarea id="pfmInfo" path="portfoliosBean.pfmInfo" rows="5" cols="30"
@@ -61,7 +61,7 @@ height: 200px;
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2 "  for='portfolioImage'>
+					<label class="control-label col-lg-12"  for='portfolioImage'>
 						上傳多張圖片 </label>
 					<div class="col-lg-10">
 						<form:input path="portfoliosDetailsBean.portfoliosImages" id="pfdPic" type='file' multiple="multiple" 
@@ -71,8 +71,8 @@ height: 200px;
 				</div>
 			
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">確定新增</button>
       </div>
 			</fieldset>
 		</form:form>	

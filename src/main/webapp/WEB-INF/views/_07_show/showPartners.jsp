@@ -1085,8 +1085,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show8.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show8.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show8-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show8-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1095,8 +1095,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show6.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show6.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show6-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show6-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1105,8 +1105,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show7.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show7-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1115,8 +1115,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show2.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show2.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show2-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show2-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1125,8 +1125,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show7.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show7-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show7-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>
@@ -1135,8 +1135,8 @@ section:nth-child(7) {
 						<div class="col-lg-4 col-md-4">
 							<div class="memory">
 								<div class="memories-img">
-									<img src="${pageContext.request.contextPath}/images/show/show9.jpg" alt="">
-									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show9.jpg">
+									<img src="${pageContext.request.contextPath}/images/show/show9-min.jpg" alt="">
+									<div class="menorie-icon" href="${pageContext.request.contextPath}/images/show/show9-min.jpg">
 										<i class="fas fa-plus"></i>
 									</div>
 								</div>

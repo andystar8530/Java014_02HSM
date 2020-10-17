@@ -107,7 +107,7 @@
 					Email(信箱) : <span>${LoginOK.m_Id}</span>
 				</div>
 				<div class="newlyWed">
-					手機號碼 : <span>${NewlywedBean.n_phonenumber}</span>
+					手機號碼 : <span>${LoginOK.m_Phone}</span>
 				</div>
 				<div class="newlyWed">
 					聯絡時間 : <span>${NewlywedBean.n_connectiontime}</span>
