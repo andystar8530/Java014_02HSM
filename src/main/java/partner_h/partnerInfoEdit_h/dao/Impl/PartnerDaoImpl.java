@@ -3,6 +3,8 @@ package partner_h.partnerInfoEdit_h.dao.Impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +25,28 @@ public class PartnerDaoImpl implements PartnerDao{
 	
 	@Override
 	public PartnerBean getPartner(int p_id) {
-		PartnerBean pb = null;
+//		PartnerBean pb = null;
+//		Session session = factory.getCurrentSession();
+//		String hql = "FROM PartnerBean WHERE p_id = :p_id";
+//		@SuppressWarnings("unchecked")
+//		List<PartnerBean> pbList = session.createQuery(hql)
+//									.setParameter("p_id", p_id)
+//									.getResultList();
+//		if(pbList.size()>0) {
+//			pb = pbList.get(0);
+//		}
+//		return pb; 
+		PartnerBean bean = null;
 		Session session = factory.getCurrentSession();
-		String hql = "FROM PartnerBean WHERE p_id = :p_id";
-		@SuppressWarnings("unchecked")
-		List<PartnerBean> pbList = session.createQuery(hql)
+		String hql  = "FROM PartnerBean cb WHERE cb.p_id = :p_id";
+		try {
+			bean = (PartnerBean)session.createQuery(hql)
 									.setParameter("p_id", p_id)
-									.getResultList();
-		if(pbList.size()>0) {
-			pb = pbList.get(0);
+									.getSingleResult();
+		} catch(NoResultException e) {
+			  // 表示查無紀錄
 		}
-		return pb; 
-		
+		return bean;
 	}
 
 	@Override

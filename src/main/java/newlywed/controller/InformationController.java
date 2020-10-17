@@ -29,7 +29,7 @@ public class InformationController {
       newlywedBean=newlywedService.queryNewlywed(mb.getM_No());
       
 //      newlywedBean.setN_nickname(mb.getM_Id());
-      
+     
      model.addAttribute("NewlywedBean", newlywedBean);
       return "/newlywed_h/newlywed";
 	}

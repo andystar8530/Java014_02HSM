@@ -402,7 +402,8 @@ public class CommodityServlet {
 
 	// 處理更新
 	@PostMapping("/bgMallUpdate/{id}")
-	public String postBgMallUpdate(Model model, @ModelAttribute("ProductBean") ProductBean productBean,
+	public String postBgMallUpdate(Model model, 
+			@ModelAttribute("ProductBean") ProductBean productBean,
 			BindingResult bindingResult, @PathVariable Integer id, HttpServletRequest request) {
 
 		ProductBean productBeanOld = productInfoService.getSupPageProductsById(id);

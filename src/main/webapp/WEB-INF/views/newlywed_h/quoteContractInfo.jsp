@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> 
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-  <head>
-  <link rel="stylesheet"
+<head>
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/marryMa.css">
     <meta charset="UTF-8" />
     <title>檢視報價合約資訊</title>
@@ -175,6 +176,10 @@
             value="合約簽名"    onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"/>
    </div>
 
+   <div onclick="location.href='<c:url value="/quotecontract/quoteContractSignature/${quoteBean.qcId}" />';"class="">
+							簽名
+						</div>
+
  <div class="form-group col-md-6">
  	<input type="submit"  id="submit" path="submit" class="form-control btn btn-outline-danger"
            value="意見回覆" onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})">
@@ -197,16 +202,16 @@ function UpdateQuote(m_Id,qcId){
 }
 </script>
 
-<!-- 合約狀態選取  暫時沒用到-->
-<script type="text/javascript">
+	<!-- 合約狀態選取  暫時沒用到-->
+	<script type="text/javascript">
 $(".status").val();//獲取下拉是選單的Value值
 </script>
 
 
 
 
-<!-- 服務項目的select選單 -->
-<script type="text/javascript"> 
+	<!-- 服務項目的select選單 -->
+	<script type="text/javascript"> 
 var service=['豪華專案','經濟專案','包套專案','其他專案','誤餐費','超時服務']
 var serviceSelect = document.getElementById("service-list");
 var inner="";
