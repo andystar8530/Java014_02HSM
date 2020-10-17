@@ -30,17 +30,18 @@
 
 	<!-- 引入共同的頁首 -->
 	<div class="row" style="padding-top: 30px;">
-		<jsp:include page="/WEB-INF/views/newlywed_h/fragment/newlywedSidebar.jsp" />
-		
+		<jsp:include
+			page="/WEB-INF/views/newlywed_h/fragment/newlywedSidebar.jsp" />
+
 		<div class="bgMainGalleryDiv MallMain col-lg-9 mb-4">
-<!-- 		<div class="bgMainGalleryDiv MallMain"> -->
+			<!-- 		<div class="bgMainGalleryDiv MallMain"> -->
 			<!-- 		內容建立位置-------------- -->
 			<c:set var="nowTime" value="${NowTime}" />
 			<c:set var="quoteContract" value="${QuoteContractBean}" />
 			<c:set var="m_memberBean" value="${M_memberBean}" />
 			<c:set var="memberBean" value="${MemberBean}" />
 			<c:set var="partnerBean" value="${PartnerBean}" />
-		
+
 			<!--	合約簽名div -->
 			<div id="aaa" class="coller" style="max-width: 1000px;">
 				<div class="col" id="capture" style="">
@@ -116,8 +117,7 @@
 										身分證字號：${m_memberBean.m_Socialnum} <br>
 										地址：${m_memberBean.m_Add} <br> 電子郵件信箱：${memberBean.m_Id} <br>
 										電話：${ memberBean.m_Phone}<br> 簽約時間:<fmt:formatDate
-											value='${nowTime}' type='date' /><br>
-											甲方簽名:<br>
+											value='${nowTime}' type='date' /><br> 甲方簽名:<br>
 									</label>
 
 								</div>
@@ -125,17 +125,13 @@
 								<div style="width: 50%">
 									<label class="fontSize"><br>
 										乙方：${QuoteContractBean.p_storeName}(公司/商號)<br> 乙方帳號:
-										${memberBean.m_Id}<br> 
-										負責人：${ memberBean.m_Name}<br> 所在地：${memberBean.m_Add}<br>
-										電子郵件信箱：${memberBean.m_Id}<br> 電話：${ memberBean.m_Phone}<br>
-										聯絡電話：${ memberBean.m_Phone}<br>
-										乙方簽章:<br>
-										
-							<!--	圖片 -->
-							<img height='300' width='240'
-								src="<c:url value='/_00_init/getProductImage?id=${partnerBean.p_id}' />">
-						
-										 </label>
+										${memberBean.m_Id}<br> 負責人：${ memberBean.m_Name}<br>
+										所在地：${memberBean.m_Add}<br> 電子郵件信箱：${memberBean.m_Id}<br>
+										電話：${ memberBean.m_Phone}<br> 聯絡電話：${ memberBean.m_Phone}<br>
+										乙方簽章:<br> <!--	圖片 --> <img height='240' width='240'
+										src="<c:url value='/quotecontract/getPartnerImage?id=${partnerBean.p_id}' />">
+
+									</label>
 								</div>
 							</div>
 						</div>
@@ -146,8 +142,9 @@
 			<br>
 			<div>簽名欄位</div>
 			<div id="canvasDiv" class="pg" style=""></div>
-			<button id="btn_clear" style="margin:0px 355px 0px 0px" type="button" class="btn btn-primary"
-				data-dismiss="modal" aria-label="Close">清除重簽</button>
+			<button id="btn_clear" style="margin: 0px 355px 0px 0px"
+				type="button" class="btn btn-primary" data-dismiss="modal"
+				aria-label="Close">清除重簽</button>
 
 
 
@@ -174,10 +171,11 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button id="btn_clear" style="margin:0px 0px 0px 0px" type="button" class="btn btn-primary"
-								data-dismiss="modal" aria-label="Close">清除</button>
-							<button id="" style="margin:0px 0px 0px 460px" type="button" class="btn btn-primary"
-								data-dismiss="modal" aria-label="Close">確定簽名</button>
+							<button id="btn_clear" style="margin: 0px 0px 0px 0px"
+								type="button" class="btn btn-primary" data-dismiss="modal"
+								aria-label="Close">清除</button>
+							<button id="" style="margin: 0px 0px 0px 460px" type="button"
+								class="btn btn-primary" data-dismiss="modal" aria-label="Close">確定簽名</button>
 						</div>
 					</div>
 				</div>
@@ -198,8 +196,8 @@
 							</button>
 						</div>
 						<div class="modal-body" style="">
-							<div>
-								<canvas class="" id="myCanvas" width="900" height="2700"></canvas>
+							<div id="canvasDraw">
+								<canvas class="" id="myCanvas" width="900"></canvas>
 							</div>
 						</div>
 						<form:form method="POST" modelAttribute="QuoteContractBean"
@@ -210,10 +208,10 @@
 								<form:input type="text" path="c_base64" id="c_base64"
 									style="display:none" />
 								<div class="modal-footer" id="btnArea" align="center">
-									<input type="submit" class="btn btn-primary" name="updateBtn" id="submit"
-										aria-label="Close" value="確定簽約" />
-										<button id="" type="button" class="btn btn-primary"
-								data-dismiss="modal" aria-label="Close">取消</button>
+									<input type="submit" class="btn btn-primary" name="updateBtn"
+										id="submit" aria-label="Close" value="確定簽約" />
+									<button id="" type="button" class="btn btn-primary"
+										data-dismiss="modal" aria-label="Close">取消</button>
 								</div>
 							</fieldset>
 						</form:form>
@@ -233,8 +231,7 @@
 
 </body>
 <script>
-	
-
+	var contractHeight = (document.getElementById("aaa").scrollHeight);
 	var canvasDiv = document.getElementById('canvasDiv');
 	var canvas = document.createElement('canvas');
 	//screen.width可以取得使用者螢幕寬度,window.innerWidth可以傳回使用者網頁寬度
@@ -253,6 +250,7 @@
 	canvas.addEventListener("mousedown", function(e) {
 		// 		var mouseX = e.pageX - this.offsetLeft;
 		// 		var mouseY = e.pageY - this.offsetTop;
+
 		paint = true;
 		//e.pageX - this.offsetLeft, e.pageY - this.offsetTop
 		addClick(e.pageX, e.pageY);
@@ -270,34 +268,27 @@
 		paint = false;
 	});
 
-	//清除
+	//	清除
 	document.getElementById("btn_clear").addEventListener("click", function() {
 		canvas.width = canvas.width;
 	});
 
-	//提交
-
+	//	提交簽名
 	document.getElementById("btn_submit").addEventListener(
 			"click",
 			function() {
-				// 		signature 改為n_Signature
+				//	增加合約高度function
+				changeStyle1();
+				//	增加合約高度結束
 				$("#signature").attr("src", canvas.toDataURL("image/png"));
 				nameaaa = $("#signature").attr("src");
-				//nameaaa為base64碼
-// 				var today = new Date();
-				// 				 	抓取現在秒數
-// 				var todaym = today.getTime();
-
-				// 				alert(todaym);
-				// base64轉為file,todaym為檔名
-				// 				file = dataURLtoFile(nameaaa, todaym);
-				// 				alert(file);
+				
 				let a = document.getElementById("n_Signature");
 				//----	抓取文件位置
 				window.scrollTo(0, 0);
 				//----	解決跨源問題
 
-				// 				嘗試給值base64
+				// 				嘗試給簽名值base64
 				document.getElementById("s_base64").value = nameaaa;
 				//-----------------------------------------
 				// 				用html2canvas轉圖片放前端
@@ -337,8 +328,7 @@
 			//控制畫點位置
 			point.x = clickX.pop() - 420;
 			//抓取aaa div欄位的高度
-			point.y = clickY.pop()
-					- (document.getElementById("aaa").scrollHeight) - 292;
+			point.y = clickY.pop() - contractHeight - 292;
 			//
 			point.drag = clickDrag.pop();
 			context.beginPath();
@@ -354,16 +344,16 @@
 		}
 	}
 	//base64轉file
-// 	function dataURLtoFile(dataurl, filename) {//將base64轉換為文件
-// 		var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(
-// 				n);
-// 		while (n--) {
-// 			u8arr[n] = bstr.charCodeAt(n);
-// 		}
-// 		return new File([ u8arr ], filename, {
-// 			type : mime
-// 		});
-// 	}
+	// 	function dataURLtoFile(dataurl, filename) {//將base64轉換為文件
+	// 		var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(
+	// 				n);
+	// 		while (n--) {
+	// 			u8arr[n] = bstr.charCodeAt(n);
+	// 		}
+	// 		return new File([ u8arr ], filename, {
+	// 			type : mime
+	// 		});
+	// 	}
 
 	//	圖片合成
 	function loadImages(sources, callback) {
@@ -392,31 +382,28 @@
 	document.getElementById("signatureButton").addEventListener("click",
 
 	function(images) {
-		//	動態增加css標籤
-		//  var aa = document.querySelector('.aa');
-		//   aa.style.width = "2000px";
-		//   aa.style.height = "2000px";
-		//   aa.style.width = "(document.getElementById('aaa').scrollWidth)+'px'";
-		//   aa.style.height = "(document.getElementById('aaa').scrollHeight)+'px'";
-		//   alert((document.getElementById('aaa').scrollHeight)+'px');
-		//   alert((document.getElementById('aaa').scrollWidth)+'px');
-		//	增加標籤完成
+		
 
 		var canvas = document.getElementById("myCanvas");
 		var context = canvas.getContext("2d");
 		document.getElementById("c_base64").value = iiii;
-		// 		alert("看一下iiii  " + document.getElementById("c_base64").value);
+
 		var sources = {
-			yoda1 : iiii,
-			yyy : nameaaa
+			yoda1 : iiii,//合約base64碼
+			yyy : nameaaa//合約base64碼
 		//簽名路徑(圖層2)
 		};
-		var d = (document.getElementById("aaa").scrollHeight);
 		loadImages(sources, function(images) {
 			context.drawImage(images.yoda1, 0, 0);//顯示圖片位置長寬高    
-			context.drawImage(images.yyy, 0, (d-380));
+			context.drawImage(images.yyy, 0, (contractHeight - 380));
 		});
 	});
+
+	//	動態增加model高
+	function changeStyle1() {
+		document.getElementById("myCanvas").height = contractHeight;
+	}
+	/////
 </script>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/html2canvas.js"></script>
