@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>簽訂合約</title>
+<title>合約</title>
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css ">
@@ -38,8 +38,10 @@
 			<!-- 		內容建立位置-------------- -->
 			<c:set var="nowTime" value="${NowTime}" />
 			<c:set var="quoteContract" value="${QuoteContractBean}" />
-			<c:set var="m_memberBean" value="${M_memberBean}" />
-			<c:set var="memberBean" value="${MemberBean}" />
+<!-- 			n_MemberBean新人→m_memberBean -->
+			<c:set var="m_memberBean" value="${n_MemberBean}" />
+<!-- 			p_MemberBean合作商→MemberBean -->
+			<c:set var="memberBean" value="${p_MemberBean}" />
 			<c:set var="partnerBean" value="${PartnerBean}" />
 
 			<!--	合約簽名div -->
@@ -118,6 +120,10 @@
 										地址：${m_memberBean.m_Add} <br> 電子郵件信箱：${m_memberBean.m_Id} <br>
 										電話：${ m_memberBean.m_Phone}<br> 簽約時間:<fmt:formatDate
 											value='${nowTime}' type='date' /><br> 甲方簽名:<br>
+<!-- 											base64轉img -->
+											<img src='${QuoteContractBean.s_base64}' height='240' width='240'/>
+
+							
 									</label>
 
 								</div>
@@ -138,273 +144,13 @@
 					</div>
 				</div>
 			</div>
-			<!--	攝取區塊div -->
-			<br>
-			<div>簽名欄位</div>
-			<div id="canvasDiv" class="pg" style=""></div>
-			<button id="btn_clear" style="margin: 0px 355px 0px 0px"
-				type="button" class="btn btn-primary" data-dismiss="modal"
-				aria-label="Close">清除重簽</button>
 
-
-
-
-			<!-- Modal -->
-			<div class="modal fade" id="staticBackdrop" data-backdrop="static"
-				data-keyboard="false" tabindex="-1"
-				aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-dialog" style="width: 635px">
-					<div class="modal-content" style="width: 635px">
-						<div class="modal-header" style="width: 635px">
-							<h5 class="modal-title" id="staticBackdropLabel">簽名顯示</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body" style="">
-							<div id="canvasDiv">
-								<div class="form-group">
-									<img id="signature" />
-								</div>
-
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button id="btn_clear" style="margin: 0px 0px 0px 0px"
-								type="button" class="btn btn-primary" data-dismiss="modal"
-								aria-label="Close">清除</button>
-							<button id="" style="margin: 0px 0px 0px 460px" type="button"
-								class="btn btn-primary" data-dismiss="modal" aria-label="Close">確定簽名</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 					/// -->
-
-			<!-- 	簽完合約的Modal -->
-			<div class="modal fade" id="staticBackdrop1" data-backdrop="static"
-				data-keyboard="false" tabindex="-1"
-				aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-xl modal-dialog" style="">
-					<div class="modal-xl modal-content" style="">
-						<div class="modal-xl modal-header" style="">
-							<h5 class="modal-title" id="staticBackdropLabel">合約</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body" style="">
-							<div id="canvasDraw">
-								<canvas class="" id="myCanvas" width="900"></canvas>
-							</div>
-						</div>
-						<form:form method="POST" modelAttribute="QuoteContractBean"
-							enctype='multipart/form-data'>
-							<fieldset>
-								<form:input type="text" path="s_base64" id="s_base64"
-									style="display:none" />
-								<form:input type="text" path="c_base64" id="c_base64"
-									style="display:none" />
-								<div class="modal-footer" id="btnArea" align="center">
-									<input type="submit" class="btn btn-primary" name="updateBtn"
-										id="submit" aria-label="Close" value="確定簽約" />
-									<button id="" type="button" class="btn btn-primary"
-										data-dismiss="modal" aria-label="Close">取消</button>
-								</div>
-							</fieldset>
-						</form:form>
-					</div>
-				</div>
-			</div>
-			<!-- 		合約model結束/// -->
-
-
-			<button id="btn_submit" type="button" class="btn btn-primary"
-				data-toggle="modal" data-target="#staticBackdrop">簽名</button>
-			<button id="signatureButton" type="button" class="btn btn-primary"
-				data-toggle="modal" data-target="#staticBackdrop1">生成合約</button>
-			<!--	商品新增標籤開結束 -->
 		</div>
 	</div>
 
 </body>
-<script>
-	var contractHeight = (document.getElementById("aaa").scrollHeight);
-	var canvasDiv = document.getElementById('canvasDiv');
-	var canvas = document.createElement('canvas');
-	//screen.width可以取得使用者螢幕寬度,window.innerWidth可以傳回使用者網頁寬度
-	// var screenwidth = 600;
-	var canvasWidth = 600;
-	var canvasHeight = 320;
-	var nameaaa;//抓簽名路徑的位置
-	var iiii;//抓老婆位置
-	var point = {};
-	var file;
-	canvas.setAttribute('width', canvasWidth);
-	canvas.setAttribute('height', canvasHeight);
-	canvasDiv.appendChild(canvas);
-	var context = canvas.getContext("2d");
 
-	canvas.addEventListener("mousedown", function(e) {
-		// 		var mouseX = e.pageX - this.offsetLeft;
-		// 		var mouseY = e.pageY - this.offsetTop;
 
-		paint = true;
-		//e.pageX - this.offsetLeft, e.pageY - this.offsetTop
-		addClick(e.pageX, e.pageY);
-		redraw();
-	});
-	//移動
-	canvas.addEventListener("mousemove", function(e) {
-		if (paint) {
-			addClick(e.pageX, e.pageY, true);
-			redraw();
-		}
-	});
-	//滑鼠up
-	canvas.addEventListener("mouseup", function(e) {
-		paint = false;
-	});
-
-	//	清除
-	document.getElementById("btn_clear").addEventListener("click", function() {
-		canvas.width = canvas.width;
-	});
-
-	//	提交簽名
-	document.getElementById("btn_submit").addEventListener(
-			"click",
-			function() {
-				//	增加合約高度function
-				changeStyle1();
-				//	增加合約高度結束
-				$("#signature").attr("src", canvas.toDataURL("image/png"));
-				nameaaa = $("#signature").attr("src");
-				
-				let a = document.getElementById("n_Signature");
-				//----	抓取文件位置
-				window.scrollTo(0, 0);
-				//----	解決跨源問題
-
-				// 				嘗試給簽名值base64
-				document.getElementById("s_base64").value = nameaaa;
-				//-----------------------------------------
-				// 				用html2canvas轉圖片放前端
-				html2canvas(document.getElementById("capture"), {
-					useCORS : true,
-					allowTaint : false
-				}).then(
-						function(canvas) {
-							iiii = canvas.toDataURL("image/jpeg", 0.9).replace(
-									"image/png", "image/octet-stream");
-						});
-
-			});
-
-	var clickX = new Array();
-	var clickY = new Array();
-	var clickDrag = new Array();
-	var paint;//重置
-
-	//dragging決定畫不畫,x,y也可決定畫的位置
-	function addClick(x, y, dragging) {
-		clickX.push(x);
-		clickY.push(y);
-		clickDrag.push(dragging);
-	}
-
-	//控制畫筆
-	function redraw() {
-
-		context.strokeStyle = "#df4b26";
-		context.lineJoin = "round";
-		//lineWudth筆粗細
-		context.lineWidth = 2;
-		while (clickX.length > 0) {
-			point.bx = point.x;
-			point.by = point.y;
-			//控制畫點位置
-			point.x = clickX.pop() - 420;
-			//抓取aaa div欄位的高度
-			point.y = clickY.pop() - contractHeight - 292;
-			//
-			point.drag = clickDrag.pop();
-			context.beginPath();
-			if (point.drag && point.notFirst) {
-				context.moveTo(point.bx, point.by);
-			} else {
-				point.notFirst = true;
-				context.moveTo(point.x - 1, point.y);
-			}
-			context.lineTo(point.x, point.y);
-			context.closePath();
-			context.stroke();
-		}
-	}
-	//base64轉file
-	// 	function dataURLtoFile(dataurl, filename) {//將base64轉換為文件
-	// 		var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(
-	// 				n);
-	// 		while (n--) {
-	// 			u8arr[n] = bstr.charCodeAt(n);
-	// 		}
-	// 		return new File([ u8arr ], filename, {
-	// 			type : mime
-	// 		});
-	// 	}
-
-	//	圖片合成
-	function loadImages(sources, callback) {
-		var images = {};
-		// images.crossOrigin = 'Anonymous';
-		var loadedImages = 0;
-		var numImages = 0;
-		// get num of sources
-		for ( var src in sources) {
-			numImages++;
-		}
-		for ( var src in sources) {
-			images[src] = new Image();
-			// images[src].crossOrigin = 'Anonymous';//解決images跨域問題
-			// images[src].setAttribute("crossOrigin",'Anonymous');//解決images跨域問題
-			images[src].onload = function() {
-				if (++loadedImages >= numImages) {
-					callback(images);
-				}
-			};
-			images[src].src = sources[src];
-			images[src].setAttribute("crossOrigin", 'Anonymous');
-		}
-	}
-
-	document.getElementById("signatureButton").addEventListener("click",
-
-	function(images) {
-		
-
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
-		document.getElementById("c_base64").value = iiii;
-
-		var sources = {
-			yoda1 : iiii,//合約base64碼
-			yyy : nameaaa//合約base64碼
-		//簽名路徑(圖層2)
-		};
-		loadImages(sources, function(images) {
-			context.drawImage(images.yoda1, 0, 0);//顯示圖片位置長寬高    
-			context.drawImage(images.yyy, 0, (contractHeight - 380));
-		});
-	});
-
-	//	動態增加model高
-	function changeStyle1() {
-		document.getElementById("myCanvas").height = contractHeight;
-	}
-	/////
-</script>
 <script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/html2canvas.js"></script>
 <script

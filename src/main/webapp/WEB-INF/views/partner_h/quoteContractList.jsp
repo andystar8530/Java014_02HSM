@@ -51,7 +51,9 @@
                                                 狀態
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">詢價中</a>
-                            <a class="dropdown-item" href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未報價</a>
+                            <a class="dropdown-item"  href="<c:url value='/quotecontract/quoteContractStatusList?status=0' />">未報價</a>
+<%--                             <a class="dropdown-item"  href="<c:url value='/quotecontract/quoteContractStatusList?status=0' />">未報價</a> --%>
+
                             <a class="dropdown-item" href="#">未簽約</a>
                             <a class="dropdown-item" href="#">未付訂金</a>
                             <a class="dropdown-item" href="#">結案:服務完</a>
@@ -64,7 +66,6 @@
                     <th>報價金額</th>
                     <th>報價日期</th>
                     <th>有效日期</th>
-                    <th>備註</th>
 
                 </tr>
             </thead>
@@ -108,7 +109,7 @@
                     <td>${aQuoteBean.servicePrice}</td>
                     <td>${aQuoteBean.qcDate}</td>
                     <td>${aQuoteBean.qcDateLine}</td>
-                    <td></td>
+
                 </tr>   
             </c:forEach>                   
             </tbody>

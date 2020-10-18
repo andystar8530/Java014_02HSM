@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/marryMa.css">
 <title>Portfolios</title>
 <style>
 .thumbnail{
@@ -82,6 +84,7 @@ height: 200px;
   </div>
 </div>         
 <!--         ******** -->
+
 			<jsp:include page="./fragment/partnerSidebar.jsp" />
 
     

@@ -32,7 +32,8 @@
 <!-- 						<span class="glyphicon-hand-left glyphicon"></span>返回上頁 -->
 <!-- 					</a>  -->
 								
-					<a href="<c:url value='quote/askingQuote/${programBean.partnerBean2.p_id}'/>"
+					<a href="<c:url value='/quote/askingQuote?p_id=${programBean.partnerBean2.p_id}'/>"
+
 					class='btn btn-info btn-large'> 				
 					    <span class='glyphicon-shopping-cart glyphicon'></span>我要詢價	    
 					</a>

@@ -1,12 +1,24 @@
 package partner_h.quotecontract.main.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +32,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _01_register.model.MemberBean;
+import _01_register.service.MemberService;
+import _03_listProducts.model.ProductBean;
+import newlywed.model.NewlywedBean;
+import newlywed.service.NewlywedService;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
 import partner_h.quotecontract.main.model.QuoteContractBean;
@@ -27,7 +43,8 @@ import partner_h.quotecontract.main.service.QuoteContractService;
 
 @Controller
 @RequestMapping("quotecontract")
-@SessionAttributes({ "LoginOK", "partnerBean", "quoteList", "quoteBean", "QuoteContractBean","MemberBean","NowTime","PartnerBean" }) // 裝入屬性物件中，與jsp頁面識別字有關
+@SessionAttributes({ "LoginOK", "partnerBean", "quoteList", "quoteBean", "QuoteContractBean", "MemberBean", "NowTime",
+		"PartnerBean" }) // 裝入屬性物件中，與jsp頁面識別字有關
 
 public class DisplayQuoteContractController {
 
@@ -39,6 +56,15 @@ public class DisplayQuoteContractController {
 
 	@Autowired
 	QuoteContractService qcservice;
+	
+	@Autowired
+	MemberService mbService;
+	
+	@Autowired
+	NewlywedService nlService;
+	
+	@Autowired
+	private SessionFactory factory;
 
 	String p_storeName;
 //	@Autowired
@@ -50,14 +76,15 @@ public class DisplayQuoteContractController {
 
 		// 抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-		String hql = "From QuoteContractBean ORDER BY qcId DESC";
+	
 		// 透過合作商的ID,找到清單-報價單
-		List<QuoteContractBean> qcbs = qcservice.getPartnerQuotes(partnerBean.getP_id());
+		List<QuoteContractBean> qcbs = qcservice.getPartnerQuotes(partnerBean.getP_id());	
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
 
 	// 合約狀態列表(未簽約)
+	/*
 	@GetMapping("quoteContractStatusList/undone")
 	protected String getUndoneStatusQuotes(Model model) {
 		int status = 0;
@@ -65,29 +92,47 @@ public class DisplayQuoteContractController {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 
 		// 透過合作商的ID,找到清單-報價單
-
 		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
 
-	//	合約狀態列表(已簽約)
+	
+	// 合約狀態列表(已簽約)
 	@GetMapping("quoteDoneContractStatusList/done")
 	protected String getStatusQuotes(Model model) {
 		int status = 2;
-		//	抓取會員的資料
+		// 抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-
-		//	透過合作商的ID,找到清單-報價單
-
+		// 透過合作商的ID,找到清單-報價單
 		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
+*/	
+	
+	// 合約狀態列表(0:未簽約 1:已簽約未付訂金 2:已付訂金 3:服務完成 4:自動放棄 5:客戶詢價)
+	@GetMapping("/quoteContractStatusList")
+	protected String getStatusQuotes(Model model,
+			@RequestParam("status") Integer status
+			) {
+//		int status = item;
+		// 抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+		// 透過合作商的ID,找到清單-報價單
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	
+	
 
 	// 單筆合約明細
 	@GetMapping({ "quoteDetail", "quoteDoneContractStatusList/quoteDetail", "quoteContractStatusList/quoteDetail" })
-	protected String quoteDetail(Model model, @RequestParam("p_id") Integer p_id, @RequestParam("qcId") Integer qcId) {
+	protected String quoteDetail(Model model, 
+			@RequestParam("p_id") Integer p_id, 
+			@RequestParam("qcId") Integer qcId) {
 		/*
 		 * @RequestParam("參數名") 型態 變數名稱 請求參數獲少量的表單資料，依照參數的型態自動轉型
 		 */
@@ -96,6 +141,33 @@ public class DisplayQuoteContractController {
 		p_storeName = qcb.getP_storeName();
 		System.out.println("get_p_storeName:" + p_storeName);
 		return "partner_h/quoteContractInfo";
+	}
+	
+	// 單筆簽約預覽
+	@GetMapping({"quoteView" })
+	protected String quoteView(Model model, 
+			@RequestParam("p_id") Integer p_id, 
+			@RequestParam("qcId") Integer qcId) {
+		/*
+		 * @RequestParam("參數名") 型態 變數名稱 請求參數獲少量的表單資料，依照參數的型態自動轉型
+		 */
+		//取得單筆合約
+		QuoteContractBean qcb = qcservice.getQuote(qcId);
+		
+		//取得合作商
+		PartnerBean partnerBean = partnerService.getPartner(p_id);
+		
+		//取得合作商與新人會員
+		MemberBean p_mb = (MemberBean) model.getAttribute("LoginOK"); //合作商之會員PK號
+		MemberBean n_mb = mbService.queryMember(qcb.getM_Id()); //新人會員帳號	
+		
+		model.addAttribute("QuoteContractBean", qcb);
+		model.addAttribute("PartnerBean", partnerBean);
+		model.addAttribute("p_MemberBean", p_mb);
+		model.addAttribute("n_MemberBean", n_mb);
+		System.out.println("新人qcb.getM_Id()"+qcb.getM_Id());
+		
+		return "partner_h/quoteView";
 	}
 
 	/*
@@ -132,7 +204,7 @@ public class DisplayQuoteContractController {
 		return "redirect:quoteContractList";
 	}
 
-	//新增單筆報價合約(帶出資料)
+	// 新增單筆報價合約(帶出資料)
 	@GetMapping("insertQuote")
 	public String getQuoteForm(Model model) {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
@@ -144,13 +216,11 @@ public class DisplayQuoteContractController {
 		model.addAttribute("quoteBean", quoteBean);
 		return "partner_h/quoteContractInsert";
 	}
-	//新增單筆報價合約(更新資料)
-	@PostMapping(value="/insertQuote")
-	public String add(
-			Model model,
-			@ModelAttribute("quoteBean") QuoteContractBean bean,
-			RedirectAttributes redirectAttributes
-			) {
+
+	// 新增單筆報價合約(更新資料)
+	@PostMapping(value = "/insertQuote")
+	public String add(Model model, @ModelAttribute("quoteBean") QuoteContractBean bean,
+			RedirectAttributes redirectAttributes) {
 //		QuoteContractItemBean qciBean = new QuoteContractItemBean();
 //		qciBean.setQuoteContractBean(bean);
 //		//找到對應的serviceItem物件
@@ -175,120 +245,106 @@ public class DisplayQuoteContractController {
 		}
 		return bean;
 	}
-//	測試開始
-//	@GetMapping("/quoteContractSignature/{id}")
-//	public String getQuoteContractSignature(Model model, @PathVariable Integer id) {
-//		QuoteContractBean quoteContractBean = qcservice.getQuoteContractBeanById(id);
-//		model.addAttribute("QuoteContractBean", quoteContractBean);
-//		System.out.println("11100000000000"+quoteContractBean.getQcId());
-//		return "newlywed_h/aaa";
-//		
-//	}
-//	@PostMapping("/quoteContractSignature/{id}")
-//	public String postQuoteContractSignature(Model model,
-//			@ModelAttribute("QuoteContractBean") QuoteContractBean quoteContractBean, 
-//			BindingResult bindingResult,@PathVariable Integer id, HttpServletRequest request) {
-//
-//		System.out.println("2200000000000"+quoteContractBean.getQcId());
-//		QuoteContractBean quoteContractBeanOld = qcservice.getQuoteContractBeanById(id);
-//		qcservice.updateQuoteContractBean(quoteContractBeanOld);
-//		return "quote/quoteAllList";
-//	}
-//	
-//	@RequestMapping("/yourUrl")
-//    @ResponseBody
-//// @RequestParam("yourData")是必不可少的，因為他指定了鏈接中的參數名稱
-//    public String yourUrl(@RequestParam("n_Signature") Blob file) {
-//        System.out.println(file);
-//        // 返回值可以自由定義
-//        return "SUCCESS";
-//    }
-//	
-//	測試結束
-	
-	
+
+
+	//簽約的Bean
 	@GetMapping("/quoteContractSignature/{id}")
 	public String getQuoteContractSignature(Model model, @PathVariable Integer id) {
 		QuoteContractBean quoteContractBean = qcservice.getQuoteContractBeanById(id);
 		PartnerBean partnerBean = partnerService.getPartner(quoteContractBean.getP_Id());
 		MemberBean memberBean = qcservice.getMemberId(partnerBean.getMemberBean().getM_No());
-		MemberBean m_memberBean = (MemberBean)model.getAttribute("LoginOK");
+		MemberBean m_memberBean = (MemberBean) model.getAttribute("LoginOK");
 		Timestamp registerTime = new Timestamp(System.currentTimeMillis());
-		model.addAttribute("PartnerBean",partnerBean);
-		model.addAttribute("NowTime",registerTime);
+		model.addAttribute("PartnerBean", partnerBean);
+		model.addAttribute("NowTime", registerTime);
 		model.addAttribute("M_memberBean", m_memberBean);
 		model.addAttribute("MemberBean", memberBean);
 		model.addAttribute("QuoteContractBean", quoteContractBean);
 		return "newlywed_h/quoteContractSignature";
 	}
+
 //
 	@PostMapping("/quoteContractSignature/{id}")
 	public String postQuoteContractSignature(Model model,
-			@ModelAttribute("QuoteContractBean") QuoteContractBean quoteContractBean, 
-			BindingResult bindingResult,@PathVariable Integer id, HttpServletRequest request) {
+			@ModelAttribute("QuoteContractBean") QuoteContractBean quoteContractBean, BindingResult bindingResult,
+			@PathVariable Integer id, HttpServletRequest request) {
 
-		System.out.println("S_base64"+quoteContractBean.getS_base64());
-		System.out.println("C_base64"+quoteContractBean.getC_base64());
+		System.out.println("S_base64" + quoteContractBean.getS_base64());
+		System.out.println("C_base64" + quoteContractBean.getC_base64());
 		QuoteContractBean quoteContractBeanOld = qcservice.getQuoteContractBeanById(id);
-		Timestamp registerTime = new Timestamp(System.currentTimeMillis());
-		//	簽名開始
-//		MultipartFile N_Signature = quoteContractBean.getN_Signature1();
-//		if (N_Signature.getSize() == 0) {
-//			// 抓到如果是空值就不改變
-//			System.out.println("抓取的簽名檔為空值");
-//		} else {
-//			String p_FileName = N_Signature.getOriginalFilename();
-//			if (p_FileName.length() > 0 && p_FileName.lastIndexOf(".") > -1) {
-//				//	圖片名稱+現在時間
-//				quoteContractBean.setN_FileName(p_FileName+registerTime);
-//				quoteContractBeanOld.setN_FileName(quoteContractBean.getN_FileName());
-//			}
-//			// 建立Blob物件
-//			if (N_Signature != null && !N_Signature.isEmpty()) {
-//				try {
-//					byte[] b = N_Signature.getBytes();
-//					Blob blob = new SerialBlob(b);
-//					quoteContractBean.setN_Signature(blob);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-//				}
-//			}
-//			System.out.println("存預覽圖");
-//			quoteContractBeanOld.setN_Signature1(quoteContractBean.getN_Signature1());
-//			System.out.println("存預覽圖成功");
-//		}
-//		簽名結束
+		// 		簽名開始
 
+		//		簽名結束
+		quoteContractBeanOld.setQcStatus(2);
 		quoteContractBeanOld.setS_base64(quoteContractBean.getS_base64());
 		quoteContractBeanOld.setC_base64(quoteContractBean.getC_base64());
-//		quoteContractBeanOld.setQcName(quoteContractBean.getQcName());
-//		quoteContractBeanOld.setP_Id(quoteContractBean.getP_Id());
-//		quoteContractBeanOld.setP_storeName(quoteContractBean.getP_storeName());
-//		quoteContractBeanOld.setQcExecutionDate(quoteContractBean.getQcExecutionDate());
-//		quoteContractBeanOld.setServiceName(quoteContractBean.getServiceName());
-//		quoteContractBeanOld.setQcTotalAmount(quoteContractBean.getQcTotalAmount());
-//		quoteContractBeanOld.setQcDepositRate(quoteContractBean.getQcDepositRate());
-////		quoteContractBeanOld.setQcDeposit(quoteContractBean.getQcDeposit());
-////		quoteContractBeanOld.setP_Signature(quoteContractBean.getP_Signature());
-//		quoteContractBeanOld.setQcContent(quoteContractBean.getQcContent());
-//		quoteContractBeanOld.setN_Name(quoteContractBean.getN_Name());
-//		quoteContractBeanOld.setQcDate(quoteContractBean.getQcDate());
-//		quoteContractBeanOld.setQcDateLine(quoteContractBean.getQcDateLine());
-//		quoteContractBeanOld.setQcStatus(quoteContractBean.getQcStatus());
-//		quoteContractBeanOld.setM_Id(quoteContractBean.getM_Id());
-////		quoteContractBeanOld.setQcNotes(quoteContractBean.getQcNotes());
-//		quoteContractBeanOld.setServiceItem(quoteContractBean.getServiceItem());
-//		quoteContractBeanOld.setServicePrice(quoteContractBean.getServicePrice());
-////		quoteContractBeanOld.setCostHour(quoteContractBean.getCostHour());
-//		quoteContractBeanOld.setCostPerHour(quoteContractBean.getCostPerHour());
-////		quoteContractBeanOld.setCostMen(quoteContractBean.getCostMen());
-////		quoteContractBeanOld.setCostOther(quoteContractBean.getCostOther());
-////		quoteContractBeanOld.setCostTotal(quoteContractBean.getCostTotal());
-////		quoteContractBeanOld.setQcProfit(quoteContractBean.getQcProfit());
+
 
 		qcservice.updateQuoteContractBean(quoteContractBeanOld);
-		return "quote/quoteAllList";
+		return "redirect:/quote/quoteAllList";
+	}
+	
+	@GetMapping("/getPartnerImage")
+	public ResponseEntity<byte[]> getPartnerImage(
+			@RequestParam("id") Integer id 
+	) {
+		InputStream is = null;
+		OutputStream os = null;
+		String fileName = null;
+		String mimeType = null;
+		byte[] media = null;
+		ResponseEntity<byte[]> responseEntity = null;
+		HttpHeaders headers = new HttpHeaders();
+		MediaType mediaType = null;
+		Blob blob = null;
+		try {
+			PartnerBean bean = partnerService.getPartner(id);
+					;
+			if (bean != null) {
+				blob = bean.getP_stamp();
+				if (blob != null) {
+					is = blob.getBinaryStream();
+				}
+				fileName = bean.getP_staFilename();
+			}
+			// 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)	
+			if (is == null) {
+				fileName = "NoImage.png" ; 
+				is = context.getResourceAsStream(
+						"/data/Image/" + fileName);
+			}
+			// 由圖片檔的檔名來得到檔案的MIME型態
+			mimeType = context.getMimeType(fileName);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			// 由InputStream讀取位元組，然後由OutputStream寫出
+			int len = 0;
+			byte[] bytes = new byte[8192];
+			
+			while ((len = is.read(bytes)) != -1) {
+				baos.write(bytes, 0, len);
+			}
+			media = baos.toByteArray();
+			mediaType = MediaType.valueOf(mimeType);
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			headers.setContentType(mediaType);
+			responseEntity =  new ResponseEntity<>(media, headers, HttpStatus.OK);
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			throw new RuntimeException("PartnerBeanP_stamp#doGet()發生Exception: " + ex.getMessage());
+		} finally{
+			try {
+				if (is != null) is.close();
+			} catch(IOException e) {
+				;
+			}
+			try {
+				if (os != null) os.close();
+			} catch(IOException e) {
+				;
+			}
+		}
+		return responseEntity;
 	}
 
 }

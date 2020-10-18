@@ -53,12 +53,16 @@
   			<a class="sidebar-item list-group-open1"  data-wow-duration="1s"  
           				 href="<c:url value='/quotecontract/quoteContractList' />"> 報價合約</a>
            <a class="sidebar-item list-group-open1"  data-wow-duration="1s"  
-          				 href="<c:url value='/quotecontract/quoteDoneContractStatusList/done' />">已簽約</a>         
+          				 href="<c:url value='/quotecontract/quoteContractStatusList?status=1' />">已簽約</a>         
+<%--           				 href="<c:url value='/quotecontract/quoteDoneContractStatusList/done' />">已簽約</a>          --%>
          <a class="sidebar-item list-group-open1"  data-wow-duration="1s"  
-          				 href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未簽約</a>
+          				 href="<c:url value='/quotecontract/quoteContractStatusList?status=0' />">未簽約</a>
+<%--           				 href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未簽約</a> --%>
                   
           <a  class="list-group-item list-group-2"><img src="${pageContext.request.contextPath}/data/icon/3253474-wedding/png/027-wedding invitation.png" >經營報表
-            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year'/>">年度經營報表</a>             
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=0'/>">年度經營報表</a>             
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=1'/>">專案成本表</a>             
+            <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=2'/>">月平均報表</a>             
 
         </div>
       </div>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>經營報表</title>
+<title>月平均表</title>
 </head>
 <script>
 window.month1 =0;
@@ -54,7 +54,7 @@ window.cost12 =0;
 <div class="title col-lg-9 mb-4">
 <!-- title ------------------ -->
 <%--         <h2>${partnerBean.p_storeName}的結案報表</h2> --%>
-        <h2>經營狀況</h2>	                
+        <h2>月平均表</h2>	                
          <br>
         <hr>
         
@@ -71,23 +71,23 @@ window.cost12 =0;
             <thead class="bg-highlight">
 <tr>
 <th>月份</th>
-<th>收入</th>
-<th>成本</th>
-<th>利潤</th>
+<th>平均收入</th>
+<th>平均成本</th>
+<th>平均利潤</th>
 <th>完案量</th>
 </tr>
 </thead>
 <c:forEach  var="qrList" items="${qrList}" varStatus="vs">
 <tr>
 	<td>${qrList.month}</td>
-	<td>${qrList.qrRevenue}</td>
-	<td>${qrList.qrCost}</td>
-	<td>${qrList.qrProfit}</td>
+	<td>${qrList.qrAvgRev}</td>
+	<td>${qrList.qrAvgCost}</td>
+	<td>${qrList.qrAvgPro}</td>
 	<td>${qrList.quoteCount}</td>
 	<script>
-	window.month${qrList.month} = ${qrList.qrRevenue}
-	window.profit${qrList.month}=${qrList.qrProfit}
-	window.cost${qrList.month}=${qrList.qrCost}
+	window.month${qrList.month} = ${qrList.qrAvgRev}
+	window.profit${qrList.month}=${qrList.qrAvgPro}
+	window.cost${qrList.month}=${qrList.qrAvgCost}
 	</script>
 </tr>
 </c:forEach>
@@ -103,7 +103,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
     theme: "light2",//引用canvasjs的主題
     
 	title:{
-		text: "年度經營報表"
+		text: "月平均報表"
 	},
 	data: [{        
 		type: "line",

@@ -169,20 +169,23 @@
 	</div>
 <!-- 第六行 結束 合約內容 -->
 
-<!-- 送出 -->
+<!-- 簽名 -->
 <div class="form-row">
 <div class="form-group col-md-6">
-    <input  type="submit" id="submit" path="submit" class="form-control btn btn-outline-danger"
-            value="合約簽名"    onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})"/>
-   </div>
 
-   <div onclick="location.href='<c:url value="/quotecontract/quoteContractSignature/${quoteBean.qcId}" />';"class="">
-							簽名
-						</div>
+<c:choose>
+<c:when test="${quoteBean.qcStatus < 2 || quoteBean.qcStatus== 5}">
+  <div onclick="location.href='<c:url value="/quotecontract/quoteContractSignature/${quoteBean.qcId}" />';"class="btn btn-outline-primary">
+簽名	</div>
+</c:when>
+<c:otherwise>
+<button type="button" class="btn btn-outline-primary" >
+<a href="<c:url value='quoteNewlyView?p_id=${quoteBean.p_Id}&qcId=${quoteBean.qcId}'/>" >合約檢閱</a></button>
+</c:otherwise>
+</c:choose>
 
- <div class="form-group col-md-6">
- 	<input type="submit"  id="submit" path="submit" class="form-control btn btn-outline-danger"
-           value="意見回覆" onclick="UpdateQuote(${LoginOK.m_Id},${quoteBean.qcId})">
+
+
 	</div>
 	</div>   
 <!-- form結束 -->

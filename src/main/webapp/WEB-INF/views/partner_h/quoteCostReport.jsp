@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>經營報表</title>
+<title>成本報表</title>
 </head>
 <script>
 window.month1 =0;
@@ -54,7 +54,7 @@ window.cost12 =0;
 <div class="title col-lg-9 mb-4">
 <!-- title ------------------ -->
 <%--         <h2>${partnerBean.p_storeName}的結案報表</h2> --%>
-        <h2>經營狀況</h2>	                
+        <h2>經營狀況-成本</h2>	                
          <br>
         <hr>
         
@@ -103,59 +103,14 @@ var chart = new CanvasJS.Chart("chartContainer", {
     theme: "light2",//引用canvasjs的主題
     
 	title:{
-		text: "年度經營報表"
+		text: "專案成本表"
 	},
 	data: [{        
 		type: "line",
 		showInLegend: true,//秀出線條顏色與name
-		name:"Revenue",
-      	indexLabelFontSize: 16,
-		color: "#F49097",
-		dataPoints: [
-			{ label: "1月份",y: window.month1},
-			{ label: "2月份",y: window.month2},
-			{ label: "3月份",y: window.month3},
-			{ label: "4月份",y: window.month4 },
-			{ label: "5月份",y: window.month5 },
-			{ label: "6月份",y: window.month6 },
-			{ label: "7月份",y: window.month7 },
-			{ label: "8月份",y: window.month8 },
-			{ label: "9月份",y: window.month9 },
-			{ label: "10月份",y: window.month10 },
-		 	{ label: "11月份",y: window.month11 },
-            { label: "12月份",y: window.month12 }
-		 	//{label: "月份",  y: Revenue} 
-			]
-	}
-	,
-	{        
-		type: "line",
-		showInLegend: true,//秀出線條顏色與name
-		name:"Profit",
-      	indexLabelFontSize: 16,
-		color: "#55D6C2",
-		dataPoints: [
-			{ label: "1月份",y: window.profit1},
-			{ label: "2月份",y: window.profit2},
-			{ label: "3月份",y: window.profit3},
-			{ label: "4月份",y: window.profit4 },
-			{ label: "5月份",y: window.profit5 },
-			{ label: "6月份",y: window.profit6 },
-			{ label: "7月份",y: window.profit7 },
-			{ label: "8月份",y: window.profit8 },
-			{ label: "9月份",y: window.profit9 },
-			{ label: "10月份",y: window.profit10 },
-		 	{ label: "11月份",y: window.profit11 },
-            { label: "12月份",y: window.profit12 }
-		 	//{label: "月份",  y: Revenue} 
-			]
-	},
-	{        
-		type: "line",
-		showInLegend: true,//秀出線條顏色與name
 		name:"Cost",
       	indexLabelFontSize: 16,
-		color: "#EACEAA",
+		color: "#F49097",
 		dataPoints: [
 			{ label: "1月份",y: window.cost1},
 			{ label: "2月份",y: window.cost2},

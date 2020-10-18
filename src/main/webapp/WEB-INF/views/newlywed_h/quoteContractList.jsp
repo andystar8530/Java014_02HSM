@@ -57,7 +57,7 @@
                     <th>報價金額</th>
                     <th>報價日期</th>
                     <th>有效日期</th>
-                    <th>備註</th>
+
 
                 </tr>
             </thead>
@@ -100,7 +100,7 @@
                     <td>${aQuoteBean.servicePrice}</td>
                     <td>${aQuoteBean.qcDate}</td>
                     <td>${aQuoteBean.qcDateLine}</td>
-                    <td></td>
+
                 </tr>   
             </c:forEach>                   
             </tbody>
