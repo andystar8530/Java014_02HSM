@@ -15,7 +15,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-	
+
 <style>
 .opa {
 	opacity: 0.6;
@@ -24,7 +24,6 @@
 .bgcolor {
 	background-color: #EBFFEB;
 }
-
 </style>
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 <title>Offcanvas template for Bootstrap</title>
@@ -42,16 +41,26 @@
 
 		<div class="container mt-5">
 			<nav class="nav nav-underline">
-				<a class="nav-link alert-warning rounded mr-2" href="#">我要搜尋的主題</a>
-				<a class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=1">婚禮布置</a> <a
-					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=2">婚禮攝影</a> <a
-					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=3">新娘秘書</a> <a
-					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=4">婚禮主持</a> <a
-					class="nav-link alert-warning rounded mr-2" href="<%=path%>/_04_forum/posts?type=5">小物商城</a> <a
+				<a class="nav-link alert-warning rounded mr-2"
+					href="<%=path%>/_04_forum/posts?type=1">婚禮布置</a> <a
+					class="nav-link alert-warning rounded mr-2"
+					href="<%=path%>/_04_forum/posts?type=2">婚禮攝影</a> <a
+					class="nav-link alert-warning rounded mr-2"
+					href="<%=path%>/_04_forum/posts?type=3">新娘秘書</a> <a
+					class="nav-link alert-warning rounded mr-2"
+					href="<%=path%>/_04_forum/posts?type=4">婚禮主持</a> <a
+					class="nav-link alert-warning rounded mr-2"
+					href="<%=path%>/_04_forum/posts?type=5">小物商城</a> <a
 					href="<c:url value='/_04_forum/post/add'/>"
 					class="nav-link alert-warning rounded mr-2"> <span
 					class="glyphicon-info-sigh glyphicon">發文</span>
 				</a>
+				<form class="ml-auto">
+					<input type="text" name="search" id="search" placeholder="關鍵字....." />
+					<button onClick="window.location.href='<%=path%>/_04_forum/posts'">
+						<i class="fas fa-search"></i>
+					</button>
+				</form>
 			</nav>
 		</div>
 	</div>
@@ -76,46 +85,48 @@
 				</p>
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<a class="subtitle" style="margin-right: 400px">
-						觀看人數: ${post.postView}</a>
+					<a class="subtitle" style="margin-right: 400px"> 觀看人數:
+						${post.postView}</a>
 				</p>
 			</div>
 		</c:forEach>
 	</main>
-<div class="border d-flex text-center justify-content-center" >
-	<c:if test="${pageNo > 3}">
-		<<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=1" >1</a>
-		<li class="page-item mt-2"><a href=""><i
-				class="fas fa-caret-left"></i><i class="fas fa-caret-left"></i><i
-				class="fas fa-caret-left"></i><i class="fas fa-caret-left"></i><i
-				class="fas fa-caret-left"></i></a></li>
-	</c:if>
-	<c:if test="${pageNo > 2}">
-		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-2}&type=${type}">${pageNo-2}</a>
-	</c:if>
-	<c:if test="${pageNo > 1}">
-		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-1}&type=${type}">${pageNo-1}</a>
-	</c:if>
-	<a style="width: 30px; height:30px;border: black solid 2px; background-color: red" href="#">${pageNo}</a>
-	<c:if test="${pageNo < lastPage}">
-		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+1}&type=${type}">${pageNo+1}</a>
-	</c:if>
-	<c:if test="${pageNo+1 < lastPage}">
-		<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+2}&type=${type}">${pageNo+2}</a>
-	</c:if>
-	<c:if test="${pageNo+2 < lastPage}">
-		<li class="page-item mt-2"><a href=""><i
-				class="fas fa-caret-right"></i><i class="fas fa-caret-right"></i><i
-				class="fas fa-caret-right"></i><i class="fas fa-caret-right"></i><i
-				class="fas fa-caret-right"></i></a></li>
-	<a style="width: 30px; height:30px;border: black solid 2px;" 
-			href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${lastPage}&type=${type}">${lastPage}</a>
-	</c:if>
+	<div class="border d-flex text-center justify-content-center">
+		<c:if test="${pageNo > 3}">
+		<<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=1">1</a>
+			<li class="page-item mt-2"><a href=""><i
+					class="fas fa-caret-left"></i><i class="fas fa-caret-left"></i><i
+					class="fas fa-caret-left"></i><i class="fas fa-caret-left"></i><i
+					class="fas fa-caret-left"></i></a></li>
+		</c:if>
+		<c:if test="${pageNo > 2}">
+			<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-2}&type=${type}">${pageNo-2}</a>
+		</c:if>
+		<c:if test="${pageNo > 1}">
+			<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo-1}&type=${type}">${pageNo-1}</a>
+		</c:if>
+		<a
+			style="width: 30px; height: 30px; border: black solid 2px; background-color: red"
+			href="#">${pageNo}</a>
+		<c:if test="${pageNo < lastPage}">
+			<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+1}&type=${type}">${pageNo+1}</a>
+		</c:if>
+		<c:if test="${pageNo+1 < lastPage}">
+			<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${pageNo+2}&type=${type}">${pageNo+2}</a>
+		</c:if>
+		<c:if test="${pageNo+2 < lastPage}">
+			<li class="page-item mt-2"><a href=""><i
+					class="fas fa-caret-right"></i><i class="fas fa-caret-right"></i><i
+					class="fas fa-caret-right"></i><i class="fas fa-caret-right"></i><i
+					class="fas fa-caret-right"></i></a></li>
+			<a style="width: 30px; height: 30px; border: black solid 2px;"
+				href="${pageContext.request.contextPath}/_04_forum/posts?pageNo=${lastPage}&type=${type}">${lastPage}</a>
+		</c:if>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
