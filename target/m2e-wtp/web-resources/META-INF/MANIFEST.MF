@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Shoppingjei
 Build-Jdk: 1.8.0_252
+=======
+Built-By: INSPIRON
+Build-Jdk: 1.8.0_242
+>>>>>>> 2a6fe778cf1b94226b6584726bdd89fb72c520ba
 Created-By: Maven Integration for Eclipse
 

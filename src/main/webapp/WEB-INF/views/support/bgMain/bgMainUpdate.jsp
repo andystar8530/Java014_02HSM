@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,45 +25,9 @@
 	<!-- onLoad="setFocusToUserId()"不知道是什麼 -->
 	<c:set var="funcName" value="REG" scope="session" />
 	<jsp:include page="/fragment/topMVC.jsp" />
-	<h1 class="mt-4 mb-3">
-		後台 <small>方案管理</small>
-	</h1>
+			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar2.jsp" />
 	<!-- container -->
-	<div class="bgMallAllDiv container ">
-		<!-- 	選擇紐 -->
-		<div class="bgMallNavDiv d-flex justify-content-end ">
-			<div class=" bd-highlight ">
-				<div class="bgMallSearchNavDiv nav ">
-					<div class="SearchDiv1 nav-item text-center border border-primary">
-						<a class="nav-link " href="#">Active</a>
-					</div>
-					<div
-						class="SearchDiv2 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">篩選</a>
-					</div>
-					<div
-						class="SearchDiv3 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="#">新增</a>
-					</div>
-					<div
-						class="SearchDiv4 nav-item text-center border border-primary border-left-0">
-						<a class="nav-link " href="<c:url value='/support/bgMallAdd' />">新增</a>
-					</div>
-				</div>
-			</div>
-			<div class="SearchDiv5 bd-highlight">
-				<form class="form-inline my-2 my-lg-0 ">
-					<input class="form-control mr-sm-2" type="search"
-						placeholder="品名/種類/金額" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-		<!-- 	選擇紐結束 -->
-		<!-- 	引入共同的頁首 -->
-		<div class="bgMainDiv container ">
-			<jsp:include page="/WEB-INF/views/support/supFragment/bgNavbar.jsp" />
-			<div class="bgMainGalleryDiv row ">
+	<div class="col-lg-9 mb-4">
 				<!-- 		內容建立位置-------------- -->
 				<!--	修改商品開始 -->
 				<c:set var="program" value="${ProgramBean}" />
@@ -75,7 +40,7 @@
 					<fieldset>
 						<div style="">
 							<div style="text-align: center; vertical-align: middle;">
-								<Font color="#006600" size='5' face="標楷體">修改會員權限</Font>
+								<Font color="#006600" size='5' face="標楷體">方案審核管理</Font>
 							</div>
 						</div>
 						<div style="">
@@ -150,10 +115,10 @@
 						</div>
 						<div style="">
 							<div>
-								<label class="fontSize">建立時間：${program.prm_Createdate}</label><br>&nbsp;
+								<label class="fontSize">建立時間：<fmt:formatDate value='${program.prm_Createdate}' type='date'/></label><br>&nbsp;
 							</div>
 							<div>
-								<label class="fontSize">上次修改時間：${program.prm_Editdate}</label><br>&nbsp;
+								<label class="fontSize">上次修改時間：<fmt:formatDate value='${program.prm_Editdate}' type='date'/></label><br>&nbsp;
 							</div>
 						</div>
 						<div style="">
@@ -170,7 +135,6 @@
 		</div>
 	</div>
 
-	<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" />
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>

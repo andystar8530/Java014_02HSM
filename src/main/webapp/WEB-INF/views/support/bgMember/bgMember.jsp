@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,9 +63,9 @@
 						<div
 							class="bgMainGalleryDivIn4 border border-primary border-left-0  d-flex flex-column align-items-center row">
 							<!--	創建日期 -->
-							<div>${member.value.m_CreateTime}</div>
+							<div>建立時間：<fmt:formatDate value='${member.value.m_CreateTime}' type='date'/></div>
 							<!--	最後修改日期 -->
-							<div>${member.value.m_EditTime}</div>
+							<div>上次修改時間：<fmt:formatDate value='${member.value.m_EditTime}' type='date'/></div>
 						</div>
 					</div>
 				</c:forEach>
