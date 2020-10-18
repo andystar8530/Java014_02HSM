@@ -61,7 +61,7 @@ public class BaseController {
 		return "redirect:/";
 	}
 	
-	
+							
 	@GetMapping("/_00_init/getMemberImage")
 	public ResponseEntity<byte[]>  getMemberImage(@RequestParam("id") String id) {
 		InputStream is = null;

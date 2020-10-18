@@ -49,7 +49,6 @@ public class NewlywedController {
       //NewlywedBean newlywedBean2 =new NewlywedBean();
       MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
       newlywedBean=newlywedService.queryNewlywed(mb.getM_No());
-      System.out.println(newlywedBean.getnId()+"++++++++++++++++++++++++++++++++++");
       model.addAttribute("NewlywedBean", newlywedBean);
       //這串 取資料秀出來
       

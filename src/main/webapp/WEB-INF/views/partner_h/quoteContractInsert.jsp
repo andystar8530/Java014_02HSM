@@ -128,7 +128,7 @@
         </div>
         <div class="form-group col-md-4">
             <label >訂金比例%</label>
-            <form:input type="text" id="qcTotalAmount" path="qcTotalAmount" class="form-control" /> 
+            <form:input type="text" id="qcDepositRate" path="qcDepositRate" class="form-control" onkeyup="deposit()"  /> 
            <form:errors path="qcTotalAmount" class="errors" />
         </div>
     
