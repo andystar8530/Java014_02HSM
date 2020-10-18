@@ -50,8 +50,8 @@
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h5>God Bless You</h5>
+            <p>God bless you and yours, and surround you ever with his blessing.</p>
           </div>
         </div>
         <div class="carousel-item">
@@ -61,8 +61,8 @@
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Second slide label</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h5>The Luckiest Guy</h5>
+            <p>You’re the luckiest guy in the world.</p>
           </div>
         </div>
         <div class="carousel-item">
@@ -72,9 +72,9 @@
             alt="..."
           />
           <div class="carousel-caption d-none d-md-block">
-            <h5>Third slide label</h5>
+            <h5>Perfect Couple</h5>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              The two of you make a perfect couple.
             </p>
           </div>
         </div>
@@ -121,7 +121,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
+                src="<c:url value='/images/bg3.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -138,7 +138,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
+                src="<c:url value='/images/bg4.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -155,7 +155,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
+                src="<c:url value='/images/bg8.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -172,7 +172,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
+                src="<c:url value='/images/bg9.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -189,7 +189,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/allef-vinicius-178362.jpg' />"
+                src="<c:url value='/images/bg11.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -206,7 +206,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/climate-kic-350836.jpg' />"
+                src="<c:url value='/images/bg12-min.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -223,7 +223,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/emile-perron-190221.jpg' />"
+                src="<c:url value='/images/bg13.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
@@ -240,7 +240,7 @@
           <div class="col-lg-3 col-sm-6 col-12 mb-4">
             <div class="card shadow">
               <img
-                src="<c:url value='/images/jobs/guilherme-cunha-222318.jpg' />"
+                src="<c:url value='/images/bg20.jpg' />"
                 class="card-img-top"
                 alt="..."
               />
