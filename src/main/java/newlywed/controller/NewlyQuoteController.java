@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _01_register.model.MemberBean;
@@ -103,12 +104,16 @@ public class NewlyQuoteController {
 //		@GetMapping("/askingQuote/{p_id}")
 		@GetMapping("/askingQuote")
 //		@GetMapping({"/askingQuote","/askingQuote/"})
-		public String getAskingQuoteForm(Model model,
+		public String getAskingQuoteForm(Model model, SessionStatus status,
 				HttpServletRequest request, HttpServletResponse reponse,
 				@RequestParam(value="p_id", required = false) Integer p_id
 				) {
 			System.out.println("p_id: "+p_id);
 			MemberBean mb = (MemberBean) model.getAttribute("LoginOK");//新人會員資料
+			if (mb == null) {
+				status.setComplete();
+				return "redirect:/_02_login/login";
+			}
 //			p_id=13;
 			QuoteContractBean quoteBean = new QuoteContractBean();
 			NewlywedBean nb = newlywedService.queryNewlywed(mb.getM_No());//新人資料

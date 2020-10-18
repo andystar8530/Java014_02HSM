@@ -33,7 +33,7 @@ public class NewlywedBean implements Serializable{
 //	private Integer N_id;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer nId;
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
