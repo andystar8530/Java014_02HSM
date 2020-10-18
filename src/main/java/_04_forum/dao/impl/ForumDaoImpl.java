@@ -20,7 +20,7 @@ public class ForumDaoImpl implements ForumDao {
 
 	@Autowired
 	SessionFactory factory;
-	
+
 	int onePage = 5;
 
 	@Override
@@ -33,17 +33,17 @@ public class ForumDaoImpl implements ForumDao {
 		Collections.reverse(list);
 		return list;
 	}
-	
+
 	@Override
 	public List<ForumBean> getPostPage(List<ForumBean> allFb, int pageNo) {
-		int a=(pageNo-1)*onePage;
+		int a = (pageNo - 1) * onePage;
 		List<ForumBean> singlePage = new ArrayList<>();
-		for(int i=a; i<a+onePage &&i<allFb.size(); i++) {
+		for (int i = a; i < a + onePage && i < allFb.size(); i++) {
 			singlePage.add(allFb.get(i));
 		}
 		return singlePage;
 	}
-	
+
 	@Override
 	public void addPost(ForumBean newPost) {
 		Session session = factory.getCurrentSession();
@@ -115,10 +115,8 @@ public class ForumDaoImpl implements ForumDao {
 		Session session = factory.getCurrentSession();
 		LikeOrHateBean loh = new LikeOrHateBean();
 		String hql = "FROM LikeOrHateBean l where l.forumBean.fId = :p and l.memberBean.m_No= :no";
-		loh = (LikeOrHateBean) session.createQuery(hql)
-					 .setParameter("p", postId)
-					 .setParameter("no", memId)
-					 .getSingleResult();
+		loh = (LikeOrHateBean) session.createQuery(hql).setParameter("p", postId).setParameter("no", memId)
+				.getSingleResult();
 		return loh;
 	}
 
@@ -136,6 +134,22 @@ public class ForumDaoImpl implements ForumDao {
 	public void UpdateViews(ForumBean newPost) {
 		Session session = factory.getCurrentSession();
 		session.saveOrUpdate(newPost);
+	}
+
+	@Override
+	public void deleteComByPk(int comId) {
+		Session session = factory.getCurrentSession();
+		CommentBean commentbean = session.get(CommentBean.class, comId);
+		session.delete(commentbean);
+	}
+
+	@Override
+	public void deletePost(int postId) {
+		Session session = factory.getCurrentSession();
+		String hql = "Delete FROM LikeOrHateBean where postId=:postId";
+		session.createQuery(hql).setParameter("postId", postId).executeUpdate();
+		ForumBean forumBean = session.get(ForumBean.class, postId);
+		session.delete(forumBean);
 	}
 
 }

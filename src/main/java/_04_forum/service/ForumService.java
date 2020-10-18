@@ -38,5 +38,13 @@ public interface ForumService {
 	int lastPage(Integer type);
 	
 	public void setViews(int postId); 
+	
+	public int searchlastpage(String search);
+	
+	public List<ForumBean> getSearchList(List<ForumBean> li, String search);
+	
+	public void deletePost(int postId);
+
+	
 
 }
