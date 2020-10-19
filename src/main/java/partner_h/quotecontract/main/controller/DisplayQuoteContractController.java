@@ -11,6 +11,8 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +32,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _01_register.model.MemberBean;
+import _01_register.service.MemberService;
 import _03_listProducts.model.ProductBean;
+import newlywed.model.NewlywedBean;
+import newlywed.service.NewlywedService;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
 import partner_h.partnerInfoEdit_h.service.PartnerService;
 import partner_h.quotecontract.main.model.QuoteContractBean;
@@ -51,6 +56,15 @@ public class DisplayQuoteContractController {
 
 	@Autowired
 	QuoteContractService qcservice;
+	
+	@Autowired
+	MemberService mbService;
+	
+	@Autowired
+	NewlywedService nlService;
+	
+	@Autowired
+	private SessionFactory factory;
 
 	String p_storeName;
 //	@Autowired
@@ -62,14 +76,15 @@ public class DisplayQuoteContractController {
 
 		// 抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-
+	
 		// 透過合作商的ID,找到清單-報價單
-		List<QuoteContractBean> qcbs = qcservice.getPartnerQuotes(partnerBean.getP_id());
+		List<QuoteContractBean> qcbs = qcservice.getPartnerQuotes(partnerBean.getP_id());	
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
 
 	// 合約狀態列表(未簽約)
+	/*
 	@GetMapping("quoteContractStatusList/undone")
 	protected String getUndoneStatusQuotes(Model model) {
 		int status = 0;
@@ -77,29 +92,47 @@ public class DisplayQuoteContractController {
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 
 		// 透過合作商的ID,找到清單-報價單
-
 		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
 
+	
 	// 合約狀態列表(已簽約)
 	@GetMapping("quoteDoneContractStatusList/done")
 	protected String getStatusQuotes(Model model) {
 		int status = 2;
 		// 抓取會員的資料
 		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-
 		// 透過合作商的ID,找到清單-報價單
-
 		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
 		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
 		return "partner_h/quoteContractList";
 	}
+*/	
+	
+	// 合約狀態列表(0:未簽約 1:已簽約未付訂金 2:已付訂金 3:服務完成 4:自動放棄 5:客戶詢價)
+	@GetMapping("/quoteContractStatusList")
+	protected String getStatusQuotes(Model model,
+			@RequestParam("status") Integer status
+			) {
+//		int status = item;
+		// 抓取會員的資料
+		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
+		// 透過合作商的ID,找到清單-報價單
+		List<QuoteContractBean> qcbs = qcservice.getStatusQuotes((partnerBean.getP_id()), status);
+		model.addAttribute("quoteList", qcbs);// 將清單放入找出的合約清單放入quoteList識別字中
+		return "partner_h/quoteContractList";
+	}
+	
+	
+	
 
 	// 單筆合約明細
 	@GetMapping({ "quoteDetail", "quoteDoneContractStatusList/quoteDetail", "quoteContractStatusList/quoteDetail" })
-	protected String quoteDetail(Model model, @RequestParam("p_id") Integer p_id, @RequestParam("qcId") Integer qcId) {
+	protected String quoteDetail(Model model, 
+			@RequestParam("p_id") Integer p_id, 
+			@RequestParam("qcId") Integer qcId) {
 		/*
 		 * @RequestParam("參數名") 型態 變數名稱 請求參數獲少量的表單資料，依照參數的型態自動轉型
 		 */
@@ -108,6 +141,33 @@ public class DisplayQuoteContractController {
 		p_storeName = qcb.getP_storeName();
 		System.out.println("get_p_storeName:" + p_storeName);
 		return "partner_h/quoteContractInfo";
+	}
+	
+	// 單筆簽約預覽
+	@GetMapping({"quoteView" })
+	protected String quoteView(Model model, 
+			@RequestParam("p_id") Integer p_id, 
+			@RequestParam("qcId") Integer qcId) {
+		/*
+		 * @RequestParam("參數名") 型態 變數名稱 請求參數獲少量的表單資料，依照參數的型態自動轉型
+		 */
+		//取得單筆合約
+		QuoteContractBean qcb = qcservice.getQuote(qcId);
+		
+		//取得合作商
+		PartnerBean partnerBean = partnerService.getPartner(p_id);
+		
+		//取得合作商與新人會員
+		MemberBean p_mb = (MemberBean) model.getAttribute("LoginOK"); //合作商之會員PK號
+		MemberBean n_mb = mbService.queryMember(qcb.getM_Id()); //新人會員帳號	
+		
+		model.addAttribute("QuoteContractBean", qcb);
+		model.addAttribute("PartnerBean", partnerBean);
+		model.addAttribute("p_MemberBean", p_mb);
+		model.addAttribute("n_MemberBean", n_mb);
+		System.out.println("新人qcb.getM_Id()"+qcb.getM_Id());
+		
+		return "partner_h/quoteView";
 	}
 
 	/*
@@ -187,6 +247,7 @@ public class DisplayQuoteContractController {
 	}
 
 
+	//簽約的Bean
 	@GetMapping("/quoteContractSignature/{id}")
 	public String getQuoteContractSignature(Model model, @PathVariable Integer id) {
 		QuoteContractBean quoteContractBean = qcservice.getQuoteContractBeanById(id);

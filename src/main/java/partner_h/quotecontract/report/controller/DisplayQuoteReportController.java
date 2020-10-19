@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
@@ -35,24 +36,13 @@ public class DisplayQuoteReportController {
 	@Autowired
 	QuoteReportService qrService;
 	
-	//每月營業收入、利潤加總、結案單數
-//	@GetMapping("/year")	
-	protected String getYearQuoteReport(Model model) {
-		System.out.println("載入到每月營收報表中囉");
-		PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
-		System.out.println(partnerBean.getP_id());
-		List<QuoteReportBean> qrBean = qrService.getYearQuotes((partnerBean.getP_id()),3);
-		System.out.println("qrBean長度"+qrBean.size());
-		for(int i=0; i<qrBean.size();i++) {
-			System.out.println(i+"次: "+qrBean.get(i));
-		}
-		return "partner_h/quoteReport";
-	}
 
 		//每月營業收入、利潤加總、結案單數
 		@SuppressWarnings("null")
 		@GetMapping("/year")	
-		protected String getYearQuoteReport2(Model model) {
+		protected String getYearQuoteReport(Model model
+				,@RequestParam("item") Integer item 
+				) {
 			System.out.println("載入到每月營收報表中囉");
 			PartnerBean partnerBean = (PartnerBean) model.getAttribute("partnerBean");
 //			QuoteReportBean qrBean = (QuoteReportBean) model.getAttribute("QuoteReportBean");
@@ -69,9 +59,7 @@ public class DisplayQuoteReportController {
 		Integer exRecMonth = 0;
 		int index=0; 
 		List<QuoteReportBean> qrList = new ArrayList<QuoteReportBean>();
-//		QuoteReportBean qrBean = null;
-		
-				
+			
 		Calendar calendar=Calendar.getInstance();//java.sql.date 取月份
 		for(int i=0;i<qcBean.size();i++) {
 
@@ -128,12 +116,36 @@ public class DisplayQuoteReportController {
 		
 		System.out.println("qrList長度:"+qrList.size());
 		
-		
+	//打印測試
 	for(int i=0;i<qrList.size();i++) {	
 			System.out.println(i+"筆 服務月份:"+qrList.get(i).getMonth()+"月  收入金額:"+qrList.get(i).getQrRevenue()+" 收入平均金額:"+qrList.get(i).getQrAvgRev());	
 		}
 		
+	String url = "";
+//	if(item==1) {
+//		url+="/partner_h/quoteCostReport";
+//	}else if (item==2) {
+//		url+="/partner_h/quoteAvgReport";
+//	}else {
+//		url+="partner_h/quoteReport";		
+//	}
+//	
+	switch (item) {
+	case 1:
+		url+="/partner_h/quoteCostReport";
+		break;
+	case 2:
+		url+="/partner_h/quoteAvgReport";
+		break;
+
+	default:
+		url+="partner_h/quoteReport";		
+		break;
+	}
+	
+	
 		model.addAttribute("qrList", qrList);
-			return "partner_h/quoteReport";
+		System.out.println(url);
+			return url;
 	}	
 }

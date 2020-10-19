@@ -39,14 +39,7 @@ li{list-style-type:none;}
 
 		<div class="container mt-5">
 			<nav class="nav nav-underline">
-				<a class="nav-link alert-warning rounded mr-2" href="#">我要搜尋的主題</a>
-				<a class="nav-link alert-warning rounded mr-2" href="#">婚禮布置</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">婚禮攝影</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">新娘秘書</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">婚禮主持</a> <a
-					class="nav-link alert-warning rounded mr-2" href="#">小物商城</a>
-
-
+				<a class="nav-link alert-warning rounded mr-2" href='<%=path%>/_04_forum/posts'>分享討論區</a>
 			</nav>
 
 		</div>
@@ -133,6 +126,7 @@ li{list-style-type:none;}
 		<div class="my-3 p-3 bg-white rounded box-shadow">
 			<h6 class="border-bottom border-gray pb-2 mb-0">留言板</h6>
 			<a type="submit" href="<%=path%>/_04_forum/post/add?postId=${post.fId}">編輯</a>
+			<a type="submit" href="<%=path%>/_04_forum/delete?postId=${post.fId}">刪除</a>
 			<c:forEach var="comment" items="${getComments}">
 				<div class="media text-muted pt-3">
 					<img alt="32x32" class="mr-2 rounded"

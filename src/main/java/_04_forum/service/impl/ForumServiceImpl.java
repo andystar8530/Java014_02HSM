@@ -21,40 +21,42 @@ public class ForumServiceImpl implements ForumService {
 	@Autowired
 	ForumDao dao;
 
+	int onepage = 5;
+
 	@Override
 	public List<ForumBean> getAllPosts() {
 		return dao.getAllPosts();
 	}
-	
+
 	@Override
 	public List<ForumBean> getPostPage(int pageNo, Integer type) {
-		if(type==null) {			
+		if (type == null) {
 			return dao.getPostPage(getAllPosts(), pageNo);
-		}else {			
+		} else {
 			return dao.getPostPage(getPostByCategory(type), pageNo);
 		}
 	}
-	
+
 	@Override
 	public int lastPage(Integer type) {
 		List<ForumBean> li = new ArrayList<>();
-		if(type==null) {			
+		if (type == null) {
 			li = dao.getAllPosts();
-		}else {			
+		} else {
 			li = dao.getPostByCategory(type);
 		}
 		int nums = li.size();
-		if(nums%5==0) {
-			return nums/5;
-		}else {
-			return nums/5+1;
+		if (nums % 5 == 0) {
+			return nums / 5;
+		} else {
+			return nums / 5 + 1;
 		}
 	}
 
 	@Override
 	public void addPost(ForumBean newPost) {
 		dao.addPost(newPost);
-		
+
 	}
 
 	@Override
@@ -95,8 +97,8 @@ public class ForumServiceImpl implements ForumService {
 	@Override
 	public int getLike(List<LikeOrHateBean> loh) {
 		int count = 0;
-		for(LikeOrHateBean bean:loh) {
-			if(bean.getLikeOrHate()==1) {
+		for (LikeOrHateBean bean : loh) {
+			if (bean.getLikeOrHate() == 1) {
 				count++;
 			}
 		}
@@ -106,8 +108,8 @@ public class ForumServiceImpl implements ForumService {
 	@Override
 	public int getHate(List<LikeOrHateBean> loh) {
 		int count = 0;
-		for(LikeOrHateBean bean:loh) {
-			if(bean.getLikeOrHate()==2) {
+		for (LikeOrHateBean bean : loh) {
+			if (bean.getLikeOrHate() == 2) {
 				count++;
 			}
 		}
@@ -127,9 +129,46 @@ public class ForumServiceImpl implements ForumService {
 	@Override
 	public void setViews(int postId) {
 		ForumBean fb = getPostById(postId);
-		fb.setPostView(fb.getPostView()+1);
+		fb.setPostView(fb.getPostView() + 1);
 		dao.UpdateViews(fb);
 	}
 
+	@Override
+	public int searchlastpage(String search) {
+		List<ForumBean> li = getSearchList(getAllPosts(), search);
+		int lastpage = li.size() / onepage;
+		if (li.size() % onepage > 0)
+			lastpage++;
+		return lastpage;
+	}
+
+	@Override
+	public List<ForumBean> getSearchList(List<ForumBean> li, String search) {
+		List<ForumBean> tb = new ArrayList<>();
+		for (ForumBean tb1 : li) {
+			int j = 0;
+			for (int i = 0; i < tb1.getfTitle().length(); i++) {
+				if (tb1.getfTitle().charAt(i) == search.charAt(j)) {
+					j++;
+				} else {
+					j = 0;
+				}
+				if (j == search.length()) {
+					tb.add(tb1);
+					break;
+				}
+			}
+		}
+		return tb;
+	}
+
+	@Override
+	public void deletePost(int postId) {
+		List<CommentBean> li = dao.getCommentById(postId);
+		for (CommentBean cb : li) {
+			dao.deleteComByPk(cb.getComId());
+		}
+		dao.deletePost(postId);
+	}
 
 }

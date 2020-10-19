@@ -26,7 +26,7 @@ import _04_forum.validator.ForumBeanValidator;
 
 @Controller
 @RequestMapping("/_04_forum")
-@SessionAttributes({"LoginOK"})
+@SessionAttributes({ "LoginOK" })
 public class ForumController {
 
 	@Autowired
@@ -34,77 +34,74 @@ public class ForumController {
 
 	@Autowired
 	ForumBeanValidator forumBeanValidator;
-	
+
 	@RequestMapping("posts")
-	public String list(
-			Model model,
-			@RequestParam(value = "pageNo", required = false) Integer pageNo,
-			@RequestParam(value = "type", required = false)Integer type
-			) {
+	public String list(Model model, @RequestParam(value = "pageNo", required = false) Integer pageNo,
+			@RequestParam(value = "type", required = false) Integer type, ForumBean fb) {
 		List<ForumBean> list = null;
-		if(pageNo==null) {
-			pageNo=1;
+		int lastPage = 0;
+		if (pageNo == null) {
+			pageNo = 1;
 		}
-		list = service.getPostPage(pageNo, type);
+		if (fb.getSearch() != null && fb.getSearch().length() != 0) {
+			String search = fb.getSearch();
+			lastPage = 1;
+			list = service.getSearchList(service.getAllPosts(), search);
+		} else {
+			lastPage = service.lastPage(type);
+			list = service.getPostPage(pageNo, type);
+		}
+		model.addAttribute("search", fb.getSearch());
 		model.addAttribute("pageNo", pageNo);
-		model.addAttribute("lastPage", service.lastPage(type));
+		model.addAttribute("lastPage", lastPage);
 		model.addAttribute("type", type);
 		model.addAttribute("posts", list);
 		return "_04_forum/posts";
 	}
-	
+
 	@GetMapping("/post/add")
-	public String getAddNewPostForm(
-			Model model,
-			@RequestParam(value = "postId", required=false)Integer postId
-			) {
+	public String getAddNewPostForm(Model model, @RequestParam(value = "postId", required = false) Integer postId) {
 		ForumBean fb = new ForumBean();
-		if(postId!=null) {
+		if (postId != null) {
 			fb = service.getPostById(postId);
 		}
 		model.addAttribute("forumBean", fb);
 		return "/_04_forum/addpost";
 	}
-	
+
 	@PostMapping("/post/add")
-	public String proccessAddNewPostForm(
-			Model model,
-			@ModelAttribute("forumBean") ForumBean fb,
-		     BindingResult bindingResult
-			) {
+	public String proccessAddNewPostForm(Model model, @ModelAttribute("forumBean") ForumBean fb,
+			BindingResult bindingResult) {
 		String[] suppressedFields = bindingResult.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		forumBeanValidator.validate(fb,bindingResult);
-		if(bindingResult.hasErrors()) {
+		forumBeanValidator.validate(fb, bindingResult);
+		if (bindingResult.hasErrors()) {
 			return "/_04_forum/addpost";
 		}
 		fb.setPostView(0);
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		fb.setMemberBean(mb);
 		service.addPost(fb);
-		if(fb.getfId()!=null) {
-			return "redirect:/_04_forum/post?id="+fb.getfId();
+		if (fb.getfId() != null) {
+			return "redirect:/_04_forum/post?id=" + fb.getfId();
 		}
 		return "redirect:/_04_forum/posts";
 	}
-	
+
 	@ModelAttribute("categoryList")
-	public Map<Integer, String> getCategoryList(){
+	public Map<Integer, String> getCategoryList() {
 		Map<Integer, String> categoryMap = new HashMap<>();
 		List<CategoriesBean> list = service.getCategoryList();
-		for(CategoriesBean cb:list) {
+		for (CategoriesBean cb : list) {
 			categoryMap.put(cb.getPcNo(), cb.getPcType());
 		}
 		return categoryMap;
 	}
-	
+
 	@GetMapping("post")
-	public String getPostById(
-			@RequestParam("id") Integer id,
-			Model model
-			) {
+	public String getPostById(@RequestParam("id") Integer id, Model model) {
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		CommentBean cb = new CommentBean();
 		ForumBean fb = new ForumBean();
@@ -115,19 +112,16 @@ public class ForumController {
 			e.printStackTrace();
 		}
 		service.setViews(id);
-		fb=service.getPostById(id);
-		model.addAttribute("loh",loh);
+		fb = service.getPostById(id);
+		model.addAttribute("loh", loh);
 		model.addAttribute("formCb", cb);
-		model.addAttribute("post",fb);
+		model.addAttribute("post", fb);
 		model.addAttribute("getComments", service.getCommentById(id));
 		return "_04_forum/post";
 	}
-	
+
 	@PostMapping("post")
-	public String insertComment(
-			Model model,
-			@ModelAttribute("formCb") CommentBean cb
-			) {
+	public String insertComment(Model model, @ModelAttribute("formCb") CommentBean cb) {
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		cb.setMemberBean(mb);
 		service.addComment(cb);
@@ -135,14 +129,10 @@ public class ForumController {
 		model.addAttribute("getComments", service.getCommentById(cb.getPostId()));
 		return "_04_forum/post";
 	}
-	
+
 	@RequestMapping("/like")
-	public String likeOrHate(
-			Model model,
-			@RequestParam(value = "tf") Integer tf,
-			@RequestParam(value = "postId") Integer postId,
-			@RequestParam(value = "loh") Integer no
-			) {
+	public String likeOrHate(Model model, @RequestParam(value = "tf") Integer tf,
+			@RequestParam(value = "postId") Integer postId, @RequestParam(value = "loh") Integer no) {
 		LikeOrHateBean loh = new LikeOrHateBean();
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
 		ForumBean fb = service.getPostById(postId);
@@ -151,7 +141,14 @@ public class ForumController {
 		loh.setMemberBean(mb);
 		loh.setForumBean(fb);
 		service.saveLike(loh);
-		return "redirect:/_04_forum/post?id="+postId;
+		return "redirect:/_04_forum/post?id=" + postId;
 	}
-	
+
+	@GetMapping("delete")
+	public String deletePost(Model model, @RequestParam("postId") Integer postId) {
+		service.deletePost(postId);
+		return "redirect:/_04_forum/posts";
+
+	}
+
 }

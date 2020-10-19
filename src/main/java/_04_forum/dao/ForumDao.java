@@ -35,4 +35,8 @@ public interface ForumDao {
 	
 	void UpdateViews(ForumBean newPost);
 	
+	public void deleteComByPk(int comId);
+	
+	public void deletePost(int postId);
+	
 }

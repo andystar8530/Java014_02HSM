@@ -85,11 +85,6 @@
 <div class="form-row">
 <div class="form-group col-md-4">
  <label >報價日期</label>
-<%--  <c:if test="quoteBean.qcDate !=null"> --%>
-<!-- 	 <label Class="error">*必填欄位</label> -->
-<%-- 	 <form:input --%>
-<%-- 			  type="date"  id="qcDate"  path="qcDate"  class="form-control" /> <br>			 --%>
-<%--  </c:if> --%>
  	 <form:input
 			  type="date"  id="qcDate"  path="qcDate"  class="form-control" /> <br>		
 		 <form:errors path="qcDate" class="errors" />
@@ -97,11 +92,6 @@
 
 <div class="form-group col-md-4">
  <label >服務日期</label>
-<%--  <c:if test="quoteBean.qcExecutionDate !=null"> --%>
-<!-- 	 <label Class="error">*必填欄位</label> -->
-<%-- 	 <form:input --%>
-<%-- 	 type="date" id="qcExecutionDate" path="qcExecutionDate" class="form-control" /> <br>	 --%>
-<%--  </c:if> --%>
  	 <form:input
 	 type="date" id="qcExecutionDate" path="qcExecutionDate" class="form-control" /> <br>	
 <form:errors path="qcExecutionDate" class="errors" />
@@ -217,8 +207,18 @@
 	</div>
 <!-- 第七行 結束 合約內容 -->
 
-<!-- 送出 -->
-	<button type="submit" class="btn btn-primary mb-5">儲存</button>
+<!-- 更新儲存 、 合約檢 -->
+
+	<button type="submit" class="btn btn-outline-primary mb-5">儲存</button>
+
+
+<c:if test="${quoteBean.qcStatus > 2 || quoteBean.qcStatus!= 5}">
+<button type="button" class="btn btn-outline-primary mb-5" >
+<a href="<c:url value='quoteView?p_id=${quoteBean.p_Id}&qcId=${quoteBean.qcId}'/>"  s>合約檢閱</a></button>
+</c:if>
+
+
+
 	 </form:form> 
 	 </div>
 </div>

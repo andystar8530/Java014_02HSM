@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 					<fieldset>
 						<div style="">
 							<div style="text-align: center; vertical-align: middle;">
-								<Font color="#006600" size='5' face="標楷體">修改會員權限</Font>
+								<Font color="#006600" size='5' face="標楷體">方案審核管理</Font>
 							</div>
 						</div>
 						<div style="">
@@ -114,10 +115,10 @@
 						</div>
 						<div style="">
 							<div>
-								<label class="fontSize">建立時間：${program.prm_Createdate}</label><br>&nbsp;
+								<label class="fontSize">建立時間：<fmt:formatDate value='${program.prm_Createdate}' type='date'/></label><br>&nbsp;
 							</div>
 							<div>
-								<label class="fontSize">上次修改時間：${program.prm_Editdate}</label><br>&nbsp;
+								<label class="fontSize">上次修改時間：<fmt:formatDate value='${program.prm_Editdate}' type='date'/></label><br>&nbsp;
 							</div>
 						</div>
 						<div style="">

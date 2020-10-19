@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import _01_register.model.MemberBean;
+import _01_register.service.MemberService;
 import newlywed.model.NewlywedBean;
 import newlywed.service.NewlywedService;
 import partner_h.partnerInfoEdit_h.model.PartnerBean;
@@ -41,6 +43,8 @@ public class NewlyQuoteController {
 	@Autowired
 	PartnerService partnerService;
 	
+	@Autowired
+	MemberService memberSerivce;
 
 	@GetMapping("quoteAllList")
 	protected String getNewlyQuotes(Model model) {
@@ -52,7 +56,7 @@ public class NewlyQuoteController {
 		return "newlywed_h/quoteContractList";
 	}
 
-	// 單筆合約明細
+	// 單筆報價明細
 	@GetMapping("newlyQuoteDetail")
 	protected String quoteDetail(Model model, @RequestParam("m_Id") String m_Id, @RequestParam("qcId") Integer qcId) {
 		/*
@@ -63,6 +67,28 @@ public class NewlyQuoteController {
 		return "newlywed_h/quoteContractInfo";
 	}
 
+	// 單筆已簽約合約明細
+	@GetMapping("quoteNewlyView")
+	protected String quoteDetail(Model model, 
+			@RequestParam("p_id") Integer p_id, @RequestParam("qcId") Integer qcId) {
+
+		QuoteContractBean qcb = qcservice.getQuote(qcId);
+		PartnerBean pBean = partnerService.getPartner(p_id);
+		String id = String.valueOf(pBean.getP_mId());
+		MemberBean p_MemberBean = memberSerivce.queryMember(id);
+		MemberBean n_MemberBean = (MemberBean) model.getAttribute("LoginOK");
+		
+		model.addAttribute("QuoteContractBean", qcb);
+		model.addAttribute("p_MemberBean", p_MemberBean);
+		model.addAttribute("n_MemberBean", n_MemberBean);
+		model.addAttribute("PartnerBean", pBean);
+		
+		return "newlywed_h/quoteNewlyView";
+	}
+
+	
+	
+	
 	/*
 	 * 有bindingResult
 	 * 
@@ -103,12 +129,16 @@ public class NewlyQuoteController {
 //		@GetMapping("/askingQuote/{p_id}")
 		@GetMapping("/askingQuote")
 //		@GetMapping({"/askingQuote","/askingQuote/"})
-		public String getAskingQuoteForm(Model model,
+		public String getAskingQuoteForm(Model model, SessionStatus status,
 				HttpServletRequest request, HttpServletResponse reponse,
 				@RequestParam(value="p_id", required = false) Integer p_id
 				) {
 			System.out.println("p_id: "+p_id);
 			MemberBean mb = (MemberBean) model.getAttribute("LoginOK");//新人會員資料
+			if (mb == null) {
+				status.setComplete();
+				return "redirect:/_02_login/login";
+			}
 //			p_id=13;
 			QuoteContractBean quoteBean = new QuoteContractBean();
 			NewlywedBean nb = newlywedService.queryNewlywed(mb.getM_No());//新人資料

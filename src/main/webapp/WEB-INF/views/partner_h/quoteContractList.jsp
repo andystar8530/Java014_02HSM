@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>合作商報價合約列表</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <jsp:include page="/fragment/topMVC.jsp" />
@@ -47,7 +51,9 @@
                                                 狀態
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">詢價中</a>
-                            <a class="dropdown-item" href="<c:url value='/quotecontract/quoteContractStatusList/undone' />">未報價</a>
+                            <a class="dropdown-item"  href="<c:url value='/quotecontract/quoteContractStatusList?status=0' />">未報價</a>
+<%--                             <a class="dropdown-item"  href="<c:url value='/quotecontract/quoteContractStatusList?status=0' />">未報價</a> --%>
+
                             <a class="dropdown-item" href="#">未簽約</a>
                             <a class="dropdown-item" href="#">未付訂金</a>
                             <a class="dropdown-item" href="#">結案:服務完</a>
@@ -60,7 +66,6 @@
                     <th>報價金額</th>
                     <th>報價日期</th>
                     <th>有效日期</th>
-                    <th>備註</th>
 
                 </tr>
             </thead>
@@ -104,7 +109,7 @@
                     <td>${aQuoteBean.servicePrice}</td>
                     <td>${aQuoteBean.qcDate}</td>
                     <td>${aQuoteBean.qcDateLine}</td>
-                    <td></td>
+
                 </tr>   
             </c:forEach>                   
             </tbody>

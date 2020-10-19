@@ -110,10 +110,11 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 		String hql = "FROM QuoteContractBean q WHERE q.p_Id = :pid and q.qcStatus = :status";
 		String hql1 ="FROM QuoteContractBean q WHERE q.p_Id = :pid and q.qcStatus < :status";
 		Session session = factory.getCurrentSession();
+		/*
 		if(status==0) {
 				list = session.createQuery(hql1)
 						  .setParameter("pid", p_Id)
-						  .setParameter("status", 2)
+						  .setParameter("status", status)
 					      .getResultList();						
 		}else if(status==2) {
 			list = session.createQuery(hql)
@@ -121,7 +122,11 @@ public class QuoteContractDaoImpl_Hibernate implements QuoteContractDao {
 					  .setParameter("status", status)
 				      .getResultList();		
 		}
-		
+		*/
+		list = session.createQuery(hql)
+				  .setParameter("pid", p_Id)
+				  .setParameter("status", status)
+			      .getResultList();	
 		return list;
 	}
 

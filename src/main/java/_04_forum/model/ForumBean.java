@@ -30,6 +30,8 @@ public class ForumBean implements Serializable{
 		@Column(name = "M_NO")
 		@Transient
 		private Integer mNo;
+		@Transient
+		private String search;
 		@Column(name = "F_TITLE")
 		private String fTitle;
 		@Column(name = "F_TEXT")
@@ -177,6 +179,14 @@ public class ForumBean implements Serializable{
 
 		public void setPostView(Integer postView) {
 			PostView = postView;
+		}
+
+		public String getSearch() {
+			return search;
+		}
+
+		public void setSearch(String search) {
+			this.search = search;
 		}
 
 		@Override
