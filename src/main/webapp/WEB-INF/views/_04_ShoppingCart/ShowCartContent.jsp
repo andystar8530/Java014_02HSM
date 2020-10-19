@@ -298,7 +298,7 @@ $('#sub10s${vs.index}').click(function subst() {
             <a href="<c:url value='checkout' />" onClick="return Checkout(${subtotal});" class="btn btnEffect02 effect02"><span>結帳</span></a>
           </div>
           <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3">
-            <a href="<c:url value='abort' />" onClick="return Abort();" class="btn btnEffect02 effect02"><span>放棄購物---</span></a>
+            <a href="<c:url value='abort' />" onClick="return Abort();" class="btn btnEffect02 effect02"><span>放棄購物</span></a>
           </div>
         </div>
       </div>

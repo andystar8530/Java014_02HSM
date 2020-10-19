@@ -48,8 +48,8 @@
 						<TD id='borderA' width="80" align="right"><fmt:formatNumber
 								value="${anOrderBean.s_OrderSum}" pattern="#,###,###" />元</TD>
 						<TD id='borderA' width="380" align="left">&nbsp;${anOrderBean.s_M_Address}</TD>
-						<TD id='borderA' width="80" align="left">&nbsp; <c:if
-								test="${anOrderBean.s_Status ==0}">收到訂單</c:if> <c:if
+						<TD id='borderA' width="90" align="left">&nbsp; <c:if
+								test="${anOrderBean.s_Status ==0}">收到訂單-刷卡</c:if> <c:if
 								test="${anOrderBean.s_Status ==1}">撿貨</c:if> <c:if
 								test="${anOrderBean.s_Status ==2}">理貨</c:if> <c:if
 								test="${anOrderBean.s_Status ==3}">出貨</c:if> <c:if

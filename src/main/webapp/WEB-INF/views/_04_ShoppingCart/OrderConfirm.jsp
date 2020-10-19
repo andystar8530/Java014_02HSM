@@ -83,8 +83,8 @@ function reconfirmOrder() {
 
 
 <!-- Product Detail Start -------------------------------------------------------------->
-<FORM action="<c:url value='preProcessOrder' />" method="POST" >
 <c:set var="VAT" value="${ShoppingCart.subtotal*0.05 + 0.0001}"/>
+<FORM action="<c:url value='preProcessOrder' />" method="POST" >
     <div class="accordion container mt-5 mb-4">
       <div class="contentBx active">
         <!-- 訂單明細標題 -->
@@ -247,28 +247,12 @@ function reconfirmOrder() {
 <!--             ><div class="btnText1">提交訂單</div> -->
 <!--             </a> -->
            <input type="hidden" name="finalDecision"  value="">   
-   			<input type="button" name="OrderBtn"  value="確定送出" onclick="reconfirmOrder()" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1">
+            <input type="button" id="buy" value="確定結帳" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1">
+<!--    			<input type="button" name="OrderBtn"  value="確定送出" onclick="reconfirmOrder()" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1"> -->
    			<input type="button" name="CancelBtn" value="取消訂單" onclick="cancelOrder()" class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center btnText1">
         </div>
       </div>
-      
-<!--       有動畫的按鈕 -->
-<!-- 		<div class="row justify-content-center align-items-center"> -->
-<!--         <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3"> -->
-<!--           <a -->
-<!--             href="#" -->
-<!--             class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center" -->
-<!--              onclick="reconfirmOrder()"><div class="btnText1">提交訂單</div></a> -->
-<!--         </div> -->
-<!--         <div class="shoppingBtn col-lg-2 col-md-3 col-sm-6 col-xs-6 mt-3"> -->
-<!--           <a -->
-<!--             href="#" -->
-<!--             class="btn btnEffect02 effect02 mb-4 d-flex align-items-center justify-content-center" -->
-<!--              onclick="cancelOrder()"><div class="btnText1">取消訂單</div></a> -->
-<!--         </div> -->
-<!--       </div> -->
       </div>
-    
      </FORM>
     <!-- Customer Info End ----------------------------------------------------------------->
 
@@ -384,5 +368,116 @@ function reconfirmOrder() {
       src="https://kit.fontawesome.com/8e822d04fb.js"
       crossorigin="anonymous"
     ></script>
+<!--     摸擬刷卡結帳開始 -->
+<script src="https://storage.googleapis.com/prshim/v1/payment-shim.js"></script>
+
+    <style type="text/css">
+   #notice {
+      margin: 10px 0px;
+      background: rgba(0, 200, 0, 0.2);
+      padding: 10px;
+    }
+    #res {
+      background: rgba(0, 0, 0, 0.1);
+      color: #333;
+      padding: 10px;
+    }
+    #buy {
+      margin-bottom: 10px;
+    }
+  </style>
+  </head>
+<!--   <body> -->
+    <a href='https://github.com/aszx87410/payment-request-demo/blob/master/index.html' target='_blank'>source code</a>
+    <div id="notice"></div>
+<!--     <button id="buy">購買</button> -->
+    <div>返回結果：</div>
+    <pre id="res"></pre>
+<!--   </body> -->
+  <script>     
+    var $res = document.querySelector('#res');
+    var $notice = document.querySelector('#notice');
+    var $buyBtn = document.querySelector('#buy');
+
+    init();
+
+    function init () {
+      if (!window.PaymentRequest) {
+        $notice.innerHTML = '不支援 PaymentRequest，請使用 Chrome 61（含）以上版本';
+        $notice.style.background = 'rgba(200, 0, 0, 0.2)';
+        return;
+      }
+      $notice.innerHTML = '支援 PaymentRequest，請按購買按鈕繼續（此網頁僅供測試使用，不會儲存或是傳送任何相關資訊，也不會真的結帳扣款，但還是建議不要輸入真實資訊）';
+      $buyBtn.addEventListener('click', onClick);
+    }
+
+    function onClick () {
+    	var sa = document.getElementById('ShippingAddress').value;
+    	if  (sa === "") {
+    		window.alert ('出貨地址不能是空白');
+    		return ; 
+    	}
+        
+      var request = createPaymentRequest();
+      request.show().then(function(PaymentResponse) {
+        handleResponse(PaymentResponse);
+      }).catch(function(err) {
+        console.log(err);
+      });
+    }
+
+    function showResponse (response) {
+      $res.innerHTML = JSON.stringify(response, undefined, 2);
+    }
+
+    function handleResponse (paymentResponse) {
+      // 可以在這裡把結果回傳 server
+      	document.forms[0].finalDecision.value = "ORDER";
+		document.forms[0].action="<c:url value='ProcessOrder' />";
+		document.forms[0].method="POST";
+		document.forms[0].submit();
+      
+//       showResponse(paymentResponse);
+      // 模擬 API 的延遲
+      setTimeout(function () {
+        paymentResponse.complete("success");
+      }, 2000);
+    }
+
+    function createPaymentRequest () {
+      var methodData = [{
+        supportedMethods: ['basic-card'],
+        data: {
+          supportedNetworks: ['jcb', 'mastercard', 'visa'], 
+          supportedTypes: ['debit', 'credit', 'prepaid']
+        },
+      }];
+      var details = {
+        displayItems: [
+        	<c:forEach varStatus="vs" var="entry" items="${ShoppingCart.content}">
+            {
+                label: "${entry.value.soiTitle}共 ${entry.value.soiQty}個",
+                amount: { currency: "TWD", value : "<fmt:formatNumber 
+                  	value="${entry.value.soiPrice * entry.value.soiQty}" pattern="#######" />" }
+              },
+        	</c:forEach>
+
+          {
+            label: "營業稅0.05%",
+            amount: { currency: "TWD", value : "<fmt:formatNumber value="${VAT}" pattern="#######" />" },
+            pending: true
+          }
+        ],
+        total:  {
+          label: "總額",
+          amount: { currency: "TWD", value : "<fmt:formatNumber value="${ShoppingCart.subtotal + VAT }" pattern="#######" />" }
+        }
+      };
+
+      return new PaymentRequest(methodData, details);
+    }
+  </script>
+    
+<!--     摸擬刷卡結帳開始 -->
 </body>
 </html>
