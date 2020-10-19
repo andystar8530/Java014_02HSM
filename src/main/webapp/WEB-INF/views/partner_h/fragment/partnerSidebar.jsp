@@ -62,7 +62,9 @@
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=0'/>">年度經營報表</a>             
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=1'/>">專案成本表</a>             
             <a class="sidebar-item list-group-open2 wow bounce" data-wow-duration="1s" href="<c:url value='/quotReport/year?item=2'/>">月平均報表</a>             
+
           </a>
+
         </div>
       </div>
 
