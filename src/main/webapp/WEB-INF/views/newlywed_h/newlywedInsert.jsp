@@ -80,7 +80,7 @@
     </div>
     
     <div class="form-group col-md-4">
-     <label >服務日期</label>
+     <label >結婚日期</label>
           <form:input
          type="date" id="qcExecutionDate" path="qcExecutionDate" class="form-control" /> <br>	
     <form:errors path="qcExecutionDate" class="errors" />
@@ -137,6 +137,7 @@
 
 
 
+</div>
 </div>
 </div>
 <jsp:include page="/fragment/footerMVC.jsp" />

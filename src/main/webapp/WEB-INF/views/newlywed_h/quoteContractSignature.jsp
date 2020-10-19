@@ -409,5 +409,5 @@
 <script src="${pageContext.request.contextPath}/js/html2canvas.js"></script>
 <script
 	src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
-<jsp:include page="/WEB-INF/views/support/supFragment/bgFooter.jsp" />
+<jsp:include page="/fragment/footerMVC.jsp" />
 </html>

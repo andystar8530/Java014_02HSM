@@ -67,12 +67,18 @@ h2,h3{
 					<div class="col mb-4">
     					<div class="card h-100">					
 <%--     						<img src='<c:url value="/data/icon/uncheck.png"/>' class='chooseIcon'> 					 --%>
-                            <input type="checkbox" name="subCheck" id='subCheck-"${pfBean.pfdId}"' value='"${pfBean.pfdId}"'>
+ <div class="card-body">
+ <div class="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" name="subCheck" id='subCheck-"${pfBean.pfdId}"' value='"${pfBean.pfdId}"'>
+  <label class="custom-control-label" for='subCheck-"${pfBean.pfdId}"'>選擇</label>
+</div>
+<%--                             <input type="checkbox" name="subCheck" id='subCheck-"${pfBean.pfdId}"' value='"${pfBean.pfdId}"'> --%>
+						</div>
 							<img src="<c:url value='/getPFDetailImage/ ${pfBean.pfdId}'/>" class='pfDetailImage card-img-top' id='"${pfBean.pfdId}"'>
 <%-- 						<p> 照片名稱:   ${pfBean.pfdName}</p> --%>
 				
 				 			 <div class="card-body">
-								<h5 class="card-title">${pfBean.pfdName}</h5>
+<%-- 								<h5 class="card-title">${pfBean.pfdName}</h5> --%>
 <!--         						<p class="card-text">This content is a little bit longer.</p> -->
      			 			</div>
 				
