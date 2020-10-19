@@ -45,7 +45,7 @@ public class NewlyQuoteController {
 	
 	@Autowired
 	MemberService memberSerivce;
-
+	String m_Id;
 	@GetMapping("quoteAllList")
 	protected String getNewlyQuotes(Model model) {
 		MemberBean mb = (MemberBean) model.getAttribute("LoginOK");
@@ -144,12 +144,15 @@ public class NewlyQuoteController {
 			NewlywedBean nb = newlywedService.queryNewlywed(mb.getM_No());//新人資料
 			quoteBean.setN_Name(mb.getM_Name());
 			quoteBean.setM_Id(mb.getM_Id());
+			m_Id=mb.getM_Id();
 			if(p_id!=null) {
 				PartnerBean pb = partnerService.getPartner(p_id);//合作商
 				quoteBean.setP_Id(p_id);//合作商id
 				quoteBean.setP_storeName(pb.getP_storeName());//合作商店名稱
 				quoteBean.setP_Signature(pb.getP_stamp());
 				quoteBean.setCostPerHour(pb.getP_hRate());
+				quoteBean.setQcStatus(5);
+				
 			}
 			model.addAttribute("quoteBean",quoteBean);
 			return "newlywed_h/newlywedInsert";
@@ -167,12 +170,14 @@ public class NewlyQuoteController {
 //			//找到對應的serviceItem物件
 //			ServiceItem serviceItem = serviceItemService.getServiceItem(qciBean.getServiceItem().getSiId());
 //			qciBean.setServiceItem(serviceItem);
+//			NewlywedBean nb = (NewlywedBean) model.getAttribute("LoginOK");
+			bean.setM_Id(m_Id);
+			bean.setQcStatus(5);
 			if(bean.getP_storeName()==null) {
 				PartnerBean pb = partnerService.getPartner(bean.getP_Id());
-				
 				bean.setP_storeName(pb.getP_storeName());
 				bean.setP_Signature(pb.getP_stamp());
-				bean.setCostPerHour(pb.getP_hRate());
+				bean.setCostPerHour(pb.getP_hRate());			
 			}
 			qcservice.save(bean);
 //			int p_id = bean.getP_Id();
