@@ -57,8 +57,10 @@ td{vertical-align: middle !important;}
                 <td><img src="<c:url value='/_06_Program/getProgramImage/${program.prm_Id}'/>" 
                   class='editImage'></td>
                 <td>${program.prm_Title}</td> 
-                <td>${program.prm_Category}</td>
+                <td>${program.prm_Content}</td>
+                <td>${program.prm_Category}</td>                
                 <td>${program.prm_Price}</td> 
+                <td>${program.prm_Status}</td>            
                 <td>${program.prm_Createdate}</td>
                 <td>${program.prm_Editdate}</td>
                 <td>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>showPartners</title>
+<title>姻緣聚繪</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/show/showPartners.css">
 <!-- CSS here -->

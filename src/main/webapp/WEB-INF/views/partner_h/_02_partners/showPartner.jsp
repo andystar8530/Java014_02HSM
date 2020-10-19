@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>檢視店家資訊 </title>
+<title>${partnerBean.p_storeName}</title>
 <style>
 .partnerIcon{
 	border-radius: 50%;
